@@ -8,9 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#D1E7FF"
+        style="@style/bg_edit"
         android:text="Đăng nhập" />
 
     <LinearLayout
@@ -28,17 +26,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
+                android:textSize="15dp"
                 android:text="ADMIN" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
+                android:textSize="15dp"
                 android:text="Nhân viên" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="Khách hàng" />
         </LinearLayout>
 
@@ -51,12 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
+                android:textSize="15dp"
                 android:text="Thủ kho" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
+                android:textSize="15dp"
                 android:text="Shipper" />
 
         </LinearLayout>
@@ -75,27 +78,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         android:text="Tên đăng nhập"
         android:textSize="25dp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#F0D4D4" />
+        style="@style/bg_edittext"
+        android:layout_marginLeft="50dp"
+        android:drawableLeft="@drawable/baseline_supervised_user_circle_24"
+        android:hint="Tên đăng nhập"
+        android:textColorHint="#A89999" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         android:text="Mật khẩu"
         android:textSize="25dp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#F0D4D4" />
+        android:drawableLeft="@drawable/mat_khau"
+        style="@style/bg_edittext"
+        android:hint=" ****"
+        android:inputType="textPassword"
+        android:textColorHint="#A89999"/>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -104,28 +111,31 @@
         android:text="Ghi nhớ lần đăng nhập sau" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/btnNhap"
         android:layout_gravity="center"
-        android:backgroundTint="#318C10"
+        android:background="@drawable/button3"
         android:text="Đăng nhập" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account ?" />
+            android:text="Already have an account ?"
+            android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Register" />
+            android:text=" Register"
+            android:textColor="#611A1A"
+            android:textSize="15dp" />
 
     </LinearLayout>
 
