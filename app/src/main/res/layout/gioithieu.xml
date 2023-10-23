@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:drawableLeft="@drawable/quayve"/>
+       <TextView
+           android:gravity="center"
+           android:textSize="30dp"
+           android:textStyle="bold"
+           android:textColor="#333433"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Giới thiệu"/>
+   </LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textColor="#1D4D0D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sứ mệnh"/>
+    <TextView
+        android:textColor="#1D4D0D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Canh tác nông nghiệp hữu cơ, xanh sạch đang xu hướng chung của nền nông nghiệp trên toàn thế giới:"/>
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/caygioithieu"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đi cùng phương châm Vì cuộc sống xanh - Bác Sĩ Cây Xanh ra đời, với sứ mệnh giúp người nông dân Việt Nam tiếp cận các tiến bộ khoa học và công nghệ sinh học"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/caygioithieu"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tạo ra sản phẩm nông sản sạch, an toàn, chất lượng cao"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/caygioithieu"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nâng tầm nền nông nghiệp Việt trên trường quốc tế"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textColor="#1D4D0D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tầm nhìn"/>
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/caygioithieu"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chúng tôi với tầm nhìn trở thành một địa chỉ tin tưởng mỗi khi bạn gặp bất cứ vấn đề gì về cây trồng. Ở đây, bạn hoàn toàn có thể tìm thấy những kiến thức hay kinh nghiệm trồng rau sạch tại nhà cực kỳ dễ dàng. Vậy lý do gì khiến bạn nên chọn và đặt niềm tin vào App của chúng tôi? Cùng điểm qua những lợi thế nổi bật sau đây:"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textColor="#1D4D0D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tại app chúng tôi có: "/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
