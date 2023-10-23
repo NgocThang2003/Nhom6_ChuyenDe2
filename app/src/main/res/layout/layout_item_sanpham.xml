@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|top|left"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivHinh1"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:src="@drawable/bg_edt"></ImageView>
+
+            <TextView
+                android:id="@+id/tvTenSP1"
+                android:gravity="center"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phâme"
+                android:textSize="10dp">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivHinh2"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:src="@drawable/bg_edt"></ImageView>
+
+            <TextView
+                android:id="@+id/tvTenSP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phâme"
+                android:textSize="10dp">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivHinh3"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:src="@drawable/bg_edt"></ImageView>
+
+            <TextView
+                android:id="@+id/tvTenSP3"
+                android:gravity="center"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phâme"
+                android:textSize="10dp">
+
+            </TextView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
