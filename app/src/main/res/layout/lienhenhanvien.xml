@@ -9,10 +9,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#4E8F49">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/quayve"/>
+        <ImageView
+            android:onClick="chucnang"
+            android:id="@+id/imgQuayVe"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitXY"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/quayve1" />
         <TextView
             android:gravity="center"
             android:textSize="30dp"
@@ -20,7 +24,7 @@
             android:textColor="#333433"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Liên hệ nhâ viên"/>
+            android:text="Liên hệ nhân viên"/>
     </LinearLayout>
 
     <LinearLayout
@@ -44,10 +48,11 @@
             android:textSize="25dp"/>
     </LinearLayout>
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="24-09-2023 13:13"
+        android:textSize="15dp"
         android:textColor="#9F9797"
         android:gravity="center"/>
     <LinearLayout
@@ -66,7 +71,71 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Xin chào anh chị, nếu bên anh chị có thắc gì thì hãy liên hệ bên em để được hỗ trợ"
-            android:textStyle="bold"
-            android:textSize="25dp"/>
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="24-09-2023 13:13"
+        android:textSize="15dp"
+        android:textColor="#9F9797"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_marginRight="20dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="#D8EAD6"
+            android:text="Em cần  giống cây ăn quả, bên chị có thể tư vấn cho em 1 số loại được không chị ?"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/thuy" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 phút trước"
+        android:textSize="15dp"
+        android:textColor="#9F9797"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nhanvientuvan" />
+
+        <TextView
+            android:background="#D8EAD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Đây là hình ảnh một số giống cây ăn quả tốt bên em. Chị có tham khảo"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/duahau"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

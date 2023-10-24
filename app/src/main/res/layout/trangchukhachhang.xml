@@ -25,6 +25,7 @@
         android:textColor="#2F639A"
         android:textSize="25dp"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewTrangChu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

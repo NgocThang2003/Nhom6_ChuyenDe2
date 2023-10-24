@@ -9,36 +9,50 @@
         android:layout_height="wrap_content"
         android:text="Kỹ thuật gieo hạt giống cây nông nghiệp, công nghiệp, lâm nghiệp"
         android:textSize="25dp"
+        android:textColor="#FFFFFF"
         android:background="#5BD622"
         android:gravity="center"/>
     <LinearLayout
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/stroke"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_marginLeft="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nông nghiệp"
-            />
-        <TextView
-            android:layout_marginLeft="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Công nghiệp"
-            />
-        <TextView
-            android:layout_marginLeft="50dp"
+        <RadioGroup
+
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lông nghiệp"
-            />
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_weight="1"
+                android:id="@+id/radio_a"
+                android:text="Nông nghiệp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:layout_weight="1"
+                android:id="@+id/radio_b"
+                android:text="Công nghiệp"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:layout_weight="1"
+                android:id="@+id/radio_c"
+                android:text="Lâm nghiệp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewKyThuatGieoHat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>
