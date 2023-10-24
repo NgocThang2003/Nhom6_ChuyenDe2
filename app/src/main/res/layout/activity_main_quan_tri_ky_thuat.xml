@@ -1,9 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity_QuanTriKyThuat">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E6F4E1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:text="Quản trị kỹ thuật trồng cây"
+            android:textColor="#FF0000"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="73dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/anhsp_quantri"></ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Tên kỹ thuật: "
+                        android:textSize="13dp"></TextView>
+
+                    <EditText
+                        android:id="@+id/edtTenKyThuat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_edt"
+                        android:paddingLeft="10dp"
+                        android:textSize="13dp"></EditText>
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nhóm ngành: "
+                        android:textSize="13dp"></TextView>
+
+                    <LinearLayout
+                        android:background="@drawable/bg_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/spNhomNganh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:paddingLeft="10dp"
+
+                            android:textSize="13dp"></Spinner>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/edtMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_edt"
+                android:gravity="top"
+                android:hint="Mô tả"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:textColorHint="#958E8E"
+                android:textSize="13dp"></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+
+                android:id="@+id/btnThem"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginRight="17dp"
+
+                android:layout_weight="1"
+                android:background="@drawable/bg_chucnang"
+                android:text="Thêm"
+                android:textSize="13dp"></Button>
+
+            <Button
+                android:id="@+id/btnXoa"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginRight="17dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chucnang"
+                android:text="Xóa"
+                android:textSize="13dp"></Button>
+
+            <Button
+                android:id="@+id/btnSua"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chucnang"
+                android:text="Sửa"
+                android:textSize="13dp"></Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/checkBoxCongNghiep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Công nghiệp"></CheckBox>
+
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/checkBoxNongNghiep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nông nghiệp"></CheckBox>
+
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/checkBoxLamNghep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lâm nghiệp"></CheckBox>
+
+
+        </LinearLayout>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTimKiem"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_edt"
+            android:hint="Tìm kiếm"
+            android:paddingLeft="10dp"
+            android:textColorHint="#BCBABA"
+            android:textSize="13dp"></EditText>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDanhSachKyThuatCayTrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FCD8D8"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

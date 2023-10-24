@@ -78,6 +78,43 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             }
         });
 
+        btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                suaNhanVien();
+            }
+        });
+
+    }
+
+    private void suaNhanVien() {
+        if (kiemTraDuLieuNhapVao() == true) {
+            NhanVien nhanVien = data_NhanVien.get(index);
+            String tenNhanVien = edtTenNV.getText().toString();
+            String soDienThoai = edtSDT.getText().toString();
+            String queQuan = edtQueQuan.getText().toString();
+            String ngaySinh = edtNgaySinh.getText().toString();
+            String gmail = edtGmail.getText().toString();
+
+            String loaiNhanVien = spLoaiNhanVien.getSelectedItem().toString();
+            String cMND = edtCMND.getText().toString();
+            String tenDangNhap = edtTenDangNhap.getText().toString();
+            String matKhau = edtPassword.getText().toString();
+
+//            NhanVien nhanVien = new NhanVien("", tenNhanVien, soDienThoai, queQuan, ngaySinh, gmail, loaiNhanVien, cMND, tenDangNhap, matKhau, "" + R.drawable.anhsp_quantri);
+            nhanVien.tenNhanVien = tenNhanVien;;
+            nhanVien.soDienThoai = soDienThoai;
+            nhanVien.queQuan = queQuan;
+            nhanVien.NgaySinh = ngaySinh;
+            nhanVien.Gmail = gmail;
+            nhanVien.loaiNhanVien = loaiNhanVien;
+            nhanVien.CMND = cMND;
+            nhanVien.tenDangNhap = tenDangNhap;
+            nhanVien.matKhau = matKhau;
+
+            recyclerView.getAdapter().notifyDataSetChanged();
+            clearEditText();
+        }
     }
 
     private void clearEditText() {
