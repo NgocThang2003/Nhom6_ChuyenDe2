@@ -7,7 +7,6 @@
 
     <LinearLayout
 
-
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#E6F4E1"
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:gravity="center"
-            android:text="Quản trị sản phẩm"
+            android:text="Quản trị nhân viên"
             android:textColor="#FF0000"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -68,12 +67,12 @@
 
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Tên sản phẩm: "
+                        android:text="Tên nhân viên: "
                         android:textSize="13dp"></TextView>
 
                     <EditText
                         android:paddingLeft="10dp"
-                        android:id="@+id/edtTenSP"
+                        android:id="@+id/edtTenNV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edt"
@@ -90,12 +89,13 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Chú thích: "
+                        android:text="Số điện thoại: "
                         android:textSize="13dp"></TextView>
 
                     <EditText
                         android:paddingLeft="10dp"
-                        android:id="@+id/edtChuThich"
+                        android:id="@+id/edtSDT"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edt"
@@ -111,36 +111,20 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="Số lượng: "
+                        android:text="Quê quán: "
                         android:textSize="13dp"></TextView>
 
                     <EditText
+                        android:inputType="text"
+                        android:layout_marginLeft="10dp"
                         android:paddingLeft="10dp"
-                        android:id="@+id/edtSL"
-                        android:layout_width="50dp"
+                        android:id="@+id/edtQueQuan"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edt"
                         android:textSize="13dp"></EditText>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Đơn vị: "
-                        android:textSize="13dp"></TextView>
 
-                    <LinearLayout
-                        android:background="@drawable/bg_edt"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp">
-                        <Spinner
-                            android:id="@+id/spDonVi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textSize="11dp"></Spinner>
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -156,14 +140,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Khối lượng: "
+                android:text="Ngày sinh: "
                 android:textSize="13dp">
 
             </TextView>
 
             <EditText
+                android:inputType="date"
                 android:paddingLeft="10dp"
-                android:id="@+id/edtKhoiLuong"
+                android:id="@+id/edtNgaySinh"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edt"
@@ -173,14 +158,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Giá: "
+                android:text="Gmail: "
                 android:textSize="13dp">
 
             </TextView>
 
             <EditText
                 android:paddingLeft="10dp"
-                android:id="@+id/edtGia"
+                android:id="@+id/edtGmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edt"
@@ -196,7 +181,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Loại sản phẩm: "
+                android:text="Loại nhân viên: "
                 android:textSize="13dp"></TextView>
 
             <LinearLayout
@@ -206,7 +191,7 @@
                 android:orientation="vertical">
 
                 <Spinner
-                    android:id="@+id/spLoaiSanPham"
+                    android:id="@+id/spLoaiNhanVien"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"></Spinner>
@@ -214,17 +199,66 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edtMoTa"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+        <LinearLayout
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_edt"
-            android:gravity="top|left"
-            android:hint="Mô tả"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CMND: "></TextView>
+
+        <EditText
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
+            android:inputType="number"
+            android:layout_marginLeft="42dp"
+            android:id="@+id/edtCMND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edt"
             android:textSize="13dp"></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên đăng nhập: "></TextView>
+
+            <EditText
+                android:paddingLeft="10dp"
+                android:id="@+id/edtTenDangNhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edt"
+                android:textSize="13dp"></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mật khẩu: "></TextView>
+
+            <EditText
+                android:paddingLeft="10dp"
+                android:inputType="textPassword"
+                android:layout_marginLeft="27dp"
+                android:id="@+id/edtMatKhau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edt"
+                android:textSize="13dp"></EditText>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -234,6 +268,7 @@
             android:orientation="horizontal">
 
             <Button
+
                 android:id="@+id/btnThem"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
@@ -264,23 +299,46 @@
                 android:textSize="13dp"></Button>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edtTimKiem"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
+        <LinearLayout
             android:layout_marginTop="15dp"
-            android:background="@drawable/bg_edt"
-            android:hint="Tìm kiếm"
-            android:paddingLeft="20dp"
-            android:textSize="13dp"></EditText>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <CheckBox
+                android:id="@+id/checkBoxShipper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipper"></CheckBox>
+            <CheckBox
+                android:id="@+id/checkBoxThuKho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thủ kho"></CheckBox>
+            <CheckBox
+                android:id="@+id/checkBoxBanHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bán hàng"></CheckBox>
+            <EditText
+                android:layout_marginLeft="10dp"
+                android:id="@+id/edtTimKiem"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/bg_edt"
+                android:hint="Tìm kiếm"
+                android:paddingLeft="10dp"
+                android:textColorHint="#BCBABA"
+                android:textSize="13dp"></EditText>
+        </LinearLayout>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDanhSachSanPham"
+        android:background="#FCD8D8"
+        android:id="@+id/recyclerViewDanhSachNhanVien"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"></androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

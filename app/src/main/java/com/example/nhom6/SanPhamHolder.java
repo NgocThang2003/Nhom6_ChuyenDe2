@@ -9,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SanPhamHolder extends RecyclerView.ViewHolder {
 
-    ImageView ivHinh1;
-    ImageView ivHinh2, ivHinh3;
-    TextView tvSP1;
-    TextView tvSP2, tvSP3;
+    ImageView ivHinh;
+
+    TextView tvTenSP, tvChuThich, tvLoaiSP;
+
 
     public SanPhamHolder(@NonNull View itemView) {
         super(itemView);
-        ivHinh1 = itemView.findViewById(R.id.ivHinh1);
-        ivHinh2 = itemView.findViewById(R.id.ivHinh2);
-        ivHinh3 = itemView.findViewById(R.id.ivHinh3);
+        ivHinh = itemView.findViewById(R.id.ivHinh1);
 
-        tvSP1 = itemView.findViewById(R.id.tvTenSP1);
-        tvSP2 = itemView.findViewById(R.id.tvTenSP2);
-        tvSP3 = itemView.findViewById(R.id.tvTenSP3);
+
+        tvTenSP = itemView.findViewById(R.id.tvTenSP1);
+        tvChuThich = itemView.findViewById(R.id.tvChuThich);
+        tvLoaiSP = itemView.findViewById(R.id.tvLoaiSanPham);
+
 
     }
 }

@@ -8,79 +8,47 @@
 
 
     <LinearLayout
-        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center|top|left"
         android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/ivHinh1"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bg_edt"></ImageView>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|top|left"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/ivHinh1"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
-                android:src="@drawable/bg_edt"></ImageView>
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/tvTenSP1"
-                android:gravity="center"
-                android:layout_width="90dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên sản phâme"
-                android:textSize="10dp">
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|top"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivHinh2"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
-                android:src="@drawable/bg_edt"></ImageView>
-
+                android:layout_marginLeft="20dp"
+                android:text="Tên sản phẩm"
+                android:textSize="10dp"></TextView>
             <TextView
-                android:id="@+id/tvTenSP2"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="4dp"
+                android:id="@+id/tvChuThich"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên sản phâme"
-                android:textSize="10dp">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivHinh3"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
-                android:src="@drawable/bg_edt"></ImageView>
-
+                android:layout_marginLeft="20dp"
+                android:text="Chú thích"
+                android:textSize="10dp"></TextView>
             <TextView
-                android:id="@+id/tvTenSP3"
-                android:gravity="center"
-                android:layout_width="90dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/tvLoaiSanPham"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên sản phâme"
-                android:textSize="10dp">
+                android:layout_marginLeft="20dp"
+                android:text="Chú thích"
+                android:textSize="10dp"></TextView>
 
-            </TextView>
         </LinearLayout>
 
 

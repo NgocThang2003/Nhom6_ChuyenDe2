@@ -30,45 +30,63 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
     @Override
     public void onBindViewHolder(@NonNull SanPhamHolder holder, int position) {
 
-        SanPham sanPham = data.get(count);
+        SanPham sanPham = data.get(position);
 
+        holder.ivHinh.setImageResource(Integer.parseInt(sanPham.hinh.trim()));
+        holder.tvTenSP.setText(sanPham.tenSP.trim());
+        holder.tvChuThich.setText(sanPham.chuThich.trim());
+        holder.tvLoaiSP.setText(sanPham.loaiSP.trim());
 
-        holder.ivHinh1.setImageResource(Integer.parseInt(sanPham.hinh.trim()));
-        holder.tvSP1.setText(sanPham.tenSP.trim());
-
+        SanPham finalSanPham = sanPham;
+        holder.ivHinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOnClick(finalSanPham);
+            }
+        });
         count = count + 1;
-        if (count < data.size()) {
 
-            sanPham = data.get(count);
-            holder.tvSP2.setText(sanPham.tenSP.trim());
-            holder.ivHinh2.setImageResource(Integer.parseInt(sanPham.hinh.trim()));
+    }
 
-        } else {
-            holder.tvSP2.setVisibility(View.INVISIBLE);
-            holder.ivHinh2.setVisibility(View.INVISIBLE);
+    private void setOnClick(SanPham sanPham) {
+        MainActivity_QuanTriSanPham.edtTenSP.setText(sanPham.tenSP);
+        MainActivity_QuanTriSanPham.edtChuThich.setText(sanPham.chuThich);
+        MainActivity_QuanTriSanPham.edtSL.setText("" + sanPham.soLuong);
+        MainActivity_QuanTriSanPham.edtKhoiLuong.setText("" + sanPham.khoiLuong);
+        MainActivity_QuanTriSanPham.edtGia.setText("" + sanPham.gia);
+        MainActivity_QuanTriSanPham.edtMoTa.setText("" + sanPham.moTa);
+
+        kiemTraDonVi(sanPham);
+        kiemTraLoaiSanPham(sanPham);
+    }
+
+    private void kiemTraLoaiSanPham(SanPham sanPham) {
+        if (sanPham.loaiSP.equals("Nông nghiệp")) {
+            MainActivity_QuanTriSanPham.spLoaiSanPham.setSelection(0);
+        } else if (sanPham.loaiSP.equals("Lâm nghiệp")) {
+            MainActivity_QuanTriSanPham.spLoaiSanPham.setSelection(1);
+        } else if (sanPham.loaiSP.equals("Công nghiệp")) {
+            MainActivity_QuanTriSanPham.spLoaiSanPham.setSelection(2);
         }
 
-        count = count + 1;
-        if (count < data.size()) {
+    }
 
-            sanPham = data.get(count);
-            holder.tvSP3.setText(sanPham.tenSP.trim());
-            holder.ivHinh3.setImageResource(Integer.parseInt(sanPham.hinh.trim()));
-
-        } else {
-            holder.tvSP3.setVisibility(View.INVISIBLE);
-            holder.ivHinh3.setVisibility(View.INVISIBLE);
+    private void kiemTraDonVi(SanPham sanPham) {
+        if (sanPham.donVi.equals("kq")) {
+            MainActivity_QuanTriSanPham.spDonVi.setSelection(0);
+        } else if (sanPham.donVi.equals("hg")) {
+            MainActivity_QuanTriSanPham.spDonVi.setSelection(1);
+        } else if (sanPham.donVi.equals("dag")) {
+            MainActivity_QuanTriSanPham.spDonVi.setSelection(2);
+        } else if (sanPham.donVi.equals("g")) {
+            MainActivity_QuanTriSanPham.spDonVi.setSelection(3);
         }
-        count = count + 1;
-
     }
 
     @Override
     public int getItemCount() {
-        if (data.size() % 3 == 2 || data.size() % 3 == 1) {
-            return data.size() / 3 + 1;
-        } else {
-            return data.size() / 3;
-        }
+        return data.size();
     }
+
+
 }
