@@ -17,12 +17,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTen1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Tên" />
 
             <ImageView
+                android:id="@+id/ivHinh1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_launcher_background" />
@@ -38,12 +40,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTen2"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Tên" />
 
             <ImageView
+                android:id="@+id/ivHinh2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_launcher_background" />
