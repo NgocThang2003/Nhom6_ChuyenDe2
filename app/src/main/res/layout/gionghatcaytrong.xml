@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnCayNN"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/anh3"
+            android:text="Cây nông nghiệp"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/btnCayCN"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/anh1"
+            android:text="Cây công nghiệp"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnCayLN"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/anh2"
+            android:text="Cây lâm nghiệp"
+            android:textSize="12dp" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvGiongHatCayTrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>

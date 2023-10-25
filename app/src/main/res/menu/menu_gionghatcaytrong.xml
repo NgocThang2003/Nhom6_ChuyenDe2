@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnSearch"
+        android:icon="@drawable/search"
+        android:title="Lưu"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/mnThongbao"
+        android:icon="@drawable/thongbao"
+        android:title="Đọc"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/mnGiohang"
+        android:icon="@drawable/giohang"
+        android:title="Thoát"
+        app:showAsAction="always">
+
+    </item>
+</menu>
