@@ -97,11 +97,10 @@
                 android:layout_weight="1"
                 android:text="Hồ sơ của tôi" />
 
-            <Button
-                android:layout_width="30dp"
+            <ImageView
+                android:layout_width="24dp"
                 android:layout_height="40dp"
-                android:background="@drawable/mm"
-                android:drawableRight="@drawable/muiten"></Button>
+                android:src="@drawable/quayphai"></ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -121,11 +120,10 @@
                 android:layout_weight="1"
                 android:text="Số địa chỉ" />
 
-            <Button
-                android:layout_width="30dp"
+            <ImageView
+                android:layout_width="24dp"
                 android:layout_height="40dp"
-                android:background="@drawable/mm"
-                android:drawableRight="@drawable/muiten"></Button>
+                android:src="@drawable/quayphai"></ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -145,11 +143,10 @@
                 android:layout_weight="1"
                 android:text="Phương thức thanh toán" />
 
-            <Button
-                android:layout_width="30dp"
+            <ImageView
+                android:layout_width="24dp"
                 android:layout_height="40dp"
-                android:background="@drawable/mm"
-                android:drawableRight="@drawable/muiten"></Button>
+                android:src="@drawable/quayphai"></ImageView>
         </LinearLayout>
     </LinearLayout>
 
@@ -179,11 +176,10 @@
             android:layout_weight="1"
             android:text="Giới thiệu" />
 
-        <Button
-            android:layout_width="30dp"
+        <ImageView
+            android:layout_width="24dp"
             android:layout_height="40dp"
-            android:background="@drawable/mm"
-            android:drawableRight="@drawable/muiten"></Button>
+            android:src="@drawable/quayphai"></ImageView>
     </LinearLayout>
 
     <LinearLayout
@@ -204,11 +200,10 @@
             android:layout_weight="1"
             android:text="Liên hệ" />
 
-        <Button
-            android:layout_width="30dp"
+        <ImageView
+            android:layout_width="24dp"
             android:layout_height="40dp"
-            android:background="@drawable/mm"
-            android:drawableRight="@drawable/muiten"></Button>
+            android:src="@drawable/quayphai"></ImageView>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="30dp"

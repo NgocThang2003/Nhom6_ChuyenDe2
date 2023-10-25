@@ -13,9 +13,12 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hosonguoidung);
+
+
     }
 
     public void chucnang(View view) {
+
         if(view.getId()==R.id.imgQuayVe){
             Intent intent = new Intent(MainActivity_HoSoNguoiDung.this,MainActivity.class);
             startActivity(intent);
