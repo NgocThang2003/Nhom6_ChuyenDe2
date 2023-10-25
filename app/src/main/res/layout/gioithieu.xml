@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:text="Sứ mệnh"/>
     <TextView
-        android:textColor="#1D4D0D"
+        android:textStyle="bold"
+        android:textColor="#000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Canh tác nông nghiệp hữu cơ, xanh sạch đang xu hướng chung của nền nông nghiệp trên toàn thế giới:"/>

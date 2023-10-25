@@ -63,12 +63,14 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/edtTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
             android:hint="Chỉnh sửa tên hiển thị:" />
 
         <EditText
+            android:id="@+id/edtSDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -76,6 +78,7 @@
             android:hint="Số điện thoại:" />
 
         <EditText
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

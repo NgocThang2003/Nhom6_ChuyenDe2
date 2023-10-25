@@ -20,6 +20,8 @@
                 android:id="@+id/tvTen1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="Tên" />
 
@@ -43,6 +45,8 @@
                 android:id="@+id/tvTen2"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:text="Tên" />
 
