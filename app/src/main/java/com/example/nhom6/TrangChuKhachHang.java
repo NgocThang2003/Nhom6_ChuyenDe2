@@ -1,13 +1,14 @@
 package com.example.nhom6;
 
 public class TrangChuKhachHang {
-    String tenKyThuat, tenMoTa;
+    String tenKyThuat, tenMoTa, nhomNganh;
     int  hinh;
 
-    public TrangChuKhachHang(String tenKyThuat, String tenMoTa, int hinh) {
+    public TrangChuKhachHang(String tenKyThuat, String tenMoTa, int hinh, String nhomNganh) {
         this.tenKyThuat = tenKyThuat;
         this.tenMoTa = tenMoTa;
         this.hinh = hinh;
+        this.nhomNganh = nhomNganh;
     }
 
     public String getTenKyThuat() {
