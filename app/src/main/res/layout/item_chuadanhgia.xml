@@ -49,6 +49,7 @@
           style="@style/bt_danhgia"
           android:text="Gửi"
           android:layout_marginTop="20dp"
+          android:layout_marginLeft="30dp"
           android:textColor="#E30E0E"/>
 
     </LinearLayout>
