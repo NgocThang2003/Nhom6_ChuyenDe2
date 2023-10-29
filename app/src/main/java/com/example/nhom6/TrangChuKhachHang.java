@@ -2,13 +2,21 @@ package com.example.nhom6;
 
 public class TrangChuKhachHang {
     String tenKyThuat, tenMoTa, nhomNganh;
-    int  hinh;
+    int maKyThuat, hinh;
 
     public TrangChuKhachHang(String tenKyThuat, String tenMoTa, int hinh, String nhomNganh) {
         this.tenKyThuat = tenKyThuat;
         this.tenMoTa = tenMoTa;
         this.hinh = hinh;
         this.nhomNganh = nhomNganh;
+    }
+
+    public TrangChuKhachHang(int maKyThuat, String tenKyThuat, String tenMoTa, int hinh, String nhomNganh) {
+        this.tenKyThuat = tenKyThuat;
+        this.tenMoTa = tenMoTa;
+        this.hinh = hinh;
+        this.nhomNganh = nhomNganh;
+        this.maKyThuat = maKyThuat;
     }
 
     public String getTenKyThuat() {
