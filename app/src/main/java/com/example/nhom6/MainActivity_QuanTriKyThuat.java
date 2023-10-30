@@ -156,7 +156,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     private void getDataNhomNganh() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113:80/API_QuanLyHatGiong/getNhomNganh.php";
+        String url = "http://192.168.1.113:80/Nhom6/getNhomNganh.php";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -187,7 +187,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     private void getDataQuanTriKyThuat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/API_QuanLyHatGiong/getKyThuatTrongCay.php";
+        String url = "http://192.168.1.113/Nhom6/getKyThuatTrongCay.php";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -229,7 +229,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/API_QuanLyHatGiong/themKyThuat.php?" +
+        String url = "http://192.168.1.113/Nhom6/themKyThuat.php?" +
                 "tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
                 "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
                 "&MoTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
@@ -254,7 +254,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/API_QuanLyHatGiong/xoaKyThuat.php?" +
+        String url = "http://192.168.1.113/Nhom6/xoaKyThuat.php?" +
                 "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -275,7 +275,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/API_QuanLyHatGiong/suaKyThuat.php?" +
+        String url = "http://192.168.1.113/Nhom6/suaKyThuat.php?" +
                 "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "" +
                 "&tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
                 "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
@@ -299,7 +299,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     private void hienThiLaiDanhSach() {
         data_kyThuaTrongCay.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/API_QuanLyHatGiong/getKyThuatTrongCay.php";
+        String url = "http://192.168.1.113/Nhom6/getKyThuatTrongCay.php";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override

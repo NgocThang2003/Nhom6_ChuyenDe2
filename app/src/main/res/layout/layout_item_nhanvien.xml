@@ -23,6 +23,7 @@
             android:textColor="#000"></TextView>
 
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/ivHinhNV"
             android:layout_width="40dp"
             android:layout_height="40dp"

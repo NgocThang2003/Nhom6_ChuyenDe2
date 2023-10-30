@@ -38,7 +38,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienHolder> {
     public void onBindViewHolder(@NonNull NhanVienHolder holder, int position) {
         NhanVien nhanVien = data_NV.get(position);
 
-        holder.ivHinh.setImageResource(Integer.parseInt(nhanVien.hinh));
+        holder.ivHinh.setImageResource(R.drawable.img_nhanvien);
 
         holder.tvTenNV.setText(nhanVien.tenNhanVien);
         holder.tvSDT.setText(nhanVien.soDienThoai);
