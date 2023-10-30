@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -119,6 +121,23 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
 
+        edtTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                timKyThuat();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void kiemTraNhomNganh(TrangChuKhachHang trangChuKhachHang) {
@@ -149,6 +168,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewDanhSachKyThuatCayTrong);
         edtTenKyThuat = findViewById(R.id.edtTenKyThuat);
         edtMoTa = findViewById(R.id.edtMoTa);
+        edtTimKiem = findViewById(R.id.edtTimKiem);
 
         spNhomNganh = findViewById(R.id.spNhomNganh);
 
@@ -366,7 +386,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     private void timKyThuat() {
         data_kyThuaTrongCay.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/timKyThuat.php";
+        String url = "http://" + host + "/nhom6/timKyThuat.php?tenKyThuat="+edtTimKiem.getText().toString().trim().replace(" ","+")+"";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -407,6 +427,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     private void clearEditText() {
         edtTenKyThuat.setText("");
         edtMoTa.setText("");
+        edtTimKiem.setText(null);
         spNhomNganh.setSelection(0);
     }
 
