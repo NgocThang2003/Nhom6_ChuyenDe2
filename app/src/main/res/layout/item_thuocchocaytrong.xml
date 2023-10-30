@@ -27,7 +27,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="#000000"
                 android:text="Tên sản phẩm" />
+            <TextView
+                android:id="@+id/tvMoTa1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Mô tả" />
 
             <TextView
                 android:id="@+id/tvGiaSP1"
@@ -36,12 +43,14 @@
                 android:gravity="center"
                 android:textColor="#F44336"
                 android:text="Giá sản phẩm" />
-
             <Button
                 android:id="@+id/btnDatMua1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Đặt mua" />
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -59,8 +68,15 @@
                 android:id="@+id/tvTenSP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:gravity="center"
                 android:text="Tên sản phẩm" />
+            <TextView
+                android:id="@+id/tvMoTa2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Mô tả" />
 
             <TextView
                 android:id="@+id/tvGiaSP2"
