@@ -32,7 +32,7 @@ import java.util.List;
 public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
 
-    EditText edtTenKyThuat, edtMoTa;
+    EditText edtTenKyThuat, edtMoTa, edtTimKiem;
     Spinner spNhomNganh;
 
     int index = -1;
@@ -72,16 +72,20 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
                 index = position;
                 kiemTraNhomNganh(trangChuKhachHang);
                 //hienThiLaiDanhSach();
+                EnabelButtonFalse();
             }
         });
 
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                themKyThuat();
-                hienThiLaiDanhSach();
-                hienThiLaiDanhSach();
-
+                if (kiemTraDieuKien() == true) {
+                    if (spNhomNganh.getSelectedItemPosition() != 0) {
+                        themKyThuat();
+                    } else {
+                        Toast.makeText(MainActivity_QuanTriKyThuat.this, "Bạn chưa chọn nhóm ngành !", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -90,9 +94,6 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             public void onClick(View v) {
                 if (index != -1) {
                     xoaKyThuat();
-                    hienThiLaiDanhSach();
-                    hienThiLaiDanhSach();
-
                 } else {
                     Toast.makeText(MainActivity_QuanTriKyThuat.this, "Chọn để xóa dữ liệu", Toast.LENGTH_SHORT).show();
                 }
@@ -104,10 +105,13 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (index != -1) {
-                    suaKyThuat();
-                    hienThiLaiDanhSach();
-                    hienThiLaiDanhSach();
-
+                    if (kiemTraDieuKien() == true) {
+                        if (spNhomNganh.getSelectedItemPosition() != 0) {
+                            suaKyThuat();
+                        } else {
+                            Toast.makeText(MainActivity_QuanTriKyThuat.this, "Bạn chưa chọn nhóm ngành !", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 } else {
                     Toast.makeText(MainActivity_QuanTriKyThuat.this, "Chọn để sửa dữ liệu", Toast.LENGTH_SHORT).show();
                 }
@@ -128,6 +132,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     }
 
     private void KhoiTao() {
+        EnabelButtonTrue();
         data_nhomNganh.clear();
         getDataNhomNganh();
         getDataQuanTriKyThuat();
@@ -154,16 +159,16 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     }
 
+    String host = "192.168.1.113:80";
+
     private void getDataNhomNganh() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113:80/Nhom6/getNhomNganh.php";
-
+        String url = "http://" + host + "/Nhom6/getNhomNganh.php";
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 for (int i = 0; i < response.length(); i++) {
                     try {
-
                         JSONObject jsonObject = response.getJSONObject(i);
 
                         String nhomNganh = String.valueOf(jsonObject.getString("NhomNganh"));
@@ -172,7 +177,6 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
             }
         }, new Response.ErrorListener() {
@@ -187,7 +191,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     private void getDataQuanTriKyThuat() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/getKyThuatTrongCay.php";
+        String url = "http://" + host + "/Nhom6/getKyThuatTrongCay.php";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -223,13 +227,29 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         requestQueue.add(arrayRequest);
     }
 
+    private boolean kiemTraDieuKien() {
+        boolean kiemTra = true;
+        if (!edtTenKyThuat.getText().toString().equals("")) {
+            if (!edtMoTa.getText().toString().equals("")) {
+
+            } else {
+                edtMoTa.setError("Dữ liệu không được để trống !");
+                kiemTra = false;
+            }
+        } else {
+            edtTenKyThuat.setError("Dữ liệu không được để trống !");
+            kiemTra = false;
+        }
+
+        return kiemTra;
+    }
 
     private void themKyThuat() {
 
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/themKyThuat.php?" +
+        String url = "http://" + host + "/Nhom6/themKyThuat.php?" +
                 "tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
                 "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
                 "&MoTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
@@ -238,7 +258,9 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
-                index = -1;
+                hienThiLaiDanhSach();
+                EnabelButtonTrue();
+                clearEditText();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -254,12 +276,15 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/xoaKyThuat.php?" +
+        String url = "http://" + host + "/Nhom6/xoaKyThuat.php?" +
                 "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
+                hienThiLaiDanhSach();
+                EnabelButtonTrue();
+                clearEditText();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -275,7 +300,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/suaKyThuat.php?" +
+        String url = "http://" + host + "/Nhom6/suaKyThuat.php?" +
                 "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "" +
                 "&tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
                 "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
@@ -285,7 +310,9 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
-                index = -1;
+                hienThiLaiDanhSach();
+                EnabelButtonTrue();
+                clearEditText();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -299,7 +326,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     private void hienThiLaiDanhSach() {
         data_kyThuaTrongCay.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/getKyThuatTrongCay.php";
+        String url = "http://" + host + "/Nhom6/getKyThuatTrongCay.php";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -335,6 +362,64 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
         requestQueue.add(arrayRequest);
+    }
+    private void timKyThuat() {
+        data_kyThuaTrongCay.clear();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/timKyThuat.php";
+
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                data_kyThuaTrongCay.clear();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+
+                        String tenKyThuat = jsonObject.getString("tenKyThuat");
+                        String nhomNganh = jsonObject.getString("NhomNganh");
+                        String moTa = jsonObject.getString("MoTa");
+                        //String hinh = jsonObject.getString("Hinh");
+                        int id_kyThuat = jsonObject.getInt("id_KyThuat");
+
+                        TrangChuKhachHang trangChuKhachHang = new TrangChuKhachHang(id_kyThuat, tenKyThuat, moTa, R.drawable.anhsp_quantri, nhomNganh);
+                        data_kyThuaTrongCay.add(trangChuKhachHang);
+                        recyclerView.getAdapter().notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity_QuanTriKyThuat.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onErrorResponse: ", error.toString());
+            }
+        });
+        requestQueue.add(arrayRequest);
+    }
+
+    private void clearEditText() {
+        edtTenKyThuat.setText("");
+        edtMoTa.setText("");
+        spNhomNganh.setSelection(0);
+    }
+
+    private void EnabelButtonTrue() {
+        btnThem.setEnabled(true);
+        btnXoa.setEnabled(false);
+        btnSua.setEnabled(false);
+    }
+
+    private void EnabelButtonFalse() {
+        btnThem.setEnabled(false);
+        btnXoa.setEnabled(true);
+        btnSua.setEnabled(true);
     }
 
 }

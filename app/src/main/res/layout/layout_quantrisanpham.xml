@@ -115,6 +115,7 @@
                         android:textSize="13dp"></TextView>
 
                     <EditText
+                        android:inputType="number"
                         android:paddingLeft="10dp"
                         android:id="@+id/edtSL"
                         android:layout_width="50dp"
@@ -162,6 +163,7 @@
             </TextView>
 
             <EditText
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:id="@+id/edtKhoiLuong"
                 android:layout_width="100dp"
@@ -179,6 +181,7 @@
             </TextView>
 
             <EditText
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:id="@+id/edtGia"
                 android:layout_width="match_parent"

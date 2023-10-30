@@ -19,6 +19,16 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
         this.data = data;
     }
 
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListenner(OnItemClickListener listenner) {
+        mListener = listenner;
+    }
+
     @NonNull
     @Override
     public SanPhamHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,19 +42,28 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
 
         SanPham sanPham = data.get(position);
 
-        holder.ivHinh.setImageResource(Integer.parseInt(sanPham.hinh.trim()));
+        holder.ivHinh.setImageResource(R.drawable.anhsp_quantri);
         holder.tvTenSP.setText(sanPham.tenSP.trim());
         holder.tvChuThich.setText(sanPham.chuThich.trim());
         holder.tvLoaiSP.setText(sanPham.loaiSP.trim());
 
         SanPham finalSanPham = sanPham;
-        holder.ivHinh.setOnClickListener(new View.OnClickListener() {
+//        holder.ivHinh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setOnClick(finalSanPham);
+//            }
+//        });
+        count = count + 1;
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOnClick(finalSanPham);
+                if(mListener != null){
+                    mListener.onItemClick(position);
+                }
             }
         });
-        count = count + 1;
 
     }
 

@@ -1,7 +1,7 @@
 package com.example.nhom6;
 
 public class SanPham {
-    String tenSP, chuThich, donVi, loaiSP, moTa, hinh;
+    String maSanPham, tenSP, chuThich, donVi, loaiSP, moTa, hinh;
     int soLuong, khoiLuong, gia;
 
     public SanPham(String tenSP, String chuThich, String donVi, String loaiSP, String moTa, String hinh, int soLuong, int khoiLuong, int gia) {
@@ -15,7 +15,18 @@ public class SanPham {
         this.khoiLuong = khoiLuong;
         this.gia = gia;
     }
-
+    public SanPham(String maSanPham, String tenSP, String chuThich, String donVi, String loaiSP, String moTa, String hinh, int soLuong, int khoiLuong, int gia) {
+        this.tenSP = tenSP;
+        this.chuThich = chuThich;
+        this.donVi = donVi;
+        this.loaiSP = loaiSP;
+        this.moTa = moTa;
+        this.hinh = hinh;
+        this.soLuong = soLuong;
+        this.khoiLuong = khoiLuong;
+        this.gia = gia;
+        this.maSanPham = maSanPham;
+    }
     @Override
     public String toString() {
         return "SanPham{" +

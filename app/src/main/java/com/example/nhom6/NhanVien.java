@@ -1,6 +1,7 @@
 package com.example.nhom6;
 public class NhanVien {
-    String maNhanVien, tenNhanVien, soDienThoai, queQuan, NgaySinh, Gmail, loaiNhanVien, CMND, tenDangNhap, matKhau, hinh;
+    String maNhanVien;
+            String tenNhanVien, soDienThoai, queQuan, NgaySinh, Gmail, loaiNhanVien, CMND, tenDangNhap, matKhau, hinh;
 
     @Override
     public String toString() {

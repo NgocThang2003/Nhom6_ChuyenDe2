@@ -63,6 +63,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 index = position;
+
                 NhanVien nhanVien = data_NhanVien.get(position);
                 edtTenNV.setText(nhanVien.tenNhanVien);
                 edtSDT.setText(nhanVien.soDienThoai);
@@ -75,6 +76,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
                 kiemLoaiNhanVien(nhanVien);
                 EnabelButtonFalse();
+                hienThiLaiDanhSach();
             }
         });
 
@@ -84,8 +86,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
                 if (kiemTraDuLieuNhapVao() == true) {
                     if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
                         themNhanVienMoi();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(MainActivity_QuanTriNhanVien.this, "Loại nhân viên chưa được chọn", Toast.LENGTH_SHORT).show();
                     }
 
@@ -96,49 +97,34 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xoaNhanVien();
+                if (index != -1) {
+                    xoaNhanVien();
+                } else {
+                    Toast.makeText(MainActivity_QuanTriNhanVien.this, "Chọn để xóa", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                suaNhanVien();
+                if (index != -1) {
+                    if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
+                        suaNhanVien();
+                    } else {
+                        Toast.makeText(MainActivity_QuanTriNhanVien.this, "Loại nhân viên chưa được chọn", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(MainActivity_QuanTriNhanVien.this, "Chọn để sua", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
     }
 
-    private void suaNhanVien() {
-        if (kiemTraDuLieuNhapVao() == true) {
-            NhanVien nhanVien = data_NhanVien.get(index);
-            String tenNhanVien = edtTenNV.getText().toString();
-            String soDienThoai = edtSDT.getText().toString();
-            String queQuan = edtQueQuan.getText().toString();
-            String ngaySinh = edtNgaySinh.getText().toString();
-            String gmail = edtGmail.getText().toString();
-
-            String loaiNhanVien = spLoaiNhanVien.getSelectedItem().toString();
-            String cMND = edtCMND.getText().toString();
-            String tenDangNhap = edtTenDangNhap.getText().toString();
-            String matKhau = edtPassword.getText().toString();
-
-//            NhanVien nhanVien = new NhanVien("", tenNhanVien, soDienThoai, queQuan, ngaySinh, gmail, loaiNhanVien, cMND, tenDangNhap, matKhau, "" + R.drawable.anhsp_quantri);
-            nhanVien.tenNhanVien = tenNhanVien;
-            ;
-            nhanVien.soDienThoai = soDienThoai;
-            nhanVien.queQuan = queQuan;
-            nhanVien.NgaySinh = ngaySinh;
-            nhanVien.Gmail = gmail;
-            nhanVien.loaiNhanVien = loaiNhanVien;
-            nhanVien.CMND = cMND;
-            nhanVien.tenDangNhap = tenDangNhap;
-            nhanVien.matKhau = matKhau;
-
-            recyclerView.getAdapter().notifyDataSetChanged();
-            clearEditText();
-        }
-    }
 
     private void clearEditText() {
         edtTenNV.setText("");
@@ -164,13 +150,6 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         btnSua.setEnabled(true);
     }
 
-    private void xoaNhanVien() {
-        data_NhanVien.remove(index);
-        index = -1;
-        EnabelButtonTrue();
-        recyclerView.getAdapter().notifyDataSetChanged();
-        clearEditText();
-    }
 
     private boolean kiemTraDuLieuNhapVao() {
         if (!edtTenNV.getText().toString().trim().equals("")) {
@@ -219,13 +198,13 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     private void kiemLoaiNhanVien(NhanVien nhanVien) {
         if (nhanVien.loaiNhanVien.trim().equals("Shipper")) {
-            spLoaiNhanVien.setSelection(0);
-        }
-        if (nhanVien.loaiNhanVien.trim().equals("Bán hàng")) {
             spLoaiNhanVien.setSelection(1);
         }
-        if (nhanVien.loaiNhanVien.trim().equals("Thủ kho")) {
+        if (nhanVien.loaiNhanVien.trim().equals("Bán hàng")) {
             spLoaiNhanVien.setSelection(2);
+        }
+        if (nhanVien.loaiNhanVien.trim().equals("Thủ kho")) {
+            spLoaiNhanVien.setSelection(3);
         }
     }
 
@@ -263,9 +242,11 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     }
 
+    String host = "192.168.1.113";
+
     private void getLoaiNhanVien() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/getLoaiNhanVien.php";
+        String url = "http://" + host + "/Nhom6/getLoaiNhanVien.php";
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -295,7 +276,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     private void getNhanVien() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/getNhanVien.php";
+        String url = "http://" + host + "/Nhom6/getNhanVien.php";
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -319,7 +300,6 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
                         NhanVien nhanVien = new NhanVien(id_NhanVien, tenNhanVien, sDT, queQuan, ngaySinh, gmail, loaiNhanVien, cMND, id_Username, password, hinh);
                         data_NhanVien.add(nhanVien);
 
-
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -341,7 +321,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/themTaiKhoanNhanVien.php?" +
+        String url = "http://" + host + "/Nhom6/themTaiKhoanNhanVien.php?" +
                 "id_Username=" + edtTenDangNhap.getText().toString().replace(" ", "+") + "" +
                 "&Password=" + edtPassword.getText().toString().replace(" ", "+") + "" +
                 "&Quyen=" + spLoaiNhanVien.getSelectedItemPosition() + "";
@@ -349,7 +329,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
-
+                hienThiLaiDanhSach();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -365,7 +345,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.113/Nhom6/themNhanVien.php?" +
+        String url = "http://" + host + "/Nhom6/themNhanVien.php?" +
                 "tenNhanVien=" + edtTenDangNhap.getText().toString().replace(" ", "+") + "" +
                 "&Sdt=" + edtSDT.getText().toString().replace(" ", "+") + "" +
                 "&QueQuan=" + edtQueQuan.getText().toString().replace(" ", "+") + "" +
@@ -380,6 +360,161 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             public void onResponse(String response) {
                 Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
                 themTaiKhoan();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void xoaNhanVien() {
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/xoaNhanVien.php?" +
+                "id_NhanVien=" + data_NhanVien.get(index).maNhanVien.trim().replace(" ", "+") + "";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
+                xoaTaiKhoan();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void xoaTaiKhoan() {
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/xoaTaiKhoanNhanVien.php?" +
+                "id_Username=" + data_NhanVien.get(index).tenDangNhap.trim().replace(" ", "+") + "";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
+                EnabelButtonTrue();
+                clearEditText();
+                hienThiLaiDanhSach();
+                hienThiLaiDanhSach();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void hienThiLaiDanhSach() {
+        data_NhanVien.clear();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/getNhanVien.php";
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                data_NhanVien.clear();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        String id_NhanVien = jsonObject.getString("id_NhanVien");
+                        String tenNhanVien = jsonObject.getString("tenNhanVien");
+                        String sDT = jsonObject.getString("Sdt");
+                        String queQuan = jsonObject.getString("QueQuan");
+                        String ngaySinh = jsonObject.getString("NgaySinh");
+                        String gmail = jsonObject.getString("Email");
+                        String cMND = jsonObject.getString("Cmnd");
+                        String loaiNhanVien = jsonObject.getString("LoaiNhanVien");
+                        String id_Username = jsonObject.getString("id_Username");
+                        String hinh = jsonObject.getString("Hinh");
+                        String password = jsonObject.getString("Password");
+
+                        NhanVien nhanVien = new NhanVien(id_NhanVien, tenNhanVien, sDT, queQuan, ngaySinh, gmail, loaiNhanVien, cMND, id_Username, password, hinh);
+                        data_NhanVien.add(nhanVien);
+                        recyclerView.getAdapter().notifyDataSetChanged();
+
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onErrorResponse: ", error.toString());
+            }
+        });
+        requestQueue.add(arrayRequest);
+    }
+
+    private void suaNhanVien() {
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/suaNhanVien.php?" +
+                "id_NhanVien=" + data_NhanVien.get(index).maNhanVien.trim().replace(" ", "+") + "" +
+                "&tenNhanVien=" + edtTenNV.getText().toString().trim().replace(" ", "+") + "" +
+                "&Sdt=" + edtSDT.getText().toString().trim().replace(" ", "+") + "" +
+                "&QueQuan=" + edtQueQuan.getText().toString().trim().replace(" ", "+") + "" +
+                "&NgaySinh=" + edtNgaySinh.getText().toString().trim().replace(" ", "+") + "" +
+                "&Email=" + edtGmail.getText().toString().trim().replace(" ", "+") + "" +
+                "&id_loaiNV=" + spLoaiNhanVien.getSelectedItemPosition() + "" +
+                "&Cmnd=" + edtCMND.getText().toString().trim().replace(" ", "+") + "" +
+                "&id_Username=" + edtTenDangNhap.getText().toString().trim().replace(" ", "+") + "" +
+                "&Hinh=0";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, edtTenDangNhap.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                suaTaiKhoan();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void suaTaiKhoan() {
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/suaTaiKhoanNhanVien.php?id_Username="+data_NhanVien.get(index).tenDangNhap.trim().replace(" ","+")+"" +
+                "&id_UsernameMoi=" + edtTenDangNhap.getText().toString().trim() + "" +
+                "&Password="+edtPassword.getText().toString().trim().replace(" ","+")+"&" +
+                "Quyen="+spLoaiNhanVien.getSelectedItemPosition()+"";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, response, Toast.LENGTH_SHORT).show();
+                EnabelButtonTrue();
+                clearEditText();
+                hienThiLaiDanhSach();
+                hienThiLaiDanhSach();
             }
         }, new Response.ErrorListener() {
             @Override
