@@ -32,11 +32,7 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
         data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.kythuat1));
         data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.kythuat2));
         data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.kythuat3));
-        data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.gioithieu));
-        data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.gioithieu));
-        data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.gioithieu));
-        data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.gioithieu));
-        data_TrangChu.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.gioithieu));
+
     }
 
     private void setControl() {

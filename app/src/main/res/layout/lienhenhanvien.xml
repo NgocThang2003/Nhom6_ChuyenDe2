@@ -66,7 +66,7 @@
             android:src="@drawable/nhanvientuvan" />
 
         <TextView
-            android:background="#D8EAD6"
+            android:background="@drawable/bg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -93,7 +93,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:background="#D8EAD6"
+            android:background="@drawable/bg_button"
             android:text="Em cần  giống cây ăn quả, bên chị có thể tư vấn cho em 1 số loại được không chị ?"
             android:textStyle="bold" />
         <ImageView
@@ -120,22 +120,71 @@
             android:src="@drawable/nhanvientuvan" />
 
         <TextView
-            android:background="#D8EAD6"
+            android:background="@drawable/bg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Đây là hình ảnh một số giống cây ăn quả tốt bên em. Chị có tham khảo"
             android:textStyle="bold" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/duahau"
-                />
-        </LinearLayout>
-
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginLeft="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/duahau"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/duagang"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginTop="20sp"
+            android:layout_marginRight="20dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:text="Em cần  giống cây ăn quả, bên chị có thể tư vấn cho em 1 số loại được không chị ?"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/thuy" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp">
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iconanh"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iconnhantin"/>
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bg_button" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="Gửi"/>
+    </LinearLayout>
+
 </LinearLayout>
