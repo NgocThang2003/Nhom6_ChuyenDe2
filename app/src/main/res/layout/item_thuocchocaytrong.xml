@@ -7,91 +7,116 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_marginRight="30dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="100dp"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/ivHinh1"
+                android:id="@+id/imgHinh1"
+                android:layout_gravity="center"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/tvTenSP1"
+                android:id="@+id/txtTenSP1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:text="Tên sản phẩm" />
+                android:layout_marginTop="10dp"
+                android:text="Tên sản phẩm"
+                android:textColor="#000000" />
+
             <TextView
-                android:id="@+id/tvMoTa1"
+                android:id="@+id/txtMoTa1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Mô tả" />
 
-            <TextView
-                android:id="@+id/tvGiaSP1"
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#F44336"
-                android:text="Giá sản phẩm" />
-            <Button
-                android:id="@+id/btnDatMua1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Đặt mua" />
-
-
-
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtGiaSP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
+                    android:textSize="13dp"
+                    android:text="Giá sản phẩm"
+                    android:layout_marginLeft="20dp"/>
+                <Button
+                    android:id="@+id/btnDatMua11"
+                    android:textSize="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Đặt mua" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/ivHinh2"
+                android:id="@+id/imgHinh2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_background"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/tvTenSP2"
+                android:id="@+id/txtTenSP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Tên sản phẩm" />
+                android:text="Tên sản phẩm"
+                android:textColor="#000000" />
+
             <TextView
-                android:id="@+id/tvMoTa2"
+                android:id="@+id/txtMoTa2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Mô tả" />
 
-            <TextView
-                android:id="@+id/tvGiaSP2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#F44336"
-                android:text="Giá sản phẩm" />
 
-            <Button
-                android:id="@+id/btnDatMua2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đặt mua" />
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtGiaSP2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Giá sản phẩm"
+                    android:textSize="13dp"
+                    android:textColor="#FF0000" />
+
+                <Button
+                    android:id="@+id/btnDatMua22"
+                    android:textSize="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Đặt mua" />
+            </LinearLayout>
         </LinearLayout>
+
+
     </LinearLayout>
 
 

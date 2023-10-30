@@ -8,17 +8,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ThuocChoCayTrong_Holder extends RecyclerView.ViewHolder {
-    ImageView ivHinh1, ivHinh2;
-    TextView tvTenSP1, tvTenSP2, tvMoTa1, tvMoTa2, tvGia1, tvGia2;
+    ImageView imgHinh1, imgHinh2;
+    TextView txtTenSP1, txtTenSP2, txtMoTa1, txtMoTa2, txtGiaSP1, txtGiaSP2;
     public ThuocChoCayTrong_Holder(@NonNull View itemView) {
         super(itemView);
-        ivHinh1 = itemView.findViewById(R.id.ivHinh1);
-        ivHinh2 = itemView.findViewById(R.id.ivHinh2);
-        tvTenSP1 = itemView.findViewById(R.id.tvTenSP1);
-        tvTenSP2 = itemView.findViewById(R.id.tvTenSP2);
-        tvMoTa1 = itemView.findViewById(R.id.tvMoTa1);
-        tvMoTa2 = itemView.findViewById(R.id.tvMoTa2);
-        tvGia1 = itemView.findViewById(R.id.tvGiaSP1);
-        tvGia2 = itemView.findViewById(R.id.tvGiaSP2);
+        imgHinh1 = itemView.findViewById(R.id.imgHinh1);
+        imgHinh2 = itemView.findViewById(R.id.imgHinh2);
+        txtTenSP1 = itemView.findViewById(R.id.txtTenSP1);
+        txtTenSP2 = itemView.findViewById(R.id.txtTenSP2);
+        txtMoTa1 = itemView.findViewById(R.id.txtMoTa1);
+        txtMoTa2 = itemView.findViewById(R.id.txtMoTa2);
+        txtGiaSP1 = itemView.findViewById(R.id.txtGiaSP1);
+        txtGiaSP2 = itemView.findViewById(R.id.txtGiaSP2);
     }
 }
