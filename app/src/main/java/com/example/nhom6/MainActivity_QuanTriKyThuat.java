@@ -179,7 +179,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     }
 
-    String host = "192.168.1.113:80";
+    String host = "192.168.137.33:80";
 
     private void getDataNhomNganh() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

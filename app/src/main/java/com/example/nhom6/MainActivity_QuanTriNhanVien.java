@@ -264,7 +264,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     }
 
-    String host = "192.168.106.153";
+    String host = "192.168.137.33:80";
 
     private void getLoaiNhanVien() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

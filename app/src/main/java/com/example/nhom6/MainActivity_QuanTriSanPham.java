@@ -260,7 +260,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         btnSua = findViewById(R.id.btnSua);
     }
 
-    String host = "192.168.1.113";
+    String host = "192.168.137.33:80";
 
     private void getDataNhomNganh() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
