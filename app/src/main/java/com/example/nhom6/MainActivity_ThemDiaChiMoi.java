@@ -19,6 +19,17 @@ import android.view.View;
 //import org.json.JSONException;
 //import org.json.JSONObject;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +51,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     }
 
     private void KhoiTao() {
+//        getDataList();
         data_ThemDiaChi.add(new ThemDiaChiMoi("53, Võ Văn Ngân, Linh Chiểu, Thủ Đức", ""));
         data_ThemDiaChi.add(new ThemDiaChiMoi("54, Võ Văn Ngân, Linh Chiểu, Thủ Đức", ""));
         data_ThemDiaChi.add(new ThemDiaChiMoi("55, Võ Văn Ngân, Linh Chiểu, Thủ Đức", ""));
@@ -59,23 +71,24 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     }
 //    private void getDataList() {
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        String url = "http://192.168.2.130/API/getDataQTSP.php";
+//        String url = "http://192.168.137.1:8088/API_ChuyenDe2/getDataQTSP.phpp";
 //        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 //            @Override
 //            public void onResponse(JSONArray response) {
 //
-//                for (int i = 0; i < response.length(); i++) {
+//
 //                    try {
-//                        JSONObject jsonObject = response.getJSONObject(i);
+//                        JSONObject jsonObject = response.getJSONObject(0);
 //
-//
-//
+//                        String diaChi = jsonObject.getString("diaChi");
+//                        ThemDiaChiMoi themDiaChiMoi = new ThemDiaChiMoi(diaChi,"");
+//                        data_ThemDiaChi.add(themDiaChiMoi);
 //
 //                    } catch (JSONException e) {
 //                        throw new RuntimeException(e);
 //                    }
 //
-//                }
+//
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override

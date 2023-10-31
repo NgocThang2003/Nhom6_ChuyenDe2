@@ -15,7 +15,7 @@
         android:icon="@drawable/tuvan"
         android:title="Tư vấn" />
     <item
-        android:id="@+id/caytrong"
+        android:id="@+id/thuoc"
         android:icon="@drawable/chemical"
         android:title="Thuốc" />
     <item
