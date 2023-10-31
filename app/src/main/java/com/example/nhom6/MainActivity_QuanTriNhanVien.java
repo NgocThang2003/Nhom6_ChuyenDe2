@@ -5,12 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,6 +36,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     RecyclerView recyclerView;
     List<NhanVien> data_NhanVien = new ArrayList<>();
 
+    EditText edtTimKiem;
     public static Spinner spLoaiNhanVien;
     List<String> data_loaiNhanVien = new ArrayList<>();
     int index = -1;
@@ -123,6 +127,22 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             }
         });
 
+        edtTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                timNhanVien();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -239,10 +259,12 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);
 
+        edtTimKiem = findViewById(R.id.edtTimKiem);
+
 
     }
 
-    String host = "192.168.1.113";
+    String host = "192.168.106.153";
 
     private void getLoaiNhanVien() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -423,6 +445,51 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         data_NhanVien.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "http://" + host + "/Nhom6/getNhanVien.php";
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                data_NhanVien.clear();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        String id_NhanVien = jsonObject.getString("id_NhanVien");
+                        String tenNhanVien = jsonObject.getString("tenNhanVien");
+                        String sDT = jsonObject.getString("Sdt");
+                        String queQuan = jsonObject.getString("QueQuan");
+                        String ngaySinh = jsonObject.getString("NgaySinh");
+                        String gmail = jsonObject.getString("Email");
+                        String cMND = jsonObject.getString("Cmnd");
+                        String loaiNhanVien = jsonObject.getString("LoaiNhanVien");
+                        String id_Username = jsonObject.getString("id_Username");
+                        String hinh = jsonObject.getString("Hinh");
+                        String password = jsonObject.getString("Password");
+
+                        NhanVien nhanVien = new NhanVien(id_NhanVien, tenNhanVien, sDT, queQuan, ngaySinh, gmail, loaiNhanVien, cMND, id_Username, password, hinh);
+                        data_NhanVien.add(nhanVien);
+                        recyclerView.getAdapter().notifyDataSetChanged();
+
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onErrorResponse: ", error.toString());
+            }
+        });
+        requestQueue.add(arrayRequest);
+    }
+
+    private void timNhanVien() {
+        data_NhanVien.clear();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "http://" + host + "/Nhom6/timNhanVien.php?tenNhanVien="+edtTimKiem.getText().toString().trim().replace(" ","+")+"";
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
