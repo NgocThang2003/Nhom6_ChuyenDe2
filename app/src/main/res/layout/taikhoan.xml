@@ -130,6 +130,8 @@
                     android:text="Hồ sơ của tôi" />
 
                 <ImageView
+                    android:onClick="chucnang"
+                    android:id="@+id/ivHoSo"
                     android:layout_width="24dp"
                     android:layout_height="40dp"
                     android:src="@drawable/quayphai"></ImageView>
@@ -153,6 +155,8 @@
                     android:text="Số địa chỉ" />
 
                 <ImageView
+                    android:onClick="chucnangdiachi"
+                    android:id="@+id/ivDiaChi"
                     android:layout_width="24dp"
                     android:layout_height="40dp"
                     android:src="@drawable/quayphai"></ImageView>
@@ -176,6 +180,8 @@
                     android:text="Phương thức thanh toán" />
 
                 <ImageView
+                    android:onClick="chucnang"
+                    android:id="@+id/ivPTTT"
                     android:layout_width="24dp"
                     android:layout_height="40dp"
                     android:src="@drawable/quayphai"></ImageView>
@@ -209,6 +215,8 @@
                 android:text="Giới thiệu" />
 
             <ImageView
+                android:onClick="chucnanggioithieu"
+                android:id="@+id/ivGioiThieu"
                 android:layout_width="24dp"
                 android:layout_height="40dp"
                 android:src="@drawable/quayphai"></ImageView>
@@ -221,6 +229,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:onClick="chucnanglienhe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/lienhe" />
@@ -233,6 +242,8 @@
                 android:text="Liên hệ" />
 
             <ImageView
+                android:onClick="chucnanglienhe"
+                android:id="@+id/ivLienHe"
                 android:layout_width="24dp"
                 android:layout_height="40dp"
                 android:src="@drawable/quayphai"></ImageView>

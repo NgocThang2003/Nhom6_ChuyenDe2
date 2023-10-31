@@ -27,7 +27,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
     public void chucnang(View view) {
 
         if(view.getId()==R.id.imgQuayVe){
-            Intent intent = new Intent(MainActivity_HoSoNguoiDung.this,MainActivity.class);
+            Intent intent = new Intent(MainActivity_HoSoNguoiDung.this,MainActivity_TaiKhoan.class);
             startActivity(intent);
         }
     }

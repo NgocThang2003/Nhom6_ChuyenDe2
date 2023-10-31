@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +37,13 @@ public class MainActivity_GioiThieu extends AppCompatActivity {
 
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewGioiThieu);
+    }
+
+    public void chucnang(View view) {
+
+        if(view.getId()==R.id.imgQuayVe){
+            Intent intent = new Intent(MainActivity_GioiThieu.this,MainActivity_TaiKhoan.class);
+            startActivity(intent);
+        }
     }
 }

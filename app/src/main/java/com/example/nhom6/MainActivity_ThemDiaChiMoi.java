@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 //import com.android.volley.Request;
 //import com.android.volley.RequestQueue;
@@ -46,6 +48,14 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
 
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerViewThemDiaChiMoi);
+    }
+
+    public void chucnang(View view) {
+
+        if(view.getId()==R.id.imgQuayVe){
+            Intent intent = new Intent(MainActivity_ThemDiaChiMoi.this,MainActivity_DiaChiGiaoHang.class);
+            startActivity(intent);
+        }
     }
 //    private void getDataList() {
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);

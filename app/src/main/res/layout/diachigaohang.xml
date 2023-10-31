@@ -37,6 +37,8 @@
             android:layout_height="wrap_content"
             android:text="Địa chỉ của tôi"/>
         <Button
+            android:onClick="chucnangthemdiachimoi"
+            android:id="@+id/btnThemDiaChiMoi"
             android:layout_marginLeft="130dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
