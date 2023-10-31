@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/homeshipper"
+        android:title="Trang chủ" />
+
+    <item
+        android:id="@+id/cuahang"
+        android:icon="@drawable/donmoishippper"
+        android:title="Đơn mới" />
+    <item
+        android:id="@+id/tuvan"
+        android:icon="@drawable/dondanggiaoshipper"
+        android:title="Đơn đang giao" />
+
+    <item
+        android:id="@+id/taikhoan"
+        android:icon="@drawable/taikhoanshipper"
+        android:title="Tài khoản" />
+</menu>
