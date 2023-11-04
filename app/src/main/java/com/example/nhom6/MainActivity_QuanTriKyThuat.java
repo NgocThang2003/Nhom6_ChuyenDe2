@@ -1,49 +1,59 @@
 package com.example.nhom6;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
-
+    CheckBox chkCN, chkNN, chkLN;
     EditText edtTenKyThuat, edtMoTa, edtTimKiem;
     Spinner spNhomNganh;
 
     int index = -1;
+    ImageView ivHinh;
 
     Button btnThem, btnXoa, btnSua;
     List<String> data_nhomNganh = new ArrayList<>();
 
     RecyclerView recyclerView;
     ArrayList<TrangChuKhachHang> data_kyThuaTrongCay = new ArrayList<>();
+
+    FirebaseDatabase database;
+    DatabaseReference data_KyThuat;
+    String maKT = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,13 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     private void setEvent() {
         KhoiTao();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("TrangChuKhachHang");
+
+
+        database = FirebaseDatabase.getInstance();
+        data_KyThuat = database.getReference("TrangChuKhachHang");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new TrangChuKhachHang_Adapter(this, data_kyThuaTrongCay));
@@ -67,13 +84,27 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         trangChuKhachHangAdapter.setOnItemClickListenner(new NhanVienAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
                 TrangChuKhachHang trangChuKhachHang = data_kyThuaTrongCay.get(position);
                 edtTenKyThuat.setText(trangChuKhachHang.tenKyThuat);
-                edtMoTa.setText(trangChuKhachHang.tenMoTa);
+                edtMoTa.setText(TrangChuKhachHang_Adapter.moTa);
                 index = position;
+                maKT = trangChuKhachHang.maKyThuat;
+                if (!trangChuKhachHang.getHinh().toString().trim().equals("")) {
+                    try {
+                        byte[] bytes = chuyenStringSangByte(trangChuKhachHang.getHinh());
+                        Bitmap bitmap = chuyenByteSangBitMap(bytes);
+                        ivHinh.setImageBitmap(bitmap);
+                        byteArrayHinh = bytes;
+                    } catch (Exception e) {
+                        ivHinh.setImageResource(R.drawable.anhsp_quantri);
+                        byteArrayHinh = new byte[0];
+                    }
+                } else {
+                    ivHinh.setImageResource(R.drawable.anhsp_quantri);
+                    byteArrayHinh = new byte[0];
+                }
+
                 kiemTraNhomNganh(trangChuKhachHang);
-                //hienThiLaiDanhSach();
                 EnabelButtonFalse();
             }
         });
@@ -83,7 +114,19 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             public void onClick(View v) {
                 if (kiemTraDieuKien() == true) {
                     if (spNhomNganh.getSelectedItemPosition() != 0) {
-                        themKyThuat();
+                        TrangChuKhachHang trangChuKhachHang = new TrangChuKhachHang();
+
+                        trangChuKhachHang.setMaKyThuat(data_KyThuat.push().getKey());
+                        trangChuKhachHang.setTenKyThuat(edtTenKyThuat.getText().toString().trim());
+                        trangChuKhachHang.setTenMoTa(edtMoTa.getText().toString().trim());
+                        trangChuKhachHang.setNhomNganh(spNhomNganh.getSelectedItem().toString());
+
+                        String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                        trangChuKhachHang.setHinh(hinh);
+
+                        data_KyThuat.child(trangChuKhachHang.maKyThuat).setValue(trangChuKhachHang);
+                        clearEditText();
+                        EnabelButtonTrue();
                     } else {
                         Toast.makeText(MainActivity_QuanTriKyThuat.this, "Bạn chưa chọn nhóm ngành !", Toast.LENGTH_SHORT).show();
                     }
@@ -95,7 +138,11 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (index != -1) {
-                    xoaKyThuat();
+                    String maKyThuat = data_kyThuaTrongCay.get(index).maKyThuat;
+                    data_KyThuat.child(maKyThuat).removeValue();
+                    clearEditText();
+                    EnabelButtonFalse();
+
                 } else {
                     Toast.makeText(MainActivity_QuanTriKyThuat.this, "Chọn để xóa dữ liệu", Toast.LENGTH_SHORT).show();
                 }
@@ -109,7 +156,20 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
                 if (index != -1) {
                     if (kiemTraDieuKien() == true) {
                         if (spNhomNganh.getSelectedItemPosition() != 0) {
-                            suaKyThuat();
+                            String maKyThuat = data_kyThuaTrongCay.get(index).maKyThuat;
+                            data_KyThuat.child(maKyThuat).child("tenKyThuat").setValue(edtTenKyThuat.getText().toString());
+                            data_KyThuat.child(maKyThuat).child("tenMoTa").setValue(edtMoTa.getText().toString());
+                            data_KyThuat.child(maKyThuat).child("nhomNganh").setValue(spNhomNganh.getSelectedItem().toString());
+
+
+                            String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                            data_KyThuat.child(maKyThuat).child("hinh").setValue(hinh);
+
+//                            String tenKyThuat, tenMoTa, nhomNganh;
+//                            String maKyThuat, hinh;
+                            clearEditText();
+                            EnabelButtonFalse();
+
                         } else {
                             Toast.makeText(MainActivity_QuanTriKyThuat.this, "Bạn chưa chọn nhóm ngành !", Toast.LENGTH_SHORT).show();
                         }
@@ -129,7 +189,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                timKyThuat();
+                timKiem();
             }
 
             @Override
@@ -138,6 +198,245 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
 
+        data_KyThuat.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        ivHinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        chkNN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhomNganh();
+            }
+        });
+
+        chkCN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhomNganh();
+            }
+        });
+
+        chkLN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhomNganh();
+            }
+        });
+    }
+
+    byte[] byteArrayHinh = new byte[0];
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            ivHinh.setImageURI(uri);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byteArrayHinh = stream.toByteArray();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void phanLoaiNhomNganh() {
+        data_kyThuaTrongCay.clear();
+        data_KyThuat.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_kyThuaTrongCay.clear();
+                Toast.makeText(MainActivity_QuanTriKyThuat.this, "Hello", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    TrangChuKhachHang trangChuKhachHang = item.getValue(TrangChuKhachHang.class);
+
+                    if (chkNN.isChecked()) {
+                        if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+                        if (chkCN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+                            if (chkLN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+                        } else if (chkLN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+                            if (chkCN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+                        }
+                    } else if (chkCN.isChecked()) {
+                        if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+                        if (chkNN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+                            if (chkLN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+
+                        } else if (chkLN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+                            if (chkNN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+                        }
+                    } else if (chkLN.isChecked()) {
+                        if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+
+                        if (chkNN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+
+                            if (chkCN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+
+                        } else if (chkCN.isChecked()) {
+                            if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                                data_kyThuaTrongCay.add(trangChuKhachHang);
+                            }
+
+                            if (chkNN.isChecked()) {
+                                if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                                }
+                            }
+                        }
+                    } else {
+                        if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+                        if (trangChuKhachHang.nhomNganh.equals("Công nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+                        if (trangChuKhachHang.nhomNganh.equals("Lâm nghiệp")) {
+                            data_kyThuaTrongCay.add(trangChuKhachHang);
+                        }
+                    }
+                }
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void timKiem() {
+        data_kyThuaTrongCay.clear();
+        data_KyThuat.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_kyThuaTrongCay.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    TrangChuKhachHang trangChuKhachHang = item.getValue(TrangChuKhachHang.class);
+                    if (trangChuKhachHang.getTenKyThuat().contains(edtTimKiem.getText().toString())) {
+                        data_kyThuaTrongCay.add(trangChuKhachHang);
+                    }
+                }
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void DocDL() {
+        data_kyThuaTrongCay.clear();
+        data_KyThuat.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_kyThuaTrongCay.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    TrangChuKhachHang trangChuKhachHang = item.getValue(TrangChuKhachHang.class);
+                    data_kyThuaTrongCay.add(trangChuKhachHang);
+                }
+                edtTimKiem.setText("");
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void KhoiTao() {
+        data_nhomNganh.add("Bank");
+        data_nhomNganh.add("Nông nghiệp");
+        data_nhomNganh.add("Công nghiệp");
+        data_nhomNganh.add("Lâm nghiệp");
     }
 
     private void kiemTraNhomNganh(TrangChuKhachHang trangChuKhachHang) {
@@ -150,19 +449,6 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         }
     }
 
-    private void KhoiTao() {
-        EnabelButtonTrue();
-        data_nhomNganh.clear();
-        getDataNhomNganh();
-        getDataQuanTriKyThuat();
-//        data.add(new TrangChuKhachHang("Kỹ thuật trồng Giổi xanh:", "Hạt giống được thu hái từ các cây giống từ 20 tuổi trở lên, có thân thẳng đẹp, tán đều, phân cành cao", R.drawable.anhsp_quantri, "Nông nghiệp"));
-//        data.add(new TrangChuKhachHang("Kỹ thuật gieo hạt giống Lim Xanh::", "Lim xanh là một loài cây gỗ có giá trị kinh tế cao, phân bố ở các vùng đồi núi có độ cao dưới 700m so với ", R.drawable.anhsp_quantri, "Công nghiệp"));
-//        data.add(new TrangChuKhachHang("Kỹ thuật gieo ươm cây keo lai:", "Keo lai là một loài cây lâm nghiệp phổ biến, có khả năng chịu hạn và sinh trưởng nhanh. Hạt được", R.drawable.anhsp_quantri, "Lâm nghiệp"));
-
-
-        data_nhomNganh.add("Bank");
-
-    }
 
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerViewDanhSachKyThuatCayTrong);
@@ -176,75 +462,10 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);
 
-
-    }
-
-    String host = "192.168.137.33:80";
-
-    private void getDataNhomNganh() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/getNhomNganh.php";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String nhomNganh = String.valueOf(jsonObject.getString("NhomNganh"));
-                        data_nhomNganh.add(nhomNganh);
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void getDataQuanTriKyThuat() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/getKyThuatTrongCay.php";
-
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-
-                        String tenKyThuat = jsonObject.getString("tenKyThuat");
-                        String nhomNganh = jsonObject.getString("NhomNganh");
-                        String moTa = jsonObject.getString("MoTa");
-                        String hinh = jsonObject.getString("Hinh");
-                        int id_kyThuat = jsonObject.getInt("id_KyThuat");
-
-                        TrangChuKhachHang trangChuKhachHang = new TrangChuKhachHang(id_kyThuat, tenKyThuat, moTa, R.drawable.anhsp_quantri, nhomNganh);
-                        data_kyThuaTrongCay.add(trangChuKhachHang);
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
+        ivHinh = findViewById(R.id.ivHinh);
+        chkCN = findViewById(R.id.checkBoxCongNghiep);
+        chkNN = findViewById(R.id.checkBoxNongNghiep);
+        chkLN = findViewById(R.id.checkBoxLamNghep);
     }
 
     private boolean kiemTraDieuKien() {
@@ -264,171 +485,32 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         return kiemTra;
     }
 
-    private void themKyThuat() {
 
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/themKyThuat.php?" +
-                "tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
-                "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
-                "&MoTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
-                "&Hinh=0";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-                EnabelButtonTrue();
-                clearEditText();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(stringRequest);
+    // chuyen Byte[] Sang Chuoi
+    private String chuyenByteSangChuoi(byte[] byteArray) {
+        String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return base64String;
     }
 
-    private void xoaKyThuat() {
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/xoaKyThuat.php?" +
-                "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-                EnabelButtonTrue();
-                clearEditText();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(stringRequest);
+    //chuyen String Sang Byte[]
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
     }
 
-    private void suaKyThuat() {
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/suaKyThuat.php?" +
-                "id_KyThuat=" + data_kyThuaTrongCay.get(index).maKyThuat + "" +
-                "&tenKyThuat=" + edtTenKyThuat.getText().toString().trim().replace(" ", "+") + "" +
-                "&id_NhomNganh=" + (spNhomNganh.getSelectedItemPosition()) + "" +
-                "&MoTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
-                "&Hinh=0";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-                EnabelButtonTrue();
-                clearEditText();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(stringRequest);
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
     }
 
-    private void hienThiLaiDanhSach() {
-        data_kyThuaTrongCay.clear();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/getKyThuatTrongCay.php";
-
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                data_kyThuaTrongCay.clear();
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-
-                        String tenKyThuat = jsonObject.getString("tenKyThuat");
-                        String nhomNganh = jsonObject.getString("NhomNganh");
-                        String moTa = jsonObject.getString("MoTa");
-                        //String hinh = jsonObject.getString("Hinh");
-                        int id_kyThuat = jsonObject.getInt("id_KyThuat");
-
-                        TrangChuKhachHang trangChuKhachHang = new TrangChuKhachHang(id_kyThuat, tenKyThuat, moTa, R.drawable.anhsp_quantri, nhomNganh);
-                        data_kyThuaTrongCay.add(trangChuKhachHang);
-                        recyclerView.getAdapter().notifyDataSetChanged();
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-    private void timKyThuat() {
-        data_kyThuaTrongCay.clear();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/timKyThuat.php?tenKyThuat="+edtTimKiem.getText().toString().trim().replace(" ","+")+"";
-
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                data_kyThuaTrongCay.clear();
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-
-                        String tenKyThuat = jsonObject.getString("tenKyThuat");
-                        String nhomNganh = jsonObject.getString("NhomNganh");
-                        String moTa = jsonObject.getString("MoTa");
-                        //String hinh = jsonObject.getString("Hinh");
-                        int id_kyThuat = jsonObject.getInt("id_KyThuat");
-
-                        TrangChuKhachHang trangChuKhachHang = new TrangChuKhachHang(id_kyThuat, tenKyThuat, moTa, R.drawable.anhsp_quantri, nhomNganh);
-                        data_kyThuaTrongCay.add(trangChuKhachHang);
-                        recyclerView.getAdapter().notifyDataSetChanged();
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
 
     private void clearEditText() {
         edtTenKyThuat.setText("");
         edtMoTa.setText("");
         edtTimKiem.setText(null);
         spNhomNganh.setSelection(0);
+        ivHinh.setImageResource(R.drawable.anhsp_quantri);
     }
 
     private void EnabelButtonTrue() {
