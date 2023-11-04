@@ -11,26 +11,32 @@
        android:layout_marginTop="20dp"
        style="@style/edit_sp">
        <CheckBox
+           android:id="@+id/cbCheckBoxTungSP"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
        <ImageView
+           android:id="@+id/ivHinh"
            android:layout_width="70dp"
            android:layout_height="60dp"
-           android:background="@drawable/ic_launcher_background"/>
+           android:adjustViewBounds="true"/>
+<!--           android:background="@drawable/ic_launcher_background"/>-->
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginLeft="10dp"
           android:orientation="vertical">
           <TextView
+              android:id="@+id/tvTenSP"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Tên hạt giống"/>
+              android:text="Tên sản phẩm"/>
           <TextView
+              android:id="@+id/tvMoTa"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Mô tả"/>
           <TextView
+              android:id="@+id/tvGia"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Giá"
@@ -42,10 +48,12 @@
            android:layout_marginLeft="10dp"
            android:orientation="vertical">
            <TextView
+               android:id="@+id/tvKhoiLuong"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Khối lượng"/>
            <TextView
+               android:id="@+id/tvSoLuong"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Số lượng"/>
@@ -56,29 +64,35 @@
            android:layout_height="wrap_content"
            android:layout_marginLeft="10dp"
            android:orientation="vertical">
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               />
+
            <LinearLayout
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:orientation="horizontal">
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp">
                <Button
+                   android:id="@+id/btnTru"
                    style="@style/button_trai"
-                   android:text="+"/>
+                   android:focusable="false"
+                   android:text="-"/>
 
-               <TextView
+               <Button
+                   android:id="@+id/btnSo"
                    android:layout_width="57dp"
                    android:layout_height="wrap_content"
                    android:gravity="center"
+                   android:background="@null"
+                   android:focusable="false"
                    android:text="1" />
                <Button
+                   android:id="@+id/btnCong"
                    style="@style/button_phai"
+                   android:focusable="false"
                    android:text="+"/>
            </LinearLayout>
 
            <Button
+               android:id="@+id/btnXoa"
                android:layout_width="80dp"
                android:layout_height="40dp"
                android:text="Xoá"

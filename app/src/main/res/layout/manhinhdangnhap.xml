@@ -5,66 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity_DangNhap">
 
     <TextView
         style="@style/bg_edit"
         android:text="Đăng nhập" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D1E7FF"
+            android:orientation="vertical">
+                <RadioButton
+                    android:id="@+id/rdAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ADMIN"
+                    android:textSize="15dp" />
 
+                <RadioButton
+                    android:id="@+id/rdNhanVien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhân viên"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rdKhachHang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khách hàng"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rdThuKho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thủ kho"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rdShipper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shipper"
+                    android:textSize="15dp" />
+
+        </RadioGroup>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#D1E7FF"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:textSize="15dp"
-                android:text="ADMIN" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:textSize="15dp"
-                android:text="Nhân viên" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:text="Khách hàng" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:textSize="15dp"
-                android:text="Thủ kho" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:textSize="15dp"
-                android:text="Shipper" />
-
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="550dp"
+        android:orientation="vertical"
+        android:background="@drawable/img_1">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,12 +68,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:text="Tên đăng nhập"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:textColor="@color/black"/>
 
     <EditText
+        android:id="@+id/edtTenDN"
         style="@style/bg_edittext"
         android:layout_marginLeft="50dp"
         android:drawableLeft="@drawable/baseline_supervised_user_circle_24"
@@ -92,25 +85,30 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:text="Mật khẩu"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:textColor="@color/black"/>
 
     <EditText
-        android:drawableLeft="@drawable/mat_khau"
+        android:id="@+id/edtMatKhau"
         style="@style/bg_edittext"
+        android:drawableLeft="@drawable/mat_khau"
         android:hint=" ****"
         android:inputType="textPassword"
-        android:textColorHint="#A89999"/>
+        android:textColorHint="#A89999" />
 
     <CheckBox
+        android:id="@+id/cbHienMK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Ghi nhớ lần đăng nhập sau" />
+
+        android:text="Hiện mật khẩu" />
 
     <Button
+        android:id="@+id/btnDangNhap"
         style="@style/btnNhap"
         android:layout_gravity="center"
         android:background="@drawable/button3"
@@ -129,8 +127,8 @@
             android:text="Already have an account ?"
             android:textSize="15dp" />
 
-        <Button
-            android:id="@+id/btnRegister"
+        <TextView
+            android:id="@+id/tvRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" Register"
@@ -138,6 +136,6 @@
             android:textSize="15dp" />
 
     </LinearLayout>
-
+    </LinearLayout>
 
 </LinearLayout>
