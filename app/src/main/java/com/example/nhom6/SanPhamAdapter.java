@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,10 @@ import java.util.List;
 public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
     Context context;
     List<SanPham> data;
+
+    public static String chuThich = "";
+    public static String tenSP = "";
+
 
     public SanPhamAdapter(Context context, List<SanPham> data) {
         this.context = context;
@@ -42,10 +48,36 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
 
         SanPham sanPham = data.get(position);
 
-        holder.ivHinh.setImageResource(R.drawable.anhsp_quantri);
+        if (!sanPham.getHinh().toString().trim().equals("")) {
+            try {
+                byte[] bytes = chuyenStringSangByte(sanPham.getHinh());
+                Bitmap bitmap = chuyenByteSangBitMap(bytes);
+                holder.ivHinh.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                holder.ivHinh.setImageResource(R.drawable.anhsp_quantri);
+            }
+        } else {
+            holder.ivHinh.setImageResource(R.drawable.anhsp_quantri);
+        }
+
         holder.tvTenSP.setText(sanPham.tenSP.trim());
+
+        if (sanPham.tenSP.toString().trim().length() > 10) {
+            holder.tvTenSP.setText(sanPham.tenSP.trim().substring(0, 10) + "...");
+        }
+
         holder.tvChuThich.setText(sanPham.chuThich.trim());
+        if (sanPham.chuThich.toString().trim().length() > 10) {
+            holder.tvChuThich.setText(sanPham.chuThich.trim().substring(0, 10) + "...");
+        }
+
+
         holder.tvLoaiSP.setText(sanPham.loaiSP.trim());
+
+        holder.tvDonVi.setText(sanPham.donVi.trim());
+        holder.tvKhoiLuong.setText(sanPham.khoiLuong.trim());
+        holder.tvGia.setText(sanPham.gia.trim());
+        holder.tvSoLuong.setText(sanPham.soLuong.trim());
 
         SanPham finalSanPham = sanPham;
 //        holder.ivHinh.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +91,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mListener != null){
+                if (mListener != null) {
+                    chuThich = sanPham.chuThich;
+                    tenSP = sanPham.tenSP;
                     mListener.onItemClick(position);
                 }
             }
@@ -105,6 +139,17 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamHolder> {
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
+    }
+
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
     }
 
 

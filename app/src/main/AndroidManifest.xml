@@ -19,7 +19,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_QuanTriSanPham"
+            android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
             android:name=".MainActivity_TrangChuShipper"
@@ -28,7 +28,7 @@
             android:name=".MainActivity_QuanTriNhanVien"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_QuanTriKyThuat"
+            android:name=".MainActivity_QuanTriSanPham"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

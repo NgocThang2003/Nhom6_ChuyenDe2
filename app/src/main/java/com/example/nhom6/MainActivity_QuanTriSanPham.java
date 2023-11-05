@@ -1,10 +1,19 @@
 package com.example.nhom6;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,6 +21,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,11 +32,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +52,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
     public static EditText edtTenSP, edtChuThich, edtSL, edtKhoiLuong, edtGia, edtMoTa;
     public static Spinner spDonVi, spLoaiSanPham;
+    ImageView ivHinhSP;
 
     EditText edtTimKiem;
     Button btnThem, btnXoa, btnSua;
@@ -45,6 +64,9 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
     List<String> data_donVi = new ArrayList<>();
     List<String> data_loaiSanPham = new ArrayList<>();
 
+    FirebaseDatabase database;
+    DatabaseReference data_SP;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +77,13 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
     }
 
     private void setEvent() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("QuanTriSanPham");
+
+
+        database = FirebaseDatabase.getInstance();
+        data_SP = database.getReference("SanPham");
         EnabelButtonTrue();
         KhoiTao();
         recyclerViewDanhSachSP.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -72,19 +101,32 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
                 EnabelButtonFalse();
                 SanPham sanPham = data_SanPham.get(position);
 
-                edtTenSP.setText(sanPham.tenSP);
-                edtChuThich.setText(sanPham.chuThich);
+                edtTenSP.setText(SanPhamAdapter.tenSP);
+                edtChuThich.setText(SanPhamAdapter.chuThich);
                 edtSL.setText("" + sanPham.soLuong);
                 edtKhoiLuong.setText("" + sanPham.khoiLuong);
                 edtGia.setText("" + sanPham.gia);
                 edtMoTa.setText("" + sanPham.moTa);
-                spDonVi.setSelection(Integer.parseInt(sanPham.donVi));
-                spLoaiSanPham.setSelection(Integer.parseInt(sanPham.loaiSP));
 
                 index = position;
 
-                //kiemTraDonVi(sanPham);
-                //kiemTraLoaiSanPham(sanPham);
+                kiemTraDonVi(sanPham);
+                kiemTraLoaiSanPham(sanPham);
+
+                if (!sanPham.getHinh().toString().trim().equals("")) {
+                    try {
+                        byte[] bytes = chuyenStringSangByte(sanPham.getHinh());
+                        Bitmap bitmap = chuyenByteSangBitMap(bytes);
+                        ivHinhSP.setImageBitmap(bitmap);
+                        byteArrayHinh = bytes;
+                    } catch (Exception e) {
+                        ivHinhSP.setImageResource(R.drawable.anhsp_quantri);
+                        byteArrayHinh = new byte[0];
+                    }
+                } else {
+                    ivHinhSP.setImageResource(R.drawable.anhsp_quantri);
+                    byteArrayHinh = new byte[0];
+                }
             }
         });
 
@@ -94,7 +136,30 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
                 if (kiemTraDieuKien() == true) {
                     if (spLoaiSanPham.getSelectedItemPosition() != 0) {
                         if (spDonVi.getSelectedItemPosition() != 0) {
-                            themSanPham();
+                            SanPham sanPham = new SanPham();
+
+                            String maSP = data_SP.push().getKey();
+                            sanPham.setMaSanPham(maSP);
+
+                            sanPham.setTenSP(edtTenSP.getText().toString().trim());
+                            sanPham.setChuThich(edtChuThich.getText().toString().trim());
+                            sanPham.setSoLuong(edtSL.getText().toString().trim());
+
+                            sanPham.setDonVi(spDonVi.getSelectedItem().toString().trim());
+                            sanPham.setKhoiLuong(edtKhoiLuong.getText().toString().trim());
+                            sanPham.setGia(edtGia.getText().toString().trim());
+
+                            sanPham.setLoaiSP(spLoaiSanPham.getSelectedItem().toString().trim());
+                            sanPham.setMoTa(edtMoTa.getText().toString().trim());
+
+                            String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                            sanPham.setHinh(hinh);
+
+                            data_SP.child(maSP).setValue(sanPham);
+                            Toast.makeText(MainActivity_QuanTriSanPham.this, "Thêm thành công !", Toast.LENGTH_SHORT).show();
+                            clearEditText();
+
+
                         } else {
                             Toast.makeText(MainActivity_QuanTriSanPham.this, "Bạn chưa chọn đơn vị !", Toast.LENGTH_SHORT).show();
                         }
@@ -110,8 +175,30 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (index != -1) {
-                    xoaSanPham();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_QuanTriSanPham.this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+                    builder.setMessage("Bạn có muốn xóa dữ liệu này không ?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // START THE GAME!
+                                    String maSanPham = data_SanPham.get(index).maSanPham;
+                                    data_SP.child(maSanPham).removeValue();
+                                    clearEditText();
+                                    EnabelButtonTrue();
+                                    Toast.makeText(MainActivity_QuanTriSanPham.this, "Xóa dữ liệu thành công", Toast.LENGTH_SHORT).show();
+
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            });
+                    // Create the AlertDialog object and return it
+                    builder.create().show();
+
+
                 } else {
                     Toast.makeText(MainActivity_QuanTriSanPham.this, "Chọn để xóa sản phẩm !", Toast.LENGTH_SHORT).show();
                 }
@@ -125,7 +212,45 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
                     if (kiemTraDieuKien() == true) {
                         if (spLoaiSanPham.getSelectedItemPosition() != 0) {
                             if (spDonVi.getSelectedItemPosition() != 0) {
-                                suaSanPham();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_QuanTriSanPham.this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+                                builder.setMessage("Bạn có muốn sửa dữ liệu này không ?")
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                // START THE GAME!
+//                                                String maSanPham, tenSP, chuThich, donVi, loaiSP, moTa, hinh;
+//                                                String soLuong, khoiLuong, gia;
+
+                                                String maSanPham = data_SanPham.get(index).maSanPham;
+
+                                                data_SP.child(maSanPham).child("tenSP").setValue(edtTenSP.getText().toString());
+                                                data_SP.child(maSanPham).child("chuThich").setValue(edtChuThich.getText().toString());
+                                                data_SP.child(maSanPham).child("donVi").setValue(spDonVi.getSelectedItem().toString());
+
+                                                data_SP.child(maSanPham).child("loaiSP").setValue(spLoaiSanPham.getSelectedItem().toString());
+                                                data_SP.child(maSanPham).child("moTa").setValue(edtMoTa.getText().toString());
+                                                data_SP.child(maSanPham).child("soLuong").setValue(edtSL.getText().toString());
+
+                                                data_SP.child(maSanPham).child("khoiLuong").setValue(edtKhoiLuong.getText().toString());
+                                                data_SP.child(maSanPham).child("gia").setValue(edtGia.getText().toString());
+
+                                                String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                                                data_SP.child(maSanPham).child("hinh").setValue(hinh);
+
+
+                                                clearEditText();
+                                                EnabelButtonTrue();
+                                                Toast.makeText(MainActivity_QuanTriSanPham.this, "Sửa dữ liệu thành công !", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        })
+                                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                // User cancelled the dialog
+                                            }
+                                        });
+                                // Create the AlertDialog object and return it
+                                builder.create().show();
+
                             } else {
                                 Toast.makeText(MainActivity_QuanTriSanPham.this, "Bạn chưa chọn đơn vị !", Toast.LENGTH_SHORT).show();
                             }
@@ -147,7 +272,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                timSanPham();
+                timKiem();
             }
 
             @Override
@@ -155,6 +280,85 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
             }
         });
+
+        data_SP.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        ivHinhSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    byte[] byteArrayHinh = new byte[0];
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            ivHinhSP.setImageURI(uri);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byteArrayHinh = stream.toByteArray();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void DocDL() {
+        data_SanPham.clear();
+        data_SP.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_SanPham.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    SanPham sanPham = item.getValue(SanPham.class);
+                    data_SanPham.add(sanPham);
+                }
+                edtTimKiem.setText("");
+                recyclerViewDanhSachSP.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private boolean kiemTraDieuKien() {
@@ -198,14 +402,24 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         if (sanPham.loaiSP.equals("Nông nghiệp")) {
             spLoaiSanPham.setSelection(1);
         } else if (sanPham.loaiSP.equals("Lâm nghiệp")) {
-            spLoaiSanPham.setSelection(3);
-        } else if (sanPham.loaiSP.equals("Công nghiệp")) {
             spLoaiSanPham.setSelection(2);
+        } else if (sanPham.loaiSP.equals("Công nghiệp")) {
+            spLoaiSanPham.setSelection(3);
+        } else if (sanPham.loaiSP.equals("Thuốc")) {
+            spLoaiSanPham.setSelection(4);
+        } else if (sanPham.loaiSP.equals("lít")) {
+            spLoaiSanPham.setSelection(5);
+        } else if (sanPham.loaiSP.equals("decilit")) {
+            spLoaiSanPham.setSelection(6);
+        } else if (sanPham.loaiSP.equals("centilit")) {
+            spLoaiSanPham.setSelection(7);
+        } else if (sanPham.loaiSP.equals("mililit")) {
+            spLoaiSanPham.setSelection(8);
         }
     }
 
     private void kiemTraDonVi(SanPham sanPham) {
-        if (sanPham.donVi.equals("kq")) {
+        if (sanPham.donVi.toString().trim().equals("kg")) {
             spDonVi.setSelection(1);
         } else if (sanPham.donVi.equals("hg")) {
             spDonVi.setSelection(2);
@@ -217,9 +431,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
     }
 
     private void KhoiTao() {
-        getDataNhomNganh();
-        getDonVi();
-        getSanPhamCayTrong();
+
 //        data_SanPham.add(new SanPham("Bắp cải xanh", "tươi ngon, bổ dưỡng", "g", "Công nghiệp", "aaa", "" + R.drawable.anhsp_quantri, 4, 100, 35000));
 //        data_SanPham.add(new SanPham("Dưa hấu đỏ", "Đỏ ít hạt", "g", "Lâm nghiệp", "nhan chóng", "" + R.drawable.anhsp_quantri, 4, 100, 30000));
 //        data_SanPham.add(new SanPham("Bí ngô", "nảy mầm nhanh", "kg", "Nông nghiệp", "linh động", "" + R.drawable.anhsp_quantri, 4, 100, 45000));
@@ -230,7 +442,21 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 //        data_SanPham.add(new SanPham("Dưa hấu đỏ 3", "Đỏ ít hạt", "hg", "Lâm nghiệp", "nhan chóng", "" + R.drawable.anhsp_quantri, 4, 100, 30000));
 
         data_loaiSanPham.add("Bank");
+        data_loaiSanPham.add("Nông nghiệp");
+        data_loaiSanPham.add("Lâm nghiệp");
+        data_loaiSanPham.add("Công nghiệp");
+        data_loaiSanPham.add("Thuốc");
+
         data_donVi.add("Bank");
+        data_donVi.add("kg");
+        data_donVi.add("hg");
+        data_donVi.add("dag");
+        data_donVi.add("g");
+
+        data_donVi.add("lít");
+        data_donVi.add("decilit");
+        data_donVi.add("centilit");
+        data_donVi.add("mililit");
 //        data_donVi.add("kg");
 //        data_donVi.add("gam");
 //        data_donVi.add("dag");
@@ -258,275 +484,10 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         btnThem = findViewById(R.id.btnThem);
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);
+
+        ivHinhSP = findViewById(R.id.ivHinhSP);
     }
 
-    String host = "192.168.137.33:80";
-
-    private void getDataNhomNganh() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/getNhomNganh.php";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String nhomNganh = String.valueOf(jsonObject.getString("NhomNganh"));
-                        data_loaiSanPham.add(nhomNganh);
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void getDonVi() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/Nhom6/getDonVi.php";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String donVi = jsonObject.getString("DonVi").trim();
-                        data_donVi.add(donVi);
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void getSanPhamCayTrong() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/getSanPhamCayTrong.php";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String id_SanPham = jsonObject.getString("id_SanPham").trim();
-                        String tenSanPham = jsonObject.getString("tenSanPham").trim();
-                        String chuThich = jsonObject.getString("ChuThich").trim();
-                        int soLuong = jsonObject.getInt("SoLuong");
-                        int id_DonVi = jsonObject.getInt("id_DonVi");
-                        int khoiLuong = jsonObject.getInt("KhoiLuong");
-                        int gia = jsonObject.getInt("Gia");
-                        String id_LoaiSanPham = jsonObject.getString("id_LoaiSanPham").trim();
-                        String moTa = jsonObject.getString("moTa").trim();
-                        String hinh = jsonObject.getString("Hinh").trim();
-
-                        SanPham sanPham = new SanPham("" + id_SanPham, tenSanPham, chuThich, "" + id_DonVi, id_LoaiSanPham, moTa, hinh, soLuong, khoiLuong, gia);
-                        data_SanPham.add(sanPham);
-
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void timSanPham() {
-        data_SanPham.clear();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/timSanPham.php?tenSanPham=" + edtTimKiem.getText().toString().trim().replace(" ", "+") + "";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String id_SanPham = jsonObject.getString("id_SanPham").trim();
-                        String tenSanPham = jsonObject.getString("tenSanPham").trim();
-                        String chuThich = jsonObject.getString("ChuThich").trim();
-                        int soLuong = jsonObject.getInt("SoLuong");
-                        int id_DonVi = jsonObject.getInt("id_DonVi");
-                        int khoiLuong = jsonObject.getInt("KhoiLuong");
-                        int gia = jsonObject.getInt("Gia");
-                        String id_LoaiSanPham = jsonObject.getString("id_LoaiSanPham").trim();
-                        String moTa = jsonObject.getString("moTa").trim();
-                        String hinh = jsonObject.getString("Hinh").trim();
-
-                        SanPham sanPham = new SanPham("" + id_SanPham, tenSanPham, chuThich, "" + id_DonVi, id_LoaiSanPham, moTa, hinh, soLuong, khoiLuong, gia);
-                        data_SanPham.add(sanPham);
-                        recyclerViewDanhSachSP.getAdapter().notifyDataSetChanged();
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void hienThiLaiDanhSach() {
-        data_SanPham.clear();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/getSanPhamCayTrong.php";
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                data_SanPham.clear();
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String id_SanPham = jsonObject.getString("id_SanPham").trim();
-                        String tenSanPham = jsonObject.getString("tenSanPham").trim();
-                        String chuThich = jsonObject.getString("ChuThich").trim();
-                        int soLuong = jsonObject.getInt("SoLuong");
-                        int id_DonVi = jsonObject.getInt("id_DonVi");
-                        int khoiLuong = jsonObject.getInt("KhoiLuong");
-                        int gia = jsonObject.getInt("Gia");
-                        String id_LoaiSanPham = jsonObject.getString("id_LoaiSanPham").trim();
-                        String moTa = jsonObject.getString("moTa").trim();
-                        String hinh = jsonObject.getString("Hinh").trim();
-
-                        SanPham sanPham = new SanPham("" + id_SanPham, tenSanPham, chuThich, "" + id_DonVi, id_LoaiSanPham, moTa, hinh, soLuong, khoiLuong, gia);
-                        data_SanPham.add(sanPham);
-                        recyclerViewDanhSachSP.getAdapter().notifyDataSetChanged();
-
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "" + error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onErrorResponse: ", error.toString());
-            }
-        });
-        requestQueue.add(arrayRequest);
-    }
-
-    private void themSanPham() {
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/themSanPham.php?" +
-                "tenSanPham=" + edtTenSP.getText().toString().trim().replace(" ", "+") + "" +
-                "&ChuThich=" + edtChuThich.getText().toString().trim().replace(" ", "+") + "" +
-                "&SoLuong=" + edtSL.getText().toString().trim() + "" +
-                "&id_DonVi=" + spDonVi.getSelectedItemPosition() + "" +
-                "&KhoiLuong=" + edtKhoiLuong.getText().toString().trim() + "" +
-                "&Gia=" + edtKhoiLuong.getText().toString().trim() + "" +
-                "&id_LoaiSanPham=" + spLoaiSanPham.getSelectedItemPosition() + "" +
-                "&moTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
-                "&Hinh=0";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(stringRequest);
-    }
-
-    private void xoaSanPham() {
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/xoaSanPham.php?id_SanPham=" + data_SanPham.get(index).maSanPham.trim() + "";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-                EnabelButtonTrue();
-                clearEditText();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, "Xóa không thành công!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        requestQueue.add(stringRequest);
-    }
-
-    private void suaSanPham() {
-
-//        Date currentTime = Calendar.getInstance().getTime();
-//        String dateNow = currentTime.getYear() + "-" + currentTime.getMonth() + "-" + currentTime.getDate();
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://" + host + "/nhom6/suaSanPham.php?" +
-                "id_SanPham=" + data_SanPham.get(index).maSanPham.trim() + "" +
-                "&tenSanPham=" + edtTenSP.getText().toString().trim().replace(" ", "+") + "" +
-                "&ChuThich=" + edtChuThich.getText().toString().trim().replace(" ", "+") + "" +
-                "&SoLuong=" + edtSL.getText().toString().trim() + "" +
-                "&KhoiLuong=" + edtKhoiLuong.getText().toString().trim() + "" +
-                "&id_DonVi=" + spDonVi.getSelectedItemPosition() + "" +
-                "&Gia=" + edtKhoiLuong.getText().toString().trim() + "" +
-                "&id_LoaiSanPham=" + spLoaiSanPham.getSelectedItemPosition() + "" +
-                "&moTa=" + edtMoTa.getText().toString().trim().replace(" ", "+") + "" +
-                "&Hinh=0";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity_QuanTriSanPham.this, response, Toast.LENGTH_SHORT).show();
-                hienThiLaiDanhSach();
-                EnabelButtonTrue();
-                clearEditText();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(stringRequest);
-    }
 
     private void clearEditText() {
         edtTenSP.setText("");
@@ -537,6 +498,8 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         edtMoTa.setText("");
         spLoaiSanPham.setSelection(0);
         spDonVi.setSelection(0);
+        ivHinhSP.setImageResource(R.drawable.anhsp_quantri);
+        byteArrayHinh = new byte[0];
     }
 
     private void EnabelButtonTrue() {
@@ -549,5 +512,46 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         btnThem.setEnabled(false);
         btnXoa.setEnabled(true);
         btnSua.setEnabled(true);
+    }
+
+    private String chuyenByteSangChuoi(byte[] byteArray) {
+        String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return base64String;
+    }
+
+    //chuyen String Sang Byte[]
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
+    }
+
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
+    }
+
+
+    public void timKiem() {
+        data_SanPham.clear();
+        data_SP.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_SanPham.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    SanPham sanPham = item.getValue(SanPham.class);
+                    if (sanPham.getTenSP().contains(edtTimKiem.getText().toString())) {
+                        data_SanPham.add(sanPham);
+                    }
+                }
+                recyclerViewDanhSachSP.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

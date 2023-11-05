@@ -47,6 +47,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/ivHinhSP"
                 android:layout_width="100dp"
                 android:layout_height="73dp"
                 android:scaleType="fitXY"
@@ -72,11 +73,11 @@
                         android:textSize="13dp"></TextView>
 
                     <EditText
-                        android:paddingLeft="10dp"
                         android:id="@+id/edtTenSP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edt"
+                        android:paddingLeft="10dp"
                         android:textSize="13dp"></EditText>
                 </LinearLayout>
 
@@ -94,11 +95,11 @@
                         android:textSize="13dp"></TextView>
 
                     <EditText
-                        android:paddingLeft="10dp"
                         android:id="@+id/edtChuThich"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_edt"
+                        android:paddingLeft="10dp"
                         android:textSize="13dp"></EditText>
                 </LinearLayout>
 
@@ -108,44 +109,54 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Số lượng: "
-                        android:textSize="13dp"></TextView>
-
-                    <EditText
-                        android:inputType="number"
-                        android:paddingLeft="10dp"
-                        android:id="@+id/edtSL"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_edt"
-                        android:textSize="13dp"></EditText>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Đơn vị: "
                         android:textSize="13dp"></TextView>
 
                     <LinearLayout
-                        android:background="@drawable/bg_edt"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="20dp">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_edt"
+                        android:orientation="vertical">
+
                         <Spinner
                             android:id="@+id/spDonVi"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textSize="11dp"></Spinner>
+                            android:layout_height="20dp"></Spinner>
                     </LinearLayout>
+
 
                 </LinearLayout>
 
             </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lượng: "
+                android:textSize="13dp"></TextView>
+
+            <EditText
+                android:id="@+id/edtSL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_edt"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textSize="13dp"></EditText>
         </LinearLayout>
 
         <LinearLayout
@@ -163,12 +174,12 @@
             </TextView>
 
             <EditText
-                android:inputType="number"
-                android:paddingLeft="10dp"
                 android:id="@+id/edtKhoiLuong"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edt"
+                android:inputType="number"
+                android:paddingLeft="10dp"
                 android:textSize="13dp"></EditText>
 
             <TextView
@@ -181,12 +192,12 @@
             </TextView>
 
             <EditText
-                android:inputType="number"
-                android:paddingLeft="10dp"
                 android:id="@+id/edtGia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edt"
+                android:inputType="number"
+                android:paddingLeft="10dp"
                 android:textSize="13dp"></EditText>
         </LinearLayout>
 

@@ -8,52 +8,99 @@
 
 
     <LinearLayout
-        android:padding="5dp"
-        android:background="@drawable/gaiodien_covong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:gravity="center|top|left"
-        android:orientation="horizontal">
+        android:background="@drawable/gaiodien_covong"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/ivHinh1"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:src="@drawable/bg_edt"></ImageView>
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvTenSP1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:text="Tên sản phẩm"
                 android:textSize="10dp"></TextView>
+
+
             <TextView
-                android:layout_marginTop="4dp"
                 android:id="@+id/tvChuThich"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="4dp"
                 android:text="Chú thích"
                 android:textSize="10dp"></TextView>
+
             <TextView
-                android:layout_marginTop="4dp"
                 android:id="@+id/tvLoaiSanPham"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Chú thích"
+                android:layout_marginTop="4dp"
+                android:text="Loại sản phẩm"
                 android:textSize="10dp"></TextView>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvKhoiLuong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Khối lượng"
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvDonVi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đơn vị"
+                    android:textSize="10dp"></TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:text="Số lượng"
+                android:textSize="10dp"></TextView>
+
+            <TextView
+                android:id="@+id/tvGia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:text="Giá"
+                android:textSize="10dp"></TextView>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
