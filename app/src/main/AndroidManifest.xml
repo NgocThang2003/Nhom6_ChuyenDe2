@@ -25,10 +25,10 @@
             android:name=".MainActivity_TrangChuShipper"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_QuanTriNhanVien"
+            android:name=".MainActivity_QuanTriSanPham"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_QuanTriSanPham"
+            android:name=".MainActivity_QuanTriNhanVien"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,17 +1,28 @@
 package com.example.nhom6;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,16 +34,24 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
-
+    CheckBox chkBanHang, chkThuKho, chkShipper;
     RecyclerView recyclerView;
     List<NhanVien> data_NhanVien = new ArrayList<>();
 
@@ -40,8 +59,11 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     public static Spinner spLoaiNhanVien;
     List<String> data_loaiNhanVien = new ArrayList<>();
     int index = -1;
+    ImageView ivHinhNV;
 
     Button btnThem, btnXoa, btnSua;
+    FirebaseDatabase database;
+    DatabaseReference data_NV;
 
     public static EditText edtTenNV, edtSDT, edtQueQuan, edtNgaySinh, edtGmail, edtCMND, edtTenDangNhap, edtPassword;
 
@@ -55,7 +77,15 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
-        KhoiTao();
+        KhoiTaoDataShipper();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("QuanTriNhanVien");
+
+        database = FirebaseDatabase.getInstance();
+        data_NV = database.getReference("NhanVien");
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new NhanVienAdapter(this, data_NhanVien));
 
@@ -78,6 +108,23 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
                 edtTenDangNhap.setText(nhanVien.tenDangNhap);
                 edtPassword.setText(nhanVien.matKhau);
 
+                if (!nhanVien.getHinh().toString().trim().equals("")) {
+                    try {
+                        byte[] bytes = chuyenStringSangByte(nhanVien.getHinh());
+                        Bitmap bitmap = chuyenByteSangBitMap(bytes);
+                        ivHinhNV.setImageBitmap(bitmap);
+                        byteArrayHinh = bytes;
+                    } catch (Exception e) {
+                        byteArrayHinh = new byte[0];
+                        ivHinhNV.setImageResource(R.drawable.anhsp_quantri);
+                    }
+
+                } else {
+                    byteArrayHinh = new byte[0];
+                    ivHinhNV.setImageResource(R.drawable.anhsp_quantri);
+                }
+
+
                 kiemLoaiNhanVien(nhanVien);
                 EnabelButtonFalse();
 
@@ -89,6 +136,29 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             public void onClick(View v) {
                 if (kiemTraDuLieuNhapVao() == true) {
                     if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
+
+                        NhanVien nhanVien = new NhanVien();
+                        String maNV = data_NV.push().getKey();
+                        nhanVien.setMaNhanVien(maNV);
+
+                        nhanVien.setTenNhanVien(edtTenNV.getText().toString());
+                        nhanVien.setSoDienThoai(edtSDT.getText().toString());
+                        nhanVien.setQueQuan(edtQueQuan.getText().toString());
+
+                        nhanVien.setNgaySinh(edtNgaySinh.getText().toString());
+                        nhanVien.setGmail(edtGmail.getText().toString());
+                        nhanVien.setLoaiNhanVien(spLoaiNhanVien.getSelectedItem().toString());
+
+                        nhanVien.setCMND(edtCMND.getText().toString());
+                        nhanVien.setTenDangNhap(edtTenDangNhap.getText().toString());
+                        nhanVien.setMatKhau(edtPassword.getText().toString());
+
+                        String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                        nhanVien.setHinh(hinh);
+
+                        data_NV.child(maNV).setValue(nhanVien);
+                        Toast.makeText(MainActivity_QuanTriNhanVien.this, "Thêm dữ liệu thành công !", Toast.LENGTH_SHORT).show();
+                        clearEditText();
 
                     } else {
                         Toast.makeText(MainActivity_QuanTriNhanVien.this, "Loại nhân viên chưa được chọn", Toast.LENGTH_SHORT).show();
@@ -102,11 +172,29 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (index != -1) {
-
+                    String maNV = data_NhanVien.get(index).maNhanVien;
+                    data_NV.child(maNV).removeValue();
+                    Toast.makeText(MainActivity_QuanTriNhanVien.this, "Xóa dữ liệu thành công !", Toast.LENGTH_SHORT).show();
+                    clearEditText();
+                    EnabelButtonTrue();
                 } else {
                     Toast.makeText(MainActivity_QuanTriNhanVien.this, "Chọn để xóa", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        edtNgaySinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePicker = new DatePickerDialog(MainActivity_QuanTriNhanVien.this
+                        , new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        edtNgaySinh.setText(i2 + "/" + i1 + "/" + i);
+                    }
+                }, 2023, 10, 27);
+                datePicker.show();
             }
         });
 
@@ -115,6 +203,25 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             public void onClick(View v) {
                 if (index != -1) {
                     if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
+                        String maNV = data_NhanVien.get(index).maNhanVien;
+
+                        data_NV.child(maNV).child("tenNhanVien").setValue(edtTenNV.getText().toString());
+                        data_NV.child(maNV).child("soDienThoai").setValue(edtSDT.getText().toString());
+                        data_NV.child(maNV).child("queQuan").setValue(edtQueQuan.getText().toString());
+
+                        data_NV.child(maNV).child("ngaySinh").setValue(edtNgaySinh.getText().toString());
+                        data_NV.child(maNV).child("gmail").setValue(edtGmail.getText().toString());
+                        data_NV.child(maNV).child("loaiNhanVien").setValue(spLoaiNhanVien.getSelectedItem().toString());
+
+                        data_NV.child(maNV).child("cmnd").setValue(edtCMND.getText().toString());
+                        data_NV.child(maNV).child("tenDangNhap").setValue(edtTenDangNhap.getText().toString());
+                        data_NV.child(maNV).child("matKhau").setValue(edtPassword.getText().toString());
+
+                        String hinh = chuyenByteSangChuoi(byteArrayHinh);
+                        data_NV.child(maNV).child("hinh").setValue(hinh);
+                        Toast.makeText(MainActivity_QuanTriNhanVien.this, "Sửa dữ liệu thành công!", Toast.LENGTH_SHORT).show();
+                        clearEditText();
+                        EnabelButtonTrue();
 
                     } else {
                         Toast.makeText(MainActivity_QuanTriNhanVien.this, "Loại nhân viên chưa được chọn", Toast.LENGTH_SHORT).show();
@@ -135,7 +242,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                timKiem();
             }
 
             @Override
@@ -143,6 +250,72 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
             }
         });
+
+        ivHinhNV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        data_NV.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        chkBanHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhanVien();
+            }
+        });
+
+        chkThuKho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhanVien();
+            }
+        });
+
+        chkShipper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtTimKiem.setText("");
+                phanLoaiNhanVien();
+            }
+        });
+    }
+
+    private void KhoiTaoDataShipper() {
+        data_loaiNhanVien.add("Bank");
+        data_loaiNhanVien.add("Bán hàng");
+        data_loaiNhanVien.add("Thủ kho");
+        data_loaiNhanVien.add("Shipper");
     }
 
 
@@ -156,6 +329,9 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         edtTenDangNhap.setText("");
         edtPassword.setText("");
         spLoaiNhanVien.setSelection(0);
+
+        byteArrayHinh = new byte[0];
+        ivHinhNV.setImageResource(R.drawable.anhsp_quantri);
     }
 
     private void EnabelButtonTrue() {
@@ -170,6 +346,26 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         btnSua.setEnabled(true);
     }
 
+    byte[] byteArrayHinh = new byte[0];
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            ivHinhNV.setImageURI(uri);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byteArrayHinh = stream.toByteArray();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private boolean kiemTraDuLieuNhapVao() {
         if (!edtTenNV.getText().toString().trim().equals("")) {
@@ -180,6 +376,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
                             if (!edtCMND.getText().toString().trim().equals("")) {
                                 if (!edtTenDangNhap.getText().toString().trim().equals("")) {
                                     if (!edtPassword.getText().toString().trim().equals("")) {
+
 
                                     } else {
                                         edtPassword.setError("Password đang để trống ! ");
@@ -218,28 +415,17 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     private void kiemLoaiNhanVien(NhanVien nhanVien) {
         if (nhanVien.loaiNhanVien.trim().equals("Shipper")) {
-            spLoaiNhanVien.setSelection(1);
-        }
-        if (nhanVien.loaiNhanVien.trim().equals("Bán hàng")) {
-            spLoaiNhanVien.setSelection(2);
-        }
-        if (nhanVien.loaiNhanVien.trim().equals("Thủ kho")) {
             spLoaiNhanVien.setSelection(3);
         }
+        if (nhanVien.loaiNhanVien.trim().equals("Bán hàng")) {
+            spLoaiNhanVien.setSelection(1);
+        }
+        if (nhanVien.loaiNhanVien.trim().equals("Thủ kho")) {
+            spLoaiNhanVien.setSelection(2);
+        }
     }
 
-    private void KhoiTao() {
 
-//        data_NhanVien.add(new NhanVien("1", "My Kieu Oanh", "098989889", "HaNoi", "2023-24-1", "aaaaa@gmail.com", "Shipper", "09898989890", "myKieuaaaaa", "123456789", "" + R.drawable.anhsp_quantri));
-//        data_NhanVien.add(new NhanVien("2", "My  Oanh", "098989889", "HaNoi", "2023-24-1", "aaaaa@gmail.com", "Bán hàng", "09898989890", "myKieuaaaaa", "123456789", "" + R.drawable.anhsp_quantri));
-//        data_NhanVien.add(new NhanVien("3", "My Kieu", "098989889", "HaNoi", "2023-24-1", "aaaaa@gmail.com", "Thủ kho", "09898989890", "myKieuaaaaa", "123456789", "" + R.drawable.anhsp_quantri));
-//        data_NhanVien.add(new NhanVien("4", "My Oanh Oanh", "098989889", "HaNoi", "2023-24-1", "aaaaa@gmail.com", "Shipper", "09898989890", "myKieuaaaaa", "123456789", "" + R.drawable.anhsp_quantri));
-
-        data_loaiNhanVien.add("Bank");
-//        data_loaiNhanVien.add("Bán hàng");
-//        data_loaiNhanVien.add("Thủ kho");
-
-    }
 
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerViewDanhSachNhanVien);
@@ -260,6 +446,185 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
         edtTimKiem = findViewById(R.id.edtTimKiem);
 
+        ivHinhNV = findViewById(R.id.ivHinhNV);
+
+        chkShipper = findViewById(R.id.checkBoxShipper);
+        chkBanHang = findViewById(R.id.checkBoxBanHang);
+        chkThuKho = findViewById(R.id.checkBoxThuKho);
+    }
+
+    public void timKiem() {
+        data_NhanVien.clear();
+        data_NV.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_NhanVien.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    NhanVien nhanVien = item.getValue(NhanVien.class);
+                    if (nhanVien.getTenNhanVien().toLowerCase().contains(edtTimKiem.getText().toString().toLowerCase())) {
+                        data_NhanVien.add(nhanVien);
+                    }
+                }
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void DocDL() {
+        data_NhanVien.clear();
+        data_NV.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_NhanVien.clear();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    NhanVien nhanVien = item.getValue(NhanVien.class);
+                    data_NhanVien.add(nhanVien);
+                }
+                edtTimKiem.setText("");
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private String chuyenByteSangChuoi(byte[] byteArray) {
+        String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return base64String;
+    }
+
+    //chuyen String Sang Byte[]
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
+    }
+
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
+    }
+
+
+    public void phanLoaiNhanVien() {
+        data_NhanVien.clear();
+        data_NV.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_NhanVien.clear();
+                Toast.makeText(MainActivity_QuanTriNhanVien.this, "Hello", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    NhanVien nhanVien = item.getValue(NhanVien.class);
+
+                    data_loaiNhanVien.add("Bán hàng");
+                    data_loaiNhanVien.add("Thủ kho");
+                    data_loaiNhanVien.add("Shipper");
+
+                    if (chkBanHang.isChecked()) {
+                        if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+                        if (chkThuKho.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+                            if (chkShipper.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+                        } else if (chkShipper.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+                            if (chkThuKho.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+                        }
+                    } else if (chkThuKho.isChecked()) {
+                        if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+                        if (chkBanHang.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+                            if (chkShipper.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+
+                        } else if (chkShipper.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+                            if (chkBanHang.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+                        }
+                    } else if (chkShipper.isChecked()) {
+                        if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+
+                        if (chkBanHang.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+
+                            if (chkThuKho.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+
+                        } else if (chkThuKho.isChecked()) {
+                            if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                                data_NhanVien.add(nhanVien);
+                            }
+
+                            if (chkBanHang.isChecked()) {
+                                if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                                    data_NhanVien.add(nhanVien);
+                                }
+                            }
+                        }
+                    } else {
+                        if (nhanVien.loaiNhanVien.equals("Bán hàng")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+                        if (nhanVien.loaiNhanVien.equals("Thủ kho")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+                        if (nhanVien.loaiNhanVien.equals("Shipper")) {
+                            data_NhanVien.add(nhanVien);
+                        }
+                    }
+                }
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

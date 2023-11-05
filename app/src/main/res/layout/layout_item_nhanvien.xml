@@ -7,6 +7,11 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="#FCD8D8"
         android:gravity="center|left"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

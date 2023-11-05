@@ -1,7 +1,6 @@
 package com.example.nhom6;
 public class NhanVien {
-    String maNhanVien;
-    String tenNhanVien;
+
 
     public String getMaNhanVien() {
         return maNhanVien;
@@ -9,6 +8,9 @@ public class NhanVien {
 
     public void setMaNhanVien(String maNhanVien) {
         this.maNhanVien = maNhanVien;
+    }
+
+    public NhanVien() {
     }
 
     public String getTenNhanVien() {
@@ -90,7 +92,8 @@ public class NhanVien {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
-
+    String maNhanVien;
+    String tenNhanVien;
     String soDienThoai;
     String queQuan;
     String NgaySinh;
