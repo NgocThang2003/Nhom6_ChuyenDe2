@@ -18,6 +18,16 @@ public class ThemDiaChiMoi_Adapter extends RecyclerView.Adapter<ThemDiaChiMoi_Ho
         this.context = context;
         this.data = data;
     }
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListenner(OnItemClickListener listenner) {
+        mListener = listenner;
+    }
+
 
     @NonNull
     @Override
@@ -28,8 +38,14 @@ public class ThemDiaChiMoi_Adapter extends RecyclerView.Adapter<ThemDiaChiMoi_Ho
     @Override
     public void onBindViewHolder(@NonNull ThemDiaChiMoi_Holder holder, int position) {
         ThemDiaChiMoi themDiaChiMoi = data.get(position);
-        holder.tvDiaChi.setText(themDiaChiMoi.diaChi);
-        holder.cbCheck.setText(themDiaChiMoi.checkBox);
+        holder.tvTen.setText(themDiaChiMoi.getTen());
+        holder.tvSDT.setText(themDiaChiMoi.getSdt());
+        holder.tvTinh.setText(themDiaChiMoi.getTinh());
+        holder.tvQuan.setText(themDiaChiMoi.getQuan());
+        holder.tvPhuong.setText(themDiaChiMoi.getPhuong());
+        holder.tvSoNha.setText(themDiaChiMoi.getSoNha());
+        holder.cbCheck.setText(themDiaChiMoi.getCheck());
+
 
     }
 

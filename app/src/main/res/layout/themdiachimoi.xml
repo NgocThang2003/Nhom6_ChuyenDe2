@@ -37,6 +37,14 @@
         android:text="Địa chỉ mới"
         android:textSize="25dp"
         android:textStyle="bold" />
+    <EditText
+        android:enabled="false"
+        android:id="@+id/edtID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/bg_edittext"
+        android:hint="ID"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,6 +83,7 @@
             android:hint="Tên"
             android:background="@drawable/bg_edittext" />
         <EditText
+            android:id="@+id/edtSDT"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="120dp"
             android:layout_width="140dp"
@@ -114,7 +123,7 @@
         android:orientation="horizontal">
 
         <EditText
-
+            android:id="@+id/edtTinh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -122,7 +131,7 @@
             android:hint="Tỉnh, Thành phố" />
 
         <EditText
-
+            android:id="@+id/edtQuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -130,6 +139,7 @@
             android:hint="Quận, Huyện" />
 
         <EditText
+            android:id="@+id/edtPhuong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -145,13 +155,15 @@
         android:textSize="25dp"
         android:textStyle="bold" />
     <EditText
+        android:id="@+id/edtSoNha"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Số nhà, tên đường...."
-        android:padding="50dp"
+        android:padding="20dp"
         android:background="@drawable/bg_edittext"/>
     <Button
+        android:id="@+id/btnLuu"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"

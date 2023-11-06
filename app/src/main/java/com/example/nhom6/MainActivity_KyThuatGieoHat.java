@@ -3,6 +3,7 @@ package com.example.nhom6;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -35,6 +37,7 @@ public class MainActivity_KyThuatGieoHat extends AppCompatActivity {
     DatabaseReference data_KTGH;
     RecyclerView recyclerView;
     TextView tvTenKyThuat, tvMoTa;
+
     ImageView ivHinh;
     RadioButton rdbNongNghiep, rdbCongNgiep, rdbLamNgiep;
     List<TrangChuKhachHang> data_KyThuatGieoHat = new ArrayList<>();

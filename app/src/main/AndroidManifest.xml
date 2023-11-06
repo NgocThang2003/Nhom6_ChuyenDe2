@@ -19,13 +19,16 @@
             android:name=".MainActivity_KyThuatGieoHat"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ThemDiaChiMoi"
+            android:name=".MainActivity_TrangChuKhachHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_HoSoNguoiDung"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DiaChiGiaoHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_HoSoNguoiDung"
+            android:name=".MainActivity_TaiKhoan"
             android:exported="false" />
         <activity
             android:name=".MainActivity_GioiThieu"
@@ -33,14 +36,12 @@
         <activity
             android:name=".MainActivity_LienHeNhanVien"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity_TaiKhoan"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuKhachHang"
+            android:name=".MainActivity_ThemDiaChiMoi"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
