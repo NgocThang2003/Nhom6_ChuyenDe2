@@ -25,7 +25,7 @@
         android:textSize="30dp"/>
 
     <TextView
-        android:onClick="chucnang"
+
         android:id="@+id/tvKyThuatGieoHat"
         android:layout_marginTop="20dp"
         android:gravity="center"
