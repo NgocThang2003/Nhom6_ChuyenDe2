@@ -26,12 +26,7 @@ import android.widget.Toast;
 //import org.json.JSONException;
 //import org.json.JSONObject;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +43,7 @@ import java.util.List;
 
 public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     RecyclerView recyclerView;
-    Button btnLuu;
+    Button btnThem;
     List<ThemDiaChiMoi> data_ThemDiaChi = new ArrayList<>();
     EditText edtID, edtTen, edtSDT, edtTinh, edtQuan, edtPhuong, edtSoNha;
     FirebaseDatabase database;
@@ -83,12 +78,12 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
 
             }
         });
-        btnLuu.setOnClickListener(new View.OnClickListener() {
+        btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ThemDiaChiMoi themDiaChiMoi = new ThemDiaChiMoi(data_TDCM.push().getKey(), edtTen.getText().toString(), edtSDT.getText().toString(),
                         edtTinh.getText().toString(), edtQuan.getText().toString(), edtPhuong.getText().toString(),
-                        edtSoNha.getText().toString(), "0");
+                        edtSoNha.getText().toString(), "");
                 data_TDCM.child(themDiaChiMoi.id).setValue(themDiaChiMoi);
 
                 data_TDCM.child(themDiaChiMoi.id).addValueEventListener(new ValueEventListener() {
@@ -178,7 +173,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         edtQuan = findViewById(R.id.edtQuan);
         edtPhuong = findViewById(R.id.edtPhuong);
         edtSoNha = findViewById(R.id.edtSoNha);
-        btnLuu = findViewById(R.id.btnLuu);
+        btnThem = findViewById(R.id.btnThem);
     }
 
 

@@ -80,7 +80,8 @@
             android:layout_marginLeft="20dp"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:hint="Tên"
+            android:hint="Họ và tên"
+
             android:background="@drawable/bg_edittext" />
         <EditText
             android:id="@+id/edtSDT"
@@ -88,9 +89,9 @@
             android:layout_marginLeft="120dp"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
             android:paddingLeft="30dp"
-            android:background="@drawable/bg_edittext" />
+            android:background="@drawable/bg_edittext"
+            android:hint="Số điện thoại"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,6 +124,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:layout_weight="1"
             android:id="@+id/edtTinh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -131,6 +133,7 @@
             android:hint="Tỉnh, Thành phố" />
 
         <EditText
+            android:layout_weight="1"
             android:id="@+id/edtQuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,6 +142,7 @@
             android:hint="Quận, Huyện" />
 
         <EditText
+            android:layout_weight="1"
             android:id="@+id/edtPhuong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,15 +166,41 @@
         android:hint="Số nhà, tên đường...."
         android:padding="20dp"
         android:background="@drawable/bg_edittext"/>
-    <Button
-        android:id="@+id/btnLuu"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/bg_button"
-        android:text="Lưu địa chỉ"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnThem"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button"
+            android:text="Thêm"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnSua"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button"
+            android:text="Sửa"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnXoa"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button"
+            android:text="Xoá"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:id="@+id/recyclerViewThemDiaChiMoi"

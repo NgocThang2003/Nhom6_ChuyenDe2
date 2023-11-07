@@ -110,7 +110,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:backgroundTint="#DBE4DC"
-                    android:drawableLeft="@drawable/thanhtoan" />
+                    android:drawableLeft="@drawable/thanhtoan1" />
             </LinearLayout>
 
             <TextView
@@ -187,7 +187,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:backgroundTint="#DBE4DC"
-                    android:drawableLeft="@drawable/thanhtoan" />
+                    android:drawableLeft="@drawable/thanhtoan1" />
             </LinearLayout>
 
             <TextView
