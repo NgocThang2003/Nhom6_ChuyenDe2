@@ -29,16 +29,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity_DangNhap extends AppCompatActivity {
-    EditText edtTen,edtMatKhau;
-    RadioButton rdAdmin,rdNhanVien,rdKhachHang,rdThuKho,rdShipper;
+    EditText edtTen, edtMatKhau;
+    RadioButton rdAdmin, rdNhanVien, rdKhachHang, rdThuKho, rdShipper;
     TextView tvRegister;
     CheckBox cbHienMK;
     Button btnxacNhan;
     List<TaiKhoan> data_taiKhoan = new ArrayList<>();
+    List<NhanVien> data_NhanVien = new ArrayList<>();
     public static TaiKhoan dangNhap = new TaiKhoan();
-    public  static  int index = -1;
+    public static int index = -1;
     FirebaseDatabase database;
     DatabaseReference data_TK;
+    DatabaseReference data_NV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,9 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     }
 
     private void setEvent() {
-        database=FirebaseDatabase.getInstance();
-        data_TK=database.getReference("DangKy");
+        database = FirebaseDatabase.getInstance();
+        data_TK = database.getReference("DangKy");
+        data_NV = database.getReference("NhanVien");
         btnxacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +116,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_taiKhoan.clear();
-                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     TaiKhoan taiKhoan = item.getValue(TaiKhoan.class);
                     data_taiKhoan.add(taiKhoan);
@@ -124,10 +128,28 @@ public class MainActivity_DangNhap extends AppCompatActivity {
 
             }
         });
+
+        data_NhanVien.clear();  
+        data_NV.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_NhanVien.clear();
+//                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    NhanVien nhanVien = item.getValue(NhanVien.class);
+                    data_NhanVien.add(nhanVien);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void kiemTraDangNhap() {
-        boolean kiemTra=false;
+        boolean kiemTra = false;
         for (int i = 0; i < data_taiKhoan.size(); i++) {
             if (edtTen.getText().toString().trim().equals(data_taiKhoan.get(i).Email)) {
                 if (edtMatKhau.getText().toString().trim().equals(data_taiKhoan.get(i).password)) {
@@ -139,13 +161,6 @@ public class MainActivity_DangNhap extends AppCompatActivity {
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, TrangChu_Admin.class);
 //                        startActivity(intent);
                     }
-                    if (data_taiKhoan.get(i).getQuyen() == 2 && rdNhanVien.isChecked() == true) {
-                        kiemTra = true;
-                        index = i;
-                        Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_NhanVien.class);
-//                        startActivity(intent);
-                    }
                     if (data_taiKhoan.get(i).getQuyen() == 4 && rdKhachHang.isChecked() == true) {
                         kiemTra = true;
                         index = i;
@@ -153,22 +168,41 @@ public class MainActivity_DangNhap extends AppCompatActivity {
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_KhachHang.class);
 //                        startActivity(intent);
                     }
-                    if (data_taiKhoan.get(i).getQuyen() == 3 && rdThuKho.isChecked() == true) {
+
+                }
+            }
+        }
+
+        for (int i = 0; i < data_NhanVien.size(); i++) {
+            //Toast.makeText(this, ""+data_NhanVien.get(i).Gmail, Toast.LENGTH_SHORT).show();
+            if (edtTen.getText().toString().trim().equals(data_NhanVien.get(i).Gmail.toString().trim())) {
+                if (edtMatKhau.getText().toString().trim().equals(data_NhanVien.get(i).matKhau.toString().trim())) {
+
+                    if (data_NhanVien.get(i).quyen.toString().trim().equals("1") && rdNhanVien.isChecked() == true) {
+                        kiemTra = true;
+                        index = i;
+                        Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_NhanVien.class);
+//                        startActivity(intent);
+                    }
+                    if (data_NhanVien.get(i).quyen.equals("2") && rdThuKho.isChecked() == true) {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_ThuKho.class);
 //                        startActivity(intent);
                     }
-                    if (data_taiKhoan.get(i).getQuyen() == 1 && rdShipper.isChecked() == true) {
+                    if (data_NhanVien.get(i).quyen.equals("3") && rdShipper.isChecked() == true) {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_Shipper.class);
+//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_ThuKho.class);
 //                        startActivity(intent);
                     }
+
                 }
             }
+
         }
 
         if (kiemTra == false) {
@@ -177,15 +211,15 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     }
 
     private void setControl() {
-        edtTen=findViewById(R.id.edtTenDN);
-        edtMatKhau=findViewById(R.id.edtMatKhau);
-        rdAdmin=findViewById(R.id.rdAdmin);
-        rdNhanVien=findViewById(R.id.rdNhanVien);
-        rdKhachHang=findViewById(R.id.rdKhachHang);
-        rdThuKho=findViewById(R.id.rdThuKho);
-        rdShipper=findViewById(R.id.rdShipper);
-        tvRegister=findViewById(R.id.tvRegister);
-        cbHienMK=findViewById(R.id.cbHienMK);
-        btnxacNhan=findViewById(R.id.btnDangNhap);
+        edtTen = findViewById(R.id.edtTenDN);
+        edtMatKhau = findViewById(R.id.edtMatKhau);
+        rdAdmin = findViewById(R.id.rdAdmin);
+        rdNhanVien = findViewById(R.id.rdNhanVien);
+        rdKhachHang = findViewById(R.id.rdKhachHang);
+        rdThuKho = findViewById(R.id.rdThuKho);
+        rdShipper = findViewById(R.id.rdShipper);
+        tvRegister = findViewById(R.id.tvRegister);
+        cbHienMK = findViewById(R.id.cbHienMK);
+        btnxacNhan = findViewById(R.id.btnDangNhap);
     }
 }
