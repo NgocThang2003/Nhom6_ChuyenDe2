@@ -56,7 +56,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     List<NhanVien> data_NhanVien = new ArrayList<>();
 
     EditText edtTimKiem;
-    public static Spinner spLoaiNhanVien;
+    public static Spinner spLoaiNV;
     List<String> data_loaiNhanVien = new ArrayList<>();
     int index = -1;
     ImageView ivHinhNV;
@@ -85,12 +85,11 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         data_NV = database.getReference("NhanVien");
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new NhanVienAdapter(this, data_NhanVien));
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_loaiNhanVien);
-        spLoaiNhanVien.setAdapter(adapter);
+        spLoaiNV.setAdapter(adapter);
 
         NhanVienAdapter nhanVienAdapter = (NhanVienAdapter) recyclerView.getAdapter();
         nhanVienAdapter.setOnItemClickListenner(new NhanVienAdapter.OnItemClickListener() {
@@ -135,7 +134,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (kiemTraDuLieuNhapVao() == true) {
-                    if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
+                    if (spLoaiNV.getSelectedItemPosition() != 0) {
 
                         NhanVien nhanVien = new NhanVien();
                         String maNV = data_NV.push().getKey();
@@ -147,11 +146,12 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
                         nhanVien.setNgaySinh(edtNgaySinh.getText().toString());
                         nhanVien.setGmail(edtGmail.getText().toString());
-                        nhanVien.setLoaiNhanVien(spLoaiNhanVien.getSelectedItem().toString());
+                        nhanVien.setLoaiNhanVien(spLoaiNV.getSelectedItem().toString());
 
                         nhanVien.setCMND(edtCMND.getText().toString());
                         nhanVien.setTenDangNhap(edtTenDangNhap.getText().toString());
                         nhanVien.setMatKhau(edtPassword.getText().toString());
+                        nhanVien.setQuyen("" + spLoaiNV.getSelectedItemPosition());
 
                         String hinh = chuyenByteSangChuoi(byteArrayHinh);
                         nhanVien.setHinh(hinh);
@@ -202,7 +202,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (index != -1) {
-                    if (spLoaiNhanVien.getSelectedItemPosition() != 0) {
+                    if (spLoaiNV.getSelectedItemPosition() != 0) {
                         String maNV = data_NhanVien.get(index).maNhanVien;
 
                         data_NV.child(maNV).child("tenNhanVien").setValue(edtTenNV.getText().toString());
@@ -211,11 +211,13 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
                         data_NV.child(maNV).child("ngaySinh").setValue(edtNgaySinh.getText().toString());
                         data_NV.child(maNV).child("gmail").setValue(edtGmail.getText().toString());
-                        data_NV.child(maNV).child("loaiNhanVien").setValue(spLoaiNhanVien.getSelectedItem().toString());
+                        data_NV.child(maNV).child("loaiNhanVien").setValue(spLoaiNV.getSelectedItem().toString());
 
                         data_NV.child(maNV).child("cmnd").setValue(edtCMND.getText().toString());
                         data_NV.child(maNV).child("tenDangNhap").setValue(edtTenDangNhap.getText().toString());
                         data_NV.child(maNV).child("matKhau").setValue(edtPassword.getText().toString());
+
+                        data_NV.child(maNV).child("quyen").setValue("" + spLoaiNV.getSelectedItemPosition());
 
                         String hinh = chuyenByteSangChuoi(byteArrayHinh);
                         data_NV.child(maNV).child("hinh").setValue(hinh);
@@ -328,7 +330,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         edtCMND.setText("");
         edtTenDangNhap.setText("");
         edtPassword.setText("");
-        spLoaiNhanVien.setSelection(0);
+        spLoaiNV.setSelection(0);
 
         byteArrayHinh = new byte[0];
         ivHinhNV.setImageResource(R.drawable.anhsp_quantri);
@@ -414,22 +416,17 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     }
 
     private void kiemLoaiNhanVien(NhanVien nhanVien) {
-        if (nhanVien.loaiNhanVien.trim().equals("Shipper")) {
-            spLoaiNhanVien.setSelection(3);
-        }
-        if (nhanVien.loaiNhanVien.trim().equals("Bán hàng")) {
-            spLoaiNhanVien.setSelection(1);
-        }
-        if (nhanVien.loaiNhanVien.trim().equals("Thủ kho")) {
-            spLoaiNhanVien.setSelection(2);
+        for (int i = 0; i < data_loaiNhanVien.size(); i++) {
+           if(nhanVien.getLoaiNhanVien().toString().trim().equals(data_loaiNhanVien.get(i).toString().trim())){
+               spLoaiNV.setSelection(i);
+           }
         }
     }
 
 
-
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerViewDanhSachNhanVien);
-        spLoaiNhanVien = findViewById(R.id.spLoaiNhanVien);
+        spLoaiNV = findViewById(R.id.spLoaiNhanVien);
 
         edtTenNV = findViewById(R.id.edtTenNV);
         edtSDT = findViewById(R.id.edtSDT);
@@ -496,7 +493,6 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
             }
         });
-
     }
 
     private String chuyenByteSangChuoi(byte[] byteArray) {

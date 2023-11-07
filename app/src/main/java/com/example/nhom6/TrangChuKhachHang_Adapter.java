@@ -21,13 +21,13 @@ public class TrangChuKhachHang_Adapter extends RecyclerView.Adapter<TrangChuKhac
         this.data = data;
     }
 
-    private NhanVienAdapter.OnItemClickListener mListener;
+    private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListenner(NhanVienAdapter.OnItemClickListener listenner) {
+    public void setOnItemClickListenner(OnItemClickListener listenner) {
         mListener = listenner;
     }
 

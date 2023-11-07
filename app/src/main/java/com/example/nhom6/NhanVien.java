@@ -103,6 +103,15 @@ public class NhanVien {
     String tenDangNhap;
     String matKhau;
     String hinh;
+    String quyen;
+
+    public String getQuyen() {
+        return quyen;
+    }
+
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
+    }
 
     @Override
     public String toString() {

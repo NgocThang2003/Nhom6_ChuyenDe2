@@ -46,8 +46,8 @@
 
             <ImageView
                 android:id="@+id/ivHinhNV"
-                android:layout_width="100dp"
-                android:layout_height="73dp"
+                android:layout_width="80dp"
+                android:layout_height="83dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/anhsp_quantri"></ImageView>
 

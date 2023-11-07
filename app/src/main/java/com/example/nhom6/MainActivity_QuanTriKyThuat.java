@@ -53,6 +53,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference data_KyThuat;
+    DatabaseReference data_NhomNganh;
     String maKT = "";
 
     @Override
@@ -73,6 +74,8 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         data_KyThuat = database.getReference("TrangChuKhachHang");
+        data_NhomNganh = database.getReference("NhomNganh");
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new TrangChuKhachHang_Adapter(this, data_kyThuaTrongCay));
@@ -81,7 +84,8 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         spNhomNganh.setAdapter(adapter);
 
         TrangChuKhachHang_Adapter trangChuKhachHangAdapter = (TrangChuKhachHang_Adapter) recyclerView.getAdapter();
-        trangChuKhachHangAdapter.setOnItemClickListenner(new NhanVienAdapter.OnItemClickListener() {
+
+        trangChuKhachHangAdapter.setOnItemClickListenner(new TrangChuKhachHang_Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 TrangChuKhachHang trangChuKhachHang = data_kyThuaTrongCay.get(position);
@@ -285,7 +289,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_kyThuaTrongCay.clear();
-                Toast.makeText(MainActivity_QuanTriKyThuat.this, "Hello", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "Hello", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     TrangChuKhachHang trangChuKhachHang = item.getValue(TrangChuKhachHang.class);
 
@@ -440,12 +444,18 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     }
 
     private void kiemTraNhomNganh(TrangChuKhachHang trangChuKhachHang) {
-        if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
-            spNhomNganh.setSelection(1);
-        } else if (trangChuKhachHang.nhomNganh.trim().equals("Công nghiệp")) {
-            spNhomNganh.setSelection(2);
-        } else if (trangChuKhachHang.nhomNganh.trim().equals("Lâm nghiệp")) {
-            spNhomNganh.setSelection(3);
+//        if (trangChuKhachHang.nhomNganh.equals("Nông nghiệp")) {
+//            spNhomNganh.setSelection(1);
+//        } else if (trangChuKhachHang.nhomNganh.trim().equals("Công nghiệp")) {
+//            spNhomNganh.setSelection(2);
+//        } else if (trangChuKhachHang.nhomNganh.trim().equals("Lâm nghiệp")) {
+//            spNhomNganh.setSelection(3);
+//        }
+
+        for (int i = 0; i < data_nhomNganh.size(); i++) {
+            if (trangChuKhachHang.nhomNganh.equals(data_nhomNganh.get(i).toString().trim())) {
+                spNhomNganh.setSelection(i);
+            }
         }
     }
 

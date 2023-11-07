@@ -399,34 +399,18 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
 
     private void kiemTraLoaiSanPham(SanPham sanPham) {
-        if (sanPham.loaiSP.equals("Nông nghiệp")) {
-            spLoaiSanPham.setSelection(1);
-        } else if (sanPham.loaiSP.equals("Lâm nghiệp")) {
-            spLoaiSanPham.setSelection(2);
-        } else if (sanPham.loaiSP.equals("Công nghiệp")) {
-            spLoaiSanPham.setSelection(3);
-        } else if (sanPham.loaiSP.equals("Thuốc")) {
-            spLoaiSanPham.setSelection(4);
-        } else if (sanPham.loaiSP.equals("lít")) {
-            spLoaiSanPham.setSelection(5);
-        } else if (sanPham.loaiSP.equals("decilit")) {
-            spLoaiSanPham.setSelection(6);
-        } else if (sanPham.loaiSP.equals("centilit")) {
-            spLoaiSanPham.setSelection(7);
-        } else if (sanPham.loaiSP.equals("mililit")) {
-            spLoaiSanPham.setSelection(8);
+        for (int i = 0; i < data_loaiSanPham.size(); i++) {
+            if (sanPham.getLoaiSP().toString().trim().equals(data_loaiSanPham.get(i).toString().trim())) {
+                spLoaiSanPham.setSelection(i);
+            }
         }
     }
 
     private void kiemTraDonVi(SanPham sanPham) {
-        if (sanPham.donVi.toString().trim().equals("kg")) {
-            spDonVi.setSelection(1);
-        } else if (sanPham.donVi.equals("hg")) {
-            spDonVi.setSelection(2);
-        } else if (sanPham.donVi.equals("dag")) {
-            spDonVi.setSelection(3);
-        } else if (sanPham.donVi.equals("g")) {
-            spDonVi.setSelection(4);
+        for (int i = 0; i < data_donVi.size(); i++) {
+            if (sanPham.getDonVi().toString().trim().equals(data_donVi.get(i).toString().trim())) {
+                spDonVi.setSelection(i);
+            }
         }
     }
 
