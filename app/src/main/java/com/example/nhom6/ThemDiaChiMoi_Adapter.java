@@ -2,6 +2,7 @@ package com.example.nhom6;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,15 @@ public class ThemDiaChiMoi_Adapter extends RecyclerView.Adapter<ThemDiaChiMoi_Ho
         holder.tvPhuong.setText(themDiaChiMoi.getPhuong());
         holder.tvSoNha.setText(themDiaChiMoi.getSoNha());
         holder.cbCheck.setText(themDiaChiMoi.getCheck());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onItemClick(position);
+                }
+            }
+        });
 
 
     }

@@ -43,7 +43,7 @@ import java.util.List;
 
 public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     RecyclerView recyclerView;
-    Button btnThem;
+    Button btnThem, btnSua, btnXoa;
     List<ThemDiaChiMoi> data_ThemDiaChi = new ArrayList<>();
     EditText edtID, edtTen, edtSDT, edtTinh, edtQuan, edtPhuong, edtSoNha;
     FirebaseDatabase database;
@@ -112,6 +112,37 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                 });
             }
         });
+        btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!edtID.getText().toString().trim().equals("")){
+                    data_TDCM.child(edtID.getText().toString()).child("ten").setValue(edtTen.getText().toString());
+                    data_TDCM.child(edtID.getText().toString()).child("sdt").setValue(edtSDT.getText().toString());
+                    data_TDCM.child(edtID.getText().toString()).child("tinh").setValue(edtTinh.getText().toString());
+                    data_TDCM.child(edtID.getText().toString()).child("quan").setValue(edtQuan.getText().toString());
+                    data_TDCM.child(edtID.getText().toString()).child("phuong").setValue(edtPhuong.getText().toString());
+                    data_TDCM.child(edtID.getText().toString()).child("soNha").setValue(edtSoNha.getText().toString());
+                }
+            }
+        });
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!edtID.getText().toString().trim().equals("")){
+                    try {
+                        data_TDCM.child(edtID.getText().toString()).removeValue();
+                        Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Xóa thành công !", Toast.LENGTH_SHORT).show();
+                        clearEditTextt();
+                    }
+                    catch (Exception e){
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Chọn để xóa !", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         data_TDCM.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -174,6 +205,16 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         edtPhuong = findViewById(R.id.edtPhuong);
         edtSoNha = findViewById(R.id.edtSoNha);
         btnThem = findViewById(R.id.btnThem);
+        btnSua = findViewById(R.id.btnSua);
+        btnXoa = findViewById(R.id.btnXoa);
+    }
+    private void clearEditTextt() {
+        edtID.setText("");
+        edtTen.setText("");
+        edtSDT.setText("");
+        edtTinh.setText("");
+        edtQuan.setText("");
+        edtPhuong.setText("");
     }
 
 

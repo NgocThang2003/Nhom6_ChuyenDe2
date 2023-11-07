@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:paddingBottom="20dp"
+android:background="@drawable/bg_bo_trangchu_sanpham_kh"
+        android:gravity="center|top"
+        android:layout_weight="1"
+android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivHinh1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/tvTenSP1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên Sản phẩm"/>
+        <TextView
+            android:id="@+id/tvGia1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#E71D0E"
+            android:text="Giá"/>
+        <Button
+            android:id="@+id/btnDatMua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Đặt mua"/>
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/bg_bo_trangchu_sanpham_kh"
+            android:paddingBottom="20dp"
+            android:gravity="center|top"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivHinh2"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_background"/>
+
+            <TextView
+                android:id="@+id/tvTenSP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên Sản phẩm"/>
+            <TextView
+                android:id="@+id/tvGia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#E71D0E"
+                android:text="Giá"/>
+            <Button
+                android:id="@+id/btnDatMua2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Đặt mua"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
