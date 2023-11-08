@@ -79,6 +79,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         myRef.setValue("QuanTriNhanVien");
@@ -86,6 +87,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         data_NV = database.getReference("NhanVien");
         data_LoaiNV = database.getReference("LoaiNV");
+        DocDLLoaiNhanVien();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new NhanVienAdapter(this, data_NhanVien));
