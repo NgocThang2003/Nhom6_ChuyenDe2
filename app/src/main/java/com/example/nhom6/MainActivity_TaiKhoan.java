@@ -1,16 +1,21 @@
 package com.example.nhom6;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class MainActivity_TaiKhoan extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +27,36 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.taikhoan){
+                    Intent intent = new Intent(MainActivity_TaiKhoan.this,MainActivity_TaiKhoan.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.thuoc){
+                    Intent intent = new Intent(MainActivity_TaiKhoan.this,MainActivity_Thuoc.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.cuahang){
+                    Intent intent = new Intent(MainActivity_TaiKhoan.this,MainActivity_GiongCayTrong.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.home){
+                    Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TrangChuKhachHang.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                return false;
+            }
+        });
     }
 
     private void setControl() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
     }
 
     @Override
@@ -65,6 +97,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
         }
 
     }
+
 
 
 
