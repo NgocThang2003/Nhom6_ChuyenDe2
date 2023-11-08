@@ -103,8 +103,8 @@
                    android:focusable="false"
                    android:text="-"/>
 
-               <Button
-                   android:id="@+id/btnSo"
+               <TextView
+                   android:id="@+id/tvSL"
                    android:layout_width="57dp"
                    android:layout_height="wrap_content"
                    android:gravity="center"

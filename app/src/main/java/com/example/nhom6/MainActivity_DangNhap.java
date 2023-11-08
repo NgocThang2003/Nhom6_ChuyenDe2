@@ -41,6 +41,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_TK;
     DatabaseReference data_NV;
+    String maKhachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,33 @@ public class MainActivity_DangNhap extends AppCompatActivity {
             }
         });
         data_TK.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        data_NV.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
@@ -164,6 +192,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                     if (data_taiKhoan.get(i).getQuyen() == 4 && rdKhachHang.isChecked() == true) {
                         kiemTra = true;
                         index = i;
+                        maKhachHang=data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_KhachHang.class);
 //                        startActivity(intent);

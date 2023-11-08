@@ -7,12 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +30,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
     public void onBindViewHolder(@NonNull GioHangHolder holder, int position) {
        GioHang gioHang = data.get(position);
 
-       holder.tvTenSP.setText(gioHang.getTenSanPham());
-       holder.tvChuThich.setText(gioHang.getMoTa());
+       holder.tvTenSP.setText(gioHang.getTenSP());
+        holder.tvChuThich.setText(gioHang.getChuThich());
+       if(gioHang.getChuThich().toString().trim().length()>10){
+           holder.tvChuThich.setText(gioHang.getChuThich().substring(0,10)+"...");
+       }
+
+
        holder.tvKhoiLuong.setText(gioHang.getKhoiLuong());
        holder.tvDonVi.setText(gioHang.getDonVi());
        holder.tvGia.setText(gioHang.getGia());

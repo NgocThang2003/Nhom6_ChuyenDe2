@@ -18,9 +18,15 @@
         <activity
             android:name=".MainActivity_DangNhap"
             android:exported="false" />
+        <activity
+            android:name=".MainActivity_DangKy"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_GioHang"
+            android:exported="false" />
 
         <activity
-            android:name="."
+            android:name=".MainActivity_ChiTietSanPham"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -23,7 +23,7 @@ public class GioHangHolder extends RecyclerView.ViewHolder {
         tvDonVi = itemView.findViewById(R.id.tvDonVi);
         tvChuThich = itemView.findViewById(R.id.tvMoTa);
 
-        tvSoLuong = itemView.findViewById(R.id.tvSoLuong);
+        tvSoLuong = itemView.findViewById(R.id.tvSL);
         tvGia = itemView.findViewById(R.id.tvGia);
         ivHinh = itemView.findViewById(R.id.ivHinh);
 
