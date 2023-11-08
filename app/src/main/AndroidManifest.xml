@@ -27,15 +27,17 @@
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity_ChiTietSanPham"
             android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
+
+        <activity
+            android:name=".MainActivity_ChiTietSanPham"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity_QuanTriNhanVien"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity_QuanTriChungCacDanhMuc"
             android:exported="false" />
