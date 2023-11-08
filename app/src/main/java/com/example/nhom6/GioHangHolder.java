@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GioHangHolder extends RecyclerView.ViewHolder {
 
-    TextView tvTenSP, tvKhoiLuong,tvDonVi, tvChuThich, tvSoLuong, tvGia;
+    TextView tvID,tvTenSP, tvKhoiLuong,tvDonVi, tvChuThich, tvSoLuong, tvGia;
     ImageView ivHinh;
     Button btnCong , btnTru, btnXoa;
 
@@ -18,6 +18,7 @@ public class GioHangHolder extends RecyclerView.ViewHolder {
     public GioHangHolder(@NonNull View itemView) {
         super(itemView);
 
+        tvID = itemView.findViewById(R.id.edtIDDH);
         tvTenSP = itemView.findViewById(R.id.tvTenSP);
         tvKhoiLuong = itemView.findViewById(R.id.tvKhoiLuong);
         tvDonVi = itemView.findViewById(R.id.tvDonVi);
@@ -25,7 +26,7 @@ public class GioHangHolder extends RecyclerView.ViewHolder {
 
         tvSoLuong = itemView.findViewById(R.id.tvSL);
         tvGia = itemView.findViewById(R.id.tvGia);
-        ivHinh = itemView.findViewById(R.id.ivHinh);
+        ivHinh = itemView.findViewById(R.id.ivHinhGH);
 
         btnCong = itemView.findViewById(R.id.btnCong);
         btnTru = itemView.findViewById(R.id.btnTru);

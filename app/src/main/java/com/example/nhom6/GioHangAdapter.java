@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -41,7 +43,17 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
        holder.tvDonVi.setText(gioHang.getDonVi());
        holder.tvGia.setText(gioHang.getGia());
        holder.tvSoLuong.setText(gioHang.getSoLuong());
-
+       if(!gioHang.getHinh().toString().trim().equals("")){
+           try{
+               byte[] hinh=chuyenStringSangByte(gioHang.getHinh());
+               Bitmap bitmap=chuyenByteSangBitMap(hinh);
+               holder.ivHinh.setImageBitmap(bitmap);
+           }catch (Exception e){
+               holder.ivHinh.setImageResource(R.drawable.ic_launcher_background);
+           }
+       }else {
+           holder.ivHinh.setImageResource(R.drawable.ic_launcher_background);
+       }
 
 
     }
@@ -49,6 +61,24 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    // chuyen Byte[] Sang Chuoi
+    private String chuyenByteSangChuoi(byte[] byteArray) {
+        String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return base64String;
+    }
+
+    //chuyen String Sang Byte[]
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
+    }
+
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
     }
 
 }

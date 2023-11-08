@@ -153,7 +153,6 @@ public class MainActivity_DangNhap extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
