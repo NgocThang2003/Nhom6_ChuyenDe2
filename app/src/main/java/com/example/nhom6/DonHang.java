@@ -1,27 +1,7 @@
 package com.example.nhom6;
 
 public class DonHang {
-    String maDonHang,maKhachHang, tenKhachHang, soLuong, diaChi, trangThai, maSanPham, tenSanPham, maShipper, tenShipper, phuongThucThanhToan, thongTinVanChuyen, nhanVienDuyetHang, ngay, lyDoHuyDon;
-
-    public DonHang(String maDonHang, String maKhachHang, String tenKhachHang, String soLuong, String diaChi, String trangThai, String maSanPham, String tenSanPham, String maShipper, String tenShipper, String phuongThucThanhToan, String thongTinVanChuyen, String nhanVienDuyetHang, String ngay, String lyDoHuyDon) {
-        this.maDonHang = maDonHang;
-        this.maKhachHang = maKhachHang;
-        this.tenKhachHang = tenKhachHang;
-        this.soLuong = soLuong;
-        this.diaChi = diaChi;
-        this.trangThai = trangThai;
-        this.maSanPham = maSanPham;
-        this.tenSanPham = tenSanPham;
-        this.maShipper = maShipper;
-        this.tenShipper = tenShipper;
-        this.phuongThucThanhToan = phuongThucThanhToan;
-        this.thongTinVanChuyen = thongTinVanChuyen;
-        this.nhanVienDuyetHang = nhanVienDuyetHang;
-        this.ngay = ngay;
-        this.lyDoHuyDon = lyDoHuyDon;
-
-
-    }
+    String hinh,maDonHang,maKhachHang, tenKhachHang, soLuong, diaChi, trangThai, maSanPham, tenSanPham, maShipper, tenShipper, phuongThucThanhToan, thongTinVanChuyen, nhanVienDuyetHang, ngay, lyDoHuyDon;
 
     public DonHang() {
     }
@@ -56,27 +36,6 @@ public class DonHang {
 
     public void setSoLuong(String soLuong) {
         this.soLuong = soLuong;
-    }
-
-    @Override
-    public String toString() {
-        return "DonHang{" +
-                "maDonHang='" + maDonHang + '\'' +
-                ", maKhachHang='" + maKhachHang + '\'' +
-                ", tenKhachHang='" + tenKhachHang + '\'' +
-                ", soLuong='" + soLuong + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                ", trangThai='" + trangThai + '\'' +
-                ", maSanPham='" + maSanPham + '\'' +
-                ", tenSanPham='" + tenSanPham + '\'' +
-                ", maShipper='" + maShipper + '\'' +
-                ", tenShipper='" + tenShipper + '\'' +
-                ", phuongThucThanhToan='" + phuongThucThanhToan + '\'' +
-                ", thongTinVanChuyen='" + thongTinVanChuyen + '\'' +
-                ", nhanVienDuyetHang='" + nhanVienDuyetHang + '\'' +
-                ", ngay='" + ngay + '\'' +
-                ", lyDoHuyDon='" + lyDoHuyDon + '\'' +
-                '}';
     }
 
     public String getDiaChi() {
@@ -166,4 +125,54 @@ public class DonHang {
     public void setLyDoHuyDon(String lyDoHuyDon) {
         this.lyDoHuyDon = lyDoHuyDon;
     }
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinh(String hinh) {
+        this.hinh = hinh;
+    }
+
+    public DonHang(String hinh, String maDonHang, String maKhachHang, String tenKhachHang, String soLuong, String diaChi, String trangThai, String maSanPham, String tenSanPham, String maShipper, String tenShipper, String phuongThucThanhToan, String thongTinVanChuyen, String nhanVienDuyetHang, String ngay, String lyDoHuyDon) {
+        this.hinh = hinh;
+        this.maDonHang = maDonHang;
+        this.maKhachHang = maKhachHang;
+        this.tenKhachHang = tenKhachHang;
+        this.soLuong = soLuong;
+        this.diaChi = diaChi;
+        this.trangThai = trangThai;
+        this.maSanPham = maSanPham;
+        this.tenSanPham = tenSanPham;
+        this.maShipper = maShipper;
+        this.tenShipper = tenShipper;
+        this.phuongThucThanhToan = phuongThucThanhToan;
+        this.thongTinVanChuyen = thongTinVanChuyen;
+        this.nhanVienDuyetHang = nhanVienDuyetHang;
+        this.ngay = ngay;
+        this.lyDoHuyDon = lyDoHuyDon;
+    }
+
+    @Override
+    public String toString() {
+        return "DonHang{" +
+                "hinh='" + hinh + '\'' +
+                ", maDonHang='" + maDonHang + '\'' +
+                ", maKhachHang='" + maKhachHang + '\'' +
+                ", tenKhachHang='" + tenKhachHang + '\'' +
+                ", soLuong='" + soLuong + '\'' +
+                ", diaChi='" + diaChi + '\'' +
+                ", trangThai='" + trangThai + '\'' +
+                ", maSanPham='" + maSanPham + '\'' +
+                ", tenSanPham='" + tenSanPham + '\'' +
+                ", maShipper='" + maShipper + '\'' +
+                ", tenShipper='" + tenShipper + '\'' +
+                ", phuongThucThanhToan='" + phuongThucThanhToan + '\'' +
+                ", thongTinVanChuyen='" + thongTinVanChuyen + '\'' +
+                ", nhanVienDuyetHang='" + nhanVienDuyetHang + '\'' +
+                ", ngay='" + ngay + '\'' +
+                ", lyDoHuyDon='" + lyDoHuyDon + '\'' +
+                '}';
+    }
+
 }

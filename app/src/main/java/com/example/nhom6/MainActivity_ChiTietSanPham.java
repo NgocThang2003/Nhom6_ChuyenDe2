@@ -1,5 +1,6 @@
 package com.example.nhom6;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_ChiTiet;
     DatabaseReference data_DonHang;
+    DatabaseReference data_GioHang;
     List<SanPham> data_CT = new ArrayList<>();
 
     String maSP = "-NiT6YxCGEdSMwNTLFFt";
@@ -53,6 +55,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         data_ChiTiet = database.getReference("SanPham");
         data_DonHang = database.getReference("DonHang");
+        data_GioHang = database.getReference("GioHang");
         data_ChiTiet.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -79,6 +82,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
             }
         });
+
+        //nhấn vao tăng số lượng
         btnCong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +96,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
 
+        //Nhấn vào giảm số lượng
         btnTru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +109,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
 
+        //nhấn vào đặt hàng
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +144,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
                 DonHang donHang = new DonHang();
                 donHang.setMaDonHang(data_DonHang.push().getKey());
+                donHang.setHinh(data_CT.get(0).getHinh());
                 donHang.setMaKhachHang(maKH);
                 donHang.setTenKhachHang(tenKH);
 
@@ -160,6 +168,29 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        //Nhấn để thêm vào giỏ hàng
+        btnThemVaoGH.setOnClickListener(new View.OnClickListener() {
+//            maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh
+            @Override
+            public void onClick(View v) {
+                GioHang gioHang=new GioHang();
+                String maGH=data_GioHang.push().getKey();
+                gioHang.setMaGioHang(maGH);
+                gioHang.setTenSP(data_CT.get(0).tenSP);
+                gioHang.setMaKhachHang(maKH);
+                gioHang.setMaSanPham(maSP);
+                gioHang.setChuThich(data_CT.get(0).getChuThich());
+                gioHang.setGia(data_CT.get(0).getGia());
+                gioHang.setKhoiLuong(data_CT.get(0).getKhoiLuong());
+                gioHang.setSoLuong(tvSoLuong.getText().toString().trim());
+                gioHang.setDonVi(data_CT.get(0).getDonVi());
+                gioHang.setHinh(data_CT.get(0).getHinh());
+                data_GioHang.child(maGH).setValue(gioHang);
+                Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_GioHang.class);
+                startActivity(intent);
             }
         });
 
