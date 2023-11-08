@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
-public class SanPham {
+import java.io.Serializable;
+
+public class SanPham implements Serializable {
     String maSanPham, tenSP, chuThich, donVi, loaiSP, moTa, hinh;
     String soLuong, khoiLuong, gia;
 

@@ -17,6 +17,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity_DangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DangKy"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_GioHang"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity_ChiTietSanPham"
             android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
