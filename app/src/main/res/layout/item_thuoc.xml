@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/tvTenSP1"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Tên Sản phẩm"/>
@@ -93,7 +93,7 @@
             <TextView
                 android:id="@+id/tvTenSP2"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Tên Sản phẩm"/>

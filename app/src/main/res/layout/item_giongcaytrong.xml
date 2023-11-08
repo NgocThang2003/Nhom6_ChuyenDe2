@@ -8,7 +8,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
 
@@ -53,39 +53,42 @@ android:layout_marginRight="10dp"
     </LinearLayout>
 
         <LinearLayout
-            android:background="@drawable/bg_bo_trangchu_sanpham_kh"
-            android:paddingBottom="20dp"
-            android:gravity="center|top"
-            android:layout_weight="1"
+            android:id="@+id/linearLayoutTrangChu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_bo_trangchu_sanpham_kh"
+            android:gravity="center|top"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/ivHinh2"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"/>
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/tvTenSP2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên Sản phẩm"/>
+                android:text="Tên Sản phẩm" />
+
             <TextView
                 android:id="@+id/tvGia2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:text="Giá"
                 android:textColor="#E71D0E"
-                android:text="Giá"/>
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/btnDatMua2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Đặt mua"/>
+                android:text="Đặt mua"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

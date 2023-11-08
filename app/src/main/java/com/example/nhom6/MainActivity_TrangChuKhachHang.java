@@ -12,11 +12,13 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +33,7 @@ import java.util.List;
 
 public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
     FirebaseDatabase database;
+    private BottomNavigationView bottomNavigationView;
     DatabaseReference data_TCKH;
     RecyclerView recyclerView;
     TextView tvTenKyThuat, tvMoTa, tvKyThuatGieoHat;
@@ -46,12 +49,14 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
         setEvent();
     }
 
+
     private void setControl() {
         ivHinh = findViewById(R.id.ivHinh);
         tvMoTa = findViewById(R.id.tvMoTa);
         tvTenKyThuat = findViewById(R.id.tvTenKyThuat);
         tvKyThuatGieoHat = findViewById(R.id.tvKyThuatGieoHat);
         recyclerView = findViewById(R.id.recyclerviewTrangChu);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
     }
 
     private void setEvent() {
@@ -60,6 +65,33 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
         data_TCKH = database.getReference("TrangChuKhachHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(new TrangChuKhachHang_Adapter(this,data_TrangChu));
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.taikhoan){
+                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_TaiKhoan.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.thuoc){
+                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_Thuoc.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.cuahang){
+                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_GiongCayTrong.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.home){
+                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_TrangChuKhachHang.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                return false;
+            }
+        });
 
         data_TCKH.addChildEventListener(new ChildEventListener() {
             @Override
@@ -157,5 +189,6 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         return bitmap;
     }
+
 
 }

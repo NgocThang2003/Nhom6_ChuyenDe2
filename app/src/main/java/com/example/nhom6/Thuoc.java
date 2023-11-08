@@ -1,13 +1,25 @@
 package com.example.nhom6;
 
 public class Thuoc {
-    String tenSP1, tenSP2, moTa1, moTa2, gia1, gia2;
-    int hinh1, hinh2;
+    String maSP1, maSP2, tenSP1, tenSP2, moTa1, moTa2, gia1, gia2;
+    String hinh1, hinh2;
 
     public Thuoc() {
+        this.maSP1 = "maSP1";
+        this.maSP2 = "maSP2";
+        this.tenSP1 = "tenSP1";
+        this.tenSP2 = "tenSP2";
+        this.moTa1 = "moTa1";
+        this.moTa2 = "moTa2";
+        this.gia1 = "gia1";
+        this.gia2 = "gia2";
+        this.hinh1 = "";
+        this.hinh2 = "";
     }
 
-    public Thuoc(String tenSP1, String tenSP2, String moTa1, String moTa2, String gia1, String gia2, int hinh1, int hinh2) {
+    public Thuoc(String maSP1, String maSP2, String tenSP1, String tenSP2, String moTa1, String moTa2, String gia1, String gia2, String hinh1, String hinh2) {
+        this.maSP1 = maSP1;
+        this.maSP2 = maSP2;
         this.tenSP1 = tenSP1;
         this.tenSP2 = tenSP2;
         this.moTa1 = moTa1;
@@ -16,6 +28,22 @@ public class Thuoc {
         this.gia2 = gia2;
         this.hinh1 = hinh1;
         this.hinh2 = hinh2;
+    }
+
+    public String getMaSP1() {
+        return maSP1;
+    }
+
+    public void setMaSP1(String maSP1) {
+        this.maSP1 = maSP1;
+    }
+
+    public String getMaSP2() {
+        return maSP2;
+    }
+
+    public void setMaSP2(String maSP2) {
+        this.maSP2 = maSP2;
     }
 
     public String getTenSP1() {
@@ -66,33 +94,35 @@ public class Thuoc {
         this.gia2 = gia2;
     }
 
-    public int getHinh1() {
+    public String getHinh1() {
         return hinh1;
     }
 
-    public void setHinh1(int hinh1) {
+    public void setHinh1(String hinh1) {
         this.hinh1 = hinh1;
     }
 
-    public int getHinh2() {
+    public String getHinh2() {
         return hinh2;
     }
 
-    public void setHinh2(int hinh2) {
+    public void setHinh2(String hinh2) {
         this.hinh2 = hinh2;
     }
 
     @Override
     public String toString() {
         return "Thuoc{" +
-                "tenSP1='" + tenSP1 + '\'' +
+                "maSP1='" + maSP1 + '\'' +
+                ", maSP2='" + maSP2 + '\'' +
+                ", tenSP1='" + tenSP1 + '\'' +
                 ", tenSP2='" + tenSP2 + '\'' +
                 ", moTa1='" + moTa1 + '\'' +
                 ", moTa2='" + moTa2 + '\'' +
                 ", gia1='" + gia1 + '\'' +
                 ", gia2='" + gia2 + '\'' +
-                ", hinh1=" + hinh1 +
-                ", hinh2=" + hinh2 +
+                ", hinh1='" + hinh1 + '\'' +
+                ", hinh2='" + hinh2 + '\'' +
                 '}';
     }
 }

@@ -1,14 +1,24 @@
 package com.example.nhom6;
 
 public class GiongCayTrong {
-    String hinh1, hinh2, tenSP1, tenSP2, gia1, gia2;
+    String hinh1, hinh2, maSP1, maSP2, tenSP1, tenSP2, gia1, gia2;
 
     public GiongCayTrong() {
+        this.hinh1 = "";
+        this.hinh2 = "";
+        this.maSP1 = "maSP1";
+        this.maSP2 = "maSP2";
+        this.tenSP1 = "tenSP1";
+        this.tenSP2 = "tenSP2";
+        this.gia1 = "gia1";
+        this.gia2 = "gia2";
     }
 
-    public GiongCayTrong(String hinh1, String hinh2, String tenSP1, String tenSP2, String gia1, String gia2) {
+    public GiongCayTrong(String hinh1, String hinh2, String maSP1, String maSP2, String tenSP1, String tenSP2, String gia1, String gia2) {
         this.hinh1 = hinh1;
         this.hinh2 = hinh2;
+        this.maSP1 = maSP1;
+        this.maSP2 = maSP2;
         this.tenSP1 = tenSP1;
         this.tenSP2 = tenSP2;
         this.gia1 = gia1;
@@ -29,6 +39,22 @@ public class GiongCayTrong {
 
     public void setHinh2(String hinh2) {
         this.hinh2 = hinh2;
+    }
+
+    public String getMaSP1() {
+        return maSP1;
+    }
+
+    public void setMaSP1(String maSP1) {
+        this.maSP1 = maSP1;
+    }
+
+    public String getMaSP2() {
+        return maSP2;
+    }
+
+    public void setMaSP2(String maSP2) {
+        this.maSP2 = maSP2;
     }
 
     public String getTenSP1() {
@@ -68,6 +94,8 @@ public class GiongCayTrong {
         return "GiongCayTrong{" +
                 "hinh1='" + hinh1 + '\'' +
                 ", hinh2='" + hinh2 + '\'' +
+                ", maSP1='" + maSP1 + '\'' +
+                ", maSP2='" + maSP2 + '\'' +
                 ", tenSP1='" + tenSP1 + '\'' +
                 ", tenSP2='" + tenSP2 + '\'' +
                 ", gia1='" + gia1 + '\'' +

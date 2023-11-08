@@ -1,5 +1,7 @@
 package com.example.nhom6;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class TrangChuKhachHang {
     String tenKyThuat, tenMoTa, nhomNganh;
     String maKyThuat, hinh;
