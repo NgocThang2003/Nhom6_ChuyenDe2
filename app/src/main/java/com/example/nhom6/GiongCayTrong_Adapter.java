@@ -11,8 +11,8 @@ import java.util.List;
 
 public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Holder> {
     Context context;
-    List<GiongCayTrong> data;
-    public GiongCayTrong_Adapter(Context context,  List<GiongCayTrong> data) {
+    List<SanPham> data;
+    public GiongCayTrong_Adapter(Context context,  List<SanPham> data) {
         this.context =  context;
         this.data = data;
     }
@@ -25,19 +25,22 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
 
     @Override
     public void onBindViewHolder(@NonNull GiongCayTrong_Holder holder, int position) {
-        GiongCayTrong giongCayTrong = data.get(position);
-        holder.ivHinh1.setImageResource(Integer.parseInt(giongCayTrong.hinh1));
-        holder.ivHinh2.setImageResource(Integer.parseInt(giongCayTrong.hinh2));
-        holder.tvTenSP1.setText(giongCayTrong.tenSP1);
-        holder.tvTenSP2.setText(giongCayTrong.tenSP2);
-        holder.tvGia1.setText(giongCayTrong.gia1);
-        holder.tvGia2.setText(giongCayTrong.gia2);
+        SanPham sanPham = data.get(position);
+        holder.ivHinh1.setImageResource(R.drawable.giongngo);
+        holder.tvTenSP1.setText(sanPham.tenSP);
+        holder.tvGia1.setText(sanPham.gia);
+
+        holder.ivHinh2.setImageResource(R.drawable.giongngo);
+
+        holder.tvTenSP2.setText(sanPham.tenSP);
+
+        holder.tvGia2.setText(sanPham.gia);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 }

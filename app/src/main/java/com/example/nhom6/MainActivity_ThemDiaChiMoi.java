@@ -69,6 +69,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ThemDiaChiMoi themDiaChiMoi = data_ThemDiaChi.get(position);
+                edtID.setText(themDiaChiMoi.getId());
                 edtTen.setText(themDiaChiMoi.getTen());
                 edtSDT.setText(themDiaChiMoi.getSdt());
                 edtTinh.setText(themDiaChiMoi.getTinh());
