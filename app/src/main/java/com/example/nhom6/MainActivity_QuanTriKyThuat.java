@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -56,6 +57,11 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     DatabaseReference data_NhomNganh;
     String maKT = "";
 
+    EditText edtNhomNganh;
+    ArrayAdapter adapter;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +72,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     }
 
     private void setEvent() {
+
         KhoiTao();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -80,7 +87,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new TrangChuKhachHang_Adapter(this, data_kyThuaTrongCay));
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_nhomNganh);
+         adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_nhomNganh);
         spNhomNganh.setAdapter(adapter);
 
         TrangChuKhachHang_Adapter trangChuKhachHangAdapter = (TrangChuKhachHang_Adapter) recyclerView.getAdapter();
@@ -229,6 +236,33 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
 
+        data_NhomNganh.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLNhomNganh();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLNhomNganh();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDLNhomNganh();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         ivHinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,6 +294,8 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
                 phanLoaiNhomNganh();
             }
         });
+
+
     }
 
     byte[] byteArrayHinh = new byte[0];
@@ -436,11 +472,44 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
     }
 
+    public void DocDLNhomNganh() {
+        //data_nhomNganh.clear();
+        data_NhomNganh.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_nhomNganh.clear();
+                data_nhomNganh.add("Bank");
+                //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    NhomNganh nhomNganh = item.getValue(NhomNganh.class);
+                    data_nhomNganh.add(nhomNganh.tenNhomNganh.toString().trim());
+                }
+                adapter.notifyDataSetChanged();
+                //edtTimKiem.setText("");
+                //recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
     private void KhoiTao() {
-        data_nhomNganh.add("Bank");
-        data_nhomNganh.add("Nông nghiệp");
-        data_nhomNganh.add("Công nghiệp");
-        data_nhomNganh.add("Lâm nghiệp");
+        //edtNhomNganh.setText(spNhomNganh.getSelectedItem().toString());
+        //data_nhomNganh.add("Bank");
+        try{
+            DocDLNhomNganh();
+        }
+        catch (Exception e){
+
+        }
+
+//        data_nhomNganh.add("Nông nghiệp");
+//        data_nhomNganh.add("Công nghiệp");
+//        data_nhomNganh.add("Lâm nghiệp");
     }
 
     private void kiemTraNhomNganh(TrangChuKhachHang trangChuKhachHang) {
@@ -476,6 +545,9 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         chkCN = findViewById(R.id.checkBoxCongNghiep);
         chkNN = findViewById(R.id.checkBoxNongNghiep);
         chkLN = findViewById(R.id.checkBoxLamNghep);
+
+        edtNhomNganh = findViewById(R.id.edtNhomNganh);
+
     }
 
     private boolean kiemTraDieuKien() {

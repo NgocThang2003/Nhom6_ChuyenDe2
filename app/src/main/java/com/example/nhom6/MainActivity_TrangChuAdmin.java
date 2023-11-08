@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 public class MainActivity_TrangChuAdmin extends AppCompatActivity {
 
     ImageView ivQuanLySanPham, ivQuanLyNhanVien, ivQuanLyDoanhMuc, ivThongKeSanPham, ivThongKeDoanhThu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

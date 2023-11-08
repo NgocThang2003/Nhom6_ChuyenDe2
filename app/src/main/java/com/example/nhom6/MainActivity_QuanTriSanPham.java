@@ -52,7 +52,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
     public static EditText edtTenSP, edtChuThich, edtSL, edtKhoiLuong, edtGia, edtMoTa;
     public static Spinner spDonVi, spLoaiSanPham;
-    ImageView ivHinhSP;
+    ImageView ivHinhSP, ivTroVe;
 
     EditText edtTimKiem;
     Button btnThem, btnXoa, btnSua;
@@ -66,6 +66,12 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference data_SP;
+    DatabaseReference data_LoaiSP;
+    DatabaseReference data_loaiDonVi;
+
+    ArrayAdapter adapter_donVi;
+    ArrayAdapter adapter_loaiSanPham;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +90,16 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         data_SP = database.getReference("SanPham");
+        data_LoaiSP = database.getReference("LoaiSP");
+        data_loaiDonVi = database.getReference("DonVi");
+
         EnabelButtonTrue();
         KhoiTao();
         recyclerViewDanhSachSP.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerViewDanhSachSP.setAdapter(new SanPhamAdapter(this, data_SanPham));
 
-        ArrayAdapter adapter_donVi = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_donVi);
-        ArrayAdapter adapter_loaiSanPham = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_loaiSanPham);
+        adapter_donVi = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_donVi);
+        adapter_loaiSanPham = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_loaiSanPham);
 
         spDonVi.setAdapter(adapter_donVi);
         spLoaiSanPham.setAdapter(adapter_loaiSanPham);
@@ -308,6 +317,43 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
             }
         });
 
+//        data_LoaiSP.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                DocDLLoaiSanPham();
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                DocDLLoaiSanPham();
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//                DocDLLoaiSanPham();
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        ivTroVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearEditText();
+                EnabelButtonTrue();
+                Intent intent = new Intent(MainActivity_QuanTriSanPham.this, MainActivity_TrangChuAdmin.class);
+                startActivity(intent);
+            }
+        });
+
         ivHinhSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -351,6 +397,61 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
                 }
                 edtTimKiem.setText("");
                 recyclerViewDanhSachSP.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void DocDLLoaiSanPham() {
+        data_loaiSanPham.clear();
+        data_LoaiSP.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    data_loaiSanPham.clear();
+                    data_loaiSanPham.add("Chọn loại sản phẩm!");
+                    //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot item : snapshot.getChildren()) {
+                        LoaiSP loaiSP = item.getValue(LoaiSP.class);
+                        data_loaiSanPham.add(loaiSP.tenLoaiSP.toString().trim());
+                    }
+                    adapter_loaiSanPham.notifyDataSetChanged();
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void DocDLLoaiDonVi() {
+
+        data_loaiDonVi.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    data_donVi.clear();
+                    data_donVi.add("Chọn đơn vị!");
+                    //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot item : snapshot.getChildren()) {
+                        DonVi donVi = item.getValue(DonVi.class);
+                        data_donVi.add(donVi.tenDonVi.toString().trim());
+                    }
+                    adapter_donVi.notifyDataSetChanged();
+                } catch (Exception e) {
+
+                }
             }
 
             @Override
@@ -425,30 +526,26 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
 //        data_SanPham.add(new SanPham("Bí ngô 3", "nảy mầm nhanh", "dag", "Công nghiệp", "linh động", "" + R.drawable.anhsp_quantri, 4, 100, 45000));
 //        data_SanPham.add(new SanPham("Dưa hấu đỏ 3", "Đỏ ít hạt", "hg", "Lâm nghiệp", "nhan chóng", "" + R.drawable.anhsp_quantri, 4, 100, 30000));
 
-        data_loaiSanPham.add("Bank");
-        data_loaiSanPham.add("Nông nghiệp");
-        data_loaiSanPham.add("Lâm nghiệp");
-        data_loaiSanPham.add("Công nghiệp");
-        data_loaiSanPham.add("Thuốc");
-
-        data_donVi.add("Bank");
-        data_donVi.add("kg");
-        data_donVi.add("hg");
-        data_donVi.add("dag");
-        data_donVi.add("g");
-
-        data_donVi.add("lít");
-        data_donVi.add("decilit");
-        data_donVi.add("centilit");
-        data_donVi.add("mililit");
-//        data_donVi.add("kg");
-//        data_donVi.add("gam");
-//        data_donVi.add("dag");
-//        data_donVi.add("hg");
-
+//        data_loaiSanPham.add("Bank");
 //        data_loaiSanPham.add("Nông nghiệp");
 //        data_loaiSanPham.add("Lâm nghiệp");
 //        data_loaiSanPham.add("Công nghiệp");
+//        data_loaiSanPham.add("Thuốc");
+
+//        data_donVi.add("Bank");
+//        data_donVi.add("kg");
+//        data_donVi.add("hg");
+//        data_donVi.add("dag");
+//        data_donVi.add("g");
+//
+//        data_donVi.add("lít");
+//        data_donVi.add("decilit");
+//        data_donVi.add("centilit");
+//        data_donVi.add("mililit");
+
+        DocDLLoaiDonVi();
+        DocDLLoaiSanPham();
+
     }
 
     private void setControl() {
@@ -470,6 +567,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
         btnSua = findViewById(R.id.btnSua);
 
         ivHinhSP = findViewById(R.id.ivHinhSP);
+        ivTroVe = findViewById(R.id.ivTroVe);
     }
 
 

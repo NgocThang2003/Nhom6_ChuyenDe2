@@ -56,11 +56,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
+
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tvMaKyThuat"
                     android:layout_width="wrap_content"
-                    android:layout_height="1dp"></TextView>
+                    android:layout_height="1dp"
+                    android:visibility="gone"></TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,28 +84,47 @@
                         android:textSize="13dp"></EditText>
                 </LinearLayout>
 
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="wrap_content"
-                        android:text="Nhóm ngành: "
-                        android:textSize="13dp"></TextView>
-
-                        <Spinner
-                            android:id="@+id/spNhomNganh"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></Spinner>
-                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhóm ngành: "
+                android:textSize="13dp"></TextView>
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/edtNhomNganh"
+                android:enabled="false"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edt"
+                android:textSize="13dp"></EditText>
+<!--            <LinearLayout-->
+<!--                android:id="@+id/LinearLayoutSPNhomNganh"-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:orientation="vertical">-->
+
+                <Spinner
+                    android:id="@+id/spNhomNganh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+<!--            </LinearLayout>-->
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -59,11 +59,13 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     public static Spinner spLoaiNV;
     List<String> data_loaiNhanVien = new ArrayList<>();
     int index = -1;
-    ImageView ivHinhNV;
+    ImageView ivHinhNV, ivQuayVe;
 
     Button btnThem, btnXoa, btnSua;
     FirebaseDatabase database;
     DatabaseReference data_NV;
+    DatabaseReference data_LoaiNV;
+    ArrayAdapter adapter;
 
     public static EditText edtTenNV, edtSDT, edtQueQuan, edtNgaySinh, edtGmail, edtCMND, edtTenDangNhap, edtPassword;
 
@@ -77,26 +79,26 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
-        KhoiTaoDataShipper();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         myRef.setValue("QuanTriNhanVien");
 
         database = FirebaseDatabase.getInstance();
         data_NV = database.getReference("NhanVien");
+        data_LoaiNV = database.getReference("LoaiNV");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new NhanVienAdapter(this, data_NhanVien));
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_loaiNhanVien);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_loaiNhanVien);
         spLoaiNV.setAdapter(adapter);
 
         NhanVienAdapter nhanVienAdapter = (NhanVienAdapter) recyclerView.getAdapter();
         nhanVienAdapter.setOnItemClickListenner(new NhanVienAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                index = position;
 
+                index = position;
                 NhanVien nhanVien = data_NhanVien.get(position);
                 edtTenNV.setText(nhanVien.tenNhanVien);
                 edtSDT.setText(nhanVien.soDienThoai);
@@ -288,6 +290,33 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             }
         });
 
+//        data_LoaiNV.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                DocDLLoaiNhanVien();
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                DocDLLoaiNhanVien();
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//                DocDLLoaiNhanVien();
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
         chkBanHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -304,6 +333,17 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             }
         });
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearEditText();
+                EnabelButtonTrue();
+
+                Intent intent = new Intent(MainActivity_QuanTriNhanVien.this, MainActivity_TrangChuAdmin.class);
+                startActivity(intent);
+            }
+        });
+
         chkShipper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -311,13 +351,6 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
                 phanLoaiNhanVien();
             }
         });
-    }
-
-    private void KhoiTaoDataShipper() {
-        data_loaiNhanVien.add("Bank");
-        data_loaiNhanVien.add("Bán hàng");
-        data_loaiNhanVien.add("Thủ kho");
-        data_loaiNhanVien.add("Shipper");
     }
 
 
@@ -444,6 +477,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         edtTimKiem = findViewById(R.id.edtTimKiem);
 
         ivHinhNV = findViewById(R.id.ivHinhNV);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
         chkShipper = findViewById(R.id.checkBoxShipper);
         chkBanHang = findViewById(R.id.checkBoxBanHang);
@@ -495,6 +529,32 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         });
     }
 
+    public void DocDLLoaiNhanVien() {
+        data_loaiNhanVien.clear();
+        data_LoaiNV.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    data_loaiNhanVien.clear();
+                    data_loaiNhanVien.add("Nhóm ngành");
+                    //Toast.makeText(MainActivity_QuanTriKyThuat.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot item : snapshot.getChildren()) {
+                        LoaiNV loaiNV = item.getValue(LoaiNV.class);
+                        data_loaiNhanVien.add(loaiNV.loaiNhanVien);
+                    }
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
         return base64String;
@@ -519,7 +579,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_NhanVien.clear();
-                Toast.makeText(MainActivity_QuanTriNhanVien.this, "Hello", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity_QuanTriNhanVien.this, "Hello", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     NhanVien nhanVien = item.getValue(NhanVien.class);
 
