@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,8 +13,8 @@ import java.util.List;
 
 public class DonHangChoXacNhan_BanHang_Adapter extends RecyclerView.Adapter<DonHangChoXacNhan_BanHang_Holder> {
     Context context;
-    List<DonHangChoXacNhan_BanHang> data;
-    public DonHangChoXacNhan_BanHang_Adapter( Context context, List<DonHangChoXacNhan_BanHang> data) {
+    List<DonHang> data;
+    public DonHangChoXacNhan_BanHang_Adapter( Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
@@ -25,19 +27,34 @@ public class DonHangChoXacNhan_BanHang_Adapter extends RecyclerView.Adapter<DonH
 
     @Override
     public void onBindViewHolder(@NonNull DonHangChoXacNhan_BanHang_Holder holder, int position) {
-        DonHangChoXacNhan_BanHang donHangChoXacNhan_banHang = data.get(position);
+        DonHang donHang = data.get(position);
 
-        holder.tvTenKH.setText(donHangChoXacNhan_banHang.tenKH);
-        holder.ivHinh.setImageResource(R.drawable.duahau);
-        holder.tvDiaChi.setText(donHangChoXacNhan_banHang.diaChi);
-        holder.tvTenSP.setText(donHangChoXacNhan_banHang.tenSP);
-        holder.tvMoTa.setText(donHangChoXacNhan_banHang.moTa);
-        holder.tvSDT.setText(donHangChoXacNhan_banHang.sdt);
-        holder.tvGia.setText(donHangChoXacNhan_banHang.gia);
-        holder.tvSoLuong.setText(donHangChoXacNhan_banHang.soLuong);
-        holder.tvNgay.setText(donHangChoXacNhan_banHang.ngay);
-        holder.tvTrangThai.setText(donHangChoXacNhan_banHang.trangThai);
-        holder.tvThanhTien.setText(donHangChoXacNhan_banHang.thanhTien);
+        holder.tvTenKH.setText(donHang.tenKhachHang);
+        if (donHang.hinh.trim().equals("")){
+            holder.ivHinh.setImageResource(R.drawable.giongngo);
+        }
+        else {
+            try {
+                byte[] bytes = chuyenStringSangByte(donHang.hinh);
+                Bitmap bitmap = chuyenByteSangBitMap(bytes);
+                holder.ivHinh.setImageBitmap(bitmap);
+            }
+            catch (Exception e){
+                holder.ivHinh.setImageResource(R.drawable.giongngo);
+            }
+        }
+        holder.tvDiaChi.setText(donHang.diaChi);
+        holder.tvTenSP.setText(donHang.tenSanPham);
+        holder.tvMoTa.setText(donHang.moTa);
+        holder.tvSDT.setText(donHang.sDT);
+        holder.tvGia.setText(donHang.gia);
+        holder.tvSoLuong.setText(donHang.soLuong);
+        holder.tvNgay.setText(donHang.ngay);
+        holder.tvTrangThai.setText(donHang.trangThai);
+        int gia = Integer.parseInt(donHang.gia.trim());
+        int soLuong = Integer.parseInt(donHang.soLuong.trim());
+
+        holder.tvThanhTien.setText("" + gia * soLuong);
 
 
     }
@@ -45,5 +62,15 @@ public class DonHangChoXacNhan_BanHang_Adapter extends RecyclerView.Adapter<DonH
     @Override
     public int getItemCount() {
         return data.size();
+    }
+    private byte[] chuyenStringSangByte(String str) {
+        byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
+        return byteArray;
+    }
+
+    //Chuyen byte[] sang bitMap
+    private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        return bitmap;
     }
 }
