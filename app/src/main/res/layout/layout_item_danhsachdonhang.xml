@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="Số điện thoại"
+                    android:text="Tên sản phẩm"
                     android:textColor="#000"
                     android:textSize="14dp"></TextView>
 
@@ -84,7 +84,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="Số điện thoại"
+                    android:text="Chú thich"
                     android:textColor="#715858"
                     android:textSize="14dp"></TextView>
             </LinearLayout>
@@ -187,6 +187,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginRight="40dp"
@@ -199,6 +200,7 @@
             </Button>
 
             <Button
+                android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="40dp"
