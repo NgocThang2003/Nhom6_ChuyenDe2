@@ -11,22 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class KhoDonHangDuocShipperNhan_Adapter extends RecyclerView.Adapter<KhoDonHangDuocShipperNhan_Holder> {
+public class ShipperDonHangDangGiao_Adapter extends RecyclerView.Adapter<ShipperDonHangDangGiao_Holder> {
     Context context;
     List<DonHang> data;
-    public KhoDonHangDuocShipperNhan_Adapter(Context context,  List<DonHang> data) {
+    public ShipperDonHangDangGiao_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
 
     @NonNull
     @Override
-    public KhoDonHangDuocShipperNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KhoDonHangDuocShipperNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangduocshippernhan,parent,false));
+    public ShipperDonHangDangGiao_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ShipperDonHangDangGiao_Holder(LayoutInflater.from(context).inflate(R.layout.item_shipperdonhangdanggiao,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KhoDonHangDuocShipperNhan_Holder holder, int position) {
+    public void onBindViewHolder(@NonNull ShipperDonHangDangGiao_Holder holder, int position) {
         DonHang donHang = data.get(position);
 
         holder.tvTenKH.setText(donHang.tenKhachHang);

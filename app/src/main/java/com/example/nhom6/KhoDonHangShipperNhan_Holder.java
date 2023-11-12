@@ -8,11 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class KhoDonHangDuocShipperNhan_Holder extends RecyclerView.ViewHolder {
+public class KhoDonHangShipperNhan_Holder extends RecyclerView.ViewHolder {
     Button btnGoiDien, btnTinNhan, btnXacNhanDonHang;
     ImageView ivHinh;
     TextView tvTenKH, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien;
-    public KhoDonHangDuocShipperNhan_Holder(@NonNull View itemView) {
+    public KhoDonHangShipperNhan_Holder(@NonNull View itemView) {
         super(itemView);
         btnGoiDien = itemView.findViewById(R.id.btnGoiDien);
         btnTinNhan = itemView.findViewById(R.id.btnNhanTin);
