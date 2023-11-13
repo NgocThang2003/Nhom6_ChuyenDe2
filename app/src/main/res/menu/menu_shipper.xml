@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mnHome"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="Trang chủ"
+        ></item>
+    <item
+        android:id="@+id/mnDonMoi"
+        android:icon="@drawable/donmoi_shipper"
+        android:title="Đơn mới"></item>
+    <item
+        android:id="@+id/mnDangGiao"
+        android:icon="@drawable/danggiao_shipper"
+        android:title="Đơn đang giao"></item>
+    <item
+        android:id="@+id/mnAccount"
+        android:icon="@drawable/account"
+        android:title="Tài khoản"></item>
+
+</menu>

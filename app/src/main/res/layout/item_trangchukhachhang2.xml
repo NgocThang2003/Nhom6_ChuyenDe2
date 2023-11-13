@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/bg_trangchu_bo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+       <LinearLayout
+           android:layout_weight="1"
+           android:layout_marginRight="20dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <TextView
+               android:textColor="#000"
+               android:id="@+id/tvTenKyThuat"
+               android:layout_marginLeft="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textStyle="bold"
+               android:hint="Tên kỹ thuật:"/>
+           <TextView
+               android:id="@+id/tvMoTa"
+               android:layout_marginLeft="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="Mô tả: "/>
+       </LinearLayout>
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/ivHinh"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"/>
+    </LinearLayout>
+
+</LinearLayout>

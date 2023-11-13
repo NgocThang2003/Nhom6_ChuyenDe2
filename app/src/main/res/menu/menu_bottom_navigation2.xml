@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/cuahang"
+        android:icon="@drawable/donmoi_shipper"
+        android:title="Đơn mới" />
+    <item
+        android:id="@+id/tuvan"
+        android:icon="@drawable/danggiao_shipper"
+        android:title="Đang giao" />
+<!--    <item-->
+<!--        android:id="@+id/caytrong"-->
+<!--        android:icon="@drawable/chemical"-->
+<!--        android:title="Thuốc" />-->
+    <item
+        android:id="@+id/taikhoan"
+        android:icon="@drawable/use"
+        android:title="Tài khoản" />
+</menu>

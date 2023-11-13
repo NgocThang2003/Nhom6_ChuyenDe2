@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F6F6"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnQuayLai"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#F8F6F6"
+            android:drawableLeft="@drawable/quay_lai" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Liên hệ với chúng tôi"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/edit_botron"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/edtID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Thông tin cá nhân"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/edtHoTenLienHe"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Họ và tên (*)"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edt_botrontext"/>
+        <EditText
+            android:id="@+id/edtSDTLienHe"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Số điện thoại (*)"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edt_botrontext"/>
+
+        <EditText
+            android:id="@+id/edtEmailLienHe"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Email"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edt_botrontext"/>
+
+        <EditText
+            android:id="@+id/edtCongTy"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Công ty"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/edt_botrontext"/>
+
+        <EditText
+            android:id="@+id/edtGopY"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Góp ý của bạn (*)"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:gravity="top"
+            android:background="@drawable/edt_botrontext"/>
+
+        <Button
+            android:id="@+id/btnGuiThongTin"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="#4B8634"
+            android:layout_gravity="right"
+            android:text="Gửi thông tin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/edit_botron"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Văn phòng đại diện"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/diachi1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="53 Võ Văn Ngân, P.Linh Đông"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/phone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0989 xxx xxx"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/email"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xxx@gmail.com"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/dongho"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8h30 - 17h45 | Thứ 2 - Thứ 7"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
