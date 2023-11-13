@@ -95,7 +95,7 @@
         android:text="Chất lượng sản pẩm"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:gravity="top"
         android:textColorHint="#AEA7A7"
         android:layout_marginLeft="30dp"

@@ -41,8 +41,10 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     List<SanPham> data_CT = new ArrayList<>();
     //List<TaiKhoan> data_taiKhoan = new ArrayList<>();
 
-    String maSP = "-NiT6iVESLvZX7Wr85w7";
+    String maSP = "-NiT6YxCGEdSMwNTLFFt";
     String maKH = "-NiNrHieKJTJY-rlUhgh";
+    String tenKH = "Le Hong Thuy";
+
     TextView tvDiaChi, tvPhuongThuc;
 
     @Override
@@ -166,10 +168,10 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 //                this.lyDoHuyDon = lyDoHuyDon;
                 Date currentTime = Calendar.getInstance().getTime();
 
-                String msg = currentTime.getYear()+"-" + currentTime.getMonth() + "-" + currentTime.getDate();
+                String msg = ", " + currentTime.getDate() + " Tháng " + currentTime.getMonth();
 
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
                 String currentDateandTime = sdf.format(new Date());
 
 //                sdf = new SimpleDateFormat("HH::mm");
@@ -201,7 +203,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 donHang.setsDT(taiKhoan2.getSdt());
 
                 data_DonHang.child(donHang.maDonHang).setValue(donHang);
-
+                Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_DonHang.class);
+                startActivity(intent);
 
             }
         });
