@@ -7,14 +7,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TinNhanChungAdapter extends RecyclerView.Adapter<TinNhanChungHolder> {
+public class TinNhanChungKhachHangAdapter extends RecyclerView.Adapter<TinNhanChungHolder> {
     Context context;
     List<TinNhan> data;
 
@@ -24,7 +23,7 @@ public class TinNhanChungAdapter extends RecyclerView.Adapter<TinNhanChungHolder
         return new TinNhanChungHolder(LayoutInflater.from(context).inflate(R.layout.item_tinnhan_chung, parent, false));
     }
 
-    public TinNhanChungAdapter(Context context, List<TinNhan> data) {
+    public TinNhanChungKhachHangAdapter(Context context, List<TinNhan> data) {
         this.context = context;
         this.data = data;
     }
@@ -36,18 +35,19 @@ public class TinNhanChungAdapter extends RecyclerView.Adapter<TinNhanChungHolder
 
         holder.tvThoiGian.setText(tinNhan.getNgay().trim());
 
-        if (tinNhan.maNhanVien.toString().trim().equals(MainActivity_tinnhan_nhanvien.maNV.trim())) {
+        if (tinNhan.maKhachHang.toString().trim().equals(MainActivity_tinnhan_khachhang.maKH.trim())) {
             holder.tvTinNhan2.setVisibility(View.VISIBLE);
             holder.ivHinhTinNhan2.setVisibility(View.VISIBLE);
+
             holder.tvTinNhan1.setVisibility(View.GONE);
             holder.ivHinhTinNhan1.setVisibility(View.GONE);
 
             holder.tvTinNhan2.setText(tinNhan.getTinNhan().trim());
             holder.linearLayoutTinNhan.setGravity(Gravity.END);
 
-            if (!tinNhan.getHinhNhanVien().trim().equals("")) {
+            if (!tinNhan.getHinhKhachHang().trim().equals("")) {
                 try {
-                    byte[] bytes = chuyenStringSangByte(tinNhan.getHinhNhanVien());
+                    byte[] bytes = chuyenStringSangByte(tinNhan.getHinhKhachHang());
                     Bitmap bitmap = chuyenByteSangBitMap(bytes);
                     holder.ivHinhTinNhan2.setImageBitmap(bitmap);
                 } catch (Exception e) {
@@ -65,9 +65,9 @@ public class TinNhanChungAdapter extends RecyclerView.Adapter<TinNhanChungHolder
 
             holder.tvTinNhan1.setText(tinNhan.getTinNhan().trim());
             holder.linearLayoutTinNhan.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
-            if (!tinNhan.getHinhKhachHang().trim().equals("")) {
+            if (!tinNhan.getHinhNhanVien().trim().equals("")) {
                 try {
-                    byte[] bytes = chuyenStringSangByte(tinNhan.getHinhKhachHang());
+                    byte[] bytes = chuyenStringSangByte(tinNhan.getHinhNhanVien());
                     Bitmap bitmap = chuyenByteSangBitMap(bytes);
                     holder.ivHinhTinNhan1.setImageBitmap(bitmap);
                 } catch (Exception e) {

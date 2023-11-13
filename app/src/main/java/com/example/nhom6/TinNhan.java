@@ -1,14 +1,11 @@
 package com.example.nhom6;
 
-public class TinNhanNhanVien {
-    String maTinNhan, maNhanVien, hoTenNhanVien, maKhachHang, hoTenKhachHang, tinNhan, ngay, daDoc;
-
-    public TinNhanNhanVien() {
-    }
+public class TinNhan {
+    String maTinNhan, maNhanVien, hoTenNhanVien, maKhachHang, hoTenKhachHang, tinNhan, ngay, daDoc, hinhNhanVien, hinhKhachHang;
 
     @Override
     public String toString() {
-        return "TinNhanNhanVien{" +
+        return "TinNhan{" +
                 "maTinNhan='" + maTinNhan + '\'' +
                 ", maNhanVien='" + maNhanVien + '\'' +
                 ", hoTenNhanVien='" + hoTenNhanVien + '\'' +
@@ -17,6 +14,8 @@ public class TinNhanNhanVien {
                 ", tinNhan='" + tinNhan + '\'' +
                 ", ngay='" + ngay + '\'' +
                 ", daDoc='" + daDoc + '\'' +
+                ", hinhNhanVien='" + hinhNhanVien + '\'' +
+                ", hinhKhachHang='" + hinhKhachHang + '\'' +
                 '}';
     }
 
@@ -84,7 +83,26 @@ public class TinNhanNhanVien {
         this.daDoc = daDoc;
     }
 
-    public TinNhanNhanVien(String maTinNhan, String maNhanVien, String hoTenNhanVien, String maKhachHang, String hoTenKhachHang, String tinNhan, String ngay, String daDoc) {
+    public String getHinhNhanVien() {
+        return hinhNhanVien;
+    }
+
+    public void setHinhNhanVien(String hinhNhanVien) {
+        this.hinhNhanVien = hinhNhanVien;
+    }
+
+    public String getHinhKhachHang() {
+        return hinhKhachHang;
+    }
+
+    public void setHinhKhachHang(String hinhKhachHang) {
+        this.hinhKhachHang = hinhKhachHang;
+    }
+
+    public TinNhan() {
+    }
+
+    public TinNhan(String maTinNhan, String maNhanVien, String hoTenNhanVien, String maKhachHang, String hoTenKhachHang, String tinNhan, String ngay, String daDoc, String hinhNhanVien, String hinhKhachHang) {
         this.maTinNhan = maTinNhan;
         this.maNhanVien = maNhanVien;
         this.hoTenNhanVien = hoTenNhanVien;
@@ -93,5 +111,7 @@ public class TinNhanNhanVien {
         this.tinNhan = tinNhan;
         this.ngay = ngay;
         this.daDoc = daDoc;
+        this.hinhNhanVien = hinhNhanVien;
+        this.hinhKhachHang = hinhKhachHang;
     }
 }

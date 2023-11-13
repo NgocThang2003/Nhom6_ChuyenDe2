@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class DanhBaTinNhanNhanVienAdapter extends RecyclerView.Adapter<DanhBaTinNhanNhanVienHolder> {
+public class DanhBaTinNhanKhachHangAdapter extends RecyclerView.Adapter<DanhBaTinNhanNhanVienHolder> {
     Context context;
     List<TinNhan> data;
 
-    public DanhBaTinNhanNhanVienAdapter(Context context, List<TinNhan> data) {
+    public DanhBaTinNhanKhachHangAdapter(Context context, List<TinNhan> data) {
         this.context = context;
         this.data = data;
     }
@@ -38,13 +38,16 @@ public class DanhBaTinNhanNhanVienAdapter extends RecyclerView.Adapter<DanhBaTin
     @Override
     public void onBindViewHolder(@NonNull DanhBaTinNhanNhanVienHolder holder, int position) {
         TinNhan tinNhanNhanVien = data.get(position);
-        holder.tvHoTen.setText(tinNhanNhanVien.hoTenKhachHang);
+        holder.tvHoTen.setText(tinNhanNhanVien.hoTenNhanVien);
         holder.tvTinNhan.setText(tinNhanNhanVien.tinNhan);
+        if(tinNhanNhanVien.getTinNhan().trim().length()>30){
+            holder.tvTinNhan.setText(tinNhanNhanVien.tinNhan.substring(0,30)+"...");
+        }
         holder.tvThoiGian.setText(tinNhanNhanVien.ngay);
 
-        if (!tinNhanNhanVien.getHinhKhachHang().trim().equals("")) {
+        if (!tinNhanNhanVien.getHinhNhanVien().trim().equals("")) {
             try {
-                byte[] bytes = chuyenStringSangByte(tinNhanNhanVien.getHinhKhachHang());
+                byte[] bytes = chuyenStringSangByte(tinNhanNhanVien.getHinhNhanVien());
                 Bitmap bitmap = chuyenByteSangBitMap(bytes);
                 holder.ivHinhDanhBa.setImageBitmap(bitmap);
             } catch (Exception e) {

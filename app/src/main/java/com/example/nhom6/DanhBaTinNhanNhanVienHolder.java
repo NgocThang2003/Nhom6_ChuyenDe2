@@ -7,12 +7,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TinNhanHolder extends RecyclerView.ViewHolder {
+public class DanhBaTinNhanNhanVienHolder extends RecyclerView.ViewHolder {
     TextView tvHoTen, tvTinNhan, tvThoiGian;
     ImageView ivHinhDanhBa;
 
 
-    public TinNhanHolder(@NonNull View itemView) {
+    public DanhBaTinNhanNhanVienHolder(@NonNull View itemView) {
         super(itemView);
         tvHoTen = itemView.findViewById(R.id.tvHoTen);
         tvTinNhan = itemView.findViewById(R.id.tvTinNhan);
