@@ -183,7 +183,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                     if (data_taiKhoan.get(i).getQuyen() == 0 && rdAdmin.isChecked() == true) {
                         kiemTra = true;
                         index = i;
-                        //kiểm tra tài khoản nếu đúng thì sẽ vào trang chủ
+                        //kiểm tra tài khoản nếu đúng thì sẽ vào admin trang chủ
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, TrangChu_Admin.class);
 //                        startActivity(intent);
