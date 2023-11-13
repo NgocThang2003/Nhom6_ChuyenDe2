@@ -2,6 +2,15 @@ package com.example.nhom6;
 
 public class ThemDiaChiMoi {
     String id,ten, sdt, tinh, quan, phuong, soNha, check;
+    String maNguoiDung;
+
+    public String getMaNguoiDung() {
+        return maNguoiDung;
+    }
+
+    public void setMaNguoiDung(String maNguoiDung) {
+        this.maNguoiDung = maNguoiDung;
+    }
 
     public ThemDiaChiMoi() {
     }

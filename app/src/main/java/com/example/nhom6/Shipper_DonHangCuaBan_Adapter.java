@@ -3,7 +3,9 @@ package com.example.nhom6;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import java.util.List;
 public class Shipper_DonHangCuaBan_Adapter extends RecyclerView.Adapter<Shipper_DonHangCuaBan_Holder> {
     Context context;
     List<DonHang> data;
+
     public Shipper_DonHangCuaBan_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
@@ -55,6 +58,19 @@ public class Shipper_DonHangCuaBan_Adapter extends RecyclerView.Adapter<Shipper_
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
         holder.tvThanhTien.setText("" + gia * soLuong);
+
+        if(donHang.trangThai.trim().equals("Đang đóng gói".trim())){
+            holder.btnXacNhanDonHang.setBackgroundColor(Color.rgb(219,227,219));
+            holder.btnXacNhanDonHang.setTextColor(Color.WHITE);
+            holder.btnXacNhanDonHang.setEnabled(false);
+
+
+        }
+        else{
+            holder.btnXacNhanDonHang.setBackgroundResource(R.drawable.bg_tuvan);
+            holder.btnXacNhanDonHang.setTextColor(Color.WHITE);
+            holder.btnXacNhanDonHang.setEnabled(true);
+        }
 
     }
 

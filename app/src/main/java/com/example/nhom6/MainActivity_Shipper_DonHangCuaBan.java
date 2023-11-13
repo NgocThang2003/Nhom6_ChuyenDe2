@@ -35,6 +35,8 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh;
 
+    String maShipper = "NiYMkJuTJCslHynH2kU";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,9 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
                     if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                        data_DonHang.add(donHang);
+                    }
+                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
                         data_DonHang.add(donHang);
                     }
 

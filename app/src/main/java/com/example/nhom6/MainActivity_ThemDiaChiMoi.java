@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.android.volley.Request;
@@ -48,6 +50,9 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     EditText edtID, edtTen, edtSDT, edtTinh, edtQuan, edtPhuong, edtSoNha;
     FirebaseDatabase database;
     DatabaseReference data_TDCM;
+    ImageView ivQuayVe;
+
+    String maNguoiDung = "-NiNrHieKJTJY-rlUhgh";
 //    ArrayList<ThemDiaChiMoi> data_ThemDiaChiMoi = new ArrayList<>();
 
     @Override
@@ -85,6 +90,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                 ThemDiaChiMoi themDiaChiMoi = new ThemDiaChiMoi(data_TDCM.push().getKey(), edtTen.getText().toString(), edtSDT.getText().toString(),
                         edtTinh.getText().toString(), edtQuan.getText().toString(), edtPhuong.getText().toString(),
                         edtSoNha.getText().toString(), "");
+                themDiaChiMoi.setMaNguoiDung(maNguoiDung);
                 data_TDCM.child(themDiaChiMoi.id).setValue(themDiaChiMoi);
 
                 data_TDCM.child(themDiaChiMoi.id).addValueEventListener(new ValueEventListener() {
@@ -171,6 +177,14 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
             }
         });
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ThemDiaChiMoi.this, MainActivity_DiaChiGiaoHang.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -208,6 +222,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         btnThem = findViewById(R.id.btnThem);
         btnSua = findViewById(R.id.btnSua);
         btnXoa = findViewById(R.id.btnXoa);
+        ivQuayVe = findViewById(R.id.imgQuayVe);
     }
     private void clearEditTextt() {
         edtID.setText("");

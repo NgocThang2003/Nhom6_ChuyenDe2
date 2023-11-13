@@ -89,14 +89,6 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
         }
 
     }
-    public void chucnanglienhe(View view) {
-
-        if(view.getId()==R.id.ivLienHe){
-            Intent intent = new Intent(MainActivity_TaiKhoan.this,MainActivity_LienHeNhanVien.class);
-            startActivity(intent);
-        }
-
-    }
 
 
 
