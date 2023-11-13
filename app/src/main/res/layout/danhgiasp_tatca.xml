@@ -43,16 +43,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/btnDanhGia_TatCa"
             style="@style/bt_danhgia"
             android:text="Tất cả"
             android:layout_marginRight="45dp"/>
 
         <Button
+            android:id="@+id/btnDanhGia_ChuaDanhGia"
             style="@style/bt_danhgia"
             android:text="chưa đánh giá"
             android:layout_marginRight="45dp"/>
 
         <Button
+            android:id="@+id/btnDanhGia_DaDanhGia"
             style="@style/bt_danhgia"
             android:text="đã đánh giá"/>
 
@@ -60,7 +63,7 @@
 <!--        Recyclerview-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewDanhgiaSP"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -69,7 +72,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#EF9C9C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
