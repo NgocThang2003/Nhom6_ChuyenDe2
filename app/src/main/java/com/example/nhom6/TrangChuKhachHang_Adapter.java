@@ -36,7 +36,7 @@ public class TrangChuKhachHang_Adapter extends RecyclerView.Adapter<TrangChuKhac
     @NonNull
     @Override
     public TrangChuKhachHang_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TrangChuKhachHang_Holder(LayoutInflater.from(context).inflate(R.layout.item_trangchukhachhang, parent, false));
+        return new TrangChuKhachHang_Holder(LayoutInflater.from(context).inflate(R.layout.item_trangchukhachhang2, parent, false));
     }
 
     @Override

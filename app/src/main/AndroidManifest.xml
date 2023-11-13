@@ -26,7 +26,7 @@
             android:name=".MainActivity_tinnhan_nhanvien"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ChiTietSanPham"
+            android:name=".MainActivity_DanhBaTinNhan_NhanVien"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DangNhap"
@@ -56,7 +56,7 @@
             android:name=".MainActivity_QuanTriSanPham"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DanhBaTinNhan_NhanVien"
+            android:name=".MainActivity_ChiTietSanPham"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
