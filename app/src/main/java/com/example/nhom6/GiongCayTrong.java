@@ -9,7 +9,7 @@ public class GiongCayTrong {
         this.maSP1 = "maSP1";
         this.maSP2 = "maSP2";
         this.tenSP1 = "tenSP1";
-        this.tenSP2 = "tenSP2";
+        this.tenSP2 = "null";
         this.gia1 = "gia1";
         this.gia2 = "gia2";
     }

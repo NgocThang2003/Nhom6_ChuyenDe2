@@ -85,7 +85,10 @@ public class MainActivity_KhoDonHangDangDongGoi extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    data_DonHang.add(donHang);
+                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                        data_DonHang.add(donHang);
+                    }
+
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
