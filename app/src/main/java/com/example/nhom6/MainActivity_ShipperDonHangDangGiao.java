@@ -28,10 +28,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
+public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database;
-    DatabaseReference data_DSDH;
+    DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh;
 
@@ -39,18 +39,18 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shipperdanhsachdonhang);
+        setContentView(R.layout.shipperdonhangdanggiao);
         setControl();
         setEvent();
     }
 
     private void setEvent() {
         database = FirebaseDatabase.getInstance();
-        data_DSDH = database.getReference("DonHang");
+        data_DHCB = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ShipperDanhSachDonHang_Adapter(this,data_DonHang));
+        recyclerView.setAdapter(new ShipperDonHangDangGiao_Adapter(this,data_DonHang));
 
-        data_DSDH.addChildEventListener(new ChildEventListener() {
+        data_DHCB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
@@ -79,13 +79,19 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
     }
     public void DocDL() {
         data_DonHang.clear();
-        data_DSDH.addListenerForSingleValueEvent(new ValueEventListener() {
+        data_DHCB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_DonHang.clear();
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
+                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                        data_DonHang.add(donHang);
+                    }
+                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
+                        data_DonHang.add(donHang);
+                    }
 
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
