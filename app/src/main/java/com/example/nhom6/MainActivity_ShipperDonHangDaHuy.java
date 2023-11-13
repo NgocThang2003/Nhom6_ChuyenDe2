@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,19 +29,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
+public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database;
     DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh;
 
-    String maShipper = "NiYMkJuTJCslHynH2kU";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shiperdonhangcuaban);
+        setContentView(R.layout.shipperdonhangdahuy);
         setControl();
         setEvent();
     }
@@ -49,7 +49,7 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         data_DHCB = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ShipperDonHangCuaBan_Adapter(this,data_DonHang));
+        recyclerView.setAdapter(new ShipperDonHangDaHuy_Adapter(this,data_DonHang));
 
         data_DHCB.addChildEventListener(new ChildEventListener() {
             @Override
@@ -77,6 +77,7 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
 
             }
         });
+
     }
     public void DocDL() {
         data_DonHang.clear();
@@ -106,10 +107,12 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
         });
 
 
+
     }
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
+
 
     }
     byte[] byteArrayHinh = new byte[0];

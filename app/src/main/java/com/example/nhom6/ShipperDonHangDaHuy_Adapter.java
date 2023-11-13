@@ -1,9 +1,9 @@
 package com.example.nhom6;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Shipper_DonHangCuaBan_Adapter extends RecyclerView.Adapter<Shipper_DonHangCuaBan_Holder> {
+public class ShipperDonHangDaHuy_Adapter extends RecyclerView.Adapter<ShipperDonHangDaHuy_Holder> {
     Context context;
     List<DonHang> data;
-
-    public Shipper_DonHangCuaBan_Adapter(Context context, List<DonHang> data) {
+    public ShipperDonHangDaHuy_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
 
     @NonNull
     @Override
-    public Shipper_DonHangCuaBan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Shipper_DonHangCuaBan_Holder(LayoutInflater.from(context).inflate(R.layout.item_shipper_donhangcuaban,parent,false));
+    public ShipperDonHangDaHuy_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ShipperDonHangDaHuy_Holder(LayoutInflater.from(context).inflate(R.layout.item_shipperdonhangdahuy,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Shipper_DonHangCuaBan_Holder holder, int position) {
+    public void onBindViewHolder(@NonNull ShipperDonHangDaHuy_Holder holder, int position) {
         DonHang donHang = data.get(position);
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
@@ -59,19 +58,16 @@ public class Shipper_DonHangCuaBan_Adapter extends RecyclerView.Adapter<Shipper_
 
         holder.tvThanhTien.setText("" + gia * soLuong);
 
-        if(donHang.trangThai.trim().equals("Đang đóng gói".trim())){
-            holder.btnXacNhanDonHang.setBackgroundColor(Color.rgb(219,227,219));
-            holder.btnXacNhanDonHang.setTextColor(Color.WHITE);
-            holder.btnXacNhanDonHang.setEnabled(false);
+        holder.btnThongTinKH.setOnClickListener(new View.OnClickListener() {
 
-
-        }
-        else{
-            holder.btnXacNhanDonHang.setBackgroundResource(R.drawable.bg_tuvan);
-            holder.btnXacNhanDonHang.setTextColor(Color.WHITE);
-            holder.btnXacNhanDonHang.setEnabled(true);
-        }
-
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity_ThongTinNguoiNhan.class);
+                intent.putExtra("Dia Chi", donHang.diaChi);
+                MainActivity_ThongTinNguoiNhan.maNguoiDung = donHang.maKhachHang;
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
