@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
    <LinearLayout
        android:paddingTop="10dp"
@@ -11,6 +11,16 @@
        android:orientation="horizontal"
        android:layout_marginTop="20dp"
        style="@style/edit_sp">
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:visibility="gone">
+           <EditText
+               android:id="@+id/edtIDDH"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="ID" />
+       </com.google.android.material.textfield.TextInputLayout>
        <CheckBox
            android:id="@+id/cbCheckBoxTungSP"
            android:layout_width="wrap_content"
@@ -18,7 +28,7 @@
        <ImageView
            android:scaleType="fitXY"
            android:src="@drawable/ic_launcher_background"
-           android:id="@+id/ivHinh"
+           android:id="@+id/ivHinhGH"
            android:layout_width="70dp"
            android:layout_height="60dp"
            android:adjustViewBounds="true"/>
@@ -103,8 +113,8 @@
                    android:focusable="false"
                    android:text="-"/>
 
-               <Button
-                   android:id="@+id/btnSo"
+               <TextView
+                   android:id="@+id/tvSL"
                    android:layout_width="57dp"
                    android:layout_height="wrap_content"
                    android:gravity="center"

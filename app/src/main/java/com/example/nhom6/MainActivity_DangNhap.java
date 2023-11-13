@@ -41,6 +41,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_TK;
     DatabaseReference data_NV;
+    String maKhachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +153,6 @@ public class MainActivity_DangNhap extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
@@ -191,6 +191,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                     if (data_taiKhoan.get(i).getQuyen() == 4 && rdKhachHang.isChecked() == true) {
                         kiemTra = true;
                         index = i;
+                        maKhachHang=data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_KhachHang.class);
 //                        startActivity(intent);

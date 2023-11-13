@@ -14,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom6"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".MainActivity_DanhBaTinNhan"
+            android:exported="false" />
         <activity
             android:name=".MainActivity_GiongCayTrong"
             android:exported="false" />
@@ -54,11 +58,9 @@
         <activity
             android:name=".MainActivity_DangNhap"
             android:exported="false" />
+
         <activity
-            android:name=".MainActivity_HoSoNguoiDung"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_TaiKhoan"
+            android:name="."
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

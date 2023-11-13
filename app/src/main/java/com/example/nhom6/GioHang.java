@@ -1,7 +1,20 @@
 package com.example.nhom6;
 
 public class GioHang {
-    String maGioHang, maKhachHang, maSanPham, tenSanPham, moTa,gia,khoiLuong, soLuong,donVi,hinh ;
+    String maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh ;
+
+    public GioHang(String maGioHang, String maKhachHang, String maSanPham, String tenSanPham, String moTa, String gia, String khoiLuong, String soLuong, String donVi, String hinh) {
+        this.maGioHang = maGioHang;
+        this.maKhachHang = maKhachHang;
+        this.maSanPham = maSanPham;
+        this.tenSP = tenSanPham;
+        this.chuThich = moTa;
+        this.gia = gia;
+        this.khoiLuong = khoiLuong;
+        this.soLuong = soLuong;
+        this.donVi = donVi;
+        this.hinh = hinh;
+    }
 
     public String getMaKhachHang() {
         return maKhachHang;
@@ -23,8 +36,10 @@ public class GioHang {
     public String toString() {
         return "GioHang{" +
                 "maGioHang='" + maGioHang + '\'' +
-                ", tenSanPham='" + tenSanPham + '\'' +
-                ", moTa='" + moTa + '\'' +
+                ", maKhachHang='" + maKhachHang + '\'' +
+                ", maSanPham='" + maSanPham + '\'' +
+                ", tenSanPham='" + tenSP + '\'' +
+                ", moTa='" + chuThich + '\'' +
                 ", gia='" + gia + '\'' +
                 ", khoiLuong='" + khoiLuong + '\'' +
                 ", soLuong='" + soLuong + '\'' +
@@ -41,20 +56,20 @@ public class GioHang {
         this.maGioHang = maGioHang;
     }
 
-    public String getTenSanPham() {
-        return tenSanPham;
+    public String getTenSP() {
+        return tenSP;
     }
 
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
+    public void setTenSP(String tenSanPham) {
+        this.tenSP = tenSanPham;
     }
 
-    public String getMoTa() {
-        return moTa;
+    public String getChuThich() {
+        return chuThich;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setChuThich(String chuThich) {
+        this.chuThich = chuThich;
     }
 
     public String getGia() {
@@ -100,14 +115,5 @@ public class GioHang {
     public GioHang() {
     }
 
-    public GioHang(String maGioHang, String tenSanPham, String moTa, String gia, String khoiLuong, String soLuong, String donVi, String hinh) {
-        this.maGioHang = maGioHang;
-        this.tenSanPham = tenSanPham;
-        this.moTa = moTa;
-        this.gia = gia;
-        this.khoiLuong = khoiLuong;
-        this.soLuong = soLuong;
-        this.donVi = donVi;
-        this.hinh = hinh;
-    }
+
 }

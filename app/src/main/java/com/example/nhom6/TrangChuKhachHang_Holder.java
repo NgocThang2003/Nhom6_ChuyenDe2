@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TrangChuKhachHang_Holder extends RecyclerView.ViewHolder {
     ImageView ivHinh;
     TextView tvTenKyThuat, tvMoTa;
-
-
     public TrangChuKhachHang_Holder(@NonNull View itemView) {
         super(itemView);
         ivHinh =itemView.findViewById(R.id.ivHinh);
