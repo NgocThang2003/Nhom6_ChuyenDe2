@@ -60,7 +60,7 @@
             android:exported="false" />
 
         <activity
-            android:name="."
+            android:name=".MainActivity_LienHe"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
