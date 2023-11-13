@@ -12,15 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TrangChuKhachHang_Adapter extends RecyclerView.Adapter<TrangChuKhachHang_Holder> {
+public class DanhBaTinNhanNhanVienAdapter extends RecyclerView.Adapter<DanhBaTinNhanNhanVienHolder> {
     Context context;
-    public static String moTa = "";
+    List<TinNhan> data;
 
-    public TrangChuKhachHang_Adapter(Context context, List<TrangChuKhachHang> data) {
+    public DanhBaTinNhanNhanVienAdapter(Context context, List<TinNhan> data) {
         this.context = context;
         this.data = data;
     }
-
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -30,45 +29,38 @@ public class TrangChuKhachHang_Adapter extends RecyclerView.Adapter<TrangChuKhac
     public void setOnItemClickListenner(OnItemClickListener listenner) {
         mListener = listenner;
     }
-
-    List<TrangChuKhachHang> data;
-
     @NonNull
     @Override
-    public TrangChuKhachHang_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TrangChuKhachHang_Holder(LayoutInflater.from(context).inflate(R.layout.item_trangchukhachhang2, parent, false));
+    public DanhBaTinNhanNhanVienHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new DanhBaTinNhanNhanVienHolder(LayoutInflater.from(context).inflate(R.layout.item_danhbatinnhan,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TrangChuKhachHang_Holder holder, int position) {
-        TrangChuKhachHang trangChuKhachHang = data.get(position);
-        holder.tvMoTa.setText(trangChuKhachHang.tenMoTa);
-
-        if (trangChuKhachHang.tenMoTa.length() > 100) {
-            holder.tvMoTa.setText(trangChuKhachHang.tenMoTa.substring(0, 100) + "...");
+    public void onBindViewHolder(@NonNull DanhBaTinNhanNhanVienHolder holder, int position) {
+        TinNhan tinNhanNhanVien = data.get(position);
+        holder.tvHoTen.setText(tinNhanNhanVien.hoTenKhachHang);
+        holder.tvTinNhan.setText(tinNhanNhanVien.tinNhan);
+        if(tinNhanNhanVien.getTinNhan().trim().length()>30){
+            holder.tvTinNhan.setText(tinNhanNhanVien.tinNhan.substring(0,30)+"...");
         }
-        moTa = trangChuKhachHang.tenMoTa;
-        holder.tvTenKyThuat.setText(trangChuKhachHang.tenKyThuat);
+        holder.tvThoiGian.setText(tinNhanNhanVien.ngay);
 
-        if (!trangChuKhachHang.getHinh().toString().trim().equals("")) {
+        if (!tinNhanNhanVien.getHinhKhachHang().trim().equals("")) {
             try {
-                byte[] bytes = chuyenStringSangByte(trangChuKhachHang.hinh.toString().trim());
+                byte[] bytes = chuyenStringSangByte(tinNhanNhanVien.getHinhKhachHang());
                 Bitmap bitmap = chuyenByteSangBitMap(bytes);
-                holder.ivHinh.setImageBitmap(bitmap);
+                holder.ivHinhDanhBa.setImageBitmap(bitmap);
             } catch (Exception e) {
-                holder.ivHinh.setImageResource(R.drawable.kythuat1);
+                holder.ivHinhDanhBa.setImageResource(R.drawable.anhsp_quantri);
             }
         } else {
-            holder.ivHinh.setImageResource(R.drawable.kythuat2);
+            holder.ivHinhDanhBa.setImageResource(R.drawable.anhsp_quantri);
         }
 
-
-        final int clickedPosition = position;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    moTa = trangChuKhachHang.tenMoTa;
                     mListener.onItemClick(position);
                 }
             }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvThoiGian"
+        android:layout_marginTop="10dp"
+        android:textColor="#9F9797"
+        android:textSize="13dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="24-09-2023 13:13"></TextView>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTinNhan"
+        android:gravity="right"
+        android:layout_marginTop="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:id="@+id/ivHinhTinNhan1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/anhsp_quantri"
+            android:layout_width="30dp"
+            android:layout_height="30dp"></ImageView>
+        <TextView
+            android:id="@+id/tvTinNhan1"
+            android:visibility="gone"
+            android:textColor="#000"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:textSize="13dp"
+            android:text="Xin chào anh chị, nếu bên anh chị có thắc gì thì hãy liên hệ bên em để được hỗ trợ"
+            android:background="@drawable/bg_nentinnhan2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            ></TextView>
+        <TextView
+            android:id="@+id/tvTinNhan2"
+            android:visibility="visible"
+            android:textColor="#000"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:textSize="13dp"
+            android:text="Xin chào anh chị, nếu bên anh chị có thắc gì thì hãy liên hệ bên em để được hỗ trợ"
+            android:background="@drawable/bg_nentinnhan"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            ></TextView>
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/ivHinhTinNhan2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/anhsp_quantri"
+            android:visibility="visible"></ImageView>
+    </LinearLayout>
+
+</LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity_DanhBaTinNhan">
+    tools:context=".MainActivity_DanhBaTinNhan_KhachHang">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
             android:src="@drawable/back"></ImageView>
 
         <EditText
+            android:id="@+id/edtTimKiem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -31,11 +32,13 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:textSize="14dp"
-            android:text="Tìm kiếm"
-            android:textColor="#767070"></EditText>
+            android:hint="Tìm kiếm"
+            android:textColorHint="#767070"></EditText>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewDanhBa"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
