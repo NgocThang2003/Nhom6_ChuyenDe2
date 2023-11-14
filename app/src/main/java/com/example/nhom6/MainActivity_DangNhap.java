@@ -7,14 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +39,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_TK;
     DatabaseReference data_NV;
-    String maKhachHang;
+    public static String maNguoiDung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,17 +182,18 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                         kiemTra = true;
                         index = i;
                         //kiểm tra tài khoản nếu đúng thì sẽ vào trang chủ
+                        maNguoiDung = data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, TrangChu_Admin.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuAdmin.class);
+                        startActivity(intent);
                     }
                     if (data_taiKhoan.get(i).getQuyen() == 4 && rdKhachHang.isChecked() == true) {
                         kiemTra = true;
                         index = i;
-                        maKhachHang=data_taiKhoan.get(i).maNguoiDung;
+                        maNguoiDung =data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_KhachHang.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuKhachHang.class);
+                        startActivity(intent);
                     }
 
                 }
@@ -210,6 +209,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        maNguoiDung = data_NhanVien.get(i).maNhanVien;
 //                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_NhanVien.class);
 //                        startActivity(intent);
                     }
@@ -217,15 +217,17 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_ThuKho.class);
-//                        startActivity(intent);
+                        maNguoiDung = data_NhanVien.get(i).maNhanVien;
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuThuKho.class);
+                        startActivity(intent);
                     }
                     if (data_NhanVien.get(i).quyen.equals("3") && rdShipper.isChecked() == true) {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_ThuKho.class);
-//                        startActivity(intent);
+                        maNguoiDung = data_NhanVien.get(i).maNhanVien;
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuShipper.class);
+                        startActivity(intent);
                     }
 
                 }

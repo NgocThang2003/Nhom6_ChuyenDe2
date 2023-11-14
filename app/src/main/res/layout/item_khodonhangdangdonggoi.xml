@@ -5,14 +5,18 @@
     android:orientation="vertical">
 
     <LinearLayout
+
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:textColor="#fff"
+            android:background="#5FA65D"
+            android:textSize="12dp"
             android:id="@+id/btnGoiDien"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:text="Gọi điện"/>
         <LinearLayout
             android:gravity="right"
@@ -20,10 +24,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:textColor="#fff"
+                android:background="#5FA65D"
+                android:textSize="12dp"
                 android:id="@+id/btnNhanTin"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="Nhắn tin"/>
         </LinearLayout>
     </LinearLayout>
@@ -43,6 +50,8 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textSize="13dp"
+                android:textColor="#000"
                 android:id="@+id/tvTenKH"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -50,6 +59,8 @@
                 android:textStyle="bold"
                 android:text="Khách hàng A"/>
             <TextView
+                android:textSize="13dp"
+                android:textColor="#000"
                 android:id="@+id/tvSDT"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -65,11 +76,10 @@
             <ImageView
                 android:id="@+id/ivHinh"
                 android:scaleType="fitXY"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/ic_launcher_background"/>
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -78,6 +88,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:textSize="13dp"
+                        android:textColor="#000"
                         android:id="@+id/tvTenSP"
                         android:layout_weight="1"
                         android:layout_marginLeft="10dp"
@@ -86,9 +98,17 @@
                         android:textStyle="bold"
                         android:text="Tên sản phẩm"/>
                     <TextView
+
+
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F30F0F"
+                        android:text="đ"/>
+                    <TextView
                         android:id="@+id/tvGia"
                         android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#F30F0F"
@@ -101,16 +121,18 @@
                     <TextView
                         android:id="@+id/tvMoTa"
                         android:layout_weight="1"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mô tả"/>
                     <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="x"/>
+                    <TextView
                         android:id="@+id/tvSoLuong"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Số lượng"/>
@@ -153,6 +175,11 @@
                 android:textColor="#194609"
                 android:text="Trạng thái"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Thành tiền: "/>
+            <TextView
                 android:id="@+id/tvThanhTien"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -162,15 +189,19 @@
         </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
+                    android:textColor="#fff"
+                    android:background="#5FA65D"
+                    android:textSize="12dp"
                     android:id="@+id/btnXacNhanDonHang"
                     android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="119dp"
+                    android:layout_height="35dp"
                     android:text="Xác nhận"/>
             </LinearLayout>
 

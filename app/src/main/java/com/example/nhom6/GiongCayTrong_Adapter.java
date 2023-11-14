@@ -1,13 +1,13 @@
 package com.example.nhom6;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -96,6 +96,28 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
             holder.btnDatMua2.setTextColor(Color.WHITE);
 
         }
+
+        holder.btnDatMua2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity_ChiTietSanPham.maSP = giongCayTrong.maSP2;
+                MainActivity_ChiTietSanPham.maKH = MainActivity_DangNhap.maNguoiDung;
+                Intent intent = new Intent(context,MainActivity_ChiTietSanPham.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.btnDatMua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity_ChiTietSanPham.maSP = giongCayTrong.maSP1;
+                MainActivity_ChiTietSanPham.maKH = MainActivity_DangNhap.maNguoiDung;
+                Intent intent = new Intent(context,MainActivity_ChiTietSanPham.class);
+                context.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override

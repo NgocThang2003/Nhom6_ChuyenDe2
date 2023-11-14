@@ -42,6 +42,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
     Button btnLuu;
     List<TaiKhoan> data_HoSo= new ArrayList<>();
     String maKH = "-NiNrHieKJTJY-rlUhgh";
+    ImageView imgQuayVe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
         edtSDT = findViewById(R.id.edtSDT);
         edtEmail = findViewById(R.id.edtEmail);
         btnLuu = findViewById(R.id.btnLuu);
+        imgQuayVe = findViewById(R.id.imgQuayVe);
     }
 
     private void setEvent() {
@@ -86,6 +88,12 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        imgQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
         ivHinh.setOnClickListener(new View.OnClickListener() {

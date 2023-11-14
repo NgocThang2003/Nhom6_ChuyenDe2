@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity_LyDoHuyDon_ThuKho"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_KhoDonHangDaHuy"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LienHe"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_DanhBaTinNhan_KhachHang"
             android:exported="false" />
         <activity
@@ -65,11 +74,43 @@
             android:name=".MainActivity_GioiThieu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DangNhap"
+            android:name=".MainActivity_TrangChuAdmin"
             android:exported="false" />
-
         <activity
-            android:name=".MainActivity_LienHe"
+            android:name=".MainActivity_QuanTriKyThuat"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriSanPham"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriChungCacDanhMuc"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TrangChuThuKho"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_ChiTietSanPham"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DonHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_GioHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LyDoHuyDon"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_HoSoNguoiDung"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TaiKhoan"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DangNhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -41,8 +41,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     List<SanPham> data_CT = new ArrayList<>();
     //List<TaiKhoan> data_taiKhoan = new ArrayList<>();
 
-    String maSP = "-NiT6YxCGEdSMwNTLFFt";
-    String maKH = "-NiNrHieKJTJY-rlUhgh";
+    public static String maSP = "-NiT6YxCGEdSMwNTLFFt";
+    public static String maKH = "-NiNrHieKJTJY-rlUhgh";
     String tenKH = "Le Hong Thuy";
 
     TextView tvDiaChi, tvPhuongThuc;
@@ -56,6 +56,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         //DocDLTK();
         database = FirebaseDatabase.getInstance();
         data_ChiTiet = database.getReference("SanPham");
@@ -171,8 +172,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 String msg = ", " + currentTime.getDate() + " Tháng " + currentTime.getMonth();
 
 
-                SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-                String currentDateandTime = sdf.format(new Date());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                String currentDateandTime = dateFormat.format(new Date());
 
 //                sdf = new SimpleDateFormat("HH::mm");
 
@@ -202,6 +203,13 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 donHang.setMoTa(data_CT.get(0).moTa);
                 donHang.setsDT(taiKhoan2.getSdt());
 
+                //String danhGia, phanHoi, soSao, thuTien, luotThich;
+                donHang.setDanhGia("");
+                donHang.setPhanHoi("");
+                donHang.setSoSao("");
+                donHang.setThuTien("");
+                donHang.setLuotThich("");
+
                 data_DonHang.child(donHang.maDonHang).setValue(donHang);
                 Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_DonHang.class);
                 startActivity(intent);
@@ -227,6 +235,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 gioHang.setDonVi(data_CT.get(0).getDonVi());
                 gioHang.setHinh(data_CT.get(0).getHinh());
                 data_GioHang.child(maGH).setValue(gioHang);
+
                 Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
                 startActivity(intent);
             }

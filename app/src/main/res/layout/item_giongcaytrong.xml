@@ -43,6 +43,7 @@ android:layout_marginRight="10dp"
             android:textColor="#E71D0E"
             android:text="Giá"/>
         <Button
+            android:background="#EDE9E9"
             android:id="@+id/btnDatMua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,6 +89,7 @@ android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đặt mua"
+                android:background="#EDE9E9"
                 android:textStyle="bold" />
 
 

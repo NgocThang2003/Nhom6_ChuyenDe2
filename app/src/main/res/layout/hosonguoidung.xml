@@ -10,7 +10,6 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:onClick="chucnang"
             android:id="@+id/imgQuayVe"
             android:layout_marginTop="5dp"
             android:scaleType="fitXY"

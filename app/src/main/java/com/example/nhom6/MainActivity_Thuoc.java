@@ -114,7 +114,7 @@ public class MainActivity_Thuoc extends AppCompatActivity {
                     if( i + 1 != data_SP.size()){
                         if (data_SP.get(i+1).loaiSP.toString().equals("Thuốc")) {
                             SanPham sanPham = data_SP.get(i+1);
-                            Toast.makeText(MainActivity_Thuoc.this, "Thuốc: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity_Thuoc.this, "Thuốc: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
                             thuoc.setMaSP2(sanPham.getMaSanPham().trim());
                             thuoc.setTenSP2(sanPham.getMoTa().trim());
                             thuoc.setMoTa2(sanPham.getTenSP().trim());

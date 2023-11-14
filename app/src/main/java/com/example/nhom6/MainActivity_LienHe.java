@@ -1,9 +1,11 @@
 package com.example.nhom6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,9 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity_LienHe extends AppCompatActivity {
     EditText edtID,edtHoTen,edtSDT,edtEmail,edtCongTy,edtGopY;
-    Button btnGuiThongTin;
+    Button btnGuiThongTin, btnQuayLai;
     FirebaseDatabase database;
     DatabaseReference data_LienHe;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,16 @@ public class MainActivity_LienHe extends AppCompatActivity {
                 }
             }
         });
+
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+
     }
 
     private boolean kiemTraDuLieu() {
@@ -69,6 +82,10 @@ public class MainActivity_LienHe extends AppCompatActivity {
         edtCongTy=findViewById(R.id.edtCongTy);
         edtGopY=findViewById(R.id.edtGopY);
         btnGuiThongTin=findViewById(R.id.btnGuiThongTin);
+        btnQuayLai=findViewById(R.id.btnQuayLai);
+
         edtID=findViewById(R.id.edtID);
+
+
     }
 }

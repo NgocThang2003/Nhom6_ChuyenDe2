@@ -1,5 +1,7 @@
 package com.example.nhom6;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity_LyDoHuyDon extends AppCompatActivity {
+public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
     TextView tvTenKhachHang,tvTenSP,tvMoTa,tvGia,tvSoLuong,tvNgay,tvDiaChi,tvSDT;
     EditText edtLyDoHuyDon;
     Button btnGui;
@@ -40,7 +43,7 @@ public class MainActivity_LyDoHuyDon extends AppCompatActivity {
         btnGui.setVisibility(View.GONE);
         // Sử dụng Serializable
         Intent intent = getIntent();
-        DonHang myObject = (DonHang) intent.getSerializableExtra("don hang");
+        DonHang myObject = (DonHang) intent.getSerializableExtra("donHang_ThuKho");
 
         tvTenKhachHang.setText(myObject.tenKhachHang);
         tvTenSP.setText(myObject.tenSanPham);
@@ -87,10 +90,27 @@ public class MainActivity_LyDoHuyDon extends AppCompatActivity {
         btnGui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data_DH.child(myObject.maDonHang).child("lyDoHuyDon").setValue(edtLyDoHuyDon.getText().toString().trim());
-                data_DH.child(myObject.maDonHang).child("trangThai").setValue("Đã huỷ");
-                Intent intent = new Intent(MainActivity_LyDoHuyDon.this, MainActivity_DonHang.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_LyDoHuyDon_ThuKho.this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+                builder.setMessage("Bạn có muốn hủy đơn hàng này không ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // START THE GAME!
+                                Toast.makeText(MainActivity_LyDoHuyDon_ThuKho.this, "Hủy đơn hàng thành công", Toast.LENGTH_SHORT).show();
+                                data_DH.child(myObject.maDonHang).child("lyDoHuyDon").setValue(edtLyDoHuyDon.getText().toString().trim());
+                                data_DH.child(myObject.maDonHang).child("trangThai").setValue("Đã huỷ");
+                                Intent intent = new Intent(MainActivity_LyDoHuyDon_ThuKho.this, MainActivity_KhoDonHangChoXacNhan.class);
+                                startActivity(intent);
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                builder.create().show();
+
             }
         });
     }

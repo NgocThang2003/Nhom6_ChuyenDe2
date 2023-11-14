@@ -23,11 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity_GioHang extends AppCompatActivity {
-    Button btnChonPhuongThucThanhToan,btnChonDiaChi;
+    Button btnChonPhuongThucThanhToan,btnChonDiaChi,btnQuayLai;
     RecyclerView rcvRecyclerView;
     List<GioHang>data_GioHang=new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference data_GH;
+
 
     String maKH = "-NiNrHieKJTJY-rlUhgh";
     String maSP = "-NiT6YxCGEdSMwNTLFFt";
@@ -41,6 +42,7 @@ public class MainActivity_GioHang extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         database=FirebaseDatabase.getInstance();
         data_GH=database.getReference("GioHang");
 
@@ -71,6 +73,13 @@ public class MainActivity_GioHang extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
         btnChonPhuongThucThanhToan.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +118,7 @@ public class MainActivity_GioHang extends AppCompatActivity {
     }
 
     private void setcontrol() {
+        btnQuayLai = findViewById(R.id.btnQuayLai);
         rcvRecyclerView=findViewById(R.id.rcvRecyclerviewGioHang);
         btnChonDiaChi=findViewById(R.id.btnChondiachi);
         btnChonPhuongThucThanhToan=findViewById(R.id.btnTChonPhuongThuc);

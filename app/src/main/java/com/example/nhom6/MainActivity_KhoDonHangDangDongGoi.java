@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,8 @@ public class MainActivity_KhoDonHangDangDongGoi extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_KDHDDG;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
+    ImageView ivQuayVe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,14 @@ public class MainActivity_KhoDonHangDangDongGoi extends AppCompatActivity {
 
             }
         });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_KhoDonHangDangDongGoi.this, MainActivity_TrangChuThuKho.class);
+                startActivity(intent);
+            }
+        });
     }
     public void DocDL() {
         data_DonHang.clear();
@@ -86,6 +96,10 @@ public class MainActivity_KhoDonHangDangDongGoi extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
                     if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                        data_DonHang.add(donHang);
+                    }
+
+                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
                         data_DonHang.add(donHang);
                     }
 
@@ -104,29 +118,13 @@ public class MainActivity_KhoDonHangDangDongGoi extends AppCompatActivity {
     }
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
-        ivHinh = findViewById(R.id.ivHinh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
+
 
     }
     byte[] byteArrayHinh = new byte[0];
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            ivHinh.setImageURI(uri);
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byteArrayHinh = stream.toByteArray();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);

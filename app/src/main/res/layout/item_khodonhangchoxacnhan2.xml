@@ -10,12 +10,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:textColor="#fff"
-            android:background="#5FA65D"
             android:textSize="12dp"
             android:id="@+id/btnGoiDien"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:text="Gọi điện"/>
         <LinearLayout
             android:gravity="right"
@@ -23,19 +21,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:textColor="#fff"
-                android:background="#5FA65D"
                 android:textSize="12dp"
                 android:id="@+id/btnNhanTin"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:text="Nhắn tin"/>
         </LinearLayout>
     </LinearLayout>
     <ImageView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/thanh"/>
@@ -102,16 +96,9 @@
                         android:textStyle="bold" />
                     <TextView
                         android:textSize="12dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#F30F0F"
-                        android:text="đ"/>
-
-                    <TextView
-                        android:textSize="12dp"
                         android:id="@+id/tvGia"
                         android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#F30F0F"
@@ -131,44 +118,25 @@
                         android:text="Mô tả"/>
 
                     <TextView
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:text="x"
-                        android:textSize="12dp" />
-                    <TextView
                        android:textColor="#000"
                         android:id="@+id/tvSoLuong"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:text="Số lượng"
                         android:textSize="12dp" />
                 </LinearLayout>
-                <LinearLayout
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/tvTonKho"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="235dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="Tồn kho:"/>
-                    <TextView
-                        android:gravity="right"
-                        android:id="@+id/tvTonKho"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="0"/>
-                </LinearLayout>
-
+                    android:textColor="#F30F0F"
+                    android:text="Tồn kho"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -207,11 +175,6 @@
                 android:textColor="#194609"
                 android:text="Trạng thái"/>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:text="Thành tiền:"/>
-            <TextView
                 android:id="@+id/tvThanhTien"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -219,14 +182,6 @@
                 android:textColor="#F30F0F"
                 android:text="Thành tiền"/>
         </LinearLayout>
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tvLyDoHuyDon"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#F30F0F"
-            android:text="Thành tiền"/>
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"

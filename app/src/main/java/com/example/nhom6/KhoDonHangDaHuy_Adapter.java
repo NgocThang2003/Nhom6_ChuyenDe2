@@ -1,7 +1,6 @@
 package com.example.nhom6;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -18,13 +17,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
+public class KhoDonHangDaHuy_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
     Context context;
     List<DonHang> data;
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
-    public KhoDonHangChoXacNhan_Adapter(Context context, List<DonHang> data) {
+    public KhoDonHangDaHuy_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
@@ -66,32 +65,14 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
-
         holder.tvThanhTien.setText("đ" + gia * soLuong);
 
+        holder.tvLyDoHuyDon.setVisibility(View.VISIBLE);
+        holder.tvLyDoHuyDon.setText(donHang.lyDoHuyDon);
         holder.btnTinNhan.setVisibility(View.GONE);
         holder.btnGoiDien.setVisibility(View.GONE);
-
-        holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
-                String currentDateandTime = sdf.format(new Date());
-                data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang đóng gói");
-                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐang đóng gói "+currentDateandTime);
-            }
-        });
-
-        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MainActivity_LyDoHuyDon_ThuKho.class);
-                intent.putExtra("donHang_ThuKho",donHang);
-                context.startActivity(intent);
-            }
-        });
-
-
+        holder.btnXacNhanDonHang.setVisibility(View.GONE);
+        holder.btnHuy.setVisibility(View.GONE);
     }
 
     @Override

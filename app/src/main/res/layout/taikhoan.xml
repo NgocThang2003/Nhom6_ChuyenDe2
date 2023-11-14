@@ -34,6 +34,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvXemTatCa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="200dp"
@@ -229,12 +230,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:onClick="chucnanglienhe"
+                android:id="@+id/ivLienHe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/lienhe" />
 
             <TextView
+                android:id="@+id/tvLienHe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -242,8 +244,7 @@
                 android:text="Liên hệ" />
 
             <ImageView
-                android:onClick="chucnanglienhe"
-                android:id="@+id/ivLienHe"
+                android:id="@+id/ivLienHe2"
                 android:layout_width="24dp"
                 android:layout_height="40dp"
                 android:src="@drawable/quayphai"></ImageView>

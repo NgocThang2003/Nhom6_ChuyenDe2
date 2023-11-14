@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GiongCayTrong_Holder extends RecyclerView.ViewHolder {
     ImageView ivHinh1, ivHinh2;
     TextView tvTenSP1, tvTenSP2, tvGia1, tvGia2;
-    Button btnDatMua2;
+    Button btnDatMua2, btnDatMua;
     LinearLayout linearLayoutTC;
 
     Button btn2 ;
@@ -27,5 +27,6 @@ public class GiongCayTrong_Holder extends RecyclerView.ViewHolder {
         linearLayoutTC = itemView.findViewById(R.id.linearLayoutTrangChu);
 
         btnDatMua2 =itemView.findViewById(R.id.btnDatMua2);
+        btnDatMua =itemView.findViewById(R.id.btnDatMua);
     }
 }
