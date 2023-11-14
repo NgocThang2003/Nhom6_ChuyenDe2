@@ -81,6 +81,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDanhSachDonHang"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donmoi"></ImageView>
@@ -124,6 +125,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDonHangCuaBan"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donhangcuaban"></ImageView>
@@ -132,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Đơn hàng đã đóng gói"
+                    android:text="Đơn hàng của bạn"
                     android:textColor="#000"
                     android:textSize="12dp"></TextView>
             </LinearLayout>
@@ -151,15 +153,17 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDonHangDangGiao"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donhangdanggiao"></ImageView>
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Danh sách đơn hàng"
+                    android:text="Đơn hàng đang giao"
                     android:textColor="#000"
                     android:textSize="12dp"></TextView>
             </LinearLayout>
@@ -194,6 +198,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDonHangDaHuy"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donhangdahuy"></ImageView>
@@ -202,7 +207,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Đơn hàng đã đóng gói"
+                    android:text="Đơn hàng đã huỷ"
                     android:textColor="#000"
                     android:textSize="12dp"></TextView>
             </LinearLayout>

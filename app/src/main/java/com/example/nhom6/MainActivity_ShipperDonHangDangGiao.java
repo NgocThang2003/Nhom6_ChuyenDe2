@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
 
     @Override
@@ -76,6 +77,13 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
 
             }
         });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ShipperDonHangDangGiao.this,MainActivity_TrangChuShipper.class);
+                startActivity(intent);
+            }
+        });
     }
     public void DocDL() {
         data_DonHang.clear();
@@ -86,13 +94,12 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                    if(donHang.trangThai.toString().trim().equals("Đang giao hàng")){
                         data_DonHang.add(donHang);
                     }
-                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
+                    if(donHang.trangThai.toString().trim().equals("Đã giao hàng")){
                         data_DonHang.add(donHang);
                     }
-
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
@@ -109,6 +116,7 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
     }
     byte[] byteArrayHinh = new byte[0];

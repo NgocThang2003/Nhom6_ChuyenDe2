@@ -12,6 +12,7 @@
         android:background="#4E8F49">
 
         <ImageView
+            android:id="@+id/ivQuayVe"
             android:layout_gravity="center"
             android:scaleType="fitXY"
             android:layout_width="30dp"

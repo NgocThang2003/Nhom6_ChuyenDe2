@@ -40,6 +40,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
     EditText edtTen, edtSDT, edtEmail;
     ImageView ivHinh;
     Button btnLuu;
+    ImageView ivQuayVe;
     List<TaiKhoan> data_HoSo= new ArrayList<>();
     String maKH = "-NiNrHieKJTJY-rlUhgh";
     @Override
@@ -56,6 +57,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
         edtSDT = findViewById(R.id.edtSDT);
         edtEmail = findViewById(R.id.edtEmail);
         btnLuu = findViewById(R.id.btnLuu);
+        ivQuayVe = findViewById(R.id.imgQuayVe);
     }
 
     private void setEvent() {
@@ -108,6 +110,13 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
                     Toast.makeText(MainActivity_HoSoNguoiDung.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_HoSoNguoiDung.this, MainActivity_TaiKhoan.class);
+                startActivity(intent);
             }
         });
 

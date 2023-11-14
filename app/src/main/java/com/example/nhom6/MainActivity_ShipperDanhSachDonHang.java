@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,9 +32,9 @@ import java.util.List;
 public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database;
-    DatabaseReference data_DSDH;
+    DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
 
     @Override
@@ -46,11 +47,11 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
 
     private void setEvent() {
         database = FirebaseDatabase.getInstance();
-        data_DSDH = database.getReference("DonHang");
+        data_DHCB = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(new ShipperDanhSachDonHang_Adapter(this,data_DonHang));
 
-        data_DSDH.addChildEventListener(new ChildEventListener() {
+        data_DHCB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
@@ -76,10 +77,17 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
 
             }
         });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ShipperDanhSachDonHang.this,MainActivity_TrangChuShipper.class);
+                startActivity(intent);
+            }
+        });
     }
     public void DocDL() {
         data_DonHang.clear();
-        data_DSDH.addListenerForSingleValueEvent(new ValueEventListener() {
+        data_DHCB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_DonHang.clear();
@@ -103,6 +111,7 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
     }
     byte[] byteArrayHinh = new byte[0];

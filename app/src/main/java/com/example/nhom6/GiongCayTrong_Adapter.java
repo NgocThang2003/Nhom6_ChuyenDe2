@@ -85,7 +85,6 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
                 holder.btnDatMua2.setBackgroundColor(Color.BLUE);
             }
         }
-
         else{
             holder.linearLayoutTC.setBackgroundColor(Color.WHITE);
             holder.tvTenSP2.setVisibility(View.GONE);

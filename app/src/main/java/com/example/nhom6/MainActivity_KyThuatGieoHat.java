@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class MainActivity_KyThuatGieoHat extends AppCompatActivity {
     FirebaseDatabase database;
+    private BottomNavigationView bottomNavigationView;
     DatabaseReference data_KTGH;
     RecyclerView recyclerView;
     TextView tvTenKyThuat, tvMoTa;
@@ -59,6 +61,7 @@ public class MainActivity_KyThuatGieoHat extends AppCompatActivity {
         tvMoTa = findViewById(R.id.tvMoTa);
         tvTenKyThuat = findViewById(R.id.tvTenKyThuat);
         recyclerView = findViewById(R.id.recyclerviewKyThuatGieoHat);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
     }
 
     private void setEvent() {
@@ -155,6 +158,35 @@ public class MainActivity_KyThuatGieoHat extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.taikhoan){
+                    Intent intent = new Intent(MainActivity_KyThuatGieoHat.this,MainActivity_TaiKhoan.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.thuoc){
+                    Intent intent = new Intent(MainActivity_KyThuatGieoHat.this,MainActivity_Thuoc.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.cuahang){
+                    Intent intent = new Intent(MainActivity_KyThuatGieoHat.this,MainActivity_GiongCayTrong.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.home){
+                    Intent intent = new Intent(MainActivity_KyThuatGieoHat.this, MainActivity_TrangChuKhachHang.class);
+                    startActivity(intent);
+                    return  true;
+                }
+                return false;
+
+
+            }
+
         });
 
 

@@ -34,7 +34,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
 
     @Override
@@ -77,6 +77,13 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
 
             }
         });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ShipperDonHangDaHuy.this,MainActivity_TrangChuShipper.class);
+                startActivity(intent);
+            }
+        });
 
     }
     public void DocDL() {
@@ -112,6 +119,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
 
     }

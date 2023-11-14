@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_KDHCXN;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,7 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
     }
     byte[] byteArrayHinh = new byte[0];

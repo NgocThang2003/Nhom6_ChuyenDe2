@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ShipperDonHangCuaBan_Adapter extends RecyclerView.Adapter<Shipper_DonHangCuaBan_Holder> {
     Context context;
     List<DonHang> data;
+
     public ShipperDonHangCuaBan_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;

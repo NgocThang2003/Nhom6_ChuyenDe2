@@ -299,7 +299,7 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     SanPham sanPham = item.getValue(SanPham.class);
                     if (!sanPham.loaiSP.toString().toString().equals("Thuốc")){
-                        if (sanPham.loaiSP.toString().toString().trim().contains("Lâm Nghiệp")){
+                        if (sanPham.loaiSP.toString().toString().trim().contains("Lâm")){
                             data_SP.add(sanPham);
                         }
 //                        Toast.makeText(MainActivity_GiongCayTrong.this, "Nông nghiệp: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
