@@ -35,9 +35,6 @@
             android:name=".MainActivity_Shipper_DonHangCuaBan"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_tinnhan_nhanvien"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity_ShipperDonHangDangGiao"
             android:exported="false" />
         <activity
@@ -89,7 +86,7 @@
             android:name=".MainActivity_TrangChuShipper"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ShipperDanhSachDonHang"
+            android:name=".MainActivity_ChiTietSanPham"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

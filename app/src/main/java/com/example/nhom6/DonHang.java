@@ -7,6 +7,47 @@ public class DonHang implements Serializable {
 
     //gia, moTa ,sDT
     String  hinh, maDonHang, maKhachHang, tenKhachHang, soLuong, diaChi, trangThai, maSanPham, tenSanPham, maShipper, tenShipper, phuongThucThanhToan, thongTinVanChuyen, nhanVienDuyetHang, ngay, lyDoHuyDon, gia, moTa ,sDT;
+    String danhGia, phanHoi, soSao, thuTien, luotThich;
+
+    public String getDanhGia() {
+        return danhGia;
+    }
+
+    public void setDanhGia(String danhGia) {
+        this.danhGia = danhGia;
+    }
+
+    public String getPhanHoi() {
+        return phanHoi;
+    }
+
+    public void setPhanHoi(String phanHoi) {
+        this.phanHoi = phanHoi;
+    }
+
+    public String getSoSao() {
+        return soSao;
+    }
+
+    public void setSoSao(String soSao) {
+        this.soSao = soSao;
+    }
+
+    public String getThuTien() {
+        return thuTien;
+    }
+
+    public void setThuTien(String thuTien) {
+        this.thuTien = thuTien;
+    }
+
+    public String getLuotThich() {
+        return luotThich;
+    }
+
+    public void setLuotThich(String luotThich) {
+        this.luotThich = luotThich;
+    }
 
     public String getGia() {
         return gia;
