@@ -38,6 +38,7 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
 
 
     RecyclerView recyclerviewTinNhan;
+    ImageView ivQuayVe;
     List<TinNhan> data_tinNhan = new ArrayList<>();
 
     public static List<NhanVien> dataNhanVien = new ArrayList<>();
@@ -73,6 +74,7 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         //KhoiTao();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -102,6 +104,12 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -416,6 +424,7 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
 
     private void setControl() {
         recyclerviewTinNhan = findViewById(R.id.recyclerviewTinNhan);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
         edtTinNhan = findViewById(R.id.edtTinNhan);
         tvGui = findViewById(R.id.tvGui);

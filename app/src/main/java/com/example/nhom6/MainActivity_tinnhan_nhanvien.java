@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import java.util.List;
 public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
     RecyclerView recyclerviewTinNhan;
     List<TinNhan> data_tinNhan = new ArrayList<>();
+    ImageView ivQuayVe;
 
     public static List<NhanVien> dataNhanVien = new ArrayList<>();
     public static List<TaiKhoan> dataKhachHang = new ArrayList<>();
@@ -66,6 +68,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         tvGui.setVisibility(View.GONE);
         KhoiTao();
 
@@ -162,6 +165,12 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -395,6 +404,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
 
     private void setControl() {
         recyclerviewTinNhan = findViewById(R.id.recyclerviewTinNhan);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
         edtTinNhan = findViewById(R.id.edtTinNhan);
         tvGui = findViewById(R.id.tvGui);

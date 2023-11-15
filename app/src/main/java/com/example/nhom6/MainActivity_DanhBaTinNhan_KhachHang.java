@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +32,7 @@ import java.util.List;
 public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     RecyclerView recyclerViewDanhBa;
     EditText edtTimKiem;
+    ImageView ivQuayVe;
 
     List<TinNhan> data_danhba = new ArrayList<>();
     List<TinNhan> data_tinNhan = new ArrayList<>();
@@ -52,6 +55,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         data_TinNhanNhanVien = database.getReference("TinNhanNhanVien");
         data_TinNhanKhachHang = database.getReference("TinNhanKhachHang");
@@ -97,6 +101,12 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -345,7 +355,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
                             date1 = dateFormat.parse(tinNhan1.getNgay());
                             date2 = dateFormat.parse(tinNhan2.getNgay());
                         } catch (Exception e) {
-                            return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
+                            return  -1;
                         }
                         return date1.compareTo(date2);
                     }
@@ -391,7 +401,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
                             date1 = dateFormat.parse(tinNhan1.getNgay());
                             date2 = dateFormat.parse(tinNhan2.getNgay());
                         } catch (Exception e) {
-                            return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
+                            return  -1;
                         }
                         return date1.compareTo(date2);
                     }
@@ -409,5 +419,6 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     private void setControl() {
         recyclerViewDanhBa = findViewById(R.id.recyclerviewDanhBa);
         edtTimKiem = findViewById(R.id.edtTimKiem);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 }

@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity_TrangChuNhanVien"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_LyDoHuyDon_ThuKho"
             android:exported="false" />
         <activity

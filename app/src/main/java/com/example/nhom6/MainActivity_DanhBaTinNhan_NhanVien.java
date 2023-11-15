@@ -55,6 +55,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maNV = MainActivity_DangNhap.maNguoiDung;
         //KhoiTao();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         data_TinNhanKhachHang = database.getReference("TinNhanKhachHang");

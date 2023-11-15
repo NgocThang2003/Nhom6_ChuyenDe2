@@ -44,7 +44,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     Spinner spNhomNganh;
 
     int index = -1;
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
     Button btnThem, btnXoa, btnSua;
     List<String> data_nhomNganh = new ArrayList<>();
@@ -72,7 +72,6 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     }
 
     private void setEvent() {
-
         KhoiTao();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -117,6 +116,12 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
                 kiemTraNhomNganh(trangChuKhachHang);
                 EnabelButtonFalse();
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -547,6 +552,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         chkLN = findViewById(R.id.checkBoxLamNghep);
 
         edtNhomNganh = findViewById(R.id.edtNhomNganh);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
     }
 
