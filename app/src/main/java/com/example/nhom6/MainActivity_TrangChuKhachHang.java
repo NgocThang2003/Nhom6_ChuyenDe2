@@ -3,6 +3,9 @@ package com.example.nhom6;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,11 +89,6 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
                 }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_TrangChuKhachHang.class);
-                    startActivity(intent);
-                    return  true;
-                }
-                if(item.getItemId() == R.id.tuvan){
-                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
                     return  true;
                 }

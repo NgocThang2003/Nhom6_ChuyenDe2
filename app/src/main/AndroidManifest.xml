@@ -86,10 +86,10 @@
             android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuKhachHang"
+            android:name=".MainActivity_TrangChuShipper"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuShipper"
+            android:name=".MainActivity_TrangChuKhachHang"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
