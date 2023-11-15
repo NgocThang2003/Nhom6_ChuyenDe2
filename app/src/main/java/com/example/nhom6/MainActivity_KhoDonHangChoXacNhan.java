@@ -82,8 +82,7 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_KhoDonHangChoXacNhan.this, MainActivity_TrangChuThuKho.class);
-                startActivity(intent);
+               onBackPressed();
             }
         });
     }

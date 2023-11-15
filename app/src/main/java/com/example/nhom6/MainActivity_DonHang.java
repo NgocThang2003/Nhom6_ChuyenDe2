@@ -57,16 +57,63 @@ public class MainActivity_DonHang extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override

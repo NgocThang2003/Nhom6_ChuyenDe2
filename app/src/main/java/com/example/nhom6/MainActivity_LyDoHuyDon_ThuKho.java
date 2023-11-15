@@ -25,7 +25,7 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
     TextView tvTenKhachHang,tvTenSP,tvMoTa,tvGia,tvSoLuong,tvNgay,tvDiaChi,tvSDT;
     EditText edtLyDoHuyDon;
     Button btnGui;
-    ImageView ivHinh;
+    ImageView ivHinh,ivQuayVe;
 
     FirebaseDatabase database;
     public static DatabaseReference data_DH;
@@ -87,6 +87,13 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
             }
         });
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         btnGui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +134,7 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
         edtLyDoHuyDon=findViewById(R.id.edtLyDoHuyDon);
         btnGui=findViewById(R.id.btnGuiHuy);
         ivHinh=findViewById(R.id.ivHinhHuy);
+        ivQuayVe=findViewById(R.id.ivQuayVe);
     }
     //chuyen String Sang Byte[]
     private byte[] chuyenStringSangByte(String str) {

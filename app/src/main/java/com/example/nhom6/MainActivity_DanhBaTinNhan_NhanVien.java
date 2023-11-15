@@ -11,7 +11,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -34,6 +36,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
     List<TinNhan> data_danhba = new ArrayList<>();
     List<TinNhan> data_tinNhan = new ArrayList<>();
     EditText edtTimKiem;
+    ImageView ivQuayVe;
 
     FirebaseDatabase database;
     //    DatabaseReference data_TinNhanNhanVien;
@@ -174,6 +177,13 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -393,7 +403,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
                     date1 = dateFormat.parse(tinNhan1.getNgay());
                     date2 = dateFormat.parse(tinNhan2.getNgay());
                 } catch (Exception e) {
-                    return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
+                    return  -1;
                 }
                 return date1.compareTo(date2);
             }
@@ -410,5 +420,6 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
         recyclerViewDanhBa = findViewById(R.id.recyclerviewDanhBa);
 
         edtTimKiem = findViewById(R.id.edtTimKiem);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 }

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,8 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh;
 
+    TextView tvTieuDe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +45,11 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
     }
 
     private void setEvent() {
+        tvTieuDe.setText("Đơn hàng đã hủy");
         database = FirebaseDatabase.getInstance();
         data_KDHCXN = database.getReference("DonHang");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new KhoDonHangDaHuy_Adapter(this,data_DonHang));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new KhoDonHangDaHuy_Adapter(this, data_DonHang));
 
         data_KDHCXN.addChildEventListener(new ChildEventListener() {
             @Override
@@ -74,6 +78,7 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
             }
         });
     }
+
     public void DocDL() {
         data_DonHang.clear();
         data_KDHCXN.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -83,7 +88,7 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đã huỷ")){
+                    if (donHang.trangThai.toString().trim().equals("Đã huỷ")) {
                         data_DonHang.add(donHang);
                     }
 //                    data_DonHang.add(donHang);
@@ -100,11 +105,15 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
 
 
     }
+
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
 
+        tvTieuDe = findViewById(R.id.tvTieuDe);
+
     }
+
     byte[] byteArrayHinh = new byte[0];
 
     @Override
@@ -125,6 +134,7 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
             }
         }
     }
+
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
