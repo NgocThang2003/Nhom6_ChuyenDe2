@@ -20,6 +20,12 @@
             android:name=".MainActivity_TrangChuNhanVien"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_GioHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_ChiTietSanPham"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_LyDoHuyDon_ThuKho"
             android:exported="false" />
         <activity

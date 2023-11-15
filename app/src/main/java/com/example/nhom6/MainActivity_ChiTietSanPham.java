@@ -36,6 +36,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     DatabaseReference data_DonHang;
     DatabaseReference data_GioHang;
     DatabaseReference data_TK;
+    Button btnQuayLai;
 
 
     List<SanPham> data_CT = new ArrayList<>();
@@ -88,6 +89,12 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -336,6 +343,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         tvID = findViewById(R.id.edtIDCT);
         btnCong = findViewById(R.id.btnCongCT);
         btnTru = findViewById(R.id.btnTruCT);
+        btnQuayLai = findViewById(R.id.btnQuayLai);
 
         tvDiaChi = findViewById(R.id.tvDiaChi);
         tvPhuongThuc = findViewById(R.id.tvPhuongThuc);
