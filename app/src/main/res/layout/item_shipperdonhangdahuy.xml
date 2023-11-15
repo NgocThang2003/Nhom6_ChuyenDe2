@@ -2,14 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="5dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#D8EAD6">
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
         <Button
+            android:textSize="13dp"
+            android:textColor="#fff"
+            android:background="#5FA65D"
             android:id="@+id/btnGoiDien"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,14 +30,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:textSize="13dp"
+                android:textColor="#fff"
+                android:background="#5FA65D"
                 android:id="@+id/btnNhanTin"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="Nhắn tin"/>
         </LinearLayout>
     </LinearLayout>
     <ImageView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/thanh"/>
@@ -43,6 +58,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/tvTenKH"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -50,6 +66,7 @@
                 android:textStyle="bold"
                 android:text="Khách hàng A"/>
             <TextView
+                android:textColor="#000"
                 android:id="@+id/tvSDT"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -58,6 +75,7 @@
                 android:text="Số điện thoại"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -65,11 +83,10 @@
             <ImageView
                 android:id="@+id/ivHinh"
                 android:scaleType="fitXY"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/ic_launcher_background"/>
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -78,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:textColor="#000"
                         android:id="@+id/tvTenSP"
                         android:layout_weight="1"
                         android:layout_marginLeft="10dp"
@@ -85,14 +103,22 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="Tên sản phẩm"/>
+
                     <TextView
                         android:id="@+id/tvGia"
-                        android:layout_marginRight="10dp"
+
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#F30F0F"
                         android:text="Giá"/>
+                    <TextView
+                        android:layout_marginRight="10dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F30F0F"
+                        android:text="đ"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,10 +133,17 @@
                         android:layout_height="wrap_content"
                         android:text="Mô tả"/>
                     <TextView
+
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="x"/>
+                    <TextView
                         android:id="@+id/tvSoLuong"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Số lượng"/>
@@ -119,6 +152,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -138,10 +172,13 @@
                 android:text="Ngày"/>
         </LinearLayout>
         <ImageView
+
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/thanh"/>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -153,6 +190,12 @@
                 android:textColor="#194609"
                 android:text="Trạng thái"/>
             <TextView
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F30F0F"
+                android:text="Thành tiền:"/>
+            <TextView
                 android:id="@+id/tvThanhTien"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -161,21 +204,34 @@
                 android:text="Thành tiền"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:padding="5dp"
+                android:textSize="13dp"
+
+                android:textColor="#fff"
+                android:background="#5FA65D"
                 android:id="@+id/btnThongTinKH"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="Thông tin khách hàng"/>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:src="@drawable/thanh2" />
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

@@ -16,7 +16,6 @@ public class Shipper_DonHangCuaBan_Holder extends RecyclerView.ViewHolder {
         super(itemView);
         btnGoiDien = itemView.findViewById(R.id.btnGoiDien);
         btnTinNhan = itemView.findViewById(R.id.btnNhanTin);
-        btnHuyDonHang = itemView.findViewById(R.id.btnHuyDonHang);
         btnXacNhanDonHang = itemView.findViewById(R.id.btnXacNhanDonHang);
         tvTenKH = itemView.findViewById(R.id.tvTenKH);
         tvMoTa = itemView.findViewById(R.id.tvMoTa);

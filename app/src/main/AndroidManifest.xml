@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity_ChiTietSanPham"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_tinnhan_nhanvien"
             android:exported="false" />
         <activity
@@ -32,10 +35,10 @@
             android:name=".MainActivity_KhoDonHangDangDongGoi"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_Shipper_DonHangCuaBan"
+            android:name=".MainActivity_ShipperDanhSachDonHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ShipperDonHangDangGiao"
+            android:name=".MainActivity_DonHangChoXacNhan"
             android:exported="false" />
         <activity
             android:name=".MainActivity_LienHe"
@@ -68,7 +71,7 @@
             android:name=".MainActivity_Thuoc"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DonHangChoXacNhan"
+            android:name=".MainActivity_ShipperDonHangDangGiao"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DiaChiGiaoHang"
@@ -83,10 +86,10 @@
             android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuShipper"
+            android:name=".MainActivity_TrangChuKhachHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ChiTietSanPham"
+            android:name=".MainActivity_TrangChuShipper"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

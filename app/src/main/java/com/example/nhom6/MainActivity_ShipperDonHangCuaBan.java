@@ -13,9 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,14 +27,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
+public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database;
     DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh, ivQuayVe;
 
-    String maShipper = "NiYMkJuTJCslHynH2kU";
+    public static String maShipper = "NiYMkJuTJCslHynH2kU";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +79,7 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_Shipper_DonHangCuaBan.this,MainActivity_TrangChuShipper.class);
+                Intent intent = new Intent(MainActivity_ShipperDonHangCuaBan.this,MainActivity_TrangChuShipper.class);
                 startActivity(intent);
             }
         });
@@ -95,13 +93,14 @@ public class MainActivity_Shipper_DonHangCuaBan extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
-                        data_DonHang.add(donHang);
+                    if(donHang.maShipper.trim().equals(maShipper.trim())){
+                        if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                            data_DonHang.add(donHang);
+                        }
+                        if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
+                            data_DonHang.add(donHang);
+                        }
                     }
-                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
-                        data_DonHang.add(donHang);
-                    }
-
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();

@@ -95,12 +95,10 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
+                    if(donHang.trangThai.toString().trim().equals("Đã huỷ")){
                         data_DonHang.add(donHang);
                     }
-                    if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
-                        data_DonHang.add(donHang);
-                    }
+
 
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }

@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,7 +22,7 @@ public class MainActivity_TrangChuShipper extends AppCompatActivity {
         ivDonHangCuaBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_TrangChuShipper.this,MainActivity_Shipper_DonHangCuaBan.class);
+                Intent intent = new Intent(MainActivity_TrangChuShipper.this, MainActivity_ShipperDonHangCuaBan.class);
                 startActivity(intent);
             }
         });

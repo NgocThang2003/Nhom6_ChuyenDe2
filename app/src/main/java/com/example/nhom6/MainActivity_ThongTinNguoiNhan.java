@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_TTNN;
     List<TaiKhoan> data_ThongTinNguoiNhan = new ArrayList<>();
+    ImageView ivQuayVe;
     public static TextView tvTen, tvSDT, tvEmail, tvDiemDen;
 
     public static String maNguoiDung = "-NiNrHieKJTJY-rlUhgh";
@@ -78,6 +80,12 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
 
             }
         });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
     public void DocDL() {
         data_ThongTinNguoiNhan.clear();
@@ -110,6 +118,7 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
         tvSDT = findViewById(R.id.tvSDT);
         tvEmail = findViewById(R.id.tvEmail);
         tvDiemDen = findViewById(R.id.tvDiemDen);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
     }
 
