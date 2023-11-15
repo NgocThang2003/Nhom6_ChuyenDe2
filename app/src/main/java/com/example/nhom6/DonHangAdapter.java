@@ -96,6 +96,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangHolder> {
             holder.btnDonHang.setVisibility(View.VISIBLE);
             holder.btnDonHang.setText("Đánh giá");
             holder.tvLyDo.setText("");
+
         }
 
     }

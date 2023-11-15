@@ -11,15 +11,15 @@ import java.util.List;
 
 public class DanhGiaSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
     Context context;
-    public DanhGiaSP_Adappter(Context context, List<DanhGiaSP> data) {
+    public DanhGiaSP_Adappter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
-    List<DanhGiaSP> data;
+    List<DonHang> data;
     @NonNull
     @Override
     public DanhgiaSP_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new DanhgiaSP_Holder(LayoutInflater.from(context).inflate(R.layout.item_tatca,parent,false));
+        return new DanhgiaSP_Holder(LayoutInflater.from(context).inflate(R.layout.item_danhgia,parent,false));
     }
 
     @Override
