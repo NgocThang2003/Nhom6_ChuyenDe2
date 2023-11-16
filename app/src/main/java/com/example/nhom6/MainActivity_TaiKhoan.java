@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     TextView tvXemTatCa, tvLienHe;
 
     ImageView ivLienHe, ivLienHe2;
+    Button btnDangXuat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,14 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
             }
         });
 
+        btnDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(MainActivity_TaiKhoan.this,MainActivity_TrangChuChinh.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity_TaiKhoan.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+            }
+        });
         tvXemTatCa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +113,8 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
 
         ivLienHe = findViewById(R.id.ivLienHe);
         ivLienHe2 = findViewById(R.id.ivLienHe2);
+
+        btnDangXuat = findViewById(R.id.btnDangXuat);
 
     }
 

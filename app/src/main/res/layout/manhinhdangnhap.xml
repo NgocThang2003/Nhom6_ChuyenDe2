@@ -14,8 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#D1E7FF"
-            android:orientation="vertical">
+
+            android:orientation="horizontal">
                 <RadioButton
+                    android:gravity="center"
+                    android:layout_weight="1"
                     android:id="@+id/rdAdmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -23,6 +26,8 @@
                     android:textSize="15dp" />
 
                 <RadioButton
+                    android:gravity="center"
+                    android:layout_weight="1"
                     android:id="@+id/rdNhanVien"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -30,6 +35,8 @@
                     android:textSize="15dp" />
 
                 <RadioButton
+                    android:gravity="center"
+                    android:layout_weight="1"
                     android:id="@+id/rdKhachHang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,6 +44,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
+                    android:visibility="gone"
                     android:id="@+id/rdThuKho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,6 +52,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
+                    android:visibility="gone"
                     android:id="@+id/rdShipper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

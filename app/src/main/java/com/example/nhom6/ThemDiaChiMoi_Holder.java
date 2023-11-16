@@ -3,6 +3,7 @@ package com.example.nhom6;
 import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class ThemDiaChiMoi_Holder extends RecyclerView.ViewHolder {
    TextView tvTen, tvSDT, tvTinh, tvQuan, tvPhuong, tvSoNha;
+   LinearLayout linearLayoutChonDiaChi;
   CheckBox cbCheck;
     public ThemDiaChiMoi_Holder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +25,6 @@ public class ThemDiaChiMoi_Holder extends RecyclerView.ViewHolder {
         tvPhuong = itemView.findViewById(R.id.tvPhuong);
         tvSoNha = itemView.findViewById(R.id.tvSoNha);
         cbCheck = itemView.findViewById(R.id.cbCheck);
-
+        linearLayoutChonDiaChi = itemView.findViewById(R.id.linearLayoutChonDiaChi);
     }
 }

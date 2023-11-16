@@ -17,13 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity_ChonDiaChiGiaoHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_TrangChuNhanVien"
             android:exported="false" />
         <activity
             android:name=".MainActivity_GioHang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ChiTietSanPham"
             android:exported="false" />
         <activity
             android:name=".MainActivity_LyDoHuyDon_ThuKho"
@@ -107,9 +107,6 @@
             android:name=".MainActivity_DonHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_GioHang"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity_LyDoHuyDon"
             android:exported="false" />
         <activity
@@ -120,6 +117,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity_DangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TrangChuChinh"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

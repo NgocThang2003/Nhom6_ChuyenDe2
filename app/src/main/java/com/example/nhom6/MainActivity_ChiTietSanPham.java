@@ -5,8 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +39,13 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     DatabaseReference data_DonHang;
     DatabaseReference data_GioHang;
     DatabaseReference data_TK;
+    DatabaseReference data_DiaChi;
     Button btnQuayLai;
+    Spinner spDiaChi;
+    ArrayAdapter adapter;
+    List<String> data = new ArrayList<>();
 
+    TextView tvChonDiaChiGiaoHang;
 
     List<SanPham> data_CT = new ArrayList<>();
     //List<TaiKhoan> data_taiKhoan = new ArrayList<>();
@@ -46,7 +54,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     public static String maKH = "-NiNrHieKJTJY-rlUhgh";
     String tenKH = "Le Hong Thuy";
 
-    TextView tvDiaChi, tvPhuongThuc;
+    public static TextView tvDiaChi, tvPhuongThuc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     }
 
     private void setEvent() {
+        tvDiaChi.setText(ChonDiaChi_Adapter.diaChi);
         maKH = MainActivity_DangNhap.maNguoiDung;
         //DocDLTK();
         database = FirebaseDatabase.getInstance();
@@ -64,6 +73,10 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         data_DonHang = database.getReference("DonHang");
         data_GioHang = database.getReference("GioHang");
         data_TK = database.getReference("DangKy");
+        data_DiaChi = database.getReference("ThemDiaChiMoi");
+
+        adapter  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,data);
+        spDiaChi.setAdapter(adapter);
 
         data_ChiTiet.addChildEventListener(new ChildEventListener() {
             @Override
@@ -124,7 +137,32 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
             }
         });
+        data_DiaChi.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLDiaChi();
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLDiaChi();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDLDiaChi();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         //nhấn vao tăng số lượng
         btnCong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +262,15 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
 
+        tvChonDiaChiGiaoHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_ChonDiaChiGiaoHang.class);
+                startActivity(intent);
+
+            }
+        });
+
         //Nhấn để thêm vào giỏ hàng
         btnThemVaoGH.setOnClickListener(new View.OnClickListener() {
             //            maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh
@@ -311,6 +358,32 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         });
     }
 
+    private void DocDLDiaChi() {
+        data.clear();
+        data_DiaChi.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear();
+//                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
+                    if (themDiaChiMoi.maNguoiDung.toString().trim().equals(maKH.toString().trim())) {
+                        data.add("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
+                        //Toast.makeText(MainActivity_ChiTietSanPham.this, ""+taiKhoan.maNguoiDung, Toast.LENGTH_SHORT).show();
+                        //tvDiaChi.setText("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
+                        break;
+                    }
+                }
+
+                //tvDiaChi.setText(data.get(0).toString().trim());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
@@ -337,6 +410,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         tvSoLuong = findViewById(R.id.tvSoLuongCT);
         tvMoTa = findViewById(R.id.tvMoTaCT);
         tvGia = findViewById(R.id.tvGiaCT);
+        tvChonDiaChiGiaoHang = findViewById(R.id.tvChonDiaChiGiaoHang);
+
         btnDatHang = findViewById(R.id.btnDatHang);
         btnThemVaoGH = findViewById(R.id.btnThemVaoGH);
         imgHinh = findViewById(R.id.ivHinhChiTiet);
@@ -347,5 +422,6 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
         tvDiaChi = findViewById(R.id.tvDiaChi);
         tvPhuongThuc = findViewById(R.id.tvPhuongThuc);
+        spDiaChi = findViewById(R.id.spDiaChi);
     }
 }

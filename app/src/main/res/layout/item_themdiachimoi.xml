@@ -4,8 +4,16 @@
     android:layout_marginTop="20dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_duongke"></ImageView>
     <LinearLayout
+        android:id="@+id/linearLayoutChonDiaChi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -19,62 +27,92 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên: "/>
             <TextView
                 android:id="@+id/tvTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tên"/>
             <TextView
-                android:id="@+id/tvSDT"
                 android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại: "/>
+            <TextView
+                android:id="@+id/tvSDT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại"/>
 
         </LinearLayout>
-    <TextView
-        android:id="@+id/tvSoNha"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Số nhà"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số nhà: "/>
+        <TextView
+            android:id="@+id/tvSoNha"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số nhà"/>
+    </LinearLayout>
+
         <LinearLayout
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tỉnh: "/>
             <TextView
                 android:id="@+id/tvTinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tỉnh"/>
             <TextView
+               android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=", Quận: "/>
+            <TextView
                 android:id="@+id/tvQuan"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quận"/>
             <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=", Phường: "/>
+            <TextView
                 android:id="@+id/tvPhuong"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phường"/>
-        </LinearLayout>/
+        </LinearLayout>
 
 
     </LinearLayout>
         <CheckBox
-
+            android:visibility="gone"
             android:id="@+id/cbCheck"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="140dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
 
 </LinearLayout>

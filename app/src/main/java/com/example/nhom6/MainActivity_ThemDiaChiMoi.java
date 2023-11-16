@@ -64,6 +64,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maNguoiDung = MainActivity_DangNhap.maNguoiDung;
         database = FirebaseDatabase.getInstance();
         data_TDCM = database.getReference("ThemDiaChiMoi");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -197,7 +198,9 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                 Toast.makeText(MainActivity_ThemDiaChiMoi.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
-                    data_ThemDiaChi.add(themDiaChiMoi);
+                    if(themDiaChiMoi.maNguoiDung.trim().equals(maNguoiDung.trim())){
+                        data_ThemDiaChi.add(themDiaChiMoi);
+                    }
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
