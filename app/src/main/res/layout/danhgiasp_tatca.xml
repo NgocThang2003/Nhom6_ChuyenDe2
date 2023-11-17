@@ -48,16 +48,16 @@
             android:text="Tất cả"
             android:layout_marginRight="45dp"/>
 
-        <Button
-            android:id="@+id/btnDanhGia_ChuaDanhGia"
-            style="@style/bt_danhgia"
-            android:text="chưa đánh giá"
-            android:layout_marginRight="45dp"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnDanhGia_ChuaDanhGia"-->
+<!--            style="@style/bt_danhgia"-->
+<!--            android:text="chưa đánh giá"-->
+<!--            android:layout_marginRight="45dp"/>-->
 
-        <Button
-            android:id="@+id/btnDanhGia_DaDanhGia"
-            style="@style/bt_danhgia"
-            android:text="đã đánh giá"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnDanhGia_DaDanhGia"-->
+<!--            style="@style/bt_danhgia"-->
+<!--            android:text="đã đánh giá"/>-->
 
     </LinearLayout>
 <!--        Recyclerview-->

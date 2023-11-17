@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,12 +90,21 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangHolder> {
             holder.btnDonHang.setVisibility(View.GONE);
             holder.tvLyDo.setText("lý do huỷ đon: "+donHang.lyDoHuyDon);
 
+
         }
         if(donHang.trangThai.equals("Đã giao hàng")){
             holder.btnDonHang.setVisibility(View.VISIBLE);
             holder.btnDonHang.setText("Đánh giá");
             holder.tvLyDo.setText("");
 
+            holder.btnDonHang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, MainActivity_DanhGia.class);
+                    intent.putExtra("don hang", donHang);
+                    context.startActivity(intent);
+                }
+            });
         }
 
     }

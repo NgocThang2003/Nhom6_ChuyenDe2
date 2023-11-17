@@ -3,6 +3,7 @@ package com.example.nhom6;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ public class DonHangHolder extends RecyclerView.ViewHolder {
     TextView tvTenSP,tvMoTa,tvGia, tvSoLuong, tvNgay, tvTrangThai, tvGiaDH, tvDiaChi,tvLyDo;
 
     //Button btnHuyDongHang,btnDanhGia;
+
     ImageView ivHinh;
     Button btnDonHang;
     public DonHangHolder(@NonNull View itemView) {

@@ -109,8 +109,14 @@
         <activity
             android:name=".MainActivity_TaiKhoan"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity_TatCaDanhGia"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".MainActivity_DangNhap"
+            android:name=".MainActivity_DanhGia"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TatCaDanhGia"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
