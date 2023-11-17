@@ -20,6 +20,9 @@
             android:name=".MainActivity_ChonDiaChiGiaoHang"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_DanhBaTinNhan_KhachHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_TrangChuNhanVien"
             android:exported="false" />
         <activity
@@ -33,9 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity_LienHe"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_DanhBaTinNhan_KhachHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_tinnhan_khachhang"

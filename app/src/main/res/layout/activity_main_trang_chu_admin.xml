@@ -23,6 +23,7 @@
             android:textSize="22dp"></TextView>
 
         <ImageView
+            android:id="@+id/ivDangXuat"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginRight="10dp"
