@@ -123,6 +123,15 @@ public class ShipperDonHangDangGiao_Adapter extends RecyclerView.Adapter<Shipper
                 context.startActivity(intent);
             }
         });
+        holder.btnTinNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity_tinnhan_nhanvien.class);
+                MainActivity_tinnhan_nhanvien.maNV = MainActivity_DangNhap.maNguoiDung;
+                MainActivity_tinnhan_nhanvien.maKH = donHang.maKhachHang;
+                context.startActivity(intent);
+            }
+        });
 
 
     }

@@ -11,7 +11,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -34,6 +36,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
     List<TinNhan> data_danhba = new ArrayList<>();
     List<TinNhan> data_tinNhan = new ArrayList<>();
     EditText edtTimKiem;
+    ImageView ivQuayVe;
 
     FirebaseDatabase database;
     //    DatabaseReference data_TinNhanNhanVien;
@@ -72,6 +75,12 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
                 MainActivity_tinnhan_nhanvien.maNV = maNV;
                 MainActivity_tinnhan_nhanvien.maKH = data_danhba.get(position).maKhachHang;
                 startActivity(intent);
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -410,5 +419,6 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
         recyclerViewDanhBa = findViewById(R.id.recyclerviewDanhBa);
 
         edtTimKiem = findViewById(R.id.edtTimKiem);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 }

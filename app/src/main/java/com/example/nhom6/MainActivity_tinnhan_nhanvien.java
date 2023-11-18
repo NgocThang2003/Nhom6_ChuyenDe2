@@ -47,7 +47,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
 
     EditText edtTinNhan;
     TextView tvGui, tvTenKhachHang;
-    ImageView ivHinhKhachHang;
+    ImageView ivHinhKhachHang, ivQuayVe;
 
     FirebaseDatabase database;
     DatabaseReference data_TinNhanNhanVien;
@@ -110,6 +110,12 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -398,6 +404,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
 
         edtTinNhan = findViewById(R.id.edtTinNhan);
         tvGui = findViewById(R.id.tvGui);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
 
         tvTenKhachHang = findViewById(R.id.tvTenKhachHang);
         ivHinhKhachHang = findViewById(R.id.ivHinhKhachHang);

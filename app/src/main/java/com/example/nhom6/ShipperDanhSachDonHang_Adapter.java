@@ -62,6 +62,8 @@ public class ShipperDanhSachDonHang_Adapter extends RecyclerView.Adapter<Shipper
         }
 
         holder.tvDiaChi.setText(donHang.diaChi);
+        holder.btnTinNhan.setVisibility(View.GONE);
+        holder.btnGoiDien.setVisibility(View.GONE);
         holder.tvTenSP.setText(donHang.tenSanPham);
         holder.tvMoTa.setText(donHang.moTa);
         holder.tvSDT.setText(donHang.sDT);
