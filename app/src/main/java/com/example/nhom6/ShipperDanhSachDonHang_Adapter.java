@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ShipperDanhSachDonHang_Adapter extends RecyclerView.Adapter<ShipperDanhSachDonHang_Holder> {
@@ -95,9 +97,13 @@ public class ShipperDanhSachDonHang_Adapter extends RecyclerView.Adapter<Shipper
                                 // START THE GAME!
                                 Toast.makeText(context, "Nhận đơn hàng thành công ", Toast.LENGTH_SHORT).show();
 
-                                builder.create().show();
                                 data_DonHang.child(donHang.maDonHang).child("maShipper").setValue(MainActivity_DangNhap.maNguoiDung);
                                 data_DonHang.child(donHang.maDonHang).child("tenShipper").setValue(MainActivity_DangNhap.tenShipper);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                                String currentDateandTime = sdf.format(new Date());
+
+                                data_DonHang.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐã nhận đơn hàng "+currentDateandTime);
+                                data_DonHang.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐã nhân đơn hàng - Mã shipper: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
                                 MainActivity_ShipperDonHangCuaBan.maShipper = MainActivity_DangNhap.maNguoiDung;
                                 Intent intent = new Intent(context,MainActivity_ShipperDonHangCuaBan.class);
                                 context.startActivity(intent);
@@ -109,9 +115,11 @@ public class ShipperDanhSachDonHang_Adapter extends RecyclerView.Adapter<Shipper
                             }
                         });
                 // Create the AlertDialog object and return it
+                builder.create().show();
 
             }
         });
+
 
 
     }

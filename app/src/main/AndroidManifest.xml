@@ -20,6 +20,9 @@
             android:name=".MainActivity_ChiTietSanPham"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_ChonDiaChiGiaoHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_tinnhan_nhanvien"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:name=".MainActivity_KhoDonHangDangDongGoi"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ShipperDanhSachDonHang"
+            android:name=".MainActivity_ShipperDonHangCuaBan"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DonHangChoXacNhan"
@@ -74,13 +77,16 @@
             android:name=".MainActivity_ShipperDonHangDangGiao"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_ShipperDanhSachDonHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_DiaChiGiaoHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_GioiThieu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DangNhap"
+            android:name=".MainActivity_TrangChuKhachHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_QuanTriKyThuat"
@@ -89,7 +95,11 @@
             android:name=".MainActivity_TrangChuShipper"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuKhachHang"
+            android:name=".MainActivity_LyDoHuyDon_ThuKho"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity_DangNhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

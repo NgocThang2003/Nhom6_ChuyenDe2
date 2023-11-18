@@ -215,7 +215,7 @@
                     android:textSize="13dp"
                     android:textColor="#fff"
                     android:background="#5FA65D"
-                    android:id="@+id/btnXacNhanDonHang"
+                    android:id="@+id/btnXacNhanLayHang"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +46,7 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maShipper = MainActivity_DangNhap.maNguoiDung;
         database = FirebaseDatabase.getInstance();
         data_DHCB = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -94,14 +96,17 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
                     if(donHang.maShipper.trim().equals(maShipper.trim())){
+                        //Toast.makeText(MainActivity_ShipperDonHangCuaBan.this, "thay đổi"+donHang.trangThai, Toast.LENGTH_SHORT).show();
                         if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
                             data_DonHang.add(donHang);
+
                         }
+
                         if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
                             data_DonHang.add(donHang);
                         }
                     }
-                    //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
+
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }

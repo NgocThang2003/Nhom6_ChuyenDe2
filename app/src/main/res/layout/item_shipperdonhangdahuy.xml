@@ -225,6 +225,14 @@
                 android:orientation="horizontal">
             </LinearLayout>
         </LinearLayout>
+        <TextView
+            android:id="@+id/tvLyDoHuyDon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Lý do huỷ đơn"
+            android:textColor="#F30F0F"
+            android:visibility="gone" />
 
         <ImageView
             android:layout_marginRight="10dp"

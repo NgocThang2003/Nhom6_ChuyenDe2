@@ -69,7 +69,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangHolder> {
             holder.tvLyDo.setText("");
         }
 
-        if(donHang.trangThai.equals("Đang giao hàng")){
+            if(donHang.trangThai.equals("Đang giao hàng")){
             holder.btnDonHang.setVisibility(View.GONE);
             holder.tvLyDo.setText("");
         }

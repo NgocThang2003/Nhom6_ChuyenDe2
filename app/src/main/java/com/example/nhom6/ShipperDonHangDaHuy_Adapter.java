@@ -53,6 +53,9 @@ public class ShipperDonHangDaHuy_Adapter extends RecyclerView.Adapter<ShipperDon
         holder.tvSoLuong.setText(donHang.soLuong);
         holder.tvNgay.setText(donHang.ngay);
         holder.tvTrangThai.setText(donHang.trangThai);
+
+        holder.tvLyDoHuyDon.setVisibility(View.VISIBLE);
+        holder.tvLyDoHuyDon.setText(donHang.lyDoHuyDon);
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
