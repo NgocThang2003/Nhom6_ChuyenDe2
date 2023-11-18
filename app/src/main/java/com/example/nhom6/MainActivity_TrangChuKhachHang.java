@@ -92,6 +92,7 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
                     startActivity(intent);
                     return  true;
                 }
+
                 return false;
             }
         });
