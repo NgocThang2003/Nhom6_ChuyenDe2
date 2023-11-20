@@ -8,6 +8,7 @@
     tools:context=".MainActivity_DangNhap">
 
     <TextView
+        android:id="@+id/tvDangNhap"
         style="@style/bg_edit"
         android:text="Đăng nhập" />
         <RadioGroup

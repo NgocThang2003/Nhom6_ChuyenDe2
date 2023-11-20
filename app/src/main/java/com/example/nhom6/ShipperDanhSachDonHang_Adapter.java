@@ -73,16 +73,18 @@ public class ShipperDanhSachDonHang_Adapter extends RecyclerView.Adapter<Shipper
         holder.tvTrangThai.setText(donHang.trangThai);
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
-
+        holder.tvMaShipper.setText("Mã shipper: "+donHang.maShipper);
         holder.tvThanhTien.setText("" + gia * soLuong);
 
         if(donHang.maShipper.equals("")){
+            holder.tvMaShipper.setVisibility(View.GONE);
             holder.btnHuyDonHang.setEnabled(true);
             holder.btnXacNhanDonHang.setEnabled(true);
             holder.btnHuyDonHang.setBackgroundColor(Color.rgb(95,166,93));
             holder.btnXacNhanDonHang.setBackgroundColor(Color.rgb(95,166,93));
         }
         else {
+            holder.tvMaShipper.setVisibility(View.VISIBLE);
             holder.btnHuyDonHang.setEnabled(false);
             holder.btnXacNhanDonHang.setEnabled(false);
             holder.btnHuyDonHang.setBackgroundColor(Color.rgb(214,229,213));

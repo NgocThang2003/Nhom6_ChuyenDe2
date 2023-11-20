@@ -27,6 +27,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.taikhoan).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

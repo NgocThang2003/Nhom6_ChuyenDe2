@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -38,6 +40,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     DatabaseReference data_NhanVien;
     DatabaseReference data_TinNhanNhanVien;
     DatabaseReference data_TinNhanKhachHang;
+    ImageView ivQuayVe;
 
     //    public static String maNV = "";
     public static String maKH = "-NicfEfjZkm0OfST0xMS";
@@ -69,6 +72,12 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
                 MainActivity_tinnhan_khachhang.maKH = maKH;
                 MainActivity_tinnhan_khachhang.maNV = data_danhba.get(position).maNhanVien;
                 startActivity(intent);
+            }
+        });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -409,5 +418,6 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     private void setControl() {
         recyclerViewDanhBa = findViewById(R.id.recyclerviewDanhBa);
         edtTimKiem = findViewById(R.id.edtTimKiem);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 }

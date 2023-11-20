@@ -15,7 +15,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="19dp"
+            android:id="@+id/ivQuayVe"
+            android:layout_width="21dp"
             android:layout_height="28dp"
             android:layout_marginLeft="15dp"
             android:scaleType="fitXY"

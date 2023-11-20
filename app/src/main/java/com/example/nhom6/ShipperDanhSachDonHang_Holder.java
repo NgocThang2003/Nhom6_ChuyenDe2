@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ShipperDanhSachDonHang_Holder extends RecyclerView.ViewHolder {
     Button btnGoiDien, btnTinNhan,btnHuyDonHang, btnXacNhanDonHang;
     ImageView ivHinh;
-    TextView tvTenKH, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien;
+    TextView tvTenKH, tvMaShipper, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien;
     public ShipperDanhSachDonHang_Holder(@NonNull View itemView) {
         super(itemView);
         btnGoiDien = itemView.findViewById(R.id.btnGoiDien);
@@ -19,6 +19,7 @@ public class ShipperDanhSachDonHang_Holder extends RecyclerView.ViewHolder {
         btnHuyDonHang = itemView.findViewById(R.id.btnHuyDonHang);
         btnXacNhanDonHang = itemView.findViewById(R.id.btnXacNhanDonHang);
         tvTenKH = itemView.findViewById(R.id.tvTenKH);
+        tvMaShipper = itemView.findViewById(R.id.tvMaShipper);
         tvMoTa = itemView.findViewById(R.id.tvMoTa);
         ivHinh = itemView.findViewById(R.id.ivHinh);
         tvDiaChi = itemView.findViewById(R.id.tvDiaChi);

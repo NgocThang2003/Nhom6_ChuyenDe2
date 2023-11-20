@@ -81,8 +81,8 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
                 holder.ivHinh2.setVisibility(View.VISIBLE);
                 holder.tvGia2.setVisibility(View.VISIBLE);
                 holder.btnDatMua2.setEnabled(true);
-                holder.btnDatMua2.setTextColor(Color.WHITE);
-                holder.btnDatMua2.setBackgroundColor(Color.BLUE);
+                holder.btnDatMua2.setTextColor(Color.BLACK);
+                holder.btnDatMua2.setBackgroundColor(Color.WHITE);
             }
         }
         else{

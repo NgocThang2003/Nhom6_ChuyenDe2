@@ -86,20 +86,20 @@
             android:name=".MainActivity_GioiThieu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuKhachHang"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TrangChuShipper"
+            android:name=".MainActivity_TrangChuKhachHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_LyDoHuyDon_ThuKho"
+            android:name=".MainActivity_tinnhan_khachhang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DangNhap"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity_DangNhap"
+            android:name=".MainActivity_TrangChuShipper"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

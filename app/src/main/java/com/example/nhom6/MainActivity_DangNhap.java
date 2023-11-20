@@ -34,6 +34,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     Button btnxacNhan;
     List<TaiKhoan> data_taiKhoan = new ArrayList<>();
     List<NhanVien> data_NhanVien = new ArrayList<>();
+    TextView tvDangNhap;
     public static TaiKhoan dangNhap = new TaiKhoan();
     public static int index = -1;
     FirebaseDatabase database;
@@ -68,6 +69,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 //        Hiện mật khẩu
         cbHienMK.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

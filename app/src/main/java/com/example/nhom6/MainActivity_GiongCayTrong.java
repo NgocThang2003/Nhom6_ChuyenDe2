@@ -62,6 +62,7 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.cuahang).setChecked(true);
         database = FirebaseDatabase.getInstance();
         data_GCT = database.getReference("SanPham");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

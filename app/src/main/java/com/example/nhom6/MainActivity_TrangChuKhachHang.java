@@ -63,6 +63,7 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
 //        KhoiTao();
         database = FirebaseDatabase.getInstance();
         data_TCKH = database.getReference("TrangChuKhachHang");
@@ -74,21 +75,34 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_TaiKhoan.class);
+                    item.setChecked(true);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_Thuoc.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    item.setChecked(true);
                     startActivity(intent);
                     return  true;
+
                 }
                 if(item.getItemId() == R.id.cuahang){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_GiongCayTrong.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_TrangChuKhachHang.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    return  true;
+                }
+                if(item.getItemId() == R.id.tuvan){
+                    Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_DanhBaTinNhan_KhachHang.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }
