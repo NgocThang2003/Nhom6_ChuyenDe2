@@ -8,7 +8,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivQuayLaiDG"
+            android:id="@+id/ivQuayLaiChuaDG"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:background="#3EA142"
@@ -31,7 +31,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/edit_sp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -44,20 +44,17 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:scaleType="fitXY"
                     android:id="@+id/ivHinhChuaDanhGia"
                     android:layout_width="70dp"
                     android:layout_height="60dp"
                     android:background="@drawable/ic_launcher_background" />
-                <TextView
-                    android:id="@+id/tvDiaChiChuaDanhGia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Địa chỉ"
-                    />
+
 
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -96,6 +93,29 @@
             </LinearLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tvDiaChiChuaDanhGia"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Địa chỉ"
+                />
+            <TextView
+                android:id="@+id/tvNgayChuaDanhGia"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Ngày"
+                />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,35 +127,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chất lượng sản phẩm"
-                android:textSize="20dp"/>
+                android:textSize="15dp"
+                android:layout_marginTop="2dp"/>
 
             <ImageView
                 android:id="@+id/ivSaoDG1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/star" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/saoxam" />
 
             <ImageView
                 android:id="@+id/ivSaoDG2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/star" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/saoxam" />
 
             <ImageView
-                android:id="@+id/ivSaoGD3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/star" />
+                android:id="@+id/ivSaoDG3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/saoxam"/>
 
             <ImageView
-                android:id="@+id/ivSaoGD4"
+                android:id="@+id/ivSaoDG4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/saoxam" />
+            <ImageView
+                android:id="@+id/ivSaoDG5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/saoxam" />
+
+            <TextView
+                android:id="@+id/tvtrangThaiSoSao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/star" />
+                android:text="Trạng thái"
+                android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
 

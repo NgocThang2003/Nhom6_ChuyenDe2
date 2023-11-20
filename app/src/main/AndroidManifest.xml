@@ -31,9 +31,9 @@
         <activity
             android:name=".MainActivity_tinnhan_khachhang"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity_tinnhan_nhanvien"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity_tinnhan_nhanvien"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity_DanhBaTinNhan_NhanVien"
             android:exported="false" />
@@ -109,14 +109,14 @@
         <activity
             android:name=".MainActivity_TaiKhoan"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MainActivity_TatCaDanhGia"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".MainActivity_TatCaDanhGia"
+            android:exported="false" />
         <activity
             android:name=".MainActivity_DanhGia"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TatCaDanhGia"
+            android:name=".MainActivity_DangNhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

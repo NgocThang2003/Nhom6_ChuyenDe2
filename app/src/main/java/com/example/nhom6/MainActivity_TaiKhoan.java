@@ -20,7 +20,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     TextView tvXemTatCa, tvLienHe;
 
-    ImageView ivLienHe, ivLienHe2;
+    ImageView ivLienHe, ivLienHe2,ivDanhGia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,13 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ivDanhGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity_TaiKhoan.this,MainActivity_TatCaDanhGia.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -103,6 +110,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
 
         ivLienHe = findViewById(R.id.ivLienHe);
         ivLienHe2 = findViewById(R.id.ivLienHe2);
+        ivDanhGia = findViewById(R.id.ivDanhGiaTK);
 
     }
 

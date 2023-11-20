@@ -21,8 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity_DanhGia extends AppCompatActivity {
-    ImageView ivHinh,ivQuayLai;
-    TextView tvTen,tvMoTa,tvGia,tvSoLuong,tvDiaChi;
+    ImageView ivHinh,ivQuayLai,ivSao1,ivSao2,ivSao3,ivSao4,ivSao5;
+    TextView tvTen,tvMoTa,tvGia,tvSoLuong,tvDiaChi,tvNgay,tvTrangThaiSao;
     EditText edtBinhLuan;
     Button btnGui;
     FirebaseDatabase database;
@@ -44,6 +44,7 @@ public class MainActivity_DanhGia extends AppCompatActivity {
         tvGia.setText(donHang.gia);
         tvSoLuong.setText(donHang.soLuong);
         tvDiaChi.setText(donHang.diaChi);
+        tvNgay.setText(donHang.ngay);
         if (!donHang.getHinh().toString().trim().equals("")) {
             try {
                 byte[] hinh = chuyenStringSangByte(donHang.getHinh());
@@ -61,14 +62,82 @@ public class MainActivity_DanhGia extends AppCompatActivity {
                 data_DanhGia.child(donHang.maDonHang).child("danhGia").setValue(edtBinhLuan.getText().toString().trim());
                 //data_DanhGia.child(donHang.maDonHang).child("phanHoi").setValue("");
               Intent intent = new Intent(MainActivity_DanhGia.this, MainActivity_TatCaDanhGia.class);
-//                startActivity(intent);
+               startActivity(intent);
             }
         });
+        ivSao1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivSao1.setImageResource(R.drawable.star);
+                ivSao2.setImageResource(R.drawable.saoxam);
+                ivSao3.setImageResource(R.drawable.saoxam);
+                ivSao4.setImageResource(R.drawable.saoxam);
+                ivSao5.setImageResource(R.drawable.saoxam);
+                tvTrangThaiSao.setText("Tệ");
+                data_DanhGia.child(donHang.maDonHang).child("soSao").setValue("1");
+            }
+        });
+        ivSao2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivSao1.setImageResource(R.drawable.star);
+                ivSao2.setImageResource(R.drawable.star);
+                ivSao3.setImageResource(R.drawable.saoxam);
+                ivSao4.setImageResource(R.drawable.saoxam);
+                ivSao5.setImageResource(R.drawable.saoxam);
+                tvTrangThaiSao.setText("Không hài lòng");
+                data_DanhGia.child(donHang.maDonHang).child("soSao").setValue("2");
+            }
+        });
+        ivSao3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivSao1.setImageResource(R.drawable.star);
+                ivSao2.setImageResource(R.drawable.star);
+                ivSao3.setImageResource(R.drawable.star);
+                ivSao4.setImageResource(R.drawable.saoxam);
+                ivSao5.setImageResource(R.drawable.saoxam);
+                tvTrangThaiSao.setText("Bình thường");
+                data_DanhGia.child(donHang.maDonHang).child("soSao").setValue("3");
+            }
+        });
+        ivSao4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivSao1.setImageResource(R.drawable.star);
+                ivSao2.setImageResource(R.drawable.star);
+                ivSao3.setImageResource(R.drawable.star);
+                ivSao4.setImageResource(R.drawable.star);
+                ivSao5.setImageResource(R.drawable.saoxam);
+                tvTrangThaiSao.setText("Hài lòng");
+                data_DanhGia.child(donHang.maDonHang).child("soSao").setValue("4");
+            }
+        });
+        ivSao5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivSao1.setImageResource(R.drawable.star);
+                ivSao2.setImageResource(R.drawable.star);
+                ivSao3.setImageResource(R.drawable.star);
+                ivSao4.setImageResource(R.drawable.star);
+                ivSao5.setImageResource(R.drawable.star);
+                tvTrangThaiSao.setText("Tuyệt vời");
+                data_DanhGia.child(donHang.maDonHang).child("soSao").setValue("5");
+            }
+        });
+        ivQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity_DanhGia.this,MainActivity_DonHang.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void setControl() {
         ivHinh=findViewById(R.id.ivHinhChuaDanhGia);
-        ivQuayLai=findViewById(R.id.ivQuayLaiDG);
+        ivQuayLai=findViewById(R.id.ivQuayLaiChuaDG);
         tvTen=findViewById(R.id.tvTenSPchuaDG);
         tvMoTa=findViewById(R.id.tvTenMoTachuaDG);
         tvGia=findViewById(R.id.tvGiachuaDG);
@@ -76,6 +145,13 @@ public class MainActivity_DanhGia extends AppCompatActivity {
         tvDiaChi=findViewById(R.id.tvDiaChiChuaDanhGia);
         edtBinhLuan=findViewById(R.id.edtChiaSeBinhLuan);
         btnGui=findViewById(R.id.btnGuiDG);
+        tvNgay=findViewById(R.id.tvNgayChuaDanhGia);
+        ivSao1=findViewById(R.id.ivSaoDG1);
+        ivSao2=findViewById(R.id.ivSaoDG2);
+        ivSao3=findViewById(R.id.ivSaoDG3);
+        ivSao4=findViewById(R.id.ivSaoDG4);
+        ivSao5=findViewById(R.id.ivSaoDG5);
+        tvTrangThaiSao=findViewById(R.id.tvtrangThaiSoSao);
     }
 
 

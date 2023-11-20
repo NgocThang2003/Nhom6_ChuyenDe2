@@ -1,6 +1,8 @@
 package com.example.nhom6;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,7 @@ import java.util.List;
 
 public class MainActivity_TatCaDanhGia extends AppCompatActivity {
     RecyclerView recyclerviewDanhgiaSP;
+    Button btnQuayLai;
     FirebaseDatabase database;
 
     DatabaseReference data_DanhGia;
@@ -44,10 +48,45 @@ public class MainActivity_TatCaDanhGia extends AppCompatActivity {
         data_DanhGia = database.getReference("DonHang");
         recyclerviewDanhgiaSP.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerviewDanhgiaSP.setAdapter(new DanhGiaSP_Adappter(this,data_DG));
+
+        data_DanhGia.addChildEventListener(new ChildEventListener() {
+          @Override
+          public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+              DocDL();
+          }
+
+          @Override
+          public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL();
+          }
+
+          @Override
+          public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL();
+          }
+
+          @Override
+          public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+          }
+
+          @Override
+          public void onCancelled(@NonNull DatabaseError error) {
+
+          }
+      });
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity_TatCaDanhGia.this,MainActivity_TaiKhoan.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setControl() {
         recyclerviewDanhgiaSP = findViewById(R.id.recyclerviewDanhgiaSP);
+        btnQuayLai = findViewById(R.id.btnQuayLaiDG);
     }
 
     private void DocDL() {

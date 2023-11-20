@@ -50,6 +50,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     }
 
     private void setEvent() {
+        rdKhachHang.setChecked(true);
         database = FirebaseDatabase.getInstance();
         data_TK = database.getReference("DangKy");
         data_NV = database.getReference("NhanVien");

@@ -30,7 +30,7 @@ public class GioHangHolder extends RecyclerView.ViewHolder {
 
         btnCong = itemView.findViewById(R.id.btnCong);
         btnTru = itemView.findViewById(R.id.btnTru);
-        btnXoa = itemView.findViewById(R.id.btnXoa);
+        btnXoa = itemView.findViewById(R.id.btnXoaGioHang);
 
     }
 }
