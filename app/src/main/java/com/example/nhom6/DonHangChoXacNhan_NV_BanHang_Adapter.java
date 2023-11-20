@@ -117,7 +117,6 @@ public class DonHangChoXacNhan_NV_BanHang_Adapter extends RecyclerView.Adapter<K
                 Intent intent = new Intent(context, MainActivity_tinnhan_nhanvien.class);
                 MainActivity_tinnhan_nhanvien.maNV = MainActivity_DangNhap.maNguoiDung;
                 MainActivity_tinnhan_nhanvien.maKH = donHang.maKhachHang;
-
                 context.startActivity(intent);
             }
         });
