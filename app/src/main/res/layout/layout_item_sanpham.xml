@@ -28,35 +28,72 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvTenSP1"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:textSize="10dp"></TextView>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên sản phẩm: "
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvTenSP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên sản phẩm"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/tvChuThich"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Chú thích"
-                android:textSize="10dp"></TextView>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvLoaiSanPham"
-                android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chú thích: "
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvChuThich"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chú thích"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Loại sản phẩm"
-                android:textSize="10dp"></TextView>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loại sản phẩm: "
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvLoaiSanPham"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loại sản phẩm"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -65,40 +102,74 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvKhoiLuong"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Khối lượng"
-                    android:textSize="10dp"></TextView>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvDonVi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Đơn vị"
-                    android:textSize="10dp"></TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Khối lượng: "
+                        android:textSize="10dp"></TextView>
 
+                    <TextView
+                        android:id="@+id/tvKhoiLuong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Khối lượng"
+                        android:textSize="10dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvDonVi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đơn vị"
+                        android:textSize="10dp"></TextView>
+                </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvSL"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
-                android:text="Số lượng"
-                android:textSize="10dp"></TextView>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvGia"
-                android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: "
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvSL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Số lượng"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
-                android:text="Giá"
-                android:textSize="10dp"></TextView>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Giá: "
+                    android:textSize="10dp"></TextView>
+
+                <TextView
+                    android:id="@+id/tvGia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Giá"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

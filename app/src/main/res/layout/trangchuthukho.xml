@@ -115,7 +115,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Đơn hàng đã được Shipper lấy hàng"
+                    android:text="Đơn hàng đang giao"
                     android:textColor="#000"
                     android:textSize="12dp"></TextView>
             </LinearLayout>

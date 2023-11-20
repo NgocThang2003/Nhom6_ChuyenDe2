@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btnGoiDien"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
@@ -34,6 +35,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/btnNhanTin"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -85,6 +87,7 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -174,6 +177,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -183,6 +187,7 @@
                             android:textColor="#000" />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/tvTonKho"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -203,10 +208,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_marginRight="20dp"
                     android:id="@+id/tvDiaChi"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text="Địa chỉ"
                     android:textColor="#888686" />
@@ -221,6 +226,7 @@
             </LinearLayout>
 
             <ImageView
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/thanh" />
@@ -255,16 +261,127 @@
                     android:textColor="#F30F0F" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:src="@drawable/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:textSize="13dp"
+                    android:textColor="#D9D222"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tuyệt vời"></TextView>
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/tvLyDoHuyDon"
+                android:id="@+id/tvDanhGia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Thành tiền"
+                android:text="Đánh giá"
+                android:textColor="#000"
+                android:visibility="visible" />
+            <LinearLayout
+                android:gravity="center|left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:textColor="#747070"
+                    android:textSize="14dp"
+                    android:text="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                </TextView>
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/luotthich_phanhoi"
+                    android:scaleType="fitXY"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"></ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_edt_gopytukhachhang"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/shop_img_phanhoi">
+
+                </ImageView>
+                <EditText
+                    android:background="@drawable/bg_edt_gopytukhachhang"
+                    android:id="@+id/edtPhanHoi"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="top|left"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:hint="Phản hồi"
+                    android:textColor="#434040"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_gravity="right"
+                android:id="@+id/tvGui"
                 android:textColor="#F30F0F"
-                android:visibility="gone" />
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Gửi"></TextView>
+
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -302,6 +419,7 @@
             </LinearLayout>
 
             <ImageView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

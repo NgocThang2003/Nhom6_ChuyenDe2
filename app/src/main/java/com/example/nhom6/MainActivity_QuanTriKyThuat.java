@@ -44,7 +44,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     Spinner spNhomNganh;
 
     int index = -1;
-    ImageView ivHinh;
+    ImageView ivHinh, ivQuayVe;
 
     Button btnThem, btnXoa, btnSua;
     List<String> data_nhomNganh = new ArrayList<>();
@@ -61,7 +61,6 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     ArrayAdapter adapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         KhoiTao();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("TrangChuKhachHang");
+        myRef.setValue("QuanTriKyThuat");
 
 
         database = FirebaseDatabase.getInstance();
@@ -87,7 +86,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new TrangChuKhachHang_Adapter(this, data_kyThuaTrongCay));
 
-         adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_nhomNganh);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, data_nhomNganh);
         spNhomNganh.setAdapter(adapter);
 
         TrangChuKhachHang_Adapter trangChuKhachHangAdapter = (TrangChuKhachHang_Adapter) recyclerView.getAdapter();
@@ -212,17 +211,17 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
         data_KyThuat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                DocDL();
+               phanLoaiNhomNganh();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                DocDL();
+                phanLoaiNhomNganh();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                DocDL();
+                phanLoaiNhomNganh();
             }
 
             @Override
@@ -263,6 +262,12 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         ivHinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -424,6 +429,8 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     public void timKiem() {
@@ -500,10 +507,9 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     private void KhoiTao() {
         //edtNhomNganh.setText(spNhomNganh.getSelectedItem().toString());
         //data_nhomNganh.add("Bank");
-        try{
+        try {
             DocDLNhomNganh();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -548,6 +554,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
 
         edtNhomNganh = findViewById(R.id.edtNhomNganh);
 
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 
     private boolean kiemTraDieuKien() {
@@ -602,7 +609,7 @@ public class MainActivity_QuanTriKyThuat extends AppCompatActivity {
     }
 
     private void EnabelButtonFalse() {
-        btnThem.setEnabled(false);
+        btnThem.setEnabled(true);
         btnXoa.setEnabled(true);
         btnSua.setEnabled(true);
     }

@@ -3,7 +3,6 @@ package com.example.nhom6;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -21,25 +20,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
+public class KhoDonHangDaGiao_Adapter extends RecyclerView.Adapter<KhoDonHangDangDongGoi_Holder> {
     Context context;
     List<DonHang> data;
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
-    public KhoDonHangChoXacNhan_Adapter(Context context, List<DonHang> data) {
+    public KhoDonHangDaGiao_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
 
     @NonNull
     @Override
-    public KhoDonHangChoXacNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan,parent,false));
+    public KhoDonHangDangDongGoi_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new KhoDonHangDangDongGoi_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangdangdonggoi,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KhoDonHangChoXacNhan_Holder holder, int position) {
+    public void onBindViewHolder(@NonNull KhoDonHangDangDongGoi_Holder holder, int position) {
         DonHang donHang = data.get(position);
         database = FirebaseDatabase.getInstance();
         data_DH = database.getReference("DonHang");
@@ -69,27 +68,31 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
+        holder.tvThanhTien.setText("" + gia * soLuong);
 
-        holder.tvThanhTien.setText("đ" + gia * soLuong);
-
-        holder.btnTinNhan.setVisibility(View.GONE);
         holder.btnGoiDien.setVisibility(View.GONE);
+        holder.btnTinNhan.setVisibility(View.GONE);
 
+        if(donHang.thuTien.trim().equals("")){
+            holder.btnXacNhanDonHang.setVisibility(View.VISIBLE);
+            holder.btnXacNhanDonHang.setText("Thu tiền");
+        }
+        else{
+            holder.btnXacNhanDonHang.setVisibility(View.GONE);
+        }
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
-                builder.setMessage("Bạn có muốn sửa đơn hàng này không ?")
+                builder.setMessage("Bạn có muốn sửa dữ liệu đơn hàng này không ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
                                 Toast.makeText(context, "Sửa dữ liệu thành công", Toast.LENGTH_SHORT).show();
-
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                                 String currentDateandTime = sdf.format(new Date());
-                                data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang đóng gói");
-                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐang đóng gói "+currentDateandTime);
-                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐang đóng gói - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("thuTien").setValue("Đã thu tiền");
+//                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐã đóng gói "+currentDateandTime);
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -100,21 +103,8 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                 // Create the AlertDialog object and return it
                 builder.create().show();
 
-
-
             }
         });
-
-        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MainActivity_LyDoHuyDon_ThuKho.class);
-                intent.putExtra("donHang_ThuKho",donHang);
-                context.startActivity(intent);
-            }
-        });
-
-
     }
 
     @Override

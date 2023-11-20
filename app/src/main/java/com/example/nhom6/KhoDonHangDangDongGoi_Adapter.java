@@ -92,6 +92,8 @@ public class KhoDonHangDangDongGoi_Adapter extends RecyclerView.Adapter<KhoDonHa
                                 String currentDateandTime = sdf.format(new Date());
                                 data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đã đóng gói");
                                 data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐã đóng gói "+currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐã đóng gói - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
+
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

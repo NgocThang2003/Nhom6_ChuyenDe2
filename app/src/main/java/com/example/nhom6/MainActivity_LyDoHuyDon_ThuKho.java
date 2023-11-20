@@ -21,14 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
-    TextView tvTenKhachHang,tvTenSP,tvMoTa,tvGia,tvSoLuong,tvNgay,tvDiaChi,tvSDT;
+    TextView tvTenKhachHang, tvTenSP, tvMoTa, tvGia, tvSoLuong, tvNgay, tvDiaChi, tvSDT;
     EditText edtLyDoHuyDon;
     Button btnGui;
-    ImageView ivHinh,ivQuayVe;
+    ImageView ivHinh, ivQuayVe;
 
     FirebaseDatabase database;
     public static DatabaseReference data_DH;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,10 +77,9 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(edtLyDoHuyDon.getText().toString().equals("")){
+                if (edtLyDoHuyDon.getText().toString().equals("")) {
                     btnGui.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     btnGui.setVisibility(View.VISIBLE);
                 }
             }
@@ -102,12 +105,17 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                                String currentDateandTime = sdf.format(new Date());
+
                                 Toast.makeText(MainActivity_LyDoHuyDon_ThuKho.this, "Hủy đơn hàng thành công", Toast.LENGTH_SHORT).show();
                                 data_DH.child(myObject.maDonHang).child("lyDoHuyDon").setValue(edtLyDoHuyDon.getText().toString().trim());
-                                data_DH.child(myObject.maDonHang).child("trangThai").setValue("Đã huỷ");
-                                Intent intent = new Intent(MainActivity_LyDoHuyDon_ThuKho.this, MainActivity_KhoDonHangChoXacNhan.class);
-                                startActivity(intent);
+                                data_DH.child(myObject.maDonHang).child("thongTinVanChuyen").setValue(myObject.thongTinVanChuyen + " \nĐã hủy " + currentDateandTime);
+                                data_DH.child(myObject.maDonHang).child("nhanVienDuyetHang").setValue(myObject.nhanVienDuyetHang+" \nĐã hủy đơn - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
 
+
+                                data_DH.child(myObject.maDonHang).child("trangThai").setValue("Đã huỷ");
+                                onBackPressed();
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -123,19 +131,20 @@ public class MainActivity_LyDoHuyDon_ThuKho extends AppCompatActivity {
     }
 
     private void setControl() {
-        tvTenKhachHang=findViewById(R.id.tvTenKH);
-        tvTenSP=findViewById(R.id.tvTenSpHuyDon);
-        tvMoTa=findViewById(R.id.tvMoTaHuyDon);
-        tvGia=findViewById(R.id.tvGiaHuyDon);
-        tvSoLuong=findViewById(R.id.tvSoLuongHuyDon);
-        tvNgay=findViewById(R.id.tvNgayHuydon);
-        tvDiaChi=findViewById(R.id.tvDiaChiHuyDon);
-        tvSDT=findViewById(R.id.tvSDTHuyDon);
-        edtLyDoHuyDon=findViewById(R.id.edtLyDoHuyDon);
-        btnGui=findViewById(R.id.btnGuiHuy);
-        ivHinh=findViewById(R.id.ivHinhHuy);
-        ivQuayVe=findViewById(R.id.ivQuayVe);
+        tvTenKhachHang = findViewById(R.id.tvTenKH);
+        tvTenSP = findViewById(R.id.tvTenSpHuyDon);
+        tvMoTa = findViewById(R.id.tvMoTaHuyDon);
+        tvGia = findViewById(R.id.tvGiaHuyDon);
+        tvSoLuong = findViewById(R.id.tvSoLuongHuyDon);
+        tvNgay = findViewById(R.id.tvNgayHuydon);
+        tvDiaChi = findViewById(R.id.tvDiaChiHuyDon);
+        tvSDT = findViewById(R.id.tvSDTHuyDon);
+        edtLyDoHuyDon = findViewById(R.id.edtLyDoHuyDon);
+        btnGui = findViewById(R.id.btnGuiHuy);
+        ivHinh = findViewById(R.id.ivHinhHuy);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
+
     //chuyen String Sang Byte[]
     private byte[] chuyenStringSangByte(String str) {
         byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);

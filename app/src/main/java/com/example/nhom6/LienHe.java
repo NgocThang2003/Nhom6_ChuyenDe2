@@ -3,18 +3,27 @@ package com.example.nhom6;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LienHe {
-    String id,ten,sdt,email,congTy,gopY;
+    String id,ten,sdt,email,congTy,gopY, date;
 
     public LienHe() {
     }
 
-    public LienHe(String id, String ten, String sdt, String email, String congTy, String gopY) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public LienHe(String id, String ten, String sdt, String email, String congTy, String gopY, String date) {
         this.id = id;
         this.ten = ten;
         this.sdt = sdt;
         this.email = email;
         this.congTy = congTy;
         this.gopY = gopY;
+        this.date = date;
     }
 
     public String getId() {

@@ -1,18 +1,17 @@
 package com.example.nhom6;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.widget.ImageView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,32 +20,34 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity_DonHangChoXacNhan extends AppCompatActivity {
+public class MainActivity_KhoDonDaGiaoHang extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database;
-    DatabaseReference data_DHCXN;
+    DatabaseReference data_KDHDDG;
     List<DonHang> data_DonHang = new ArrayList<>();
+    ImageView ivQuayVe;
+    TextView tvTieuDe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.donhangchoxacnhan_banhang);
+        setContentView(R.layout.khodonhangdangdonggoi);
         setControl();
         setEvent();
     }
 
     private void setEvent() {
+        tvTieuDe.setText("Đơn hàng đã giao");
         database = FirebaseDatabase.getInstance();
-        data_DHCXN = database.getReference("DonHang");
+        data_KDHDDG = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new DonHangChoXacNhan_NV_BanHang_Adapter(this,data_DonHang));
+        recyclerView.setAdapter(new KhoDonHangDaGiao_Adapter(this,data_DonHang));
 
-        data_DHCXN.addChildEventListener(new ChildEventListener() {
+        data_KDHDDG.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
@@ -72,17 +73,26 @@ public class MainActivity_DonHangChoXacNhan extends AppCompatActivity {
 
             }
         });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               onBackPressed();
+            }
+        });
     }
     public void DocDL() {
         data_DonHang.clear();
-        data_DHCXN.addListenerForSingleValueEvent(new ValueEventListener() {
+        data_KDHDDG.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_DonHang.clear();
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    data_DonHang.add(donHang);
+                    if(donHang.trangThai.toString().trim().equals("Đã giao hàng")){
+                        data_DonHang.add(donHang);
+                    }
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
@@ -98,7 +108,13 @@ public class MainActivity_DonHangChoXacNhan extends AppCompatActivity {
     }
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
+        tvTieuDe = findViewById(R.id.tvTieuDe);
+
+
     }
+    byte[] byteArrayHinh = new byte[0];
+
 
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {

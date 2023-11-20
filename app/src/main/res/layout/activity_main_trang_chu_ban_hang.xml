@@ -26,12 +26,14 @@
             android:textSize="20dp"></TextView>
 
         <LinearLayout
+            android:id="@+id/linearLayoutDangXuat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#fff"
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnDangXuat"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:background="#FFF"
@@ -81,12 +83,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDanhSachDonHang"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donmoi"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Danh sách đơn hàng"
@@ -103,12 +106,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivTuVan"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_lienhe"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Tư vấn"
@@ -124,12 +128,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivDonHangBiHuy"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_donhangbihuy"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Đơn hàng bị hủy"
@@ -151,12 +156,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivQuanTriKyThuat"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_quantrykythuat"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Quản trị kỹ thuật"
@@ -178,7 +184,7 @@
                     android:src="@drawable/img_danhsachden"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Danh sách đen"
@@ -194,12 +200,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivPhanHoiDanhGia"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_phanhoitukhachhang"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Phản hồi đánh giá từ khách hàng"
@@ -208,7 +215,7 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -223,12 +230,13 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivGopY"
                     android:layout_width="50dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_gopytukhachhang"></ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Góp ý từ khách hàng"

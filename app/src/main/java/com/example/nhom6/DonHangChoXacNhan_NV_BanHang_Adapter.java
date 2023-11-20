@@ -21,13 +21,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
+public class DonHangChoXacNhan_NV_BanHang_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
     Context context;
     List<DonHang> data;
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
-    public KhoDonHangChoXacNhan_Adapter(Context context, List<DonHang> data) {
+    public DonHangChoXacNhan_NV_BanHang_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
@@ -72,24 +72,24 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
 
         holder.tvThanhTien.setText("đ" + gia * soLuong);
 
-        holder.btnTinNhan.setVisibility(View.GONE);
-        holder.btnGoiDien.setVisibility(View.GONE);
+        holder.btnTinNhan.setVisibility(View.VISIBLE);
+        holder.btnGoiDien.setVisibility(View.VISIBLE);
 
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
-                builder.setMessage("Bạn có muốn sửa đơn hàng này không ?")
+                builder.setMessage("Bạn có muốn sửa dữ liệu đơn hàng này không ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
                                 Toast.makeText(context, "Sửa dữ liệu thành công", Toast.LENGTH_SHORT).show();
-
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                                 String currentDateandTime = sdf.format(new Date());
-                                data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang đóng gói");
-                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐang đóng gói "+currentDateandTime);
-                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐang đóng gói - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang chờ xác nhận từ kho");
+                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+" \nĐang chờ xác nhận từ kho "+currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐang chờ xác nhận từ kho - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
+
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -99,9 +99,6 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                         });
                 // Create the AlertDialog object and return it
                 builder.create().show();
-
-
-
             }
         });
 
@@ -110,6 +107,17 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
             public void onClick(View v) {
                 Intent intent = new Intent(context, MainActivity_LyDoHuyDon_ThuKho.class);
                 intent.putExtra("donHang_ThuKho",donHang);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.btnTinNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity_tinnhan_nhanvien.class);
+                MainActivity_tinnhan_nhanvien.maNV = MainActivity_DangNhap.maNguoiDung;
+                MainActivity_tinnhan_nhanvien.maKH = donHang.maKhachHang;
+
                 context.startActivity(intent);
             }
         });

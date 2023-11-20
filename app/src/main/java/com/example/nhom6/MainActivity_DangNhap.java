@@ -50,6 +50,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     }
 
     private void setEvent() {
+        rdKhachHang.setChecked(true);
         database = FirebaseDatabase.getInstance();
         data_TK = database.getReference("DangKy");
         data_NV = database.getReference("NhanVien");
@@ -210,8 +211,8 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         maNguoiDung = data_NhanVien.get(i).maNhanVien;
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_NhanVien.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuBanHang.class);
+                        startActivity(intent);
                     }
                     if (data_NhanVien.get(i).quyen.equals("2") && rdThuKho.isChecked() == true) {
                         kiemTra = true;

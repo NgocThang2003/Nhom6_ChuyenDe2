@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,9 +33,9 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_KDHCXN;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh;
 
     TextView tvTieuDe;
+    ImageView ivQuayVe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,13 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
 
             }
         });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void DocDL() {
@@ -108,32 +116,14 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
 
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
-        ivHinh = findViewById(R.id.ivHinh);
+
 
         tvTieuDe = findViewById(R.id.tvTieuDe);
-
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 
     byte[] byteArrayHinh = new byte[0];
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            ivHinh.setImageURI(uri);
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byteArrayHinh = stream.toByteArray();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
