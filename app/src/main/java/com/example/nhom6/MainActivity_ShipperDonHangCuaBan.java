@@ -81,8 +81,7 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_ShipperDonHangCuaBan.this,MainActivity_TrangChuShipper.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }

@@ -40,7 +40,6 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     DatabaseReference data_NhanVien;
     DatabaseReference data_TinNhanNhanVien;
     DatabaseReference data_TinNhanKhachHang;
-    ImageView ivQuayVe;
 
     //    public static String maNV = "";
     public static String maKH = "-NicfEfjZkm0OfST0xMS";

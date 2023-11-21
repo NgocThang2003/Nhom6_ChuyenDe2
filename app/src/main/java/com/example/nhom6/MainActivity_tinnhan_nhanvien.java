@@ -55,7 +55,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
     DatabaseReference data_NhanVien;
     DatabaseReference data_KhachHang;
 
-    ImageView ivQuayVe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

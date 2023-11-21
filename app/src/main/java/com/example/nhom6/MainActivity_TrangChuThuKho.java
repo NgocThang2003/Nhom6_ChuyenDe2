@@ -1,11 +1,14 @@
 package com.example.nhom6;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity_TrangChuThuKho extends AppCompatActivity {
 
@@ -54,20 +57,28 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
             }
         });
 
-        ivDonHangDaGiao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_TrangChuThuKho.this, MainActivity_KhoDonDaGiaoHang.class);
-                startActivity(intent);
-            }
-        });
-
         ivDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_TrangChuThuKho.this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+                builder.setMessage("Bạn có muốn đăng xuất khỏi tài khoản này không ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // START THE GAME!
+                                Toast.makeText(MainActivity_TrangChuThuKho.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MainActivity_TrangChuThuKho.this,MainActivity_DangNhap.class));
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                builder.create().show();
             }
         });
+
     }
 
     private void setControl() {

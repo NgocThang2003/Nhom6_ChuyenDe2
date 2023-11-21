@@ -80,8 +80,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_ShipperDonHangDaHuy.this,MainActivity_TrangChuShipper.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
