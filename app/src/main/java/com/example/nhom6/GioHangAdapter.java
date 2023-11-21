@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
 
     Context context;
     List<GioHang> data = new ArrayList<>();
+    List<SanPham> dataSP = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference data_GioHang;
 
@@ -84,6 +86,27 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
                        });
                // Create the AlertDialog object and return it
                builder.create().show();
+           }
+       });
+       holder.btnCong.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) + 1 <= Integer.parseInt(dataSP.get(0).soLuong)) {
+                   holder.tvSoLuong.setText(Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) + 1 + "");
+               } else {
+                   Toast.makeText(context, "Số lượng không được đặt lớn hơn trong kho hàng", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
+       holder.btnTru.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) -1 > 0 ){
+                   holder.tvSoLuong.setText(Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) - 1 + "");
+               }
+               else {
+                   Toast.makeText(context, "Số lượng không được nhỏ hơn 1", Toast.LENGTH_SHORT).show();
+               }
            }
        });
 
