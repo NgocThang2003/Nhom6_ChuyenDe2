@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -23,7 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#4CAF50"
+                android:background="#5FA65D"
                 android:orientation="horizontal"
                 android:paddingTop="14dp"
                 android:paddingBottom="13dp">
@@ -72,6 +73,7 @@
                     />
 
                 <LinearLayout
+                    android:paddingRight="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -162,11 +164,23 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:text="Khối lượng" />
-
                         <TextView
+                            android:textSize="10dp"
+                            android:id="@+id/tvDonVi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:text="Khối lượng" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Số lượng: " />
 
 
@@ -187,11 +201,13 @@
                             android:textStyle="bold" />
 
                         <Button
+                            android:layout_width="30dp"
                             android:id="@+id/btnCongCT"
                             style="@style/button_phai"
                             android:text="+"
                             />
                     </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -199,7 +215,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:text="Mô tả"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -261,30 +276,42 @@
                 android:layout_marginLeft="20dp"
                 />
             <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="95dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
+                    android:textColor="#fff"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+
                     android:id="@+id/btnDatHang"
-                    style="@style/btnNhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:background="@drawable/button3"
                     android:text="Đặt hàng" />
 
                 <Button
+                    android:textColor="#fff"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:id="@+id/btnThemVaoGH"
-                    style="@style/btnNhap"
-                    android:layout_marginLeft="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:text="Thêm vào giỏ hàng"
                     android:textSize="13dp"
-                    android:background="@drawable/button3"/>
+                    android:background="@drawable/button2"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:visibility="gone"
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
