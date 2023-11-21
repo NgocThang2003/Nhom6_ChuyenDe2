@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/btnNhanTin"
                 android:textColor="#fff"
                 android:background="#5FA65D"
                 android:layout_weight="1"

@@ -34,6 +34,7 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
     DatabaseReference data_TTNN;
     List<TaiKhoan> data_ThongTinNguoiNhan = new ArrayList<>();
     ImageView ivQuayVe;
+    Button btnNhanTin;
     public static TextView tvTen, tvSDT, tvEmail, tvDiemDen;
 
     public static String maNguoiDung = "-NiNrHieKJTJY-rlUhgh";
@@ -86,6 +87,13 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        btnNhanTin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ThongTinNguoiNhan.this, MainActivity_tinnhan_khachhang.class);
+                startActivity(intent);
+            }
+        });
     }
     public void DocDL() {
         data_ThongTinNguoiNhan.clear();
@@ -119,6 +127,7 @@ public class MainActivity_ThongTinNguoiNhan extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvDiemDen = findViewById(R.id.tvDiemDen);
         ivQuayVe = findViewById(R.id.ivQuayVe);
+        btnNhanTin = findViewById(R.id.btnNhanTin);
 
     }
 

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
     DatabaseReference data_DHCB;
     List<DonHang> data_DonHang = new ArrayList<>();
     ImageView ivHinh, ivQuayVe;
+
 
     public static String maShipper = "NiYMkJuTJCslHynH2kU";
 
@@ -84,6 +86,7 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
     }
     public void DocDL() {
         data_DonHang.clear();
@@ -122,6 +125,7 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
         ivQuayVe = findViewById(R.id.ivQuayVe);
+
 
     }
     byte[] byteArrayHinh = new byte[0];

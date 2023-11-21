@@ -61,6 +61,7 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH=MainActivity_DangNhap.maNguoiDung;
         database = FirebaseDatabase.getInstance();
         data_HSND = database.getReference("DangKy");
 

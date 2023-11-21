@@ -107,7 +107,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                             edtSoNha.setText(themDiaChiMoi1.getSoNha());
                         }
                         catch (Exception e){
-                            Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Đã thay đổi", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Đã thay đổi", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -194,7 +194,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_ThemDiaChi.clear();
-                Toast.makeText(MainActivity_ThemDiaChiMoi.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity_ThemDiaChiMoi.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
                     data_ThemDiaChi.add(themDiaChiMoi);

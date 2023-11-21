@@ -53,11 +53,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Chức năng"
-        android:textColor="#000"
-        android:textSize="20dp"></TextView>
+        android:textStyle="bold|italic"
+        android:background="#C5D52A"
+        android:text="CHỨC NĂNG"
+        android:textColor="#EF0606"
+        android:textSize="30dp"></TextView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="201dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/trangchunhanvienbanhang" />
 
     <LinearLayout
         android:paddingBottom="30dp"

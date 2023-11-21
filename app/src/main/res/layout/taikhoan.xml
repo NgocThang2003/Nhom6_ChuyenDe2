@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Chờ xác nhận"></TextView>
+                    android:text="Đang đóng gói"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Chờ xác nhận"></TextView>
+                    android:text="Đang giao hàng"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -134,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Chờ xác nhận"></TextView>
+                    android:text="Đánh giá sản phẩm"></TextView>
             </LinearLayout>
         </LinearLayout>
 
