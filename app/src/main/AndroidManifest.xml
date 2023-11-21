@@ -129,8 +129,16 @@
             android:name=".MainActivity_TatCaDanhGia"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DanhGia"
+            android:name=".MainActivity_PhanHoiDanhGiaKhachHang_BanHang"
             android:exported="false" />
+        <activity
+            android:name=".MainActivity_GopYTuKhachHang_BanHang"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity_ChonDiaChiGiaoHang"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity_DangNhap"
             android:exported="true">

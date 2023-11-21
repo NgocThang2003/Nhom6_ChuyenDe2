@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity_ChiTietSanPham extends AppCompatActivity {
-    TextView tvTenSP, tvChuThich, tvKhoiLuong, tvSoLuong, tvMoTa, tvGia, tvID;
+    TextView tvTenSP, tvChuThich, tvKhoiLuong, tvSoLuong, tvMoTa, tvGia, tvID, tvDonVi;
     Button btnDatHang, btnThemVaoGH, btnCong, btnTru;
     ImageView imgHinh;
     FirebaseDatabase database;
@@ -48,6 +48,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     TextView tvChonDiaChiGiaoHang;
 
     List<SanPham> data_CT = new ArrayList<>();
+    public static List<GioHang> data_GH = new ArrayList<>();
     //List<TaiKhoan> data_taiKhoan = new ArrayList<>();
 
     public static String maSP = "-NiT6YxCGEdSMwNTLFFt";
@@ -67,7 +68,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     private void setEvent() {
         tvDiaChi.setText(ChonDiaChi_Adapter.diaChi);
         maKH = MainActivity_DangNhap.maNguoiDung;
-        //DocDLTK();
+
         database = FirebaseDatabase.getInstance();
         data_ChiTiet = database.getReference("SanPham");
         data_DonHang = database.getReference("DonHang");
@@ -75,7 +76,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         data_TK = database.getReference("DangKy");
         data_DiaChi = database.getReference("ThemDiaChiMoi");
 
-        adapter  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,data);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, data);
         spDiaChi.setAdapter(adapter);
 
         data_ChiTiet.addChildEventListener(new ChildEventListener() {
@@ -163,6 +164,33 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
             }
         });
+
+        data_GioHang.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLGH();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLGH();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDLGH();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         //nhấn vao tăng số lượng
         btnCong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,34 +221,10 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                this.maDonHang = maDonHang;
-//                this.maKhachHang = maKhachHang;
-//                this.tenKhachHang = tenKhachHang;
-
-//                this.soLuong = soLuong;
-//                this.diaChi = diaChi;
-//                this.trangThai = trangThai;
-
-//                this.maSanPham = maSanPham;
-//                this.tenSanPham = tenSanPham;
-//                this.maShipper = maShipper;
-
-//                this.tenShipper = tenShipper;
-//                this.phuongThucThanhToan = phuongThucThanhToan;
-//                this.thongTinVanChuyen = thongTinVanChuyen;
-
-//                this.nhanVienDuyetHang = nhanVienDuyetHang;
-//                this.ngay = ngay;
-//                this.lyDoHuyDon = lyDoHuyDon;
                 Date currentTime = Calendar.getInstance().getTime();
-
-                String msg = ", " + currentTime.getDate() + " Tháng " + currentTime.getMonth();
-
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                 String currentDateandTime = dateFormat.format(new Date());
-
-//                sdf = new SimpleDateFormat("HH::mm");
 
                 DonHang donHang = new DonHang();
                 donHang.setMaDonHang(data_DonHang.push().getKey());
@@ -238,7 +242,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
                 donHang.setTenShipper("");
                 donHang.setPhuongThucThanhToan(tvPhuongThuc.getText().toString().trim());
-                donHang.setThongTinVanChuyen("Đang chờ xác nhận  "+ currentDateandTime);
+                donHang.setThongTinVanChuyen("Đang chờ xác nhận  " + currentDateandTime);
 
                 donHang.setNhanVienDuyetHang("");
                 donHang.setNgay(currentDateandTime);
@@ -256,7 +260,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 donHang.setLuotThich("");
 
                 data_DonHang.child(donHang.maDonHang).setValue(donHang);
-                Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_DonHang.class);
+                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_DonHang.class);
                 startActivity(intent);
 
             }
@@ -276,22 +280,32 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             //            maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh
             @Override
             public void onClick(View v) {
-                GioHang gioHang = new GioHang();
-                String maGH = data_GioHang.push().getKey();
-                gioHang.setMaGioHang(maGH);
-                gioHang.setTenSP(data_CT.get(0).tenSP);
-                gioHang.setMaKhachHang(maKH);
-                gioHang.setMaSanPham(maSP);
-                gioHang.setChuThich(data_CT.get(0).getChuThich());
-                gioHang.setGia(data_CT.get(0).getGia());
-                gioHang.setKhoiLuong(data_CT.get(0).getKhoiLuong());
-                gioHang.setSoLuong(tvSoLuong.getText().toString().trim());
-                gioHang.setDonVi(data_CT.get(0).getDonVi());
-                gioHang.setHinh(data_CT.get(0).getHinh());
-                data_GioHang.child(maGH).setValue(gioHang);
 
-                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
-                startActivity(intent);
+                if (data_GH.size() > 0) {
+                    Toast.makeText(MainActivity_ChiTietSanPham.this, "" + data_GH.size(), Toast.LENGTH_SHORT).show();
+                    int soLuong1 = Integer.parseInt(data_GH.get(0).soLuong.trim());
+                    int soLuong2 = Integer.parseInt(tvSoLuong.getText().toString().trim());
+                    int tong = soLuong1 + soLuong2;
+                    data_GioHang.child(data_GH.get(0).maGioHang).child("soLuong").setValue("" + tong);
+
+                } else {
+                    GioHang gioHang = new GioHang();
+                    String maGH = data_GioHang.push().getKey();
+                    gioHang.setMaGioHang(maGH);
+                    gioHang.setTenSP(data_CT.get(0).tenSP);
+                    gioHang.setMaKhachHang(maKH);
+                    gioHang.setMaSanPham(maSP);
+                    gioHang.setChuThich(data_CT.get(0).getChuThich());
+                    gioHang.setGia(data_CT.get(0).getGia());
+                    gioHang.setKhoiLuong(data_CT.get(0).getKhoiLuong());
+                    gioHang.setSoLuong(tvSoLuong.getText().toString().trim());
+                    gioHang.setDonVi(data_CT.get(0).getDonVi());
+                    gioHang.setHinh(data_CT.get(0).getHinh());
+                    data_GioHang.child(maGH).setValue(gioHang);
+
+                    Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -318,7 +332,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                         tvID.setText(sanPham.getMaSanPham().toString().trim());
                         tvTenSP.setText(sanPham.getTenSP().toString().trim());
                         tvChuThich.setText(sanPham.getChuThich().toString().trim());
-                        tvKhoiLuong.setText(sanPham.getKhoiLuong().toString().trim());
+                        tvKhoiLuong.setText("Khối lượng: "+sanPham.getKhoiLuong().toString().trim());
+                        tvDonVi.setText(sanPham.getDonVi().toString().trim());
                         tvMoTa.setText(sanPham.getMoTa().toString().trim());
                         if (!sanPham.getHinh().trim().equals("")) {
                             try {
@@ -365,6 +380,38 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         });
     }
 
+    public static int size = -1;
+    GioHang gioHang2 = new GioHang();
+
+    public GioHang DocDLGH() {
+        //data_GH.clear();
+        data_GioHang.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data_GH.clear();
+//                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    gioHang2 = item.getValue(GioHang.class);
+                    if (gioHang2.maKhachHang.toString().trim().equals(maKH.toString().trim())) {
+                        if (gioHang2.maSanPham.toString().trim().equals(maSP.toString().trim())) {
+                            MainActivity_ChiTietSanPham.data_GH.add(gioHang2);
+                            //Toast.makeText(MainActivity_ChiTietSanPham.this, ""+gioHang2.maSanPham, Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                }
+                //MainActivity_ChiTietSanPham.size = data_GH.size();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return gioHang2;
+    }
+
     private void DocDLDiaChi() {
         data.clear();
         data_DiaChi.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -375,7 +422,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
                     if (themDiaChiMoi.maNguoiDung.toString().trim().equals(maKH.toString().trim())) {
-                        data.add("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
+                        data.add("Họ tên: " + themDiaChiMoi.ten + " - SDT: " + themDiaChiMoi.sdt + ", " + themDiaChiMoi.soNha + ", " + themDiaChiMoi.tinh + ", " + themDiaChiMoi.quan + ", " + themDiaChiMoi.phuong);
                         //Toast.makeText(MainActivity_ChiTietSanPham.this, ""+taiKhoan.maNguoiDung, Toast.LENGTH_SHORT).show();
                         //tvDiaChi.setText("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
                         break;
@@ -391,6 +438,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
     }
+
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
@@ -418,6 +466,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         tvMoTa = findViewById(R.id.tvMoTaCT);
         tvGia = findViewById(R.id.tvGiaCT);
         tvChonDiaChiGiaoHang = findViewById(R.id.tvChonDiaChiGiaoHang);
+        tvDonVi = findViewById(R.id.tvDonVi);
 
         btnDatHang = findViewById(R.id.btnDatHang);
         btnThemVaoGH = findViewById(R.id.btnThemVaoGH);
