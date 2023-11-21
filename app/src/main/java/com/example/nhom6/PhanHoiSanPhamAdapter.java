@@ -70,7 +70,7 @@ public class PhanHoiSanPhamAdapter extends RecyclerView.Adapter<PhanHoiSanPhamHo
         }
 
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(holder.edtPhanHoi.getWindowToken(), 0);
+        //imm.hideSoftInputFromWindow(holder.edtPhanHoi.getWindowToken(), 0);
 
         holder.tvGui.setVisibility(View.GONE);
         holder.tvGui.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +113,59 @@ public class PhanHoiSanPhamAdapter extends RecyclerView.Adapter<PhanHoiSanPhamHo
 
             }
         });
+
+        if(donHang.soSao.trim().equals("")){
+            holder.ivSao1.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao2.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao3.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao4.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao5.setImageResource(R.drawable.saoxamimg);
+            holder.tvTrangThaiSao.setText("Không");
+        }
+        if(donHang.soSao.trim().equals("1")){
+            holder.ivSao1.setImageResource(R.drawable.star);
+            holder.ivSao2.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao3.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao4.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao5.setImageResource(R.drawable.saoxamimg);
+            holder.tvTrangThaiSao.setText("Tệ");
+        }
+
+        if(donHang.soSao.trim().equals("2")){
+            holder.ivSao1.setImageResource(R.drawable.star);
+            holder.ivSao2.setImageResource(R.drawable.star);
+            holder.ivSao3.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao4.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao5.setImageResource(R.drawable.saoxamimg);
+            holder.tvTrangThaiSao.setText("Không hài lòng");
+        }
+
+        if(donHang.soSao.trim().equals("3")){
+            holder.ivSao1.setImageResource(R.drawable.star);
+            holder.ivSao2.setImageResource(R.drawable.star);
+            holder.ivSao3.setImageResource(R.drawable.star);
+            holder.ivSao4.setImageResource(R.drawable.saoxamimg);
+            holder.ivSao5.setImageResource(R.drawable.saoxamimg);
+            holder.tvTrangThaiSao.setText("Bình thường");
+        }
+
+        if(donHang.soSao.trim().equals("4")){
+            holder.ivSao1.setImageResource(R.drawable.star);
+            holder.ivSao2.setImageResource(R.drawable.star);
+            holder.ivSao3.setImageResource(R.drawable.star);
+            holder.ivSao4.setImageResource(R.drawable.star);
+            holder.ivSao5.setImageResource(R.drawable.saoxamimg);
+            holder.tvTrangThaiSao.setText("Hài lòng");
+        }
+
+        if(donHang.soSao.trim().equals("5")){
+            holder.ivSao1.setImageResource(R.drawable.star);
+            holder.ivSao2.setImageResource(R.drawable.star);
+            holder.ivSao3.setImageResource(R.drawable.star);
+            holder.ivSao4.setImageResource(R.drawable.star);
+            holder.ivSao5.setImageResource(R.drawable.star);
+            holder.tvTrangThaiSao.setText("Tuyệt vời");
+        }
     }
 
     @Override

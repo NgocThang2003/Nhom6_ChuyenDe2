@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PhanHoiSanPhamHolder extends RecyclerView.ViewHolder {
     TextView tvTenKH,tvSDT,tvTenSP,tvGia,tvMoTa,tvSoLuong,tvTrangThai,tvThanhTien,tvDanhGia,tvGui,tvDiaChi,tvNgay;
-    ImageView ivHinh;
+    ImageView ivHinh, ivSao1, ivSao2, ivSao3, ivSao4, ivSao5;
     EditText edtPhanHoi;
+
+    TextView tvTrangThaiSao;
     public PhanHoiSanPhamHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -28,6 +30,13 @@ public class PhanHoiSanPhamHolder extends RecyclerView.ViewHolder {
         tvGui = itemView.findViewById(R.id.tvGui);
         tvDiaChi = itemView.findViewById(R.id.tvDiaChi);
         tvNgay = itemView.findViewById(R.id.tvNgay);
+        tvTrangThaiSao = itemView.findViewById(R.id.tvTrangThaiSao);
+
+        ivSao1 = itemView.findViewById(R.id.ivSao1);
+        ivSao2 = itemView.findViewById(R.id.ivSao2);
+        ivSao3 = itemView.findViewById(R.id.ivSao3);
+        ivSao4 = itemView.findViewById(R.id.ivSao4);
+        ivSao5 = itemView.findViewById(R.id.ivSao5);
 
         ivHinh = itemView.findViewById(R.id.ivHinh);
     }

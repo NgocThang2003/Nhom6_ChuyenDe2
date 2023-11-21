@@ -9,13 +9,13 @@ import android.widget.ImageView;
 
 public class MainActivity_TrangChuThuKho extends AppCompatActivity {
 
-    ImageView ivDanhSachDonHang, ivDonHangDaXacNhan, ivDonHangDaDongGoi, ivDonHangDaDuocShipperLayHang, ivDonHangDaGiao, ivDonHangBiHuy;
+    ImageView ivDanhSachDonHang, ivDonHangDaDongGoi, ivDonHangDaDuocShipperLayHang, ivDonHangDaGiao, ivDonHangBiHuy, ivDangXuat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trangchuthukho);
-        
+
         setControl();
         setEvent();
     }
@@ -61,6 +61,13 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ivDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setControl() {
@@ -70,5 +77,6 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
 
         ivDonHangDaGiao = findViewById(R.id.ivDonHangDaGiao);
         ivDonHangBiHuy = findViewById(R.id.ivDonHangBiHuy);
+        ivDangXuat = findViewById(R.id.ivDangXuat);
     }
 }

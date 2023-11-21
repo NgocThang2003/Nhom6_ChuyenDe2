@@ -79,6 +79,7 @@ public class KhoDonHangDaGiao_Adapter extends RecyclerView.Adapter<KhoDonHangDan
         }
         else{
             holder.btnXacNhanDonHang.setVisibility(View.GONE);
+            holder.tvTrangThai.setText("Đã thu tiền");
         }
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity_DangNhap extends AppCompatActivity {
+public class  MainActivity_DangNhap extends AppCompatActivity {
     EditText edtTen, edtMatKhau;
     RadioButton rdAdmin, rdNhanVien, rdKhachHang, rdThuKho, rdShipper;
     TextView tvRegister;

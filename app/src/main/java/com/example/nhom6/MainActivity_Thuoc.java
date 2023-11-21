@@ -28,7 +28,7 @@ public class MainActivity_Thuoc extends AppCompatActivity {
     List<SanPham> data_SP = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference data_SanPham;
-    private BottomNavigationView bottomNavigationView;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,8 @@ public class MainActivity_Thuoc extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.thuoc).setChecked(true);
+
         database = FirebaseDatabase.getInstance();
         data_SanPham = database.getReference("SanPham");
 
