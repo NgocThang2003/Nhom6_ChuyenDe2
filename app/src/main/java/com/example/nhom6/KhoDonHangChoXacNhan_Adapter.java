@@ -14,8 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +30,9 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
+    public static DatabaseReference data_SP;
+    public static List<SanPham> dataSanPham;
+
     public KhoDonHangChoXacNhan_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
@@ -35,7 +41,7 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
     @NonNull
     @Override
     public KhoDonHangChoXacNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan,parent,false));
+        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan, parent, false));
     }
 
     @Override
@@ -43,18 +49,19 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         DonHang donHang = data.get(position);
         database = FirebaseDatabase.getInstance();
         data_DH = database.getReference("DonHang");
+        data_SP = database.getReference("SanPham");
+
+        //DocDL(donHang);
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
-        if (donHang.hinh.trim().equals("")){
+        if (donHang.hinh.trim().equals("")) {
             holder.ivHinh.setImageResource(R.drawable.giongngo);
-        }
-        else {
+        } else {
             try {
                 byte[] bytes = chuyenStringSangByte(donHang.hinh);
                 Bitmap bitmap = chuyenByteSangBitMap(bytes);
                 holder.ivHinh.setImageBitmap(bitmap);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 holder.ivHinh.setImageResource(R.drawable.giongngo);
             }
         }
@@ -66,6 +73,8 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         holder.tvSoLuong.setText(donHang.soLuong);
         holder.tvNgay.setText(donHang.ngay);
         holder.tvTrangThai.setText(donHang.trangThai);
+        //holder.tvTonKho.setText(dataSanPham.get(0).soLuong);
+
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
@@ -88,8 +97,8 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                                 String currentDateandTime = sdf.format(new Date());
                                 data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang đóng gói");
-                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen+"\nĐang đóng gói "+currentDateandTime);
-                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang+" \nĐang đóng gói - Mã nhân viên: "+MainActivity_DangNhap.maNguoiDung+" "+currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen + "\nĐang đóng gói " + currentDateandTime);
+                                data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang + " \nĐang đóng gói - Mã nhân viên: " + MainActivity_DangNhap.maNguoiDung + " " + currentDateandTime);
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -101,7 +110,6 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                 builder.create().show();
 
 
-
             }
         });
 
@@ -109,7 +117,7 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MainActivity_LyDoHuyDon_ThuKho.class);
-                intent.putExtra("donHang_ThuKho",donHang);
+                intent.putExtra("donHang_ThuKho", donHang);
                 context.startActivity(intent);
             }
         });
@@ -121,6 +129,7 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
     public int getItemCount() {
         return data.size();
     }
+
     private byte[] chuyenStringSangByte(String str) {
         byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
         return byteArray;
@@ -130,5 +139,26 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
     private Bitmap chuyenByteSangBitMap(byte[] byteArray) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         return bitmap;
+    }
+
+    public static void DocDL(DonHang donHang) {
+        dataSanPham.clear();
+        data_SP.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataSanPham.clear();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    SanPham sanPham = item.getValue(SanPham.class);
+                    if (donHang.maSanPham.trim().equals(sanPham.maSanPham)) {
+                        dataSanPham.add(sanPham);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -48,6 +48,13 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ivDonHangDaGiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TrangChuThuKho.this, MainActivity_DonHangDangGiao_ThuKho.class);
+                startActivity(intent);
+            }
+        });
 
         ivDonHangDaDuocShipperLayHang.setOnClickListener(new View.OnClickListener() {
             @Override
