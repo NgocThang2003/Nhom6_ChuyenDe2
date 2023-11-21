@@ -1,10 +1,14 @@
 package com.example.nhom6;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
 
     Context context;
     List<GioHang> data = new ArrayList<>();
+    List<SanPham> dataSP = new ArrayList<>();
+    FirebaseDatabase database;
+    DatabaseReference data_GioHang;
 
     public GioHangAdapter(Context context, List<GioHang> data) {
         this.context = context;
@@ -36,6 +43,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull GioHangHolder holder, int position) {
+        database=FirebaseDatabase.getInstance();
+        data_GioHang=database.getReference("GioHang");
        GioHang gioHang = data.get(position);
 
        holder.tvTenSP.setText(gioHang.getTenSP());
@@ -60,7 +69,46 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
        }else {
            holder.ivHinh.setImageResource(R.drawable.ic_launcher_background);
        }
-
+       holder.btnXoa.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               AlertDialog.Builder builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+               builder.setMessage("Bạn có muốn xóa sản phẩm này không ?")
+                       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                               data_GioHang.child(gioHang.maGioHang).removeValue();
+                           }
+                       })
+                       .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                               // User cancelled the dialog
+                           }
+                       });
+               // Create the AlertDialog object and return it
+               builder.create().show();
+           }
+       });
+       holder.btnCong.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) + 1 <= Integer.parseInt(dataSP.get(0).soLuong)) {
+                   holder.tvSoLuong.setText(Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) + 1 + "");
+               } else {
+                   Toast.makeText(context, "Số lượng không được đặt lớn hơn trong kho hàng", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
+       holder.btnTru.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) -1 > 0 ){
+                   holder.tvSoLuong.setText(Integer.parseInt(holder.tvSoLuong.getText().toString().trim()) - 1 + "");
+               }
+               else {
+                   Toast.makeText(context, "Số lượng không được nhỏ hơn 1", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
 
 
     }

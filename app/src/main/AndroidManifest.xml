@@ -42,49 +42,14 @@
             android:name=".MainActivity_LienHe"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ChiTietSanPham"
+            android:name=".MainActivity_DanhBaTinNhan_KhachHang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_ChonDiaChiGiaoHang"
+            android:name=".MainActivity_tinnhan_khachhang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_tinnhan_nhanvien"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity_ThongTinNguoiNhan"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_QuanTriChungCacDanhMuc"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ShipperDonHangDaHuy"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_GioHang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_DonHang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ShipperDanhSachDonHang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ShipperDonHangDangGiao"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity_KhoDonHangDangDongGoi"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ShipperDonHangCuaBan"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_DonHangChoXacNhan"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_TrangChuShipper"
-            android:exported="false" />
-
         <activity
             android:name=".MainActivity_DanhBaTinNhan_NhanVien"
             android:exported="false" />
@@ -92,16 +57,16 @@
             android:name=".MainActivity_GiongCayTrong"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_TaiKhoan"
+            android:name=".MainActivity_TrangChuKhachHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DangKy"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DanhBaTinNhan_KhachHang"
+            android:name=".MainActivity_KhoDonHangDangDongGoi"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_HoSoNguoiDung"
+            android:name=".MainActivity_KhoDonHangChoXacNhan"
             android:exported="false" />
         <activity
             android:name=".MainActivity_ThemDiaChiMoi"
@@ -112,24 +77,23 @@
         <activity
             android:name=".MainActivity_Thuoc"
             android:exported="false" />
-
+        <activity
+            android:name=".MainActivity_DonHangChoXacNhan"
+            android:exported="false" />
         <activity
             android:name=".MainActivity_DiaChiGiaoHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_Shipper_DonHangCuaBan"
             android:exported="false" />
         <activity
             android:name=".MainActivity_GioiThieu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_QuanTriKyThuat"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_TrangChuKhachHang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_tinnhan_khachhang"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity_TrangChuAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriKyThuat"
             android:exported="false" />
         <activity
             android:name=".MainActivity_QuanTriSanPham"
@@ -138,7 +102,34 @@
             android:name=".MainActivity_QuanTriNhanVien"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_QuanTriChungCacDanhMuc"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_TrangChuThuKho"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_ChiTietSanPham"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DonHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_GioHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LyDoHuyDon"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_HoSoNguoiDung"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TaiKhoan"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TatCaDanhGia"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DanhGia"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DangNhap"

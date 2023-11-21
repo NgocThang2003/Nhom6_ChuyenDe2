@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,43 +58,70 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangHolder> {
         }
 
 
-        if(donHang.trangThai.equals("Đang đóng gói")){
+        if (donHang.trangThai.equals("Đang đóng gói")) {
             holder.btnDonHang.setVisibility(View.GONE);
             holder.tvLyDo.setText("");
         }
 
-        if(donHang.trangThai.equals("Đã đóng gói")){
+        if (donHang.trangThai.equals("Đã đóng gói")) {
             holder.btnDonHang.setVisibility(View.GONE);
             holder.tvLyDo.setText("");
         }
 
-            if(donHang.trangThai.equals("Đang giao hàng")){
+        if (donHang.trangThai.equals("Đang giao hàng")) {
             holder.btnDonHang.setVisibility(View.GONE);
             holder.tvLyDo.setText("");
         }
 
-        if(donHang.trangThai.equals("Đang chờ xác nhận")){
+        if (donHang.trangThai.equals("Đang chờ xác nhận")) {
             holder.btnDonHang.setVisibility(View.VISIBLE);
             holder.btnDonHang.setText("Huỷ");
             holder.tvLyDo.setText("");
             holder.btnDonHang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context,MainActivity_LyDoHuyDon.class);
+                    Intent intent = new Intent(context, MainActivity_LyDoHuyDon.class);
                     intent.putExtra("don hang", donHang);
                     context.startActivity(intent);
                 }
             });
         }
-        if(donHang.trangThai.equals("Đã huỷ")){
+        if (donHang.trangThai.equals("Đã huỷ")) {
             holder.btnDonHang.setVisibility(View.GONE);
-            holder.tvLyDo.setText("lý do huỷ đon: "+donHang.lyDoHuyDon);
+            holder.tvLyDo.setText("lý do huỷ đon: " + donHang.lyDoHuyDon);
+
 
         }
-        if(donHang.trangThai.equals("Đã giao hàng")){
-            holder.btnDonHang.setVisibility(View.VISIBLE);
-            holder.btnDonHang.setText("Đánh giá");
-            holder.tvLyDo.setText("");
+        if (donHang.trangThai.equals("Đã giao hàng")) {
+            if (donHang.danhGia.trim().equals("")) {
+                holder.btnDonHang.setVisibility(View.VISIBLE);
+                holder.btnDonHang.setText("Đánh giá");
+                holder.tvLyDo.setText("");
+                holder.btnDonHang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, MainActivity_DanhGia.class);
+                        intent.putExtra("don hang", donHang);
+                        context.startActivity(intent);
+                    }
+                });
+            } else {
+                holder.tvTrangThai.setText("Đã đánh giá");
+                holder.btnDonHang.setVisibility(View.VISIBLE);
+                holder.btnDonHang.setText("Xem đánh giá");
+                holder.tvLyDo.setText("");
+
+                holder.btnDonHang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, MainActivity_TatCaDanhGia.class);
+                        //intent.putExtra("don hang", donHang);
+                        context.startActivity(intent);
+                    }
+                });
+            }
+
+
         }
 
     }

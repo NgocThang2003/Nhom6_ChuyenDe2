@@ -108,13 +108,13 @@
                android:orientation="horizontal"
                >
                <Button
-                   android:id="@+id/btnTru"
+                   android:id="@+id/btnTruGioHang"
                    style="@style/button_trai"
                    android:focusable="false"
                    android:text="-"/>
 
                <TextView
-                   android:id="@+id/tvSL"
+                   android:id="@+id/tvSLGH"
                    android:layout_width="57dp"
                    android:layout_height="wrap_content"
                    android:gravity="center"
@@ -122,14 +122,14 @@
                    android:focusable="false"
                    android:text="1" />
                <Button
-                   android:id="@+id/btnCong"
+                   android:id="@+id/btnCongGioHang"
                    style="@style/button_phai"
                    android:focusable="false"
                    android:text="+"/>
            </LinearLayout>
 
            <Button
-               android:id="@+id/btnXoa"
+               android:id="@+id/btnXoaGioHang"
                android:layout_width="80dp"
                android:layout_height="40dp"
                android:text="Xoá"
