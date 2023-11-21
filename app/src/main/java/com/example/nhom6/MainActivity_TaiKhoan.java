@@ -102,7 +102,8 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
         ivDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_TaiKhoan.this,MainTatCa
+                Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TatCaDanhGia.class);
+                startActivity(intent);
             }
         });
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +115,8 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
                                 Toast.makeText(MainActivity_TaiKhoan.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                                MainActivity_TaiKhoan      startActivity(new Intent(MainActivity_TaiKhoan.this,MainActivity_DangNhap.class));
+
+                            startActivity(new Intent(MainActivity_TaiKhoan.this,MainActivity_DangNhap.class));
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -164,7 +166,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
 
         ivLienHe = findViewById(R.id.ivLienHe);
         ivLienHe2 = findViewById(R.id.ivLienHe2);
-        linearLayout = findViewById(R.id.LinearLayout);
+        linearLayout = findViewById(R.id.linearLayoutDangXuat);
         btnDangXuat = findViewById(R.id.btnDangXuat);
         ivDanhGia = findViewById(R.id.ivDanhGiaTK);
     }
