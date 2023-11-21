@@ -16,6 +16,25 @@
         android:theme="@style/Theme.Nhom6"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity_DanhSachDonHang_BanHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_TrangChuBanHang"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_DonHangDangGiao_ThuKho"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LyDoHuyDon_ThuKho"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_KhoDonHangDaHuy"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LienHe"
+            android:exported="false" />
         <activity
             android:name=".MainActivity_ChiTietSanPham"
             android:exported="false" />
@@ -95,11 +114,19 @@
             android:name=".MainActivity_tinnhan_khachhang"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_DangNhap"
+            android:name=".MainActivity_TrangChuAdmin"
             android:exported="false" />
-
         <activity
-            android:name=".MainActivity_TrangChuShipper"
+            android:name=".MainActivity_QuanTriKyThuat"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriSanPham"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_QuanTriNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_LienHe"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

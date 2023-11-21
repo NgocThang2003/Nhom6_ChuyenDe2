@@ -34,7 +34,9 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_KDHCXN;
     List<DonHang> data_DonHang = new ArrayList<>();
-    ImageView ivHinh, ivQuayVe;
+
+    ImageView ivQuayVe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,13 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
 
             }
         });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               onBackPressed();
+            }
+        });
     }
     public void DocDL() {
         data_DonHang.clear();
@@ -86,7 +95,7 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang chờ xác nhận")){
+                    if(donHang.trangThai.toString().trim().equals("Đang chờ xác nhận từ kho")){
                         data_DonHang.add(donHang);
                     }
 //                    data_DonHang.add(donHang);
@@ -105,30 +114,14 @@ public class MainActivity_KhoDonHangChoXacNhan extends AppCompatActivity {
     }
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
-        ivHinh = findViewById(R.id.ivHinh);
         ivQuayVe = findViewById(R.id.ivQuayVe);
+
 
     }
     byte[] byteArrayHinh = new byte[0];
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            ivHinh.setImageURI(uri);
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byteArrayHinh = stream.toByteArray();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);

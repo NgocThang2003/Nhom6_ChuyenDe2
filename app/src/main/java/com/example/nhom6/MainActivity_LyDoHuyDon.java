@@ -89,6 +89,8 @@ public class MainActivity_LyDoHuyDon extends AppCompatActivity {
             public void onClick(View v) {
                 data_DH.child(myObject.maDonHang).child("lyDoHuyDon").setValue(edtLyDoHuyDon.getText().toString().trim());
                 data_DH.child(myObject.maDonHang).child("trangThai").setValue("Đã huỷ");
+                Intent intent = new Intent(MainActivity_LyDoHuyDon.this, MainActivity_DonHang.class);
+                startActivity(intent);
             }
         });
     }

@@ -90,6 +90,12 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
 
             }
         });
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         ivHinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,13 +116,6 @@ public class MainActivity_HoSoNguoiDung extends AppCompatActivity {
                     Toast.makeText(MainActivity_HoSoNguoiDung.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
 
                 }
-            }
-        });
-        ivQuayVe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_HoSoNguoiDung.this, MainActivity_TaiKhoan.class);
-                startActivity(intent);
             }
         });
 

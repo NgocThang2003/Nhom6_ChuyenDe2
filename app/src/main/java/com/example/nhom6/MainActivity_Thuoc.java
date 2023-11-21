@@ -115,7 +115,7 @@ public class MainActivity_Thuoc extends AppCompatActivity {
                     if( i + 1 != data_SP.size()){
                         if (data_SP.get(i+1).loaiSP.toString().equals("Thuốc")) {
                             SanPham sanPham = data_SP.get(i+1);
-                            //Toast.makeText(MainActivity_Thuoc.this, "Thuốc: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity_Thuoc.this, "Thuốc: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
                             thuoc.setMaSP2(sanPham.getMaSanPham().trim());
                             thuoc.setTenSP2(sanPham.getMoTa().trim());
                             thuoc.setMoTa2(sanPham.getTenSP().trim());
@@ -140,26 +140,21 @@ public class MainActivity_Thuoc extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_TaiKhoan.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_Thuoc.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    item.setChecked(true);
                     return  true;
                 }
                 if(item.getItemId() == R.id.cuahang){
                     Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_GiongCayTrong.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_TrangChuKhachHang.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     return  true;
                 }

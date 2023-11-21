@@ -45,7 +45,7 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
 
     EditText edtTinNhan;
     TextView tvGui, tvTenKhachHang;
-    ImageView ivHinhKhachHang;
+    ImageView ivHinhKhachHang, ivQuayVe;
 
     public static String maNV = "-NiYKq6L8MCZJK4XuYou";
     public static String maKH = "-NicfEfjZkm0OfST0xMS";
@@ -84,6 +84,12 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
 
         tvGui.setVisibility(View.GONE);
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         edtTinNhan.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -422,6 +428,8 @@ public class MainActivity_tinnhan_khachhang extends AppCompatActivity {
 
         tvTenKhachHang = findViewById(R.id.tvTenNhanVien);
         ivHinhKhachHang = findViewById(R.id.ivHinhNhanVien);
+
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 
     private byte[] chuyenStringSangByte(String str) {

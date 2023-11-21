@@ -295,6 +295,13 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
 
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void DocDL() {

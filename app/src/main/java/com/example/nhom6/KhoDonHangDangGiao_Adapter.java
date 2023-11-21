@@ -4,30 +4,39 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
-public class DonHangChoXacNhan_BanHang_Adapter extends RecyclerView.Adapter<DonHangChoXacNhan_BanHang_Holder> {
+public class KhoDonHangDangGiao_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
     Context context;
     List<DonHang> data;
-    public DonHangChoXacNhan_BanHang_Adapter( Context context, List<DonHang> data) {
+
+    FirebaseDatabase database;
+    DatabaseReference data_DH;
+    public KhoDonHangDangGiao_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
 
     @NonNull
     @Override
-    public DonHangChoXacNhan_BanHang_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new DonHangChoXacNhan_BanHang_Holder(LayoutInflater.from(context).inflate(R.layout.item_donhangchoxacnhan_banhang,parent,false));
+    public KhoDonHangChoXacNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DonHangChoXacNhan_BanHang_Holder holder, int position) {
+    public void onBindViewHolder(@NonNull KhoDonHangChoXacNhan_Holder holder, int position) {
         DonHang donHang = data.get(position);
+        database = FirebaseDatabase.getInstance();
+        data_DH = database.getReference("DonHang");
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
         if (donHang.hinh.trim().equals("")){
@@ -54,9 +63,14 @@ public class DonHangChoXacNhan_BanHang_Adapter extends RecyclerView.Adapter<DonH
         int gia = Integer.parseInt(donHang.gia.trim());
         int soLuong = Integer.parseInt(donHang.soLuong.trim());
 
-        holder.tvThanhTien.setText("" + gia * soLuong);
+        holder.tvThanhTien.setText("đ" + gia * soLuong);
 
-
+        holder.tvLyDoHuyDon.setVisibility(View.GONE);
+        holder.tvLyDoHuyDon.setText(donHang.lyDoHuyDon);
+        holder.btnTinNhan.setVisibility(View.GONE);
+        holder.btnGoiDien.setVisibility(View.GONE);
+        holder.btnXacNhanDonHang.setVisibility(View.GONE);
+        holder.btnHuy.setVisibility(View.GONE);
     }
 
     @Override

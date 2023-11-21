@@ -12,6 +12,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/ivQuayVe"
             android:layout_width="17dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"

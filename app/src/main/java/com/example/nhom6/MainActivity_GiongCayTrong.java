@@ -281,6 +281,11 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
                     startActivity(intent);
                     return  true;
                 }
+                if(item.getItemId() == R.id.tuvan){
+                    Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_DanhBaTinNhan_KhachHang.class);
+                    startActivity(intent);
+                    return  true;
+                }
                 return false;
 
 

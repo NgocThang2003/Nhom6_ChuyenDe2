@@ -55,6 +55,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
     DatabaseReference data_NhanVien;
     DatabaseReference data_KhachHang;
 
+    ImageView ivQuayVe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,6 +224,13 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -408,6 +416,7 @@ public class MainActivity_tinnhan_nhanvien extends AppCompatActivity {
 
         tvTenKhachHang = findViewById(R.id.tvTenKhachHang);
         ivHinhKhachHang = findViewById(R.id.ivHinhKhachHang);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 
     private byte[] chuyenStringSangByte(String str) {

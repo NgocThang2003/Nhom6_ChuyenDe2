@@ -59,6 +59,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
 
     private void setEvent() {
         //KhoiTao();
+        maNV = MainActivity_DangNhap.maNguoiDung;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         data_TinNhanKhachHang = database.getReference("TinNhanKhachHang");
         data_TinNhanNhanVien = database.getReference("TinNhanNhanVien");
@@ -183,6 +184,13 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -400,6 +408,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
                 try {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                     date1 = dateFormat.parse(tinNhan1.getNgay());
+                    //Toast.makeText(MainActivity_DanhBaTinNhan_NhanVien.this, "" + date2, Toast.LENGTH_SHORT).show();
                     date2 = dateFormat.parse(tinNhan2.getNgay());
                 } catch (Exception e) {
                     return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;

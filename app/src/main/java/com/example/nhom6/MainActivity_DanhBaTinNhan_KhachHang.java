@@ -32,7 +32,7 @@ import java.util.List;
 public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
     RecyclerView recyclerViewDanhBa;
     EditText edtTimKiem;
-
+    ImageView ivQuayVe;
     List<TinNhan> data_danhba = new ArrayList<>();
     List<TinNhan> data_tinNhan = new ArrayList<>();
 
@@ -47,6 +47,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_danh_ba_tin_nhan_khach_hang);
 
@@ -181,6 +182,13 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -354,7 +362,8 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
                             date1 = dateFormat.parse(tinNhan1.getNgay());
                             date2 = dateFormat.parse(tinNhan2.getNgay());
                         } catch (Exception e) {
-                            return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
+                            //Toast.makeText(MainActivity_DanhBaTinNhan_KhachHang.this, "Hello", Toast.LENGTH_SHORT).show();
+                            return -1;
                         }
                         return date1.compareTo(date2);
                     }
@@ -400,7 +409,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
                             date1 = dateFormat.parse(tinNhan1.getNgay());
                             date2 = dateFormat.parse(tinNhan2.getNgay());
                         } catch (Exception e) {
-                            return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
+                            return -1;
                         }
                         return date1.compareTo(date2);
                     }

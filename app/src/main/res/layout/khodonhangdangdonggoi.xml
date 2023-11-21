@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:gravity="center"
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,22 +14,22 @@
 
         <ImageView
             android:id="@+id/ivQuayVe"
-            android:layout_gravity="center"
             android:scaleType="fitXY"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/quayve1"/>
 
         <TextView
+            android:id="@+id/tvTieuDe"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="25dp"
+            android:textSize="18dp"
             android:textColor="#FFFFFF"
 
             android:text="ĐƠN HÀNG ĐANG ĐÓNG GÓI"
-            android:layout_gravity="center"/>
+            />
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView

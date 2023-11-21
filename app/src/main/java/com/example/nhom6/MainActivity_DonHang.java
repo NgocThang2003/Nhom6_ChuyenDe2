@@ -26,6 +26,8 @@ public class MainActivity_DonHang extends AppCompatActivity {
 
     public static List<DonHang> data_DonHang = new ArrayList<>();
     public static List<DanhMuc> data_DanhMuc = new ArrayList<>();
+
+    Button btnQuayLai;
     FirebaseDatabase database;
     public static DatabaseReference data_DH;
     public static String maKH = "-NiNrHieKJTJY-rlUhgh";
@@ -41,6 +43,7 @@ public class MainActivity_DonHang extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maKH = MainActivity_DangNhap.maNguoiDung;
         KhoiTao();
         database = FirebaseDatabase.getInstance();
         data_DH = database.getReference("DonHang");
@@ -54,16 +57,63 @@ public class MainActivity_DonHang extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 DocDL();
+                if (data_DanhMuc.get(0).dangChon2.equals(1)) {
+                    DocDLDonHangDangChoXacNhan();
+                }
+                if (data_DanhMuc.get(0).dangChon3.equals(1)) {
+                    DocDLDonHangDangDongGoi();
+                }
+
+                if (data_DanhMuc.get(1).dangChon1.equals(1)) {
+                    DocDLDonHangDangGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon2.equals(1)) {
+                    DocDLDonHangDaGiaoHang();
+                }
+                if (data_DanhMuc.get(1).dangChon3.equals(1)) {
+                    DocDLDonHangDaHuy();
+                }
             }
 
             @Override
@@ -77,9 +127,17 @@ public class MainActivity_DonHang extends AppCompatActivity {
             }
         });
 
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void KhoiTao() {
+        data_DanhMuc.clear();
         data_DanhMuc.add(new DanhMuc("Tất cả", "1", "Chờ xác nhận", "0", "Đang đóng gói", "0"));
         data_DanhMuc.add(new DanhMuc("Đang giao hàng", "0", "Đã nhận hàng", "0", "Đã huỷ", "0"));
     }
@@ -236,6 +294,8 @@ public class MainActivity_DonHang extends AppCompatActivity {
     private void setControl() {
         rcvRecyclerView = findViewById(R.id.recyclerviewDonHang);
         rcvRecyclerViewDanhMuc = findViewById(R.id.recyclerviewDanhMuc);
+
+        btnQuayLai = findViewById(R.id.btnQuayLai);
 
     }
 }

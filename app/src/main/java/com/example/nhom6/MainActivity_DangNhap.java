@@ -34,7 +34,6 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     Button btnxacNhan;
     List<TaiKhoan> data_taiKhoan = new ArrayList<>();
     List<NhanVien> data_NhanVien = new ArrayList<>();
-    TextView tvDangNhap;
     public static TaiKhoan dangNhap = new TaiKhoan();
     public static int index = -1;
     FirebaseDatabase database;
@@ -52,6 +51,7 @@ public class MainActivity_DangNhap extends AppCompatActivity {
     }
 
     private void setEvent() {
+        rdKhachHang.setChecked(true);
         database = FirebaseDatabase.getInstance();
         data_TK = database.getReference("DangKy");
         data_NV = database.getReference("NhanVien");
@@ -69,7 +69,6 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 //        Hiện mật khẩu
         cbHienMK.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -184,18 +183,19 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                     if (data_taiKhoan.get(i).getQuyen() == 0 && rdAdmin.isChecked() == true) {
                         kiemTra = true;
                         index = i;
-                        //kiểm tra tài khoản nếu đúng thì sẽ vào admin trang chủ
+                        //kiểm tra tài khoản nếu đúng thì sẽ vào trang chủ
+                        maNguoiDung = data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, TrangChu_Admin.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuAdmin.class);
+                        startActivity(intent);
                     }
                     if (data_taiKhoan.get(i).getQuyen() == 4 && rdKhachHang.isChecked() == true) {
                         kiemTra = true;
                         index = i;
                         maNguoiDung =data_taiKhoan.get(i).maNguoiDung;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_KhachHang.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuKhachHang.class);
+                        startActivity(intent);
                     }
 
                 }
@@ -211,15 +211,17 @@ public class MainActivity_DangNhap extends AppCompatActivity {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_NhanVien.class);
-//                        startActivity(intent);
+                        maNguoiDung = data_NhanVien.get(i).maNhanVien;
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuBanHang.class);
+                        startActivity(intent);
                     }
                     if (data_NhanVien.get(i).quyen.equals("2") && rdThuKho.isChecked() == true) {
                         kiemTra = true;
                         index = i;
                         Toast.makeText(MainActivity_DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(MainActivity_DangNhap.this, Trangchu_ThuKho.class);
-//                        startActivity(intent);
+                        maNguoiDung = data_NhanVien.get(i).maNhanVien;
+                        Intent intent = new Intent(MainActivity_DangNhap.this, MainActivity_TrangChuThuKho.class);
+                        startActivity(intent);
                     }
                     if (data_NhanVien.get(i).quyen.equals("3") && rdShipper.isChecked() == true) {
                         kiemTra = true;
