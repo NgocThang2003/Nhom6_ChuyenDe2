@@ -41,7 +41,6 @@
                 android:id="@+id/tvXemTatCa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
                 android:text="Xem tất cả"
                 android:textColor="#0A7F08"
                 android:textSize="20dp" />
@@ -52,15 +51,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-            <ImageView
-                android:layout_marginLeft="20dp"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp">
 
                 <ImageView
                     android:layout_width="55dp"
@@ -131,11 +130,12 @@
                     android:layout_height="55dp"
                     android:src="@drawable/danhgia" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Đánh giá" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Chờ xác nhận"></TextView>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -214,23 +214,23 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/thanhtoan1" />
 
                 <TextView
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Phương thức thanh toán" />
 
                 <ImageView
-                    android:onClick="chucnang"
                     android:id="@+id/ivPTTT"
                     android:layout_width="24dp"
                     android:layout_height="40dp"
+                    android:onClick="chucnang"
                     android:src="@drawable/quayphai"></ImageView>
             </LinearLayout>
         </LinearLayout>
@@ -263,17 +263,18 @@
                 android:text="Giới thiệu" />
 
             <ImageView
-                android:onClick="chucnanggioithieu"
                 android:id="@+id/ivGioiThieu"
                 android:layout_width="24dp"
                 android:layout_height="40dp"
+                android:onClick="chucnanggioithieu"
                 android:src="@drawable/quayphai"></ImageView>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView
@@ -296,22 +297,31 @@
                 android:layout_height="40dp"
                 android:src="@drawable/quayphai"></ImageView>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="200dp"
-            android:layout_width="match_parent"
+            android:id="@+id/LinearLayout"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/bg_edt"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnDangXuat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
+                android:text="Đăng xuất"
                 android:textColor="#000000"
-                android:text="Đăng xuất" />
+                android:textSize="16dp" />
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/dangxuat" />
 
         </LinearLayout>

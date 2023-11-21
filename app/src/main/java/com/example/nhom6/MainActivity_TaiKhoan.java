@@ -166,7 +166,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
 
         ivLienHe = findViewById(R.id.ivLienHe);
         ivLienHe2 = findViewById(R.id.ivLienHe2);
-        linearLayout = findViewById(R.id.linearLayoutDangXuat);
+        linearLayout = findViewById(R.id.LinearLayout);
         btnDangXuat = findViewById(R.id.btnDangXuat);
         ivDanhGia = findViewById(R.id.ivDanhGiaTK);
     }
