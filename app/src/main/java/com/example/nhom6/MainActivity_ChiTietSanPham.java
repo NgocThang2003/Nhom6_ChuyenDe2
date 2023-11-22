@@ -287,6 +287,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                     int soLuong2 = Integer.parseInt(tvSoLuong.getText().toString().trim());
                     int tong = soLuong1 + soLuong2;
                     data_GioHang.child(data_GH.get(0).maGioHang).child("soLuong").setValue("" + tong);
+                    Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
+                    startActivity(intent);
 
                 } else {
                     GioHang gioHang = new GioHang();
@@ -302,6 +304,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                     gioHang.setDonVi(data_CT.get(0).getDonVi());
                     gioHang.setHinh(data_CT.get(0).getHinh());
                     gioHang.setDaChon("0");
+
                     data_GioHang.child(maGH).setValue(gioHang);
 
                     Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
