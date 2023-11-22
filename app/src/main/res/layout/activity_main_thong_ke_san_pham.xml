@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity_ThongKeSanPham">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#4E8F49"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivQuayVe"
+            android:layout_width="13dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"></ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:text="Thống kê sản phẩm"
+            android:textColor="#FFF"
+            android:textSize="20dp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4E8F49"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2023"
+            android:textColor="#FFF"
+            android:textSize="20dp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:background="#E0FFDE"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E0FFDE"
+            android:gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ivSoLuongItNhat"
+                    android:scaleType="fitXY"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/bolocden"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvSoLuongItNhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Số lượng ít nhất"
+                    android:textColor="#000"
+                    android:textSize="18dp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ivBanNhieuNhat"
+                    android:scaleType="fitXY"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/bolocmt"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvBanNhieuNhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Bán nhiều nhất"
+                    android:textColor="#000"
+                    android:textSize="18dp"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E0FFDE"
+            android:gravity="center|left"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ivSoLuongLonNhat"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/bolocmt"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvSoLuongLonNhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Số lượng lớn nhất"
+                    android:textColor="#000"
+                    android:textSize="18dp"></TextView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ivBanItNhat"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/bolocmt"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvBanItNhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Bán ít nhất"
+                    android:textColor="#000"
+                    android:textSize="18dp"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="#F4EDED"
+        android:id="@+id/recyclerviewThongKe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

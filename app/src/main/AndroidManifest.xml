@@ -17,10 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity_PhuongThucThanhToan"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_ShipperDonHangDangGiao"
+            android:name=".MainActivity_ThongKeSanPham"
             android:exported="false" />
         <activity
             android:name=".MainActivity_DanhSachDonHang_BanHang"

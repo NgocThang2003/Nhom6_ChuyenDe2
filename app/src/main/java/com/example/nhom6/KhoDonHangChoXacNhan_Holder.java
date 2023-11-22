@@ -3,6 +3,7 @@ package com.example.nhom6;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class KhoDonHangChoXacNhan_Holder extends RecyclerView.ViewHolder {
     Button btnGoiDien, btnTinNhan, btnXacNhanDonHang, btnHuy;
+    LinearLayout linearLayoutDonHang;
     ImageView ivHinh;
     TextView tvTenKH, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien,tvLyDoHuyDon, tvTonKho;
     public KhoDonHangChoXacNhan_Holder(@NonNull View itemView) {
@@ -32,5 +34,7 @@ public class KhoDonHangChoXacNhan_Holder extends RecyclerView.ViewHolder {
         tvThanhTien = itemView.findViewById(R.id.tvThanhTien);
         tvLyDoHuyDon = itemView.findViewById(R.id.tvLyDoHuyDon);
         tvTonKho = itemView.findViewById(R.id.tvTonKho);
+
+        linearLayoutDonHang = itemView.findViewById(R.id.linearLayoutDonHang);
     }
 }

@@ -262,17 +262,17 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         data_NV.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                DocDL();
+                phanLoaiNhanVien();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                DocDL();
+                phanLoaiNhanVien();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                DocDL();
+                phanLoaiNhanVien();
             }
 
             @Override
@@ -286,7 +286,8 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
             }
         });
 
-//        data_LoaiNV.addChildEventListener(new ChildEventListener() {
+
+//        data_NV.addChildEventListener(new ChildEventListener() {
 //            @Override
 //            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 //                DocDLLoaiNhanVien();
@@ -312,7 +313,6 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 //
 //            }
 //        });
-
         chkBanHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,11 +332,11 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearEditText();
-                EnabelButtonTrue();
-
-                Intent intent = new Intent(MainActivity_QuanTriNhanVien.this, MainActivity_TrangChuAdmin.class);
-                startActivity(intent);
+//                clearEditText();
+//                EnabelButtonTrue();
+//                data_NhanVien.clear();
+//                data_loaiNhanVien.clear();
+                onBackPressed();
             }
         });
 
@@ -372,7 +372,7 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
     }
 
     private void EnabelButtonFalse() {
-        btnThem.setEnabled(false);
+        btnThem.setEnabled(true);
         btnXoa.setEnabled(true);
         btnSua.setEnabled(true);
     }
@@ -446,9 +446,9 @@ public class MainActivity_QuanTriNhanVien extends AppCompatActivity {
 
     private void kiemLoaiNhanVien(NhanVien nhanVien) {
         for (int i = 0; i < data_loaiNhanVien.size(); i++) {
-           if(nhanVien.getLoaiNhanVien().toString().trim().equals(data_loaiNhanVien.get(i).toString().trim())){
-               spLoaiNV.setSelection(i);
-           }
+            if (nhanVien.getLoaiNhanVien().toString().trim().equals(data_loaiNhanVien.get(i).toString().trim())) {
+                spLoaiNV.setSelection(i);
+            }
         }
     }
 

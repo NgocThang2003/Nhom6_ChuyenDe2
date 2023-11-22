@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class MainActivity_TrangChuAdmin extends AppCompatActivity {
 
-    ImageView ivQuanLySanPham, ivQuanLyNhanVien, ivQuanLyDoanhMuc, ivThongKeSanPham, ivThongKeDoanhThu;
+    ImageView ivQuanLySanPham, ivQuanLyNhanVien, ivQuanLyDoanhMuc, ivThongKeSanPham, ivThongKeDoanhThu, ivQuayVe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,13 @@ public class MainActivity_TrangChuAdmin extends AppCompatActivity {
             }
         });
 
+        ivThongKeSanPham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TrangChuAdmin.this, MainActivity_ThongKeSanPham.class);
+                startActivity(intent);
+            }
+        });
         ivQuanLyNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +54,13 @@ public class MainActivity_TrangChuAdmin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setControl() {
@@ -56,5 +70,6 @@ public class MainActivity_TrangChuAdmin extends AppCompatActivity {
 
         ivThongKeDoanhThu = findViewById(R.id.ivThongKeDoanhThu);
         ivThongKeSanPham = findViewById(R.id.ivThongKeSanPham);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 }

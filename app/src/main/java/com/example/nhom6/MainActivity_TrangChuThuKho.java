@@ -48,6 +48,13 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ivDonHangDaGiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TrangChuThuKho.this, MainActivity_KhoDonDaGiaoHang.class);
+                startActivity(intent);
+            }
+        });
 
         ivDonHangDaDuocShipperLayHang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +73,8 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
                                 Toast.makeText(MainActivity_TrangChuThuKho.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(MainActivity_TrangChuThuKho.this,MainActivity_DangNhap.class));
+                                //startActivity(new Intent(MainActivity_TrangChuThuKho.this,MainActivity_DangNhap.class));
+                                onBackPressed();
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
