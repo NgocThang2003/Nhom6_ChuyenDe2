@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ public class MainActivity_TrangChuBanHang extends AppCompatActivity {
     ImageView ivQuanTriKyThuat, ivTuVan, ivDonHangBiHuy,ivGopY,ivDanhSachDonHang,ivPhanHoiDanhGia;
     LinearLayout linearLayoutDangXuat;
     Button btnDangXuat;
+    ImageButton ivGoiDien;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,7 @@ public class MainActivity_TrangChuBanHang extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity_TrangChuBanHang.this, MainActivity_DanhSachDonHang_BanHang.class);
+
                 startActivity(intent);
             }
         });
@@ -73,6 +76,7 @@ public class MainActivity_TrangChuBanHang extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         linearLayoutDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +100,13 @@ public class MainActivity_TrangChuBanHang extends AppCompatActivity {
                 builder.create().show();
             }
         });
-
+        ivGoiDien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TrangChuBanHang.this, MainActivity_GoiDien.class);
+                startActivity(intent);
+            }
+        });
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,5 +140,6 @@ public class MainActivity_TrangChuBanHang extends AppCompatActivity {
         linearLayoutDangXuat = findViewById(R.id.linearLayoutDangXuat);
         ivPhanHoiDanhGia = findViewById(R.id.ivPhanHoiDanhGia);
         btnDangXuat = findViewById(R.id.btnDangXuat);
+        ivGoiDien = findViewById(R.id.ivGoiDien);
     }
 }

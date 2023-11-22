@@ -97,12 +97,15 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang giao hàng")){
-                        data_DonHang.add(donHang);
+                    if(MainActivity_DangNhap.maNguoiDung.trim().equals(donHang.maShipper)){
+                        if(donHang.trangThai.toString().trim().equals("Đang giao hàng")){
+                            data_DonHang.add(donHang);
+                        }
+                        if(donHang.trangThai.toString().trim().equals("Đã giao hàng")){
+                            data_DonHang.add(donHang);
+                        }
                     }
-                    if(donHang.trangThai.toString().trim().equals("Đã giao hàng")){
-                        data_DonHang.add(donHang);
-                    }
+
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");

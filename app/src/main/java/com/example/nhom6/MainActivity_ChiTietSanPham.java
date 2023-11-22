@@ -50,7 +50,6 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     List<SanPham> data_CT = new ArrayList<>();
     public static List<GioHang> data_GH = new ArrayList<>();
     //List<TaiKhoan> data_taiKhoan = new ArrayList<>();
-
     public static String maSP = "-NiT6YxCGEdSMwNTLFFt";
     public static String maKH = "-NiNrHieKJTJY-rlUhgh";
     String tenKH = "Le Hong Thuy";
