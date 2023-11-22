@@ -311,40 +311,39 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
             }
         });
 
-//        data_LoaiSP.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                DocDLLoaiSanPham();
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                DocDLLoaiSanPham();
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//                DocDLLoaiSanPham();
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        data_LoaiSP.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLLoaiSanPham();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLLoaiSanPham();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDLLoaiSanPham();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         ivTroVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clearEditText();
                 EnabelButtonTrue();
-                Intent intent = new Intent(MainActivity_QuanTriSanPham.this, MainActivity_TrangChuAdmin.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -585,7 +584,7 @@ public class MainActivity_QuanTriSanPham extends AppCompatActivity {
     }
 
     private void EnabelButtonFalse() {
-        btnThem.setEnabled(false);
+        btnThem.setEnabled(true);
         btnXoa.setEnabled(true);
         btnSua.setEnabled(true);
     }

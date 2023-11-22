@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class MainActivity_QuanTriChungCacDanhMuc extends AppCompatActivity {
 
     List<Object> data = new ArrayList<>();
     List<Object> data2 = new ArrayList<>();
+    ImageView ivQuayVe;
 
     int index = -1;
 
@@ -366,6 +368,13 @@ public class MainActivity_QuanTriChungCacDanhMuc extends AppCompatActivity {
             }
         });
 
+        ivQuayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         rdbLoaiSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -575,6 +584,7 @@ public class MainActivity_QuanTriChungCacDanhMuc extends AppCompatActivity {
         tvDanhSachLoai = findViewById(R.id.tvDanhSanh);
 
         lvLoaiDanhMuc = findViewById(R.id.lvLoaiDanhMuc);
+        ivQuayVe = findViewById(R.id.ivQuayVe);
     }
 
     public void DocDLLoaiSP() {

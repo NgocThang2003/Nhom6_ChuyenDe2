@@ -6,14 +6,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,21 +24,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHangChoXacNhan_Holder> {
-    Context context;
+    public static Context context;
     List<DonHang> data;
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
     public static DatabaseReference data_SP;
-    public static List<SanPham> dataSanPham;
+    public static List<SanPham> dataSanPham = new ArrayList<>();
 
     public KhoDonHangChoXacNhan_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
+    }
+
+    private SanPhamAdapter.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListenner(SanPhamAdapter.OnItemClickListener listenner) {
+        mListener = listenner;
     }
 
     @NonNull
@@ -51,7 +65,42 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         data_DH = database.getReference("DonHang");
         data_SP = database.getReference("SanPham");
 
-        //DocDL(donHang);
+        data_SP.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL(donHang, holder);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDL(donHang, holder);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDL(donHang, holder);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    DocDL(donHang, holder);
+                }
+            }
+        });
+
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
         if (donHang.hinh.trim().equals("")) {
@@ -65,6 +114,7 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                 holder.ivHinh.setImageResource(R.drawable.giongngo);
             }
         }
+        //Toast.makeText(context, ""+dataSanPham.size(), Toast.LENGTH_SHORT).show();
         holder.tvDiaChi.setText(donHang.diaChi);
         holder.tvTenSP.setText(donHang.tenSanPham);
         holder.tvMoTa.setText(donHang.moTa);
@@ -83,10 +133,13 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
 
         holder.btnTinNhan.setVisibility(View.GONE);
         holder.btnGoiDien.setVisibility(View.GONE);
+        //Toast.makeText(context, ""+dataSanPham.size(), Toast.LENGTH_SHORT).show();
+
 
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
                 builder.setMessage("Bạn có muốn sửa đơn hàng này không ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -96,7 +149,16 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
 
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                                 String currentDateandTime = sdf.format(new Date());
+                                int soLuongHienTai = Integer.parseInt(holder.tvTonKho.getText().toString().trim());
+                                int soLuongSanPhamDonHang = Integer.parseInt(donHang.soLuong.trim());
+                                int soLuongConLai = soLuongHienTai - soLuongSanPhamDonHang;
+
+                                if (soLuongConLai < 0) {
+                                    soLuongConLai = 0;
+                                }
+
                                 data_DH.child(donHang.maDonHang).child("trangThai").setValue("Đang đóng gói");
+                                data_SP.child(donHang.maSanPham).child("soLuong").setValue("" + soLuongConLai);
                                 data_DH.child(donHang.maDonHang).child("thongTinVanChuyen").setValue(donHang.thongTinVanChuyen + "\nĐang đóng gói " + currentDateandTime);
                                 data_DH.child(donHang.maDonHang).child("nhanVienDuyetHang").setValue(donHang.nhanVienDuyetHang + " \nĐang đóng gói - Mã nhân viên: " + MainActivity_DangNhap.maNguoiDung + " " + currentDateandTime);
                             }
@@ -104,6 +166,8 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // User cancelled the dialog
+                                //Toast.makeText(context, "" + dataSanPham.size(), Toast.LENGTH_SHORT).show();
+
                             }
                         });
                 // Create the AlertDialog object and return it
@@ -141,7 +205,7 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
         return bitmap;
     }
 
-    public static void DocDL(DonHang donHang) {
+    public static void DocDL(DonHang donHang, KhoDonHangChoXacNhan_Holder holder) {
         dataSanPham.clear();
         data_SP.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -151,8 +215,19 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                     SanPham sanPham = item.getValue(SanPham.class);
                     if (donHang.maSanPham.trim().equals(sanPham.maSanPham)) {
                         dataSanPham.add(sanPham);
+                        holder.tvTonKho.setText("" + sanPham.soLuong);
+
+                        int tonKho = Integer.parseInt(holder.tvTonKho.getText().toString().trim());
+                        int soLuongSP = Integer.parseInt(donHang.soLuong.trim());
+                        if (tonKho < soLuongSP) {
+                            holder.linearLayoutDonHang.setBackgroundColor(Color.rgb(252, 237, 237));
+                        } else {
+                            holder.linearLayoutDonHang.setBackgroundColor(Color.WHITE);
+                        }
                     }
                 }
+
+
             }
 
             @Override
