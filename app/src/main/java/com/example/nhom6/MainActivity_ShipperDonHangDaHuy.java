@@ -26,7 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
@@ -48,8 +52,8 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
     private void setEvent() {
         database = FirebaseDatabase.getInstance();
         data_DHCB = database.getReference("DonHang");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ShipperDonHangDaHuy_Adapter(this,data_DonHang));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new ShipperDonHangDaHuy_Adapter(this, data_DonHang));
 
         data_DHCB.addChildEventListener(new ChildEventListener() {
             @Override
@@ -85,6 +89,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
         });
 
     }
+
     public void DocDL() {
         data_DonHang.clear();
         data_DHCB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -94,13 +99,30 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đã huỷ")){
-                        data_DonHang.add(donHang);
+                    if (donHang.trangThai.toString().trim().equals("Đã huỷ")) {
+                        if (MainActivity_DangNhap.maNguoiDung.trim().equals(donHang.maShipper)) {
+                            data_DonHang.add(donHang);
+                        }
                     }
-
 
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                Collections.sort(data_DonHang, new Comparator<DonHang>() {
+                    @Override
+                    public int compare(DonHang donHang1, DonHang donHang2) {
+                        Date date1 = null;
+                        Date date2 = null;
+                        try {
+                            date1 = dateFormat.parse(donHang1.getNgay().trim());
+                            date2 = dateFormat.parse(donHang2.getNgay().trim());
+                        } catch (Exception e) {
+                            return 0;
+                        }
+                        return date1.compareTo(date2) * -1;
+                    }
+                });
+
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
@@ -111,8 +133,8 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
         });
 
 
-
     }
+
     private void setControl() {
         recyclerView = findViewById(R.id.recyclerviewDonHang);
         ivHinh = findViewById(R.id.ivHinh);
@@ -120,6 +142,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
 
 
     }
+
     byte[] byteArrayHinh = new byte[0];
 
     @Override
@@ -140,6 +163,7 @@ public class MainActivity_ShipperDonHangDaHuy extends AppCompatActivity {
             }
         }
     }
+
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);

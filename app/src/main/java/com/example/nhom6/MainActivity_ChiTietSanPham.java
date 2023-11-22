@@ -301,6 +301,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                     gioHang.setSoLuong(tvSoLuong.getText().toString().trim());
                     gioHang.setDonVi(data_CT.get(0).getDonVi());
                     gioHang.setHinh(data_CT.get(0).getHinh());
+                    gioHang.setDaChon("0");
                     data_GioHang.child(maGH).setValue(gioHang);
 
                     Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
@@ -332,7 +333,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                         tvID.setText(sanPham.getMaSanPham().toString().trim());
                         tvTenSP.setText(sanPham.getTenSP().toString().trim());
                         tvChuThich.setText(sanPham.getChuThich().toString().trim());
-                        tvKhoiLuong.setText("Khối lượng: "+sanPham.getKhoiLuong().toString().trim());
+                        tvKhoiLuong.setText("Khối lượng: " + sanPham.getKhoiLuong().toString().trim());
                         tvDonVi.setText(sanPham.getDonVi().toString().trim());
                         tvMoTa.setText(sanPham.getMoTa().toString().trim());
                         if (!sanPham.getHinh().trim().equals("")) {

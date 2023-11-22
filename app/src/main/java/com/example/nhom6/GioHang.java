@@ -1,7 +1,15 @@
 package com.example.nhom6;
 
 public class GioHang {
-    String maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh ;
+    String maGioHang, maKhachHang, maSanPham, tenSP, chuThich, gia, khoiLuong, soLuong, donVi, hinh, daChon;
+
+    public String getDaChon() {
+        return daChon;
+    }
+
+    public void setDaChon(String daChon) {
+        this.daChon = daChon;
+    }
 
     public GioHang(String maGioHang, String maKhachHang, String maSanPham, String tenSanPham, String moTa, String gia, String khoiLuong, String soLuong, String donVi, String hinh) {
         this.maGioHang = maGioHang;
