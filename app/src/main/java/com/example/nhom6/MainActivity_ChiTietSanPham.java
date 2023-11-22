@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +36,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     TextView tvTenSP, tvChuThich, tvKhoiLuong, tvSoLuong, tvMoTa, tvGia, tvID;
     Button btnDatHang, btnThemVaoGH, btnCong, btnTru;
     ImageView imgHinh;
+    RecyclerView rcvChiTiet;
     FirebaseDatabase database;
     DatabaseReference data_ChiTiet;
     DatabaseReference data_DonHang;
@@ -44,6 +47,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     Spinner spDiaChi;
     ArrayAdapter adapter;
     List<String> data = new ArrayList<>();
+    List<DonHang> dataDH = new ArrayList<>();
 
     TextView tvChonDiaChiGiaoHang;
 
@@ -75,8 +79,12 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         data_TK = database.getReference("DangKy");
         data_DiaChi = database.getReference("ThemDiaChiMoi");
 
-        adapter  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,data);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, data);
         spDiaChi.setAdapter(adapter);
+
+        //dataDH.add(new DonHang("","","","","0","","","","","","","","","","",""));
+        rcvChiTiet.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rcvChiTiet.setAdapter(new BinhLuanSP_Adappter(this, dataDH));
 
         data_ChiTiet.addChildEventListener(new ChildEventListener() {
             @Override
@@ -92,6 +100,33 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 DocDL();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        data_DonHang.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLDH();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                DocDLDH();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                DocDLDH();
             }
 
             @Override
@@ -238,7 +273,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
                 donHang.setTenShipper("");
                 donHang.setPhuongThucThanhToan(tvPhuongThuc.getText().toString().trim());
-                donHang.setThongTinVanChuyen("Đang chờ xác nhận  "+ currentDateandTime);
+                donHang.setThongTinVanChuyen("Đang chờ xác nhận  " + currentDateandTime);
 
                 donHang.setNhanVienDuyetHang("");
                 donHang.setNgay(currentDateandTime);
@@ -256,7 +291,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 donHang.setLuotThich("");
 
                 data_DonHang.child(donHang.maDonHang).setValue(donHang);
-                Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_DonHang.class);
+                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_DonHang.class);
                 startActivity(intent);
 
             }
@@ -365,6 +400,33 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         });
     }
 
+    private void DocDLDH() {
+        dataDH.clear();
+        data_DonHang.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataDH.clear();
+//                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    DonHang donHang = item.getValue(DonHang.class);
+                    if (donHang.trangThai.trim().equals("Đã giao hàng")) {
+                        if (!donHang.danhGia.trim().equals("")) {
+                            if (maSP.trim().equals(donHang.maSanPham)) {
+                                dataDH.add(donHang);
+                            }
+                        }
+                    }
+                }
+                rcvChiTiet.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void DocDLDiaChi() {
         data.clear();
         data_DiaChi.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -375,7 +437,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
                     if (themDiaChiMoi.maNguoiDung.toString().trim().equals(maKH.toString().trim())) {
-                        data.add("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
+                        data.add("Họ tên: " + themDiaChiMoi.ten + " - SDT: " + themDiaChiMoi.sdt + ", " + themDiaChiMoi.soNha + ", " + themDiaChiMoi.tinh + ", " + themDiaChiMoi.quan + ", " + themDiaChiMoi.phuong);
                         //Toast.makeText(MainActivity_ChiTietSanPham.this, ""+taiKhoan.maNguoiDung, Toast.LENGTH_SHORT).show();
                         //tvDiaChi.setText("Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong);
                         break;
@@ -391,6 +453,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
     }
+
     // chuyen Byte[] Sang Chuoi
     private String chuyenByteSangChuoi(byte[] byteArray) {
         String base64String = android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
@@ -430,5 +493,6 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         tvDiaChi = findViewById(R.id.tvDiaChi);
         tvPhuongThuc = findViewById(R.id.tvPhuongThuc);
         spDiaChi = findViewById(R.id.spDiaChi);
+        rcvChiTiet = findViewById(R.id.rcvChiTietSP);
     }
 }

@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,15 +21,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity_GioHang extends AppCompatActivity {
     Button btnChonPhuongThucThanhToan,btnChonDiaChi,btnQuayLai;
+    TextView tvTongTien;
+    CheckBox cbTatCa;
     RecyclerView rcvRecyclerView;
     List<GioHang>data_GioHang=new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference data_GH;
+    long tongTienSP;
+    List<GioHang> mangMuaHang=new ArrayList<>();
 
 
     String maKH = "-NiNrHieKJTJY-rlUhgh";
@@ -38,7 +45,17 @@ public class MainActivity_GioHang extends AppCompatActivity {
         setContentView(R.layout.giohang);
         setcontrol();
         setEvent();
+        tinhTongTien();
 
+    }
+
+    private void tinhTongTien() {
+        tongTienSP=0;
+        for(int i=0;i<mangMuaHang.size();i++){
+            tongTienSP=tongTienSP+ (Integer.parseInt(data_GioHang.get(i).getGia())*Integer.parseInt( data_GioHang.get(i).getSoLuong()));
+        }
+        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+        tvTongTien.setText(decimalFormat.format(tongTienSP));
     }
 
     private void setEvent() {
@@ -122,5 +139,7 @@ public class MainActivity_GioHang extends AppCompatActivity {
         rcvRecyclerView=findViewById(R.id.rcvRecyclerviewGioHang);
         btnChonDiaChi=findViewById(R.id.btnChondiachi);
         btnChonPhuongThucThanhToan=findViewById(R.id.btnTChonPhuongThuc);
+        cbTatCa=findViewById(R.id.cbTatCaSP);
+        tvTongTien=findViewById(R.id.tvTongCongTien);
     }
 }

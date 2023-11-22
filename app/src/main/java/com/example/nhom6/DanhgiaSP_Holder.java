@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DanhgiaSP_Holder extends RecyclerView.ViewHolder {
     ImageView ivHinh,ivSao1,ivSao2,ivSao3,ivSao4,ivSao5;
-    TextView tvTen,tvMoTa,tvGia,tvSoLuong,tvDiaChi,tvMotaShop,tvSua,tvNgay,tvTrangThaiSao;
+    TextView tvTen,tvMoTa,tvGia,tvSoLuong,tvDiaChi,tvMotaShop,tvSua,tvNgay,tvTrangThaiSao, tvBinhLuanDanhGia;
     EditText edtBinhLuanDanhGia;
     Button btnDanhGia;
 
@@ -34,5 +34,6 @@ public class DanhgiaSP_Holder extends RecyclerView.ViewHolder {
         ivSao4=itemView.findViewById(R.id.ivSao4);
         ivSao5=itemView.findViewById(R.id.ivSao5);
         tvTrangThaiSao=itemView.findViewById(R.id.tvTrangThaiSao);
+        tvBinhLuanDanhGia=itemView.findViewById(R.id.tvBinhLuanDanhGia);
     }
 }

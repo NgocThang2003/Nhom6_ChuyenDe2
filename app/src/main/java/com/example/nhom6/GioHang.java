@@ -1,9 +1,9 @@
 package com.example.nhom6;
 
 public class GioHang {
-    String maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh ;
+    String maGioHang, maKhachHang, maSanPham, tenSP, chuThich,gia,khoiLuong, soLuong,donVi,hinh,daChon ;
 
-    public GioHang(String maGioHang, String maKhachHang, String maSanPham, String tenSanPham, String moTa, String gia, String khoiLuong, String soLuong, String donVi, String hinh) {
+    public GioHang(String maGioHang, String maKhachHang, String maSanPham, String tenSanPham, String moTa, String gia, String khoiLuong, String soLuong, String donVi, String hinh,String daChon) {
         this.maGioHang = maGioHang;
         this.maKhachHang = maKhachHang;
         this.maSanPham = maSanPham;
@@ -14,6 +14,7 @@ public class GioHang {
         this.soLuong = soLuong;
         this.donVi = donVi;
         this.hinh = hinh;
+        this.daChon = daChon;
     }
 
     public String getMaKhachHang() {
@@ -38,16 +39,16 @@ public class GioHang {
                 "maGioHang='" + maGioHang + '\'' +
                 ", maKhachHang='" + maKhachHang + '\'' +
                 ", maSanPham='" + maSanPham + '\'' +
-                ", tenSanPham='" + tenSP + '\'' +
-                ", moTa='" + chuThich + '\'' +
+                ", tenSP='" + tenSP + '\'' +
+                ", chuThich='" + chuThich + '\'' +
                 ", gia='" + gia + '\'' +
                 ", khoiLuong='" + khoiLuong + '\'' +
                 ", soLuong='" + soLuong + '\'' +
                 ", donVi='" + donVi + '\'' +
                 ", hinh='" + hinh + '\'' +
+                ", daChon='" + daChon + '\'' +
                 '}';
     }
-
     public String getMaGioHang() {
         return maGioHang;
     }
@@ -115,5 +116,11 @@ public class GioHang {
     public GioHang() {
     }
 
+    public String getDaChon() {
+        return daChon;
+    }
 
+    public void setDaChon(String daChon) {
+        this.daChon = daChon;
+    }
 }

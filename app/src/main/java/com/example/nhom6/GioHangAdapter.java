@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.eventbus.EventBus;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +29,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
 
     Context context;
     List<GioHang> data = new ArrayList<>();
+    List<GioHang> mangMuaHang=new ArrayList<>();
     List<SanPham> dataSP = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference data_GioHang;
@@ -110,7 +114,21 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangHolder> {
            }
        });
 
+       holder.cbTungSP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked){
+                   mangMuaHang.add(gioHang);
 
+               }else {
+                   for(int i=0;i<mangMuaHang.size();i++){
+                       if(mangMuaHang.get(i).getMaSanPham()==gioHang.getMaSanPham()){
+                           mangMuaHang.remove(i);
+                       }
+                   }
+               }
+           }
+       });
     }
 
     @Override
