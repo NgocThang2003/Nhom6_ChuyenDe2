@@ -20,7 +20,7 @@
             android:text="Kỹ thuật gieo hạt giống cây nông nghiệp, công nghiệp, lâm nghiệp"
             android:textSize="25dp"
             android:textColor="#FFFFFF"
-            android:background="#5BD622"
+            android:background="#25C02B"
             android:gravity="center"/>
         <LinearLayout
             android:paddingTop="25dp"

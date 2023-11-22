@@ -119,12 +119,4 @@ public class MainActivity_TrangChuShipper extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_shipper, menu);
-//        return true;
-//    }
-
-
 }

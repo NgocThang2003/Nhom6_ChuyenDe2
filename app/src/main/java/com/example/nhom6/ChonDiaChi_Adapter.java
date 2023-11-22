@@ -68,7 +68,6 @@ public class ChonDiaChi_Adapter extends RecyclerView.Adapter<ThemDiaChiMoi_Holde
 //            }
 //        });
 
-
     }
 
     @Override

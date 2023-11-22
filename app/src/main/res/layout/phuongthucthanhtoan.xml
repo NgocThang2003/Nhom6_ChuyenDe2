@@ -37,12 +37,14 @@
             android:text="Bằng tiền mặt"
             android:textSize="20dp"/>
        <Switch
+           android:checked="true"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"

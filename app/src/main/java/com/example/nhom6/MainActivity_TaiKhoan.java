@@ -24,7 +24,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     TextView tvXemTatCa, tvLienHe;
 
-    ImageView ivLienHe, ivLienHe2,ivDanhGia;
+    ImageView ivLienHe, ivLienHe2,ivDanhGia, ivPTTT;
     LinearLayout linearLayout;
     Button btnDangXuat;
 
@@ -38,6 +38,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.taikhoan).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -66,7 +67,15 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 }
+
                 return false;
+            }
+        });
+        ivPTTT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_PhuongThucThanhToan.class);
+                startActivity(intent);
             }
         });
 
@@ -169,6 +178,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
         linearLayout = findViewById(R.id.LinearLayout);
         btnDangXuat = findViewById(R.id.btnDangXuat);
         ivDanhGia = findViewById(R.id.ivDanhGiaTK);
+        ivPTTT = findViewById(R.id.ivPTTT);
     }
 
     @Override

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Thêm địa chỉ mới"
-            android:textColor="#333433"
+            android:textColor="#fff"
             android:textSize="30dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Địa chỉ mới"
+        android:textColor="#E2000000"
         android:textSize="25dp"
         android:textStyle="bold" />
     <EditText
@@ -42,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@drawable/bg_edittext"
+        android:background="@drawable/bg_themdiachi"
         android:hint="ID"/>
 
     <LinearLayout
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
+            android:textColor="#E2000000"
             android:textStyle="bold"
             android:text="Họ và tên" />
 
@@ -65,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
+            android:textColor="#E2000000"
             android:text="Số điện thoại" />
     </LinearLayout>
 
@@ -80,17 +83,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:hint="Họ và tên"
+            android:background="@drawable/bg_themdiachi" />
 
-            android:background="@drawable/bg_edittext" />
         <EditText
             android:id="@+id/edtSDT"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="120dp"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:background="@drawable/bg_edittext"
-            android:hint="Số điện thoại"/>
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_themdiachi"
+            android:hint="Số điện thoại"
+            android:paddingLeft="30dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,17 +105,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:textColor="#E2000000"
             android:text="Tỉnh, Thành phố" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:textColor="#E2000000"
             android:text="Quận, Huyện" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:textColor="#E2000000"
             android:text="Phường, Xã" />
     </LinearLayout>
 
@@ -128,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/bg_edittext"
+            android:background="@drawable/bg_themdiachi"
             android:hint="Tỉnh, Thành phố" />
 
         <EditText
@@ -137,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/bg_edittext"
+            android:background="@drawable/bg_themdiachi"
             android:hint="Quận, Huyện" />
 
         <EditText
@@ -146,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/bg_edittext"
+            android:background="@drawable/bg_themdiachi"
             android:hint="Phường, Xã" />
     </LinearLayout>
 
@@ -156,6 +162,7 @@
         android:layout_marginTop="20dp"
         android:text="Địa chỉ"
         android:textSize="25dp"
+        android:textColor="#E2000000"
         android:textStyle="bold" />
     <EditText
         android:id="@+id/edtSoNha"
@@ -164,7 +171,7 @@
         android:layout_height="wrap_content"
         android:hint="Số nhà, tên đường...."
         android:padding="20dp"
-        android:background="@drawable/bg_edittext"/>
+        android:background="@drawable/bg_themdiachi"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

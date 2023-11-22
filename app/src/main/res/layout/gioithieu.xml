@@ -6,7 +6,8 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal">
+       android:orientation="horizontal"
+       android:background="#25C02B">
        <ImageView
            android:onClick="chucnang"
            android:id="@+id/imgQuayVe"
@@ -15,14 +16,15 @@
            android:layout_width="30dp"
            android:layout_height="30dp"
            android:src="@drawable/quayve1" />
+
        <TextView
-           android:gravity="center"
-           android:textSize="30dp"
-           android:textStyle="bold"
-           android:textColor="#333433"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Giới thiệu"/>
+           android:gravity="center"
+           android:text="Giới thiệu"
+           android:textColor="#fff"
+           android:textSize="30dp"
+           android:textStyle="bold" />
    </LinearLayout>
     <TextView
         android:layout_marginTop="10dp"

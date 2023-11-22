@@ -101,12 +101,11 @@ public class MainActivity_ShipperDonHangCuaBan extends AppCompatActivity {
                         //Toast.makeText(MainActivity_ShipperDonHangCuaBan.this, "thay đổi"+donHang.trangThai, Toast.LENGTH_SHORT).show();
                         if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
                             data_DonHang.add(donHang);
-
                         }
-
                         if(donHang.trangThai.toString().trim().equals("Đã đóng gói")){
                             data_DonHang.add(donHang);
                         }
+
                     }
 
                 }
