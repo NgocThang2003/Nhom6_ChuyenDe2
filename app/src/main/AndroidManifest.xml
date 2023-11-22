@@ -23,6 +23,12 @@
             android:name=".MainActivity_DanhSachDonHang_BanHang"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_ShipperDonHangDangGiao"
+            android:exported="false" />
+        <activity
+            android:name=".PhuongThucThanhToan"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_KhoDonHangChoXacNhan"
             android:exported="false" />
         <activity
