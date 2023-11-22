@@ -26,7 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
@@ -101,6 +105,21 @@ public class MainActivity_ShipperDonHangDangGiao extends AppCompatActivity {
                     }
                     //Toast.makeText(MainActivity_TrangChuKhachHang.this, "thay đổi"+trangChuKhachHang.tenKyThuat, Toast.LENGTH_SHORT).show();
                 }
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                Collections.sort(data_DonHang, new Comparator<DonHang>() {
+                    @Override
+                    public int compare(DonHang donHang1, DonHang donHang2) {
+                        Date date1 = null;
+                        Date date2 = null;
+                        try {
+                            date1 = dateFormat.parse(donHang1.getNgay().trim());
+                            date2 = dateFormat.parse(donHang2.getNgay().trim());
+                        } catch (Exception e) {
+                            return 0;
+                        }
+                        return date1.compareTo(date2)*-1;
+                    }
+                });
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
