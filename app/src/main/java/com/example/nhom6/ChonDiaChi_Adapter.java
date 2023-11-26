@@ -53,7 +53,9 @@ public class ChonDiaChi_Adapter extends RecyclerView.Adapter<ThemDiaChiMoi_Holde
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
+                    MainActivity_GioHang.tvDiaChiGiaoHang.setText("Họ tên: " + themDiaChiMoi.ten + " - SDT: " + themDiaChiMoi.sdt + ", Địa chỉ: " + themDiaChiMoi.soNha + ", " + themDiaChiMoi.tinh + ", " + themDiaChiMoi.quan + ", " + themDiaChiMoi.phuong);
                     mListener.onItemClick(position);
+
                 }
             }
         });

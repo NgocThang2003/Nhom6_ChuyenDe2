@@ -18,34 +18,36 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
+public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
     Context context;
     FirebaseDatabase database;
     DatabaseReference data_DonHang;
+
     public BinhLuanSP_Adappter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
+
     List<DonHang> data;
 
 
     @NonNull
     @Override
     public DanhgiaSP_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new DanhgiaSP_Holder(LayoutInflater.from(context).inflate(R.layout.item_danhgia,parent,false));
+        return new DanhgiaSP_Holder(LayoutInflater.from(context).inflate(R.layout.item_danhgia, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull DanhgiaSP_Holder holder, int position) {
-        DonHang donHang=data.get(position);
+        DonHang donHang = data.get(position);
         database = FirebaseDatabase.getInstance();
         data_DonHang = database.getReference("DonHang");
 
         holder.tvTen.setText(donHang.tenSanPham);
         holder.tvMoTa.setText(donHang.moTa);
         holder.tvDiaChi.setText(donHang.diaChi);
-        holder.tvGia.setText(donHang.gia);
-        holder.tvSoLuong.setText(donHang.soLuong);
+        holder.tvGia.setText("Giá đ" + donHang.gia);
+        holder.tvSoLuong.setText("Số lượng x:" + donHang.soLuong);
         holder.edtBinhLuanDanhGia.setText(donHang.danhGia);
         holder.tvMotaShop.setText(donHang.phanHoi);
         holder.tvNgay.setText(donHang.ngay);
@@ -71,11 +73,10 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(holder.edtBinhLuanDanhGia.getText().toString().trim().equals("")){
+                if (holder.edtBinhLuanDanhGia.getText().toString().trim().equals("")) {
                     holder.tvSua.setVisibility(View.GONE);
 
-                }
-                else{
+                } else {
                     holder.tvSua.setVisibility(View.VISIBLE);
                     holder.edtBinhLuanDanhGia.setCursorVisible(true);
                 }
@@ -104,7 +105,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             }
         });
 
-        if(donHang.soSao.trim().equals("")){
+        if (donHang.soSao.trim().equals("")) {
             holder.ivSao1.setImageResource(R.drawable.saoxam);
             holder.ivSao2.setImageResource(R.drawable.saoxam);
             holder.ivSao3.setImageResource(R.drawable.saoxam);
@@ -112,7 +113,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             holder.ivSao5.setImageResource(R.drawable.saoxam);
             holder.tvTrangThaiSao.setText("Không");
         }
-        if(donHang.soSao.trim().equals("1")){
+        if (donHang.soSao.trim().equals("1")) {
             holder.ivSao1.setImageResource(R.drawable.star);
             holder.ivSao2.setImageResource(R.drawable.saoxam);
             holder.ivSao3.setImageResource(R.drawable.saoxam);
@@ -120,7 +121,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             holder.ivSao5.setImageResource(R.drawable.saoxam);
             holder.tvTrangThaiSao.setText("Tệ");
         }
-        if(donHang.soSao.trim().equals("2")){
+        if (donHang.soSao.trim().equals("2")) {
             holder.ivSao1.setImageResource(R.drawable.star);
             holder.ivSao2.setImageResource(R.drawable.star);
             holder.ivSao3.setImageResource(R.drawable.saoxam);
@@ -128,7 +129,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             holder.ivSao5.setImageResource(R.drawable.saoxam);
             holder.tvTrangThaiSao.setText("Không hài lòng");
         }
-        if(donHang.soSao.trim().equals("3")){
+        if (donHang.soSao.trim().equals("3")) {
             holder.ivSao1.setImageResource(R.drawable.star);
             holder.ivSao2.setImageResource(R.drawable.star);
             holder.ivSao3.setImageResource(R.drawable.star);
@@ -136,7 +137,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             holder.ivSao5.setImageResource(R.drawable.saoxam);
             holder.tvTrangThaiSao.setText("Bình thường");
         }
-        if(donHang.soSao.trim().equals("4")){
+        if (donHang.soSao.trim().equals("4")) {
             holder.ivSao1.setImageResource(R.drawable.star);
             holder.ivSao2.setImageResource(R.drawable.star);
             holder.ivSao3.setImageResource(R.drawable.star);
@@ -144,7 +145,7 @@ public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder>{
             holder.ivSao5.setImageResource(R.drawable.saoxam);
             holder.tvTrangThaiSao.setText("Hài lòng");
         }
-        if(donHang.soSao.trim().equals("5")){
+        if (donHang.soSao.trim().equals("5")) {
             holder.ivSao1.setImageResource(R.drawable.star);
             holder.ivSao2.setImageResource(R.drawable.star);
             holder.ivSao3.setImageResource(R.drawable.star);

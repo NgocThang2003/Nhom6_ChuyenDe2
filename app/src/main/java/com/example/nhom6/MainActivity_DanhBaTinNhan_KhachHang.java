@@ -77,6 +77,7 @@ public class MainActivity_DanhBaTinNhan_KhachHang extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity_TrangChuKhachHang.bottomNavigationView.getMenu().getItem(R.id.tuvan).setChecked(false);
                 onBackPressed();
             }
         });

@@ -24,7 +24,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     TextView tvXemTatCa, tvLienHe;
 
-    ImageView ivLienHe, ivLienHe2,ivDanhGia;
+    ImageView ivLienHe, ivLienHe2, ivDanhGia;
     LinearLayout linearLayout;
     Button btnDangXuat;
 
@@ -38,33 +38,35 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
     }
 
     private void setEvent() {
+        bottomNavigationView.getMenu().findItem(R.id.taikhoan).setChecked(true);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.taikhoan) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.thuoc) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.cuahang) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_GiongCayTrong.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.home) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.tuvan) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 return false;
             }
@@ -116,7 +118,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                                 // START THE GAME!
                                 Toast.makeText(MainActivity_TaiKhoan.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(MainActivity_TaiKhoan.this,MainActivity_DangNhap.class));
+                                startActivity(new Intent(MainActivity_TaiKhoan.this, MainActivity_DangNhap.class));
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -137,7 +139,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // START THE GAME!
                                 Toast.makeText(MainActivity_TaiKhoan.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(MainActivity_TaiKhoan.this,MainActivity_DangNhap.class));
+                                startActivity(new Intent(MainActivity_TaiKhoan.this, MainActivity_DangNhap.class));
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -152,7 +154,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
         ivDanhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity_TaiKhoan.this,MainActivity_TatCaDanhGia.class);
+                Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TatCaDanhGia.class);
                 startActivity(intent);
             }
         });
@@ -180,7 +182,7 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(R.id.menuGioHang == item.getItemId()){
+        if (R.id.menuGioHang == item.getItemId()) {
             Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_GioHang.class);
             startActivity(intent);
         }

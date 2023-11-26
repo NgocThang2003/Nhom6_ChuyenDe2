@@ -40,8 +40,8 @@ public class MainActivity_DiaChiGiaoHang extends AppCompatActivity {
     private void setEvent() {
         database = FirebaseDatabase.getInstance();
         data_TDCM = database.getReference("ThemDiaChiMoi");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ThemDiaChiMoi_Adapter(this,data_ThemDiaChi));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new ThemDiaChiMoi_Adapter(this, data_ThemDiaChi));
 
         data_TDCM.addChildEventListener(new ChildEventListener() {
             @Override
@@ -90,10 +90,12 @@ public class MainActivity_DiaChiGiaoHang extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data_ThemDiaChi.clear();
-                Toast.makeText(MainActivity_DiaChiGiaoHang.this, "thay đổi", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity_DiaChiGiaoHang.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
-                    data_ThemDiaChi.add(themDiaChiMoi);
+                    if (themDiaChiMoi.maNguoiDung.trim().equals(MainActivity_DangNhap.maNguoiDung)) {
+                        data_ThemDiaChi.add(themDiaChiMoi);
+                    }
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -104,10 +106,11 @@ public class MainActivity_DiaChiGiaoHang extends AppCompatActivity {
             }
         });
     }
+
     public void chucnangthemdiachimoi(View view) {
 
-        if(view.getId()==R.id.btnThemDiaChiMoi){
-            Intent intent = new Intent(MainActivity_DiaChiGiaoHang.this,MainActivity_ThemDiaChiMoi.class);
+        if (view.getId() == R.id.btnThemDiaChiMoi) {
+            Intent intent = new Intent(MainActivity_DiaChiGiaoHang.this, MainActivity_ThemDiaChiMoi.class);
             startActivity(intent);
         }
     }

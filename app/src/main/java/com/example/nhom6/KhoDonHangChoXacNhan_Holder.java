@@ -13,7 +13,7 @@ public class KhoDonHangChoXacNhan_Holder extends RecyclerView.ViewHolder {
     Button btnGoiDien, btnTinNhan, btnXacNhanDonHang, btnHuy;
     LinearLayout linearLayoutDonHang;
     ImageView ivHinh;
-    TextView tvTenKH, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien,tvLyDoHuyDon, tvTonKho;
+    TextView tvTenKH, tvDiaChi, tvTenSP, tvMoTa, tvSDT, tvGia, tvSoLuong, tvNgay, tvTrangThai, tvThanhTien,tvLyDoHuyDon, tvTonKho,tvMaShipper;
     public KhoDonHangChoXacNhan_Holder(@NonNull View itemView) {
         super(itemView);
         btnGoiDien = itemView.findViewById(R.id.btnGoiDien);
@@ -34,6 +34,7 @@ public class KhoDonHangChoXacNhan_Holder extends RecyclerView.ViewHolder {
         tvThanhTien = itemView.findViewById(R.id.tvThanhTien);
         tvLyDoHuyDon = itemView.findViewById(R.id.tvLyDoHuyDon);
         tvTonKho = itemView.findViewById(R.id.tvTonKho);
+        tvMaShipper = itemView.findViewById(R.id.tvMaShipper);
 
         linearLayoutDonHang = itemView.findViewById(R.id.linearLayoutDonHang);
     }

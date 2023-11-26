@@ -36,7 +36,7 @@ import java.util.List;
 
 public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
     FirebaseDatabase database;
-    private BottomNavigationView bottomNavigationView;
+    public static BottomNavigationView bottomNavigationView;
     DatabaseReference data_TCKH;
     RecyclerView recyclerView;
     TextView tvTenKyThuat, tvMoTa, tvKyThuatGieoHat;
@@ -75,27 +75,27 @@ public class MainActivity_TrangChuKhachHang extends AppCompatActivity {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.cuahang){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this,MainActivity_GiongCayTrong.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.tuvan){
                     Intent intent = new Intent(MainActivity_TrangChuKhachHang.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 return false;
             }

@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,7 +50,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     List<String> data = new ArrayList<>();
     List<DonHang> dataDH = new ArrayList<>();
 
-    TextView tvChonDiaChiGiaoHang;
+    TextView tvChonDiaChiGiaoHang, tvSoNguoiDanhGia, tvTrungBinhSoSao;
+    ImageView ivSoSao1, ivSoSao2, ivSoSao3, ivSoSao4, ivSoSao5;
 
     List<SanPham> data_CT = new ArrayList<>();
     public static List<GioHang> data_GH = new ArrayList<>();
@@ -70,6 +72,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
     }
 
     private void setEvent() {
+        tvSoNguoiDanhGia.setText("0 đánh giá");
         tvDiaChi.setText(ChonDiaChi_Adapter.diaChi);
         maKH = MainActivity_DangNhap.maNguoiDung;
         //DocDLTK();
@@ -80,7 +83,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         data_TK = database.getReference("DangKy");
         data_DiaChi = database.getReference("ThemDiaChiMoi");
 
-        adapter  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,data);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, data);
         spDiaChi.setAdapter(adapter);
 
         //dataDH.add(new DonHang("","","","","0","","","","","","","","","","",""));
@@ -301,7 +304,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
                 donHang.setTenShipper("");
                 donHang.setPhuongThucThanhToan(tvPhuongThuc.getText().toString().trim());
-                donHang.setThongTinVanChuyen("Đang chờ xác nhận  "+ currentDateandTime);
+                donHang.setThongTinVanChuyen("Đang chờ xác nhận  " + currentDateandTime);
 
                 donHang.setNhanVienDuyetHang("");
                 donHang.setNgay(currentDateandTime);
@@ -319,7 +322,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                 donHang.setLuotThich("");
 
                 data_DonHang.child(donHang.maDonHang).setValue(donHang);
-                Intent intent=new Intent(MainActivity_ChiTietSanPham.this,MainActivity_DonHang.class);
+                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_DonHang.class);
                 startActivity(intent);
 
             }
@@ -341,7 +344,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (data_GH.size() > 0) {
-                    Toast.makeText(MainActivity_ChiTietSanPham.this, "" + data_GH.size(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity_ChiTietSanPham.this, "" + data_GH.size(), Toast.LENGTH_SHORT).show();
                     int soLuong1 = Integer.parseInt(data_GH.get(0).soLuong.trim());
                     int soLuong2 = Integer.parseInt(tvSoLuong.getText().toString().trim());
                     int tong = soLuong1 + soLuong2;
@@ -366,10 +369,12 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
 
                     data_GioHang.child(maGH).setValue(gioHang);
 
-                Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
-                startActivity(intent);
+                    Intent intent = new Intent(MainActivity_ChiTietSanPham.this, MainActivity_GioHang.class);
+                    startActivity(intent);
+                }
             }
         });
+
 
         btnQuayLai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -379,6 +384,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         });
 
     }
+
 
     private void DocDL() {
         data_CT.clear();
@@ -392,8 +398,10 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                     if (maSP.toString().trim().equals(sanPham.maSanPham.toString().trim())) {
                         data_CT.add(sanPham);
                         tvID.setText(sanPham.getMaSanPham().toString().trim());
-                        tvTenSP.setText(sanPham.getTenSP().toString().trim());
-                        tvChuThich.setText(sanPham.getChuThich().toString().trim());
+                        tvTenSP.setText("Tên sản phẩm: "+sanPham.getTenSP().toString().trim());
+                        NumberFormat numberFormatDefault = NumberFormat.getInstance();
+                        tvGia.setText("Giá: đ" + numberFormatDefault.format(Integer.parseInt(sanPham.getGia().trim())));
+                        tvChuThich.setText("Chú thích: "+sanPham.getChuThich().toString().trim());
                         tvKhoiLuong.setText("Khối lượng: " + sanPham.getKhoiLuong().toString().trim());
                         tvDonVi.setText(sanPham.getDonVi().toString().trim());
                         tvMoTa.setText(sanPham.getMoTa().toString().trim());
@@ -448,6 +456,8 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataDH.clear();
+                int dem = 0;
+                int soSao = 0;
 //                Toast.makeText(MainActivity_DangNhap.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
@@ -455,10 +465,69 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
                         if (!donHang.danhGia.trim().equals("")) {
                             if (maSP.trim().equals(donHang.maSanPham)) {
                                 dataDH.add(donHang);
+                                dem = dem + 1;
+                                if (!donHang.soSao.trim().equals("")) {
+                                    try {
+                                        int sao = Integer.parseInt(donHang.soSao);
+                                        soSao = sao + soSao;
+                                    } catch (Exception e) {
+                                        soSao = soSao + 0;
+                                    }
+                                }
                             }
                         }
                     }
                 }
+                try {
+                    soSao = soSao / dem;
+                } catch (Exception e) {
+                    soSao = 0;
+                }
+                if (soSao == 0) {
+                    ivSoSao1.setImageResource(R.drawable.saoxam);
+                    ivSoSao2.setImageResource(R.drawable.saoxam);
+                    ivSoSao3.setImageResource(R.drawable.saoxam);
+                    ivSoSao4.setImageResource(R.drawable.saoxam);
+                    ivSoSao5.setImageResource(R.drawable.saoxam);
+                }
+                if (soSao == 1) {
+                    ivSoSao1.setImageResource(R.drawable.star);
+                    ivSoSao2.setImageResource(R.drawable.saoxam);
+                    ivSoSao3.setImageResource(R.drawable.saoxam);
+                    ivSoSao4.setImageResource(R.drawable.saoxam);
+                    ivSoSao5.setImageResource(R.drawable.saoxam);
+                }
+                if (soSao == 2) {
+                    ivSoSao1.setImageResource(R.drawable.star);
+                    ivSoSao2.setImageResource(R.drawable.star);
+                    ivSoSao3.setImageResource(R.drawable.saoxam);
+                    ivSoSao4.setImageResource(R.drawable.saoxam);
+                    ivSoSao5.setImageResource(R.drawable.saoxam);
+                }
+                if (soSao == 3) {
+                    ivSoSao1.setImageResource(R.drawable.star);
+                    ivSoSao2.setImageResource(R.drawable.star);
+                    ivSoSao3.setImageResource(R.drawable.star);
+                    ivSoSao4.setImageResource(R.drawable.saoxam);
+                    ivSoSao5.setImageResource(R.drawable.saoxam);
+                }
+                if (soSao == 4) {
+                    ivSoSao1.setImageResource(R.drawable.star);
+                    ivSoSao2.setImageResource(R.drawable.star);
+                    ivSoSao3.setImageResource(R.drawable.star);
+                    ivSoSao4.setImageResource(R.drawable.star);
+                    ivSoSao5.setImageResource(R.drawable.saoxam);
+                }
+                if (soSao == 5) {
+                    ivSoSao1.setImageResource(R.drawable.star);
+                    ivSoSao2.setImageResource(R.drawable.star);
+                    ivSoSao3.setImageResource(R.drawable.star);
+                    ivSoSao4.setImageResource(R.drawable.star);
+                    ivSoSao5.setImageResource(R.drawable.star);
+                }
+
+                tvSoNguoiDanhGia.setText(dem + " đánh giá");
+                tvTrungBinhSoSao.setText("" + soSao);
                 rcvChiTiet.getAdapter().notifyDataSetChanged();
             }
 
@@ -468,6 +537,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
             }
         });
     }
+
 
     public static int size = -1;
     GioHang gioHang2 = new GioHang();
@@ -500,6 +570,7 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         });
         return gioHang2;
     }
+
 
     private void DocDLDiaChi() {
         data.clear();
@@ -569,5 +640,17 @@ public class MainActivity_ChiTietSanPham extends AppCompatActivity {
         tvPhuongThuc = findViewById(R.id.tvPhuongThuc);
         spDiaChi = findViewById(R.id.spDiaChi);
         rcvChiTiet = findViewById(R.id.rcvChiTietSP);
+
+        tvSoNguoiDanhGia = findViewById(R.id.tvSoNguoiDanhGia);
+        tvTrungBinhSoSao = findViewById(R.id.tvTrungBinhSoSao);
+
+        ivSoSao1 = findViewById(R.id.ivSoSao1);
+        ivSoSao2 = findViewById(R.id.ivSoSao2);
+        ivSoSao3 = findViewById(R.id.ivSoSao3);
+        ivSoSao4 = findViewById(R.id.ivSoSao4);
+        ivSoSao5 = findViewById(R.id.ivSoSao5);
+
+
     }
+
 }

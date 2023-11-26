@@ -21,6 +21,7 @@ public class KhoDonHangDangGiao_Adapter extends RecyclerView.Adapter<KhoDonHangC
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
+
     public KhoDonHangDangGiao_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
@@ -29,7 +30,7 @@ public class KhoDonHangDangGiao_Adapter extends RecyclerView.Adapter<KhoDonHangC
     @NonNull
     @Override
     public KhoDonHangChoXacNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan,parent,false));
+        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan, parent, false));
     }
 
     @Override
@@ -39,16 +40,14 @@ public class KhoDonHangDangGiao_Adapter extends RecyclerView.Adapter<KhoDonHangC
         data_DH = database.getReference("DonHang");
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
-        if (donHang.hinh.trim().equals("")){
+        if (donHang.hinh.trim().equals("")) {
             holder.ivHinh.setImageResource(R.drawable.giongngo);
-        }
-        else {
+        } else {
             try {
                 byte[] bytes = chuyenStringSangByte(donHang.hinh);
                 Bitmap bitmap = chuyenByteSangBitMap(bytes);
                 holder.ivHinh.setImageBitmap(bitmap);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 holder.ivHinh.setImageResource(R.drawable.giongngo);
             }
         }
@@ -71,12 +70,20 @@ public class KhoDonHangDangGiao_Adapter extends RecyclerView.Adapter<KhoDonHangC
         holder.btnGoiDien.setVisibility(View.GONE);
         holder.btnXacNhanDonHang.setVisibility(View.GONE);
         holder.btnHuy.setVisibility(View.GONE);
+
+        if (donHang.maShipper.trim().equals("")) {
+            holder.tvMaShipper.setVisibility(View.GONE);
+        } else {
+            holder.tvMaShipper.setVisibility(View.VISIBLE);
+            holder.tvMaShipper.setText("Mã Shipper: " + donHang.maShipper + " - Tên Shipper:" + donHang.tenShipper);
+        }
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
+
     private byte[] chuyenStringSangByte(String str) {
         byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
         return byteArray;

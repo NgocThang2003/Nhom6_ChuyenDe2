@@ -10,13 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class GioHangHolder extends RecyclerView.ViewHolder {
-
     TextView tvID,tvTenSP, tvKhoiLuong,tvDonVi, tvChuThich, tvSoLuong, tvGia;
     ImageView ivHinh;
     Button btnCong , btnTru, btnXoa;
     CheckBox cbTungSP;
-
-
     public GioHangHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -34,6 +31,5 @@ public class GioHangHolder extends RecyclerView.ViewHolder {
         btnTru = itemView.findViewById(R.id.btnTruGioHang);
         btnXoa = itemView.findViewById(R.id.btnXoaGioHang);
         cbTungSP = itemView.findViewById(R.id.cbCheckBoxTungSP);
-
     }
 }

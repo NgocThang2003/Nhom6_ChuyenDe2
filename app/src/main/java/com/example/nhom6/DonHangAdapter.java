@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +39,12 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangHolder> {
         holder.tvDiaChi.setText(donHang.getDiaChi());
         holder.tvTrangThai.setText(donHang.getTrangThai());
         holder.tvNgay.setText(donHang.getNgay());
-        holder.tvGia.setText(donHang.getGia());
+        NumberFormat numberFormatDefault = NumberFormat.getInstance();
+        holder.tvGia.setText("Giá: đ" + numberFormatDefault.format(Integer.parseInt(donHang.getGia().trim())));
 
         int sL = Integer.parseInt(donHang.getSoLuong().toString().trim());
         int gia = Integer.parseInt(donHang.getGia().toString().trim());
-        holder.tvGiaDH.setText("" + sL * gia);
+        holder.tvGiaDH.setText("đ" + numberFormatDefault.format(sL * gia));
 
 
         if (!donHang.getHinh().toString().trim().equals("")) {

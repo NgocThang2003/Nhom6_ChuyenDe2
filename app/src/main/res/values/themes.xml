@@ -57,13 +57,13 @@
     <style name="button_trai">
         <item name="android:background">@drawable/button_trai</item>
 
-        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
     </style>
     <style name="button_phai">
         <item name="android:background">@drawable/button_phai</item>
 
-        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
     </style>
 
