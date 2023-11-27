@@ -147,6 +147,9 @@
             android:name=".MainActivity_ShipperDanhSachDonHang"
             android:exported="false" />
         <activity
+            android:name=".MainActivity_PhanHoiDanhGiaKhachHang_BanHang"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_TatCaDanhGia"
             android:exported="false" />
         <activity
@@ -155,9 +158,6 @@
 
         <activity
             android:name=".MainActivity_ThongTinNguoiNhan"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity_PhanHoiDanhGiaKhachHang_BanHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity_GopYTuKhachHang_BanHang"
