@@ -28,25 +28,45 @@
             android:gravity="center"
             android:text="Thêm địa chỉ mới"
             android:textColor="#333433"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textSize="20dp"
+            />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_marginTop="20dp"
-        android:text="Địa chỉ mới"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-    <EditText
-        android:enabled="false"
-        android:id="@+id/edtID"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_nen_themdiachimoi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="@drawable/bg_edittext"
-        android:hint="ID"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Địa chỉ mới"
+            android:textColor="#000"
+            android:textSize="17dp" />
+
+        <EditText
+            android:id="@+id/edtID"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_edt_themdiachimoi"
+            android:enabled="false"
+            android:gravity="left|center"
+            android:hint="ID"
+            android:paddingLeft="10dp"
+            android:textSize="13dp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,22 +75,30 @@
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Họ và tên" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="140dp"
-            android:text="Số điện thoại" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Họ và tên"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <EditText
+
+                    android:id="@+id/edtTen"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_edt_themdiachimoi"
+                    android:hint="Họ và tên"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp" />
+            </LinearLayout>
 
 
             <LinearLayout
@@ -79,100 +107,139 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtTen"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="100dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số điện thoại"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edtSDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_edt_themdiachimoi"
+                    android:hint="Số điện thoại"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Họ và tên"
-            android:background="@drawable/bg_edittext" />
-        <EditText
-            android:id="@+id/edtSDT"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="120dp"
-            android:layout_width="140dp"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:background="@drawable/bg_edittext"
-            android:hint="Số điện thoại"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phường, Xã"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edtTinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_edt_themdiachimoi"
+                    android:hint="Tỉnh, Thành phố"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quận, Huyện"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edtQuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_edt_themdiachimoi"
+                    android:hint="Quận, Huyện"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tỉnh, Thành phố"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edtPhuong"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_edt_themdiachimoi"
+                    android:hint="Phường, Xã"
+                    android:paddingLeft="10dp"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:text="Tỉnh, Thành phố" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Quận, Huyện" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Phường, Xã" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Địa chỉ"
+            android:textColor="#000"
+            android:textSize="14dp" />
 
         <EditText
-            android:layout_weight="1"
-            android:id="@+id/edtTinh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/bg_edittext"
-            android:hint="Tỉnh, Thành phố" />
+            android:id="@+id/edtSoNha"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_edt_themdiachimoi"
+            android:hint="Số nhà, tên đường...."
+            android:paddingLeft="10dp"
+            android:textSize="13dp" />
 
-        <EditText
-            android:layout_weight="1"
-            android:id="@+id/edtQuan"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/bg_edittext"
-            android:hint="Quận, Huyện" />
-
-        <EditText
-            android:layout_weight="1"
-            android:id="@+id/edtPhuong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/bg_edittext"
-            android:hint="Phường, Xã" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Địa chỉ"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-    <EditText
-        android:id="@+id/edtSoNha"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Số nhà, tên đường...."
-        android:padding="20dp"
-        android:background="@drawable/bg_edittext"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:textSize="15dp"
