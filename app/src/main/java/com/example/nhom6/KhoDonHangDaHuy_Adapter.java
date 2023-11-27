@@ -23,6 +23,7 @@ public class KhoDonHangDaHuy_Adapter extends RecyclerView.Adapter<KhoDonHangChoX
 
     FirebaseDatabase database;
     DatabaseReference data_DH;
+
     public KhoDonHangDaHuy_Adapter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
@@ -31,7 +32,7 @@ public class KhoDonHangDaHuy_Adapter extends RecyclerView.Adapter<KhoDonHangChoX
     @NonNull
     @Override
     public KhoDonHangChoXacNhan_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan,parent,false));
+        return new KhoDonHangChoXacNhan_Holder(LayoutInflater.from(context).inflate(R.layout.item_khodonhangchoxacnhan, parent, false));
     }
 
     @Override
@@ -41,19 +42,18 @@ public class KhoDonHangDaHuy_Adapter extends RecyclerView.Adapter<KhoDonHangChoX
         data_DH = database.getReference("DonHang");
 
         holder.tvTenKH.setText(donHang.tenKhachHang);
-        if (donHang.hinh.trim().equals("")){
+        if (donHang.hinh.trim().equals("")) {
             holder.ivHinh.setImageResource(R.drawable.giongngo);
-        }
-        else {
+        } else {
             try {
                 byte[] bytes = chuyenStringSangByte(donHang.hinh);
                 Bitmap bitmap = chuyenByteSangBitMap(bytes);
                 holder.ivHinh.setImageBitmap(bitmap);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 holder.ivHinh.setImageResource(R.drawable.giongngo);
             }
         }
+        holder.tvTonKho.setVisibility(View.GONE);
         holder.tvDiaChi.setText(donHang.diaChi);
         holder.tvTenSP.setText(donHang.tenSanPham);
         holder.tvMoTa.setText(donHang.moTa);
@@ -67,18 +67,32 @@ public class KhoDonHangDaHuy_Adapter extends RecyclerView.Adapter<KhoDonHangChoX
 
         holder.tvThanhTien.setText("đ" + gia * soLuong);
 
+
         holder.tvLyDoHuyDon.setVisibility(View.VISIBLE);
         holder.tvLyDoHuyDon.setText(donHang.lyDoHuyDon);
         holder.btnTinNhan.setVisibility(View.GONE);
         holder.btnGoiDien.setVisibility(View.GONE);
         holder.btnXacNhanDonHang.setVisibility(View.GONE);
         holder.btnHuy.setVisibility(View.GONE);
+
+        if (!donHang.getMaShipper().trim().equals("")) {
+            holder.tvMaShipper.setVisibility(View.VISIBLE);
+            holder.tvMaShipper.setText("Mã shipper: " + donHang.maShipper + "- Tên shipper: " + donHang.tenShipper);
+            if (donHang.thuTien.trim().equals("")) {
+                holder.tvTrangThai.setText(donHang.trangThai + " - Chưa trả hàng");
+            } else {
+                holder.tvTrangThai.setText(donHang.trangThai + " - " + donHang.thuTien);
+            }
+        } else {
+            holder.tvMaShipper.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
+
     private byte[] chuyenStringSangByte(String str) {
         byte[] byteArray = android.util.Base64.decode(str, android.util.Base64.NO_PADDING | android.util.Base64.NO_WRAP | android.util.Base64.URL_SAFE);
         return byteArray;

@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.NumberFormat;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +52,10 @@ public class Thuoc_Adapter extends RecyclerView.Adapter<Thuoc_Holder> {
         if (thuoc.moTa1.trim().length() > 20) {
             holder.tvMoTa1.setText(thuoc.moTa1.substring(0, 20) + "...");
         }
-        holder.tvGia1.setText(thuoc.gia1);
+        int gia = Integer.parseInt(thuoc.getGia1());
+        NumberFormat numberFormatDefault = NumberFormat.getInstance();
+        //String formattedNumberDefault = numberFormatDefault.format(gia);
+        holder.tvGia1.setText("Giá: đ" + numberFormatDefault.format(gia));
 
         if (!thuoc.tenSP2.trim().equals("tenSP2")) {
             if (thuoc.hinh2.trim().equals("")) {
@@ -71,7 +76,8 @@ public class Thuoc_Adapter extends RecyclerView.Adapter<Thuoc_Holder> {
             if (thuoc.moTa2.trim().length() > 20) {
                 holder.tvMoTa2.setText(thuoc.moTa2.substring(0, 20) + "...");
             }
-            holder.tvGia2.setText(thuoc.gia2);
+            int gia2 = Integer.parseInt(thuoc.getGia2());
+            holder.tvGia2.setText("Giá: đ" + numberFormatDefault.format(gia2));
         } else {
             holder.tvTenSP2.setVisibility(View.GONE);
             holder.ivHinh2.setVisibility(View.GONE);

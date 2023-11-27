@@ -43,8 +43,8 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
     private void setEvent() {
         database = FirebaseDatabase.getInstance();
         data_DSDH = database.getReference("DonHang");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ShipperDanhSachDonHang_Adapter(this,data_DonHang));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new ShipperDanhSachDonHang_Adapter(this, data_DonHang));
 
         data_DSDH.addChildEventListener(new ChildEventListener() {
             @Override
@@ -79,6 +79,7 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
             }
         });
     }
+
     public void DocDL() {
         data_DonHang.clear();
         data_DSDH.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,10 +89,11 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     DonHang donHang = item.getValue(DonHang.class);
-                    if(donHang.trangThai.toString().trim().equals("Đang đóng gói")){
-
-                            data_DonHang.add(donHang);
-
+                    if (donHang.trangThai.toString().trim().equals("Đang đóng gói")) {
+                        data_DonHang.add(donHang);
+                    }
+                    if (donHang.trangThai.toString().trim().equals("Đã đóng gói")) {
+                        data_DonHang.add(donHang);
                     }
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                     Collections.sort(data_DonHang, new Comparator<DonHang>() {
@@ -105,7 +107,7 @@ public class MainActivity_ShipperDanhSachDonHang extends AppCompatActivity {
                             } catch (Exception e) {
                                 return 0;
                             }
-                            return date1.compareTo(date2)*-1;
+                            return date1.compareTo(date2) * -1;
                         }
                     });
 

@@ -188,8 +188,13 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
-
+                <ImageView
+                    android:id="@+id/ivKhoLienHe"
+                    android:layout_width="50dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/img_kho_lienhe"></ImageView>
                 <TextView
+                    android:text="Danh bạ tin nhắn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"

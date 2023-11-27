@@ -29,6 +29,7 @@ public class MainActivity_Thuoc extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference data_SanPham;
     private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +39,13 @@ public class MainActivity_Thuoc extends AppCompatActivity {
     }
 
     private void setEvent() {
-     bottomNavigationView.getMenu().findItem(R.id.thuoc).setChecked(true);
+        bottomNavigationView.getMenu().findItem(R.id.thuoc).setChecked(true);
         database = FirebaseDatabase.getInstance();
         data_SanPham = database.getReference("SanPham");
 
         KhoiTao();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new Thuoc_Adapter(this,data_Thuoc));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new Thuoc_Adapter(this, data_Thuoc));
 
         data_SanPham.addChildEventListener(new ChildEventListener() {
             @Override
@@ -95,12 +96,12 @@ public class MainActivity_Thuoc extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     SanPham sanPham = item.getValue(SanPham.class);
-                    if (sanPham.loaiSP.toString().toString().equals("Thuốc")){
+                    if (sanPham.loaiSP.toString().toString().equals("Thuốc")) {
                         data_SP.add(sanPham);
                     }
                 }
 
-                for (int i = 0; i < data_SP.size(); i=i+2) {
+                for (int i = 0; i < data_SP.size(); i = i + 2) {
                     Thuoc thuoc = new Thuoc();
                     if (data_SP.get(i).loaiSP.toString().equals("Thuốc")) {
                         SanPham sanPham = data_SP.get(i);
@@ -112,14 +113,15 @@ public class MainActivity_Thuoc extends AppCompatActivity {
                         thuoc.setHinh1(sanPham.getHinh().trim());
 
                     }
-                    if( i + 1 != data_SP.size()){
-                        if (data_SP.get(i+1).loaiSP.toString().equals("Thuốc")) {
-                            SanPham sanPham = data_SP.get(i+1);
+                    if (i + 1 != data_SP.size()) {
+                        if (data_SP.get(i + 1).loaiSP.toString().equals("Thuốc")) {
+                            SanPham sanPham = data_SP.get(i + 1);
                             //Toast.makeText(MainActivity_Thuoc.this, "Thuốc: "+sanPham.tenSP, Toast.LENGTH_SHORT).show();
                             thuoc.setMaSP2(sanPham.getMaSanPham().trim());
                             thuoc.setTenSP2(sanPham.getMoTa().trim());
                             thuoc.setMoTa2(sanPham.getTenSP().trim());
-                            thuoc.setGia2(sanPham.getGia().trim());thuoc.setHinh2(sanPham.getHinh().trim());
+                            thuoc.setGia2(sanPham.getGia().trim());
+                            thuoc.setHinh2(sanPham.getHinh().trim());
                         }
                     }
                     //data_Thuoc.add(new Thuoc("","ấ","BS32 - Mecin","BSC03 - Combo","Nứt thân,xù mũ, chảy nhựa, chảy gôm","Kích rễ, dưỡng cây xanh lá, phục hồi bộ rễ","195.000đ","250.000đ","",""));
@@ -138,25 +140,30 @@ public class MainActivity_Thuoc extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.taikhoan){
-                    Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_TaiKhoan.class);
+                if (item.getItemId() == R.id.taikhoan) {
+                    Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return  true;
+                    //return true;
                 }
-                if(item.getItemId() == R.id.thuoc){
-                    Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_Thuoc.class);
+//                if (item.getItemId() == R.id.thuoc) {
+//                    Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_Thuoc.class);
+//                    startActivity(intent);
+//                    //return true;
+//                }
+                if (item.getItemId() == R.id.cuahang) {
+                    Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_GiongCayTrong.class);
                     startActivity(intent);
-                    return  true;
+                    //return true;
                 }
-                if(item.getItemId() == R.id.cuahang){
-                    Intent intent = new Intent(MainActivity_Thuoc.this,MainActivity_GiongCayTrong.class);
-                    startActivity(intent);
-                    return  true;
-                }
-                if(item.getItemId() == R.id.home){
+                if (item.getItemId() == R.id.home) {
                     Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return true;
+                }
+                if (item.getItemId() == R.id.tuvan) {
+                    Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_DanhBaTinNhan_KhachHang.class);
+                    startActivity(intent);
+                    //return true;
                 }
                 if(item.getItemId() == R.id.tuvan){
                     Intent intent = new Intent(MainActivity_Thuoc.this, MainActivity_DanhBaTinNhan_KhachHang.class);

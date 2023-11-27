@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity_TrangChuThuKho extends AppCompatActivity {
 
-    ImageView ivDanhSachDonHang, ivDonHangDaDongGoi, ivDonHangDaDuocShipperLayHang, ivDonHangDaGiao, ivDonHangBiHuy, ivDangXuat;
+    ImageView ivDanhSachDonHang, ivDonHangDaDongGoi, ivDonHangDaDuocShipperLayHang, ivDonHangDaGiao, ivDonHangBiHuy, ivDangXuat, ivKhoLienHe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,14 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
             }
         });
 
+        ivKhoLienHe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_TrangChuThuKho.this, MainActivity_DanhBaTinNhan_NhanVien.class);
+                startActivity(intent);
+            }
+        });
+
         ivDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,5 +105,6 @@ public class MainActivity_TrangChuThuKho extends AppCompatActivity {
         ivDonHangDaGiao = findViewById(R.id.ivDonHangDaGiao);
         ivDonHangBiHuy = findViewById(R.id.ivDonHangBiHuy);
         ivDangXuat = findViewById(R.id.ivDangXuat);
+        ivKhoLienHe = findViewById(R.id.ivKhoLienHe);
     }
 }

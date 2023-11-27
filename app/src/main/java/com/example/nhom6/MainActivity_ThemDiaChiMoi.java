@@ -64,10 +64,11 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
     }
 
     private void setEvent() {
+        maNguoiDung = MainActivity_DangNhap.maNguoiDung;
         database = FirebaseDatabase.getInstance();
         data_TDCM = database.getReference("ThemDiaChiMoi");
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new ThemDiaChiMoi_Adapter(this,data_ThemDiaChi));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new ThemDiaChiMoi_Adapter(this, data_ThemDiaChi));
 
         ThemDiaChiMoi_Adapter themDiaChiMoi_adapter = (ThemDiaChiMoi_Adapter) recyclerView.getAdapter();
         themDiaChiMoi_adapter.setOnItemClickListenner(new ThemDiaChiMoi_Adapter.OnItemClickListener() {
@@ -107,7 +108,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                             edtSoNha.setText(themDiaChiMoi1.getSoNha());
                         }
                         catch (Exception e){
-                            //Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Đã thay đổi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Đã thay đổi", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -122,7 +123,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!edtID.getText().toString().trim().equals("")){
+                if (!edtID.getText().toString().trim().equals("")) {
                     data_TDCM.child(edtID.getText().toString()).child("ten").setValue(edtTen.getText().toString());
                     data_TDCM.child(edtID.getText().toString()).child("sdt").setValue(edtSDT.getText().toString());
                     data_TDCM.child(edtID.getText().toString()).child("tinh").setValue(edtTinh.getText().toString());
@@ -135,16 +136,14 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!edtID.getText().toString().trim().equals("")){
+                if (!edtID.getText().toString().trim().equals("")) {
                     try {
                         data_TDCM.child(edtID.getText().toString()).removeValue();
                         Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Xóa thành công !", Toast.LENGTH_SHORT).show();
                         clearEditTextt();
+                    } catch (Exception e) {
                     }
-                    catch (Exception e){
-                    }
-                }
-                else{
+                } else {
                     Toast.makeText(MainActivity_ThemDiaChiMoi.this, "Chọn để xóa !", Toast.LENGTH_SHORT).show();
                 }
 
@@ -180,14 +179,13 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         ivQuayVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_ThemDiaChiMoi.this, MainActivity_DiaChiGiaoHang.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
 
-
     }
+
     public void DocDL() {
         data_ThemDiaChi.clear();
         data_TDCM.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -197,7 +195,9 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
                 //Toast.makeText(MainActivity_ThemDiaChiMoi.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
-                    data_ThemDiaChi.add(themDiaChiMoi);
+                    if (themDiaChiMoi.maNguoiDung.trim().equals(maNguoiDung)) {
+                        data_ThemDiaChi.add(themDiaChiMoi);
+                    }
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -224,6 +224,7 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         btnXoa = findViewById(R.id.btnXoa);
         ivQuayVe = findViewById(R.id.imgQuayVe);
     }
+
     private void clearEditTextt() {
         edtID.setText("");
         edtTen.setText("");
@@ -232,7 +233,6 @@ public class MainActivity_ThemDiaChiMoi extends AppCompatActivity {
         edtQuan.setText("");
         edtPhuong.setText("");
     }
-
 
 
 }

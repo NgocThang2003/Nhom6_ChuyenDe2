@@ -5,9 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.Editable;
 import android.text.TextWatcher;
-
-import java.text.NumberFormat;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class DanhGiaSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
+public class BinhLuanSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
     Context context;
     FirebaseDatabase database;
     DatabaseReference data_DonHang;
 
-    public DanhGiaSP_Adappter(Context context, List<DonHang> data) {
+    public BinhLuanSP_Adappter(Context context, List<DonHang> data) {
         this.context = context;
         this.data = data;
     }
@@ -49,9 +46,8 @@ public class DanhGiaSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
         holder.tvTen.setText(donHang.tenSanPham);
         holder.tvMoTa.setText(donHang.moTa);
         holder.tvDiaChi.setText(donHang.diaChi);
-        NumberFormat numberFormatDefault = NumberFormat.getInstance();
-        holder.tvGia.setText("Giá: đ" + numberFormatDefault.format(Integer.parseInt(donHang.gia.trim())));
-        holder.tvSoLuong.setText("x" + donHang.soLuong);
+        holder.tvGia.setText("Giá đ" + donHang.gia);
+        holder.tvSoLuong.setText("Số lượng x:" + donHang.soLuong);
         holder.edtBinhLuanDanhGia.setText(donHang.danhGia);
         holder.tvMotaShop.setText(donHang.phanHoi);
         holder.tvNgay.setText(donHang.ngay);
@@ -68,12 +64,12 @@ public class DanhGiaSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
         }
         holder.tvSua.setVisibility(View.GONE);
         holder.edtBinhLuanDanhGia.setCursorVisible(false);
+        holder.edtBinhLuanDanhGia.setVisibility(View.GONE);
         holder.edtBinhLuanDanhGia.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -158,72 +154,8 @@ public class DanhGiaSP_Adappter extends RecyclerView.Adapter<DanhgiaSP_Holder> {
             holder.tvTrangThaiSao.setText("Tuyệt vời");
         }
 
-
-        holder.ivSao1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ivSao1.setImageResource(R.drawable.star);
-                holder.ivSao2.setImageResource(R.drawable.saoxam);
-                holder.ivSao3.setImageResource(R.drawable.saoxam);
-                holder.ivSao4.setImageResource(R.drawable.saoxam);
-                holder.ivSao5.setImageResource(R.drawable.saoxam);
-                holder.tvTrangThaiSao.setText("Tệ");
-                data_DonHang.child(donHang.maDonHang).child("soSao").setValue("1");
-
-            }
-        });
-        holder.ivSao2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ivSao1.setImageResource(R.drawable.star);
-                holder.ivSao2.setImageResource(R.drawable.star);
-                holder.ivSao3.setImageResource(R.drawable.saoxam);
-                holder.ivSao4.setImageResource(R.drawable.saoxam);
-                holder.ivSao5.setImageResource(R.drawable.saoxam);
-                holder.tvTrangThaiSao.setText("Không hài lòng");
-                data_DonHang.child(donHang.maDonHang).child("soSao").setValue("2");
-
-            }
-        });
-        holder.ivSao3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ivSao1.setImageResource(R.drawable.star);
-                holder.ivSao2.setImageResource(R.drawable.star);
-                holder.ivSao3.setImageResource(R.drawable.star);
-                holder.ivSao4.setImageResource(R.drawable.saoxam);
-                holder.ivSao5.setImageResource(R.drawable.saoxam);
-                holder.tvTrangThaiSao.setText("Bình thường");
-                data_DonHang.child(donHang.maDonHang).child("soSao").setValue("3");
-
-            }
-        });
-        holder.ivSao4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ivSao1.setImageResource(R.drawable.star);
-                holder.ivSao2.setImageResource(R.drawable.star);
-                holder.ivSao3.setImageResource(R.drawable.star);
-                holder.ivSao4.setImageResource(R.drawable.star);
-                holder.ivSao5.setImageResource(R.drawable.saoxam);
-                holder.tvTrangThaiSao.setText("Hài lòng");
-                data_DonHang.child(donHang.maDonHang).child("soSao").setValue("4");
-
-            }
-        });
-        holder.ivSao5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ivSao1.setImageResource(R.drawable.star);
-                holder.ivSao2.setImageResource(R.drawable.star);
-                holder.ivSao3.setImageResource(R.drawable.star);
-                holder.ivSao4.setImageResource(R.drawable.star);
-                holder.ivSao5.setImageResource(R.drawable.star);
-                holder.tvTrangThaiSao.setText("Tuyệt vời");
-                data_DonHang.child(donHang.maDonHang).child("soSao").setValue("5");
-
-            }
-        });
+        holder.tvBinhLuanDanhGia.setVisibility(View.VISIBLE);
+        holder.tvBinhLuanDanhGia.setText(donHang.danhGia);
     }
 
     @Override

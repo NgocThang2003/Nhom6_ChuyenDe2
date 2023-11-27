@@ -79,6 +79,13 @@ public class KhoDonHangDaGiao_Adapter extends RecyclerView.Adapter<KhoDonHangDan
             holder.btnXacNhanDonHang.setVisibility(View.GONE);
             holder.tvTrangThai.setText("Đã thu tiền");
         }
+
+        if (donHang.maShipper.trim().equals("")) {
+            holder.tvMaShipper.setVisibility(View.GONE);
+        } else {
+            holder.tvMaShipper.setVisibility(View.VISIBLE);
+            holder.tvMaShipper.setText("Mã Shipper: " + donHang.maShipper + " - Tên Shipper:" + donHang.tenShipper);
+        }
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

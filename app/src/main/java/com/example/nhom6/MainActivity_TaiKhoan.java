@@ -45,27 +45,27 @@ public class MainActivity_TaiKhoan extends AppCompatActivity {
                 if (item.getItemId() == R.id.taikhoan) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.thuoc) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.cuahang) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_GiongCayTrong.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.home) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
                 if (item.getItemId() == R.id.tuvan) {
                     Intent intent = new Intent(MainActivity_TaiKhoan.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
-                    return true;
+                    //return true;
                 }
 
                 return false;

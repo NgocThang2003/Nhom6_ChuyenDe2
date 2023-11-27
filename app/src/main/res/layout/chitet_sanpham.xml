@@ -7,15 +7,14 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -45,10 +44,12 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
             </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
+
                 <EditText
                     android:id="@+id/edtIDCT"
                     android:layout_width="match_parent"
@@ -57,24 +58,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:scaleType="fitXY"
                     android:id="@+id/ivHinhChiTiet"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/ic_launcher_background"
+                    android:scaleType="fitXY"
 
                     />
 
                 <LinearLayout
-                    android:paddingRight="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -94,12 +94,15 @@
                         android:text="Chú Thích" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="5dp">
 
                         <TextView
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:id="@+id/tvTrungBinhSoSao"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -107,40 +110,46 @@
                             android:textColor="#FF0000" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/ivSoSao1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginRight="1dp"
-                            android:background="@drawable/star"/>
+                            android:src="@drawable/star" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/ivSoSao2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginRight="1dp"
-                            android:background="@drawable/star"/>
+                            android:src="@drawable/star" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/ivSoSao3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginRight="1dp"
-                            android:background="@drawable/star"/>
+                            android:src="@drawable/star" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/ivSoSao4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginRight="1dp"
-                            android:background="@drawable/star"/>
+                            android:src="@drawable/star" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/ivSoSao5"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginRight="10dp"
-                            android:background="@drawable/star"/>
+                            android:src="@drawable/star" />
 
 
                         <TextView
+                            android:id="@+id/tvSoNguoiDanhGia"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:layout_weight="1"
                             android:text="8 đánh giá" />
                     </LinearLayout>
 
@@ -164,48 +173,50 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:text="Khối lượng" />
+
                         <TextView
-                            android:textSize="10dp"
                             android:id="@+id/tvDonVi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Khối lượng" />
+                            android:text="Khối lượng"
+                            android:textSize="10dp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
-                            android:layout_marginLeft="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
                             android:text="Số lượng: " />
 
 
                         <Button
+                            android:layout_width="25dp"
                             android:id="@+id/btnTruCT"
                             style="@style/button_trai"
-                            android:text="-"/>
+                            android:text="-" />
 
                         <TextView
+                            android:background="@drawable/bg_soluong_giohang"
                             android:id="@+id/tvSoLuongCT"
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:layout_marginRight="5sp"
                             android:gravity="center"
                             android:text="1"
-                            android:textSize="20sp"
+                            android:textSize="14dp"
                             android:textStyle="bold" />
 
                         <Button
-                            android:layout_width="30dp"
                             android:id="@+id/btnCongCT"
                             style="@style/button_phai"
-                            android:text="+"
-                            />
+                            android:layout_width="25dp"
+                            android:text="+" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -228,94 +239,104 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:layout_marginRight="30dp"
-                android:gravity="right"
-                android:textColor="#E80909"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Chọn địa phương thức thanh toán >"
-                android:textSize="15dp" />
-            <TextView
                 android:layout_marginRight="30dp"
                 android:gravity="right"
+                android:text="Chọn địa phương thức thanh toán >"
+                android:textColor="#E80909"
+                android:textSize="15dp" />
+
+            <TextView
                 android:id="@+id/tvPhuongThuc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="30dp"
+                android:gravity="right"
                 android:text="Bằng tiền mặt"
                 android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/tvChonDiaChiGiaoHang"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:gravity="right"
-                android:textColor="#E80909"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Chọn địa chỉ giao hàng >"
-                android:textSize="15dp" />
-            <TextView
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:gravity="right"
+                android:text="Chọn địa chỉ giao hàng >"
+                android:textColor="#E80909"
+                android:textSize="15dp" />
+
+            <TextView
                 android:id="@+id/tvDiaChi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="53 Võ Văn Ngân, Linh Đông"
-                android:textSize="15dp" />
-            <Spinner
-                android:visibility="gone"
-                android:id="@+id/spDiaChi"
                 android:layout_marginRight="30dp"
                 android:gravity="right"
+                android:text="53 Võ Văn Ngân, Linh Đông"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/spDiaChi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                />
+                android:layout_marginRight="30dp"
+                android:gravity="right"
+                android:visibility="gone" />
+
             <LinearLayout
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
                 <Button
-                    android:textColor="#fff"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-
                     android:id="@+id/btnDatHang"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button3"
-                    android:text="Đặt hàng" />
+                    android:text="Đặt hàng"
+                    android:textColor="#fff" />
 
                 <Button
-                    android:textColor="#fff"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:id="@+id/btnThemVaoGH"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button2"
+                    android:gravity="center"
                     android:text="Thêm vào giỏ hàng"
-                    android:textSize="13dp"
-                    android:background="@drawable/button2"/>
+                    android:textColor="#fff"
+                    android:textSize="13dp" />
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvChiTietSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
     </LinearLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:visibility="gone"
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FAD3D3"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

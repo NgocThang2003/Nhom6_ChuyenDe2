@@ -413,7 +413,7 @@ public class MainActivity_DanhBaTinNhan_NhanVien extends AppCompatActivity {
                 } catch (Exception e) {
                     return (tinNhan1.getNgay().compareTo(tinNhan2.getNgay())) * -1;
                 }
-                return date1.compareTo(date2);
+                return date1.compareTo(date2) * -1;
             }
         });
         recyclerViewDanhBa.getAdapter().notifyDataSetChanged();

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import java.text.NumberFormat;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -46,12 +47,13 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
                 holder.ivHinh1.setImageResource(R.drawable.giongngo);
             }
         }
+        NumberFormat numberFormatDefault = NumberFormat.getInstance();
         holder.tvTenSP1.setText(giongCayTrong.tenSP1);
-        holder.tvGia1.setText(giongCayTrong.gia1);
+        holder.tvGia1.setText("Giá: đ"+numberFormatDefault.format(Integer.parseInt(giongCayTrong.getGia1())));
 
         if(!giongCayTrong.tenSP2.trim().equals("")){
 
-            holder.tvGia2.setText(giongCayTrong.gia2);
+            holder.tvGia2.setText("Giá: đ"+numberFormatDefault.format(Integer.parseInt(giongCayTrong.getGia2())));
             if (giongCayTrong.hinh2.trim().equals("")){
                 holder.ivHinh2.setImageResource(R.drawable.giongngo);
             }

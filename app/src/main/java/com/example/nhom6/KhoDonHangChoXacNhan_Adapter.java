@@ -131,9 +131,25 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
 
         holder.tvThanhTien.setText("đ" + gia * soLuong);
 
-        holder.btnTinNhan.setVisibility(View.GONE);
-        holder.btnGoiDien.setVisibility(View.GONE);
+        holder.btnTinNhan.setVisibility(View.VISIBLE);
+        holder.btnGoiDien.setVisibility(View.VISIBLE);
         //Toast.makeText(context, ""+dataSanPham.size(), Toast.LENGTH_SHORT).show();
+
+        holder.btnTinNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity_tinnhan_nhanvien.class);
+                MainActivity_tinnhan_nhanvien.maNV = MainActivity_DangNhap.maNguoiDung;
+                MainActivity_tinnhan_nhanvien.maKH = donHang.maKhachHang;
+                context.startActivity(intent);
+            }
+        });
+
+        if (donHang.maShipper.trim().equals("")) {
+            holder.tvMaShipper.setVisibility(View.GONE);
+        } else {
+            holder.tvMaShipper.setText("Mã shipper: " + donHang.maShipper + "Tên shipper: " + donHang.tenShipper);
+        }
 
 
         holder.btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {

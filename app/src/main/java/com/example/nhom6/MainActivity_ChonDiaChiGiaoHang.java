@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,15 +28,17 @@ public class MainActivity_ChonDiaChiGiaoHang extends AppCompatActivity {
     RecyclerView recyclerviewDiaChi;
     List<ThemDiaChiMoi> data_ThemDiaChi = new ArrayList<>();
     String maNguoiDung = "-NiNrHieKJTJY-rlUhgh";
+    public static String diaChi = "";
     ImageView ivQuayVe;
-
+    Button btnThemDiaChiMoi;
     FirebaseDatabase database;
     DatabaseReference data_TDCM;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_chon_dia_chi_giao_hang);
-        
+
         setControl();
         setEvent();
     }
@@ -43,17 +47,25 @@ public class MainActivity_ChonDiaChiGiaoHang extends AppCompatActivity {
         maNguoiDung = MainActivity_DangNhap.maNguoiDung;
         database = FirebaseDatabase.getInstance();
         data_TDCM = database.getReference("ThemDiaChiMoi");
-        recyclerviewDiaChi.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerviewDiaChi.setAdapter(new ChonDiaChi_Adapter(this,data_ThemDiaChi));
+        recyclerviewDiaChi.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerviewDiaChi.setAdapter(new ChonDiaChi_Adapter(this, data_ThemDiaChi));
 
         ChonDiaChi_Adapter chonDiaChiAdapter = (ChonDiaChi_Adapter) recyclerviewDiaChi.getAdapter();
         chonDiaChiAdapter.setOnItemClickListenner(new ChonDiaChi_Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 ThemDiaChiMoi themDiaChiMoi = data_ThemDiaChi.get(position);
-                ChonDiaChi_Adapter.diaChi = "Họ tên: "+themDiaChiMoi.ten+" - SDT: "+themDiaChiMoi.sdt+", "+themDiaChiMoi.soNha+", "+themDiaChiMoi.tinh+", "+themDiaChiMoi.quan+", "+themDiaChiMoi.phuong;
+                ChonDiaChi_Adapter.diaChi = "Họ tên: " + themDiaChiMoi.ten + " - SDT: " + themDiaChiMoi.sdt + ", Địa chỉ: " + themDiaChiMoi.soNha + ", " + themDiaChiMoi.tinh + ", " + themDiaChiMoi.quan + ", " + themDiaChiMoi.phuong;
+                diaChi = "Họ tên: " + themDiaChiMoi.ten + " - SDT: " + themDiaChiMoi.sdt + ", " + themDiaChiMoi.soNha + ", " + themDiaChiMoi.tinh + ", " + themDiaChiMoi.quan + ", " + themDiaChiMoi.phuong;
 //                Intent intent = new Intent(context,MainActivity_ChiTietSanPham.class);
-                MainActivity_ChiTietSanPham.tvDiaChi.setText(chonDiaChiAdapter.diaChi);
+                try {
+
+                    MainActivity_ChiTietSanPham.tvDiaChi.setText(chonDiaChiAdapter.diaChi);
+                    MainActivity_GioHang.tvDiaChiGiaoHang.setText(diaChi);
+                } catch (Exception e) {
+
+                }
+
                 onBackPressed();
             }
         });
@@ -90,7 +102,16 @@ public class MainActivity_ChonDiaChiGiaoHang extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        btnThemDiaChiMoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_ChonDiaChiGiaoHang.this, MainActivity_ThemDiaChiMoi.class);
+                startActivity(intent);
+            }
+        });
     }
+
     public void DocDL() {
         data_ThemDiaChi.clear();
         data_TDCM.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,7 +121,7 @@ public class MainActivity_ChonDiaChiGiaoHang extends AppCompatActivity {
                 //Toast.makeText(MainActivity_ChonDiaChiGiaoHang.this, "thay đổi", Toast.LENGTH_SHORT).show();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ThemDiaChiMoi themDiaChiMoi = item.getValue(ThemDiaChiMoi.class);
-                    if(themDiaChiMoi.maNguoiDung.trim().equals(maNguoiDung.trim())){
+                    if (themDiaChiMoi.maNguoiDung.trim().equals(maNguoiDung.trim())) {
                         data_ThemDiaChi.add(themDiaChiMoi);
                     }
                 }
@@ -113,8 +134,10 @@ public class MainActivity_ChonDiaChiGiaoHang extends AppCompatActivity {
             }
         });
     }
+
     private void setControl() {
         recyclerviewDiaChi = findViewById(R.id.recyclerviewDiaChi);
         ivQuayVe = findViewById(R.id.ivQuayVe);
+        btnThemDiaChiMoi = findViewById(R.id.btnThemDiaChiMoi);
     }
 }

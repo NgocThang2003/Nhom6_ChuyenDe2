@@ -181,27 +181,32 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.cuahang){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_GiongCayTrong.class);
                     startActivity(intent);
-                    return  true;
-                }
-                if(item.getItemId() == R.id.home){
-                    Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_TrangChuKhachHang.class);
-                    startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.tuvan){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
+                }
+                if(item.getItemId() == R.id.home){
+                    Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_TrangChuKhachHang.class);
+                    startActivity(intent);
+                    //return  true;
+                }
+                if(item.getItemId() == R.id.tuvan){
+                    Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_DanhBaTinNhan_KhachHang.class);
+                    startActivity(intent);
+                    //return  true;
                 }
 
                 return false;
@@ -270,27 +275,27 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
-                if(item.getItemId() == R.id.cuahang){
-                    Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_GiongCayTrong.class);
-                    startActivity(intent);
-                    return  true;
-                }
+//                if(item.getItemId() == R.id.cuahang){
+//                    Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_GiongCayTrong.class);
+//                    startActivity(intent);
+//                    return  true;
+//                }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.tuvan){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_DanhBaTinNhan_KhachHang.class);
                     startActivity(intent);
-                    return  true;
+                   //return  true;
                 }
                 return false;
 
@@ -439,22 +444,27 @@ public class MainActivity_GiongCayTrong extends AppCompatActivity {
                 if(item.getItemId() == R.id.taikhoan){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_TaiKhoan.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
                 }
                 if(item.getItemId() == R.id.thuoc){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_Thuoc.class);
                     startActivity(intent);
-                    return  true;
+                   //return  true;
                 }
-                if(item.getItemId() == R.id.cuahang){
-                    Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_GiongCayTrong.class);
-                    startActivity(intent);
-                    return  true;
-                }
+//                if(item.getItemId() == R.id.cuahang){
+//                    Intent intent = new Intent(MainActivity_GiongCayTrong.this,MainActivity_GiongCayTrong.class);
+//                    startActivity(intent);
+//                    //return  true;
+//                }
                 if(item.getItemId() == R.id.home){
                     Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_TrangChuKhachHang.class);
                     startActivity(intent);
-                    return  true;
+                    //return  true;
+                }
+                if(item.getItemId() == R.id.tuvan){
+                    Intent intent = new Intent(MainActivity_GiongCayTrong.this, MainActivity_DanhBaTinNhan_KhachHang.class);
+                    startActivity(intent);
+                    //return  true;
                 }
                 return false;
 
