@@ -50,7 +50,7 @@ public class MainActivity_KhoDonHangDaHuy extends AppCompatActivity {
     }
 
     private void setEvent() {
-        tvTieuDe.setText("Đơn hàng đã hủy thủ kho");
+        tvTieuDe.setText("Đơn hàng đã hủy");
         database = FirebaseDatabase.getInstance();
         data_KDHCXN = database.getReference("DonHang");
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

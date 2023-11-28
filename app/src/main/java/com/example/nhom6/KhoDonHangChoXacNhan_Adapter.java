@@ -1,12 +1,15 @@
 package com.example.nhom6;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -142,6 +146,21 @@ public class KhoDonHangChoXacNhan_Adapter extends RecyclerView.Adapter<KhoDonHan
                 MainActivity_tinnhan_nhanvien.maNV = MainActivity_DangNhap.maNguoiDung;
                 MainActivity_tinnhan_nhanvien.maKH = donHang.maKhachHang;
                 context.startActivity(intent);
+            }
+        });
+
+        holder.btnGoiDien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + donHang.sDT.toString()));
+                if (ActivityCompat.checkSelfPermission(context,
+                        android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions((Activity) context, new
+                            String[]{android.Manifest.permission.CALL_PHONE},1);
+                    return;
+                }
+                context.startActivity(intent);
+
             }
         });
 
