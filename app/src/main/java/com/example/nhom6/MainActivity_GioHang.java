@@ -47,8 +47,6 @@ public class MainActivity_GioHang extends AppCompatActivity {
     DatabaseReference data_DonHang;
 
     String maKH = "-NiNrHieKJTJY-rlUhgh";
-    String maSP = "-NiT6YxCGEdSMwNTLFFt";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,7 +179,7 @@ public class MainActivity_GioHang extends AppCompatActivity {
                                             donHang.setDiaChi(tvDiaChiGiaoHang.getText().toString().trim());
                                             donHang.setTrangThai("Đang chờ xác nhận");
 
-                                            donHang.setMaSanPham(maSP);
+                                            donHang.setMaSanPham(data_GioHang.get(i).maSanPham);
                                             donHang.setTenSanPham(data_GioHang.get(i).tenSP.trim());
                                             donHang.setMaShipper("");
 

@@ -53,7 +53,12 @@ public class GiongCayTrong_Adapter extends RecyclerView.Adapter<GiongCayTrong_Ho
 
         if(!giongCayTrong.tenSP2.trim().equals("")){
 
-            holder.tvGia2.setText("Giá: đ"+numberFormatDefault.format(Integer.parseInt(giongCayTrong.getGia2())));
+            try{
+                holder.tvGia2.setText("Giá: đ"+numberFormatDefault.format(Integer.parseInt(giongCayTrong.getGia2())));
+            }
+            catch (Exception e){
+
+            }
             if (giongCayTrong.hinh2.trim().equals("")){
                 holder.ivHinh2.setImageResource(R.drawable.giongngo);
             }

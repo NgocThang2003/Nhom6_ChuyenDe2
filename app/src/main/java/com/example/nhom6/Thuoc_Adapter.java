@@ -77,7 +77,11 @@ public class Thuoc_Adapter extends RecyclerView.Adapter<Thuoc_Holder> {
                 holder.tvMoTa2.setText(thuoc.moTa2.substring(0, 20) + "...");
             }
             int gia2 = Integer.parseInt(thuoc.getGia2());
-            holder.tvGia2.setText("Giá: đ" + numberFormatDefault.format(gia2));
+            try {
+
+            } catch (Exception e) {
+                holder.tvGia2.setText("Giá: đ" + numberFormatDefault.format(gia2));
+            }
         } else {
             holder.tvTenSP2.setVisibility(View.GONE);
             holder.ivHinh2.setVisibility(View.GONE);
